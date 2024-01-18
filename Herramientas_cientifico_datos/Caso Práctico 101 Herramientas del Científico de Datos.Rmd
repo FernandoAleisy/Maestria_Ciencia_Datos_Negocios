@@ -91,6 +91,9 @@ RMarkdown también nos ofrece la posibilidad de exportar nuestros informes a un 
 
 En términos sencillos RMarkdown es un procesador de texto que ofrece además la posibilidad de incluir trozos de código desde R u otros formatos como Python o SQL [@rstudio2019estadistica].
 
+## Instalación de R
+
+
 
 \newpage
 # Funciones más destacadas
