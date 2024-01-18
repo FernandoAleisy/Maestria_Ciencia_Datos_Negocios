@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.17)  17 JAN 2024 19:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.17)  17 JAN 2024 21:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -438,17 +438,12 @@ Package hyperref Info: Link coloring OFF on input line 102.
 \@outlinefile=\write3
 \openout3 = `Caso-Práctico-101-Herramientas-del-Científico-de-Datos.out'.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 121--122
-
- []
-
-<Banda_datos.png, id=24, 770.88pt x 316.93407pt>
-File: Banda_datos.png Graphic file (type png)
-<use Banda_datos.png>
-Package pdftex.def Info: Banda_datos.png  used on input line 129.
-(pdftex.def)             Requested size: 455.23872pt x 187.16357pt.
-<Logo_Cesuma.png, id=26, 290.832pt x 52.341pt>
+<pexels-google-deepmind.jpg, id=24, 7708.8pt x 4336.2pt>
+File: pexels-google-deepmind.jpg Graphic file (type jpg)
+<use pexels-google-deepmind.jpg>
+Package pdftex.def Info: pexels-google-deepmind.jpg  used on input line 127.
+(pdftex.def)             Requested size: 455.2152pt x 256.05855pt.
+<Logo_Cesuma.png, id=25, 290.832pt x 52.341pt>
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
 Package pdftex.def Info: Logo_Cesuma.png  used on input line 138.
@@ -462,7 +457,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 
 [1{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}
 
- <./Logo_Cesuma.png> <./Banda_datos.png>] (./Caso-Práctico-101-Herramientas-del-Científico-de-Datos.toc
+ <./Logo_Cesuma.png> <./pexels-google-deepmind.jpg>] (./Caso-Práctico-101-Herramientas-del-Científico-de-Datos.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 )
@@ -481,39 +476,9 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
 [2]
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 167.
-(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 167.
-(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
-File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 167.
-(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
-File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 167.
-(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
-File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 167.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 167.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 167.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 167.
-(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 167.
-(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
-Package pdftex.def Info: Logo_Cesuma.png  used on input line 175.
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 149.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -522,7 +487,85 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
-[3] (./Caso-Práctico-101-Herramientas-del-Científico-de-Datos.aux
+[3]
+File: Logo_Cesuma.png Graphic file (type png)
+<use Logo_Cesuma.png>
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 154.
+(pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
+
+Package fancyhdr Warning: \headheight is too small (28.45274pt): 
+(fancyhdr)                Make it at least 39.59396pt, for example:
+(fancyhdr)                \setlength{\headheight}{39.59396pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
+
+[4]
+File: Logo_Cesuma.png Graphic file (type png)
+<use Logo_Cesuma.png>
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 159.
+(pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
+
+Package fancyhdr Warning: \headheight is too small (28.45274pt): 
+(fancyhdr)                Make it at least 39.59396pt, for example:
+(fancyhdr)                \setlength{\headheight}{39.59396pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
+
+[5]
+File: Logo_Cesuma.png Graphic file (type png)
+<use Logo_Cesuma.png>
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 164.
+(pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
+
+Package fancyhdr Warning: \headheight is too small (28.45274pt): 
+(fancyhdr)                Make it at least 39.59396pt, for example:
+(fancyhdr)                \setlength{\headheight}{39.59396pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
+
+[6]
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 175.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 175.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 175.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 175.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 175.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 175.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 175.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 175.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 175.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+File: Logo_Cesuma.png Graphic file (type png)
+<use Logo_Cesuma.png>
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 183.
+(pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
+
+Package fancyhdr Warning: \headheight is too small (28.45274pt): 
+(fancyhdr)                Make it at least 39.59396pt, for example:
+(fancyhdr)                \setlength{\headheight}{39.59396pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
+
+[7] (./Caso-Práctico-101-Herramientas-del-Científico-de-Datos.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -534,18 +577,18 @@ Package rerunfilecheck Info: File `Caso-Práctico-101-Herramientas-del-Científi
 (rerunfilecheck)             Checksum: 2F76182A99A0A45793BB46408B0591E5;735.
  ) 
 Here is how much of TeX's memory you used:
- 12659 strings out of 476108
- 200099 string characters out of 5792216
+ 12668 strings out of 476108
+ 200280 string characters out of 5792216
  1929528 words of memory out of 5000000
- 34516 multiletter control sequences out of 15000+600000
- 587332 words of font info for 58 fonts, out of 8000000 for 9000
+ 34521 multiletter control sequences out of 15000+600000
+ 593328 words of font info for 60 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,15n,79p,361b,462s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
-Output written on Caso-Práctico-101-Herramientas-del-Científico-de-Datos.pdf (3 pages, 833385 bytes).
+Output written on Caso-Práctico-101-Herramientas-del-Científico-de-Datos.pdf (7 pages, 1949676 bytes).
 PDF statistics:
- 89 PDF objects out of 1000 (max. 8388607)
- 71 compressed objects within 1 object stream
- 18 named destinations out of 1000 (max. 500000)
+ 106 PDF objects out of 1000 (max. 8388607)
+ 85 compressed objects within 1 object stream
+ 22 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

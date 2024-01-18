@@ -36,20 +36,20 @@ knitr::opts_chunk$set(echo = TRUE)
 
 \setlength{\headheight}{1.0cm}
 
-\
-
-\vspace{3\baselineskip}
+\null\vfill
 
 \begin{center}
 
-\bfseries{\Large{CASO PRÁCTICO 101  HERRAMIENTAS PARA EL CIENTÍFICO DE DATOS\\[2.0cm]}}
+\bfseries{\LARGE{CASO PRÁCTICO 101  HERRAMIENTAS PARA EL CIENTÍFICO DE DATOS\\[1.0cm]}}
 
-\includegraphics[]{Banda_datos.png}\\[2.0cm]
+\includegraphics[]{pexels-google-deepmind.jpg}\\[1.0cm]
 
 
-\bfseries{R COMO HERRAMIENTA DEL CIENTÍFICO DE DATOS\\ CIENCIA DE DATOS PARA NEGOCIOS\\[2.0cm]}
+\bfseries{\large{R COMO HERRAMIENTA DEL CIENTÍFICO DE DATOS\\ CIENCIA DE DATOS PARA NEGOCIOS}}
 
-\bfseries{ Fernando Aleisy González\\ 17/01/2024}
+\null\vfill
+
+\bfseries{ Fernando Aleisy González\\ \today}
 
 \end{center}
 
@@ -59,18 +59,17 @@ knitr::opts_chunk$set(echo = TRUE)
 \tableofcontents
 
 \newpage
-
 # Descripción de la Herramienta
 
 
-
+\newpage
 # Funciones más destacadas
 
-
+\newpage
 # Aplicaciones
 
-
+\newpage
 # Ejemplo de aplicación
 
-
+\newpage
 # Referencias
