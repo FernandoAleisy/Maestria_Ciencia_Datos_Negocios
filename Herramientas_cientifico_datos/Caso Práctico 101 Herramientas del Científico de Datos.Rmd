@@ -61,6 +61,36 @@ knitr::opts_chunk$set(echo = TRUE)
 \newpage
 # Descripción de la Herramienta
 
+R es un lenguaje que fue desarrollado por estadísticos como un entorno para el análisis de datos, lo que implica que no es un lenguaje para el desarrollo de software. La interactividad que nos ofrece R es fundamental para el éxito en el campo del análisis de los datos ya que esta permite una rápida exploración de los datos [@Introduction2019r].
+
+## Por qué usar R
+
+R es un entorno de software libre para computación estadística y gráficos. Compila y se ejecuta en una amplia variedad de plataformas UNIX, Windows y MacOS lo que permite que el desarrollo se de más rápido que en los softwares de uso comercial debido a que los usuarios hacen desarrollos, los documentan y los suben al CRAN de R de manera  cotidiana [@econometria2016r].
+
+## RStudio, el IDE más usado
+
+El entorno de desarrollo integrado o IDE (integrated development environment) más usado con R es RStudio, con el cual se está desarrollando este informe. Al contrario de como su nombre lo indica RStudio no es exclusivamente para el desarrollo en R, sino que también permite el desarrollo en Python y su versión RStudio Server también permite el desarrollo en SQL y NoSQL.
+
+\begin{figure}[H]
+  \includegraphics[]{IDE_RStudio.png}
+  \caption{Vista general del IDE RStudio}
+  \label{fig:IDE}
+\end{figure}
+
+Utilizando el procesador de texto RMarkdown que nos ofrece RStudio se abre la posibilidad de crear documentos en el lenguaje markdown, el cual es un lenguaje de marcado sencillo que sirve para agregar formato, vínculos e imágenes con facilidad al texto simple, lo que permite crear paginas web de manera sencilla que luego se pueden alojar en RPubs, Posit Connect o Posit Cloud, siendo la primera la más popular.
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=8cm]{Publicacion_Web.png}
+    \caption{plataforma de publicación abierta para documentos HTML producidos con RMarkdown desde RStudio}
+    \label{fig:Public}
+  \end{center}
+\end{figure}
+
+RMarkdown también nos ofrece la posibilidad de exportar nuestros informes a un documento de Word y si instalamos una versión ligera de LaTex, también nos ofrece exportar los informes en pdf permitiendo utilizar el lenguaje de marcado de LaTex en RStudio.
+
+En términos sencillos RMarkdown es un procesador de texto que ofrece además la posibilidad de incluir trozos de código desde R u otros formatos como Python o SQL [@rstudio2019estadistica].
+
 
 \newpage
 # Funciones más destacadas
