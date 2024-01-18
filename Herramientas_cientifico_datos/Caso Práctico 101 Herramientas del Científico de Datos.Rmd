@@ -1,30 +1,76 @@
 ---
-title: "Caso práctico 101  Herramientas del Científico de Datos"
-author: "FERNANDO ALEISY GONZÁLEZ"
-date: "2024-01-17"
 output: pdf_document
+linestretch: 1.0
+geometry: "a4paper, left=2.5cm, right=2.5cm, top=2.0cm, bottom=2.5cm"
+csl: apa.csl
+bibliography: bibliografia.bib
+nocite: |
+  @*
+header-includes:
+  - \usepackage{fancyhdr}
+  - \usepackage[spanish, es-tabla]{babel}
+  - \usepackage{float}
+  - \usepackage{newfloat}
+  - \DeclareFloatingEnvironment[fileext=loq]{grafica}
+  - \addto\captionsspanish{\renewcommand{\refname}{Referencias}}
+  - \usepackage{xcolor}
 ---
+
+\definecolor{naranja}{RGB}{245,145,55}
+\definecolor{azul}{RGB}{40,100,160}
+
+\fancypagestyle{fancy}{
+ \lhead{\includegraphics[width=200pt]{Logo_Cesuma.png}}
+ \rhead{\textcolor{naranja}{
+  \textbf{Maestría en Ciencia de Datos para Negocios}\\
+  \textcolor{azul}{\rule[1mm]{80mm}{0.2mm}} \\
+  Herramientas del científico de datos}}
+ \renewcommand{\headrulewidth}{0.0pt}
+}
+
+\thispagestyle{fancy}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+\setlength{\headheight}{1.0cm}
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+\
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+\vspace{3\baselineskip}
 
-```{r cars}
-summary(cars)
-```
+\begin{center}
 
-## Including Plots
+\bfseries{\Large{CASO PRÁCTICO 101  HERRAMIENTAS PARA EL CIENTÍFICO DE DATOS\\[2.0cm]}}
 
-You can also embed plots, for example:
+\includegraphics[]{Banda_datos.png}\\[2.0cm]
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+\bfseries{R COMO HERRAMIENTA DEL CIENTÍFICO DE DATOS\\ CIENCIA DE DATOS PARA NEGOCIOS\\[2.0cm]}
+
+\bfseries{ Fernando Aleisy González\\ 17/01/2024}
+
+\end{center}
+
+\newpage
+\pagestyle{fancy}
+
+\tableofcontents
+
+\newpage
+
+# Descripción de la Herramienta
+
+
+
+# Funciones más destacadas
+
+
+# Aplicaciones
+
+
+# Ejemplo de aplicación
+
+
+# Referencias
