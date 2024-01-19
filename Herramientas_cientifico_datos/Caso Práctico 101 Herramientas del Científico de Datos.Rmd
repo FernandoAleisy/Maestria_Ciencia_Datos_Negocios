@@ -63,37 +63,55 @@ knitr::opts_chunk$set(echo = TRUE)
 
 R es un lenguaje que fue desarrollado por estadísticos como un entorno para el análisis de datos, lo que implica que no es un lenguaje para el desarrollo de software. La interactividad que nos ofrece R es fundamental para el éxito en el campo del análisis de los datos ya que esta permite una rápida exploración de los datos [@Introduction2019r].
 
+\begin{figure}[H]
+  \caption{Entorno de R con ventanas separadas. En la ventana de la izquierda se muestra la consola y en la ventana de la derecha el area donde se ecribe el script}
+  \includegraphics[]{R_Project.png}
+  \label{fig:RProject}
+\end{figure}
+
 ## Por qué usar R
 
-R es un entorno de software libre para computación estadística y gráficos. Compila y se ejecuta en una amplia variedad de plataformas UNIX, Windows y MacOS lo que permite que el desarrollo se de más rápido que en los softwares de uso comercial debido a que los usuarios hacen desarrollos, los documentan y los suben al CRAN de R de manera  cotidiana [@econometria2016r].
+R es un entorno de software libre para computación estadística y gráficos. Compila y se ejecuta en una amplia variedad de plataformas UNIX, Windows y MacOS lo que permite que el desarrollo se de más rápido que en los softwares de uso comercial debido a que los usuarios hacen desarrollos, los documentan y los suben al CRAN de R de manera  cotidiana [@econometria2016r]. Por los anterior, existen algunas razones de peso para decidirse por el uso de R en el análisis de datos:
+
+- R es ampliamente utilizado en la comunidad estadística y científica para realizar análisis estadísticos complejos, por lo que en Internet se puede encontrar respuestas a casi todos los inconvenientes que se presenten a la hora de realizar un análisis de datos.
+
+- R es ampliamente utilizado en entornos académicos y de investigación, lo que hace que sea más fácil colaborar y compartir código y resultados con colegas.
+
+- R tiene una amplia gama de funciones y paquetes específicos para estadísticas descriptivas, inferencia estadística, regresión, análisis multivariado y más.
+
+- R proporciona herramientas poderosas para crear visualizaciones de datos de alta calidad. La librería `ggplot2` es especialmente popular por su flexibilidad y capacidad para producir gráficos estéticos y personalizables.
+
+- R está diseñado para trabajar con conjuntos de datos de manera eficiente. Su sintaxis es especialmente adecuada para manipular y transformar datos, lo que facilita la limpieza y preparación de datos para análisis.
+
+- R cuenta con una comunidad activa de usuarios y desarrolladores. Existen numerosos paquetes que amplían las funcionalidades de R para abordar diversas necesidades analíticas. Esta riqueza de paquetes permite a los usuarios acceder a una amplia gama de herramientas especializadas.
+
+- R facilita la reproducibilidad en la investigación y análisis de datos. Los scripts y notebooks de R pueden documentar de manera efectiva los pasos realizados, lo que facilita compartir y reproducir análisis.
+
+- R puede integrarse con otros lenguajes de programación, como C, C++, Java y Python, en especial cuando se utiliza el IDE RStudio. Esto permite aprovechar bibliotecas específicas de otros lenguajes cuando sea necesario.
+
+- R es un software de código abierto, lo que significa que es gratuito y está disponible para su modificación y distribución. Esto ha contribuido a su popularidad y a la creación de una comunidad activa de usuarios y desarrolladores.
 
 ## RStudio, el IDE más usado
 
 El entorno de desarrollo integrado o IDE (integrated development environment) más usado con R es RStudio, con el cual se está desarrollando este informe. Al contrario de como su nombre lo indica RStudio no es exclusivamente para el desarrollo en R, sino que también permite el desarrollo en Python y su versión RStudio Server también permite el desarrollo en SQL y NoSQL.
 
 \begin{figure}[H]
+  \caption{Vista general del IDE de RStudio. RStudio se divide en la zona de los scrits, el terminal y un panel lateral donde se muestra las variables creadas, el directorio de trabajo, las gráficas, entre otros elementos}
   \includegraphics[]{IDE_RStudio.png}
-  \caption{Vista general del IDE RStudio}
   \label{fig:IDE}
 \end{figure}
 
-Utilizando el procesador de texto RMarkdown que nos ofrece RStudio se abre la posibilidad de crear documentos en el lenguaje markdown, el cual es un lenguaje de marcado sencillo que sirve para agregar formato, vínculos e imágenes con facilidad al texto simple, lo que permite crear paginas web de manera sencilla que luego se pueden alojar en RPubs, Posit Connect o Posit Cloud, siendo la primera la más popular.
+Utilizando el procesador de texto RMarkdown que nos ofrece RStudio se abre la posibilidad de crear documentos en el lenguaje Markdown, el cual es un lenguaje de marcado sencillo que sirve para agregar formato, vínculos e imágenes con facilidad al texto simple, lo que permite crear paginas web de manera sencilla que luego se pueden alojar en RPubs, Posit Connect o Posit Cloud, siendo la primera la más popular.
 
 \begin{figure}[H]
-  \begin{center}
-    \includegraphics[width=8cm]{Publicacion_Web.png}
-    \caption{plataforma de publicación abierta para documentos HTML producidos con RMarkdown desde RStudio}
-    \label{fig:Public}
-  \end{center}
+  \caption{plataforma de publicación abierta para documentos HTML producidos con RMarkdown desde RStudio}
+  \center{\includegraphics[width=8cm]{Publicacion_Web.png}}
+  \label{fig:Public}
 \end{figure}
 
-RMarkdown también nos ofrece la posibilidad de exportar nuestros informes a un documento de Word y si instalamos una versión ligera de LaTex, también nos ofrece exportar los informes en pdf permitiendo utilizar el lenguaje de marcado de LaTex en RStudio.
+RMarkdown también nos ofrece la posibilidad de exportar nuestros informes a un documento de Word y si instalamos una versión ligera de LaTex, también podremos exportar los informes en pdf permitiendo utilizar el lenguaje de marcado de LaTex en RStudio como complemento al lenguaje de marcado Markdown. Cabe recalcar que no se debe mezclar LaTex con Markdown, por lo que se debe avitar ciertas formalidades si se desea aprovechar el etiquetado de RMardown y mostrar tablas (data.frames) y gráficas hechas con código R.
 
 En términos sencillos RMarkdown es un procesador de texto que ofrece además la posibilidad de incluir trozos de código desde R u otros formatos como Python o SQL [@rstudio2019estadistica].
-
-## Instalación de R
-
-
 
 \newpage
 # Funciones más destacadas
