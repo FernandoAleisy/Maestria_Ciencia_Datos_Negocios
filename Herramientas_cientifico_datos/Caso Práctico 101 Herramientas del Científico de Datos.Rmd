@@ -71,7 +71,11 @@ R es un lenguaje que fue desarrollado por estadísticos como un entorno para el 
 
 ## Por qué usar R
 
-R es un entorno de software libre para computación estadística y gráficos. Compila y se ejecuta en una amplia variedad de plataformas UNIX, Windows y MacOS lo que permite que el desarrollo se de más rápido que en los softwares de uso comercial debido a que los usuarios hacen desarrollos, los documentan y los suben al CRAN de R de manera  cotidiana [@econometria2016r]. Por los anterior, existen algunas razones de peso para decidirse por el uso de R en el análisis de datos:
+R es un entorno de software libre para computación estadística y gráficos. Compila y se ejecuta en una amplia variedad de plataformas UNIX, Windows y MacOS lo que permite que el desarrollo se de más rápido que en los softwares de uso comercial debido a que los usuarios hacen desarrollos, los documentan y los suben al CRAN de R de manera  cotidiana [@econometria2016r]. Estos aportes de la comunidad y de los mismo desarrolladores se les conoce como paquetes y amplían las capacidades base de R.
+
+Los paquetes más importantes para el tratamiento de datos se han recopilado en lo que se conoce el tidyverse. Los paquetes tidyverse comparten la misma filosofía en el formato de datos y programación, y están diseñados para trabajar de forma conjunta cubriendo todas las tareas en el análisis de un proyecto típico en ciencia de datos [@cienciadatosR].
+
+Por los anterior, existen algunas razones de peso para decidirse por el uso de R en el análisis de datos:
 
 - R es ampliamente utilizado en la comunidad estadística y científica para realizar análisis estadísticos complejos, por lo que en Internet se puede encontrar respuestas a casi todos los inconvenientes que se presenten a la hora de realizar un análisis de datos.
 
@@ -109,18 +113,70 @@ Utilizando el procesador de texto RMarkdown que nos ofrece RStudio se abre la po
   \label{fig:Public}
 \end{figure}
 
-RMarkdown también nos ofrece la posibilidad de exportar nuestros informes a un documento de Word y si instalamos una versión ligera de LaTex, también podremos exportar los informes en pdf permitiendo utilizar el lenguaje de marcado de LaTex en RStudio como complemento al lenguaje de marcado Markdown. Cabe recalcar que no se debe mezclar LaTex con Markdown, por lo que se debe avitar ciertas formalidades si se desea aprovechar el etiquetado de RMardown y mostrar tablas (data.frames) y gráficas hechas con código R.
+RMarkdown también nos ofrece la posibilidad de exportar nuestros informes a un documento de Word y si instalamos una versión ligera de LaTex, también podremos exportar los informes en pdf permitiendo utilizar el lenguaje de marcado de LaTex en RStudio como complemento al lenguaje de marcado Markdown [@rmarkdown2019beginners]. Cabe recalcar que no se debe mezclar LaTex con Markdown, por lo que se debe avitar ciertas formalidades si se desea aprovechar el etiquetado de RMardown y mostrar tablas (data.frames) y gráficas hechas con código R.
 
 En términos sencillos RMarkdown es un procesador de texto que ofrece además la posibilidad de incluir trozos de código desde R u otros formatos como Python o SQL [@rstudio2019estadistica].
 
 \newpage
 # Funciones más destacadas
 
+R es un lenguaje de programación y entorno de software ampliamente utilizado en estadísticas y análisis de datos. Algunas de las funciones más destacadas de R incluyen:
+
+- **Programación Funcional:** R es un lenguaje de programación funcional, lo que significa que admite programación funcional y permite el uso de funciones como objetos de primera clase. Esto implica que los usuarios de R pueden crear funciones que permiten reciclar código recurrente.
+
+- **Programación Orientada a Datos:** R se diseñó pensando en la manipulación y análisis de datos. Su sintaxis es especialmente eficiente para trabajar con marcos de datos y realizar operaciones en columnas y filas. Esta característica se puede aprovechar para reciclar un conjunto de funciones que siempre se van a aplicar a los objetos que pertenecen a la misma clase. Un ejemplo de esto es la clase `data.frame`.
+
+- **Comunidad Activa y Paquetes:** La comunidad de usuarios de R es activa y contribuye con numerosos paquetes que amplían las funcionalidades del lenguaje. Existen paquetes para una amplia variedad de tareas, desde análisis de imágenes hasta procesamiento de texto.
+
+- **Desarrollo de Paquetes y Extensiones:** R facilita el desarrollo de paquetes, lo que ha llevado a una rica colección de extensiones que abordan diversas necesidades analíticas y científicas.
+
+- **Reproducibilidad y Documentación:** La capacidad de generar informes reproducibles es una característica importante de R. `R Markdown` permite integrar código, resultados y narrativa en un solo documento, facilitando la generación de informes y documentos interactivos brindando la posibilidad de exportar los informes a formato `Html` y publicarlos en un repositorio, `Word` o `pdf` con una versión ligera de `LaTex`.
+
+- **Análisis Estadístico:** R es especialmente fuerte en análisis estadísticos. Ofrece una amplia gama de funciones y paquetes para estadísticas descriptivas, inferencia estadística, pruebas de hipótesis, análisis de regresión y más.
+
+- **Manipulación de Datos:** R facilita la manipulación de datos con funciones como `subset()`, `merge()`, `aggregate()`, y otras. Además, la manipulación de datos se simplifica mediante paquetes como `dplyr` y `tidyr`.
+
+- **Modelado Predictivo y Machine Learning:** R cuenta con una amplia variedad de paquetes para modelado predictivo y machine learning, como `caret`, `randomForest`, `glmnet`, `xgboost`, entre otros.
+
+- **Visualización de Datos:** La librería `ggplot2` en R es muy popular para la creación de gráficos y visualización de datos. Proporciona una sintaxis clara y flexible para producir gráficos de alta calidad.
+
+- **Interfaz con Bases de Datos y Otros Lenguajes:** R puede conectarse a bases de datos y trabajar con datos almacenados en diferentes formatos. También se puede integrar con otros lenguajes de programación como `C`, `C++`, `Java` y `Python`.
+
+Estas son solo algunas de las funciones destacadas de R. Su versatilidad y la comunidad activa de usuarios y desarrolladores continúan impulsando su popularidad en el ámbito del análisis de datos y la investigación estadística.
+
 \newpage
 # Aplicaciones
 
+R es ampliamente utilizado en diversas aplicaciones, especialmente en áreas relacionadas con estadísticas, análisis de datos, y ciencia de datos. Algunas de las principales aplicaciones de R incluyen:
+
+- **Análisis Estadístico:** R es extremadamente poderoso para realizar análisis estadísticos complejos. Se utiliza para llevar a cabo pruebas de hipótesis, análisis de varianza, regresiones y otros métodos estadísticos.
+
+- **Ciencia de Datos:** R es una herramienta fundamental en la ciencia de datos. Se utiliza para limpiar, explorar y analizar conjuntos de datos, así como para construir modelos predictivos y realizar minería de datos.
+
+- **Visualización de Datos:** La librería `ggplot2` de R es conocida por su capacidad para crear visualizaciones de datos de alta calidad. R se utiliza para generar gráficos, diagramas y tablas que ayudan a visualizar patrones y tendencias en los datos.
+
+- **Bio informática y Genómica:** En la investigación en biología y genómica, R es utilizado para analizar datos de secuenciación genética, realizar estudios de expresión génica, y visualizar resultados en forma de gráficos y diagramas.
+
+- **Economía y Finanzas:** R es utilizado en el análisis financiero y económico para modelar series temporales, calcular métricas financieras, y realizar pronósticos económicos.
+
+- **Investigación Académica:** R es una herramienta comúnmente utilizada en la investigación académica en una variedad de disciplinas, desde las ciencias sociales hasta la biología y la física. Facilita el análisis y la visualización de datos experimentales.
+
+- **Educación en Estadísticas:** R es utilizado en entornos académicos para enseñar estadísticas y análisis de datos. Su accesibilidad y naturaleza de código abierto hacen que sea una opción popular en cursos de estadística.
+
+- **Desarrollo de Modelos Predictivos:** R es ampliamente utilizado en la construcción de modelos predictivos en áreas como la predicción de ventas, la evaluación del riesgo crediticio y la predicción de enfermedades.
+
+- **Epidemiología:** R se utiliza en `epidemiología` para analizar datos relacionados con la propagación de enfermedades, modelar tasas de incidencia y realizar análisis de riesgos.
+
+- **Automatización de Informes:** La integración de R con R `Markdown` permite la creación de informes reproducibles que combinan código, análisis y narrativa en un solo documento, facilitando la comunicación de resultados.
+
+- **Análisis de Redes Sociales:** En sociología y otras disciplinas, R se utiliza para el análisis de redes sociales, permitiendo visualizar y analizar patrones de interacción en redes complejas.
+
+Estas son solo algunas de las muchas aplicaciones de R. Su flexibilidad y la amplia variedad de paquetes disponibles hacen que sea una herramienta valiosa en diferentes campos de la investigación y la toma de decisiones basada en datos.
+
 \newpage
 # Ejemplo de aplicación
+
+
 
 \newpage
 # Referencias

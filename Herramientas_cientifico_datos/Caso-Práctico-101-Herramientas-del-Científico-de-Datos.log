@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.19)  19 JAN 2024 16:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.19)  20 JAN 2024 15:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -515,7 +515,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 157--159
 [][]
  []
 
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 188.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 199.
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -534,16 +534,16 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 <IDE_RStudio.png, id=66, 963.6pt x 510.40688pt>
 File: IDE_RStudio.png Graphic file (type png)
 <use IDE_RStudio.png>
-Package pdftex.def Info: IDE_RStudio.png  used on input line 232.
+Package pdftex.def Info: IDE_RStudio.png  used on input line 243.
 (pdftex.def)             Requested size: 455.2446pt x 241.13736pt.
 <Publicacion_Web.png, id=67, 570.63188pt x 372.64218pt>
 File: Publicacion_Web.png Graphic file (type png)
 <use Publicacion_Web.png>
-Package pdftex.def Info: Publicacion_Web.png  used on input line 245.
+Package pdftex.def Info: Publicacion_Web.png  used on input line 256.
 (pdftex.def)             Requested size: 227.6218pt x 148.64482pt.
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
-Package pdftex.def Info: Logo_Cesuma.png  used on input line 248.
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 259.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -555,7 +555,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 [4 <./IDE_RStudio.png>]
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
-Package pdftex.def Info: Logo_Cesuma.png  used on input line 262.
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 273.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -567,7 +567,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 [5 <./Publicacion_web.png>]
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
-Package pdftex.def Info: Logo_Cesuma.png  used on input line 267.
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 348.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -579,7 +579,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 [6]
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
-Package pdftex.def Info: Logo_Cesuma.png  used on input line 272.
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 419.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -591,7 +591,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 [7]
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
-Package pdftex.def Info: Logo_Cesuma.png  used on input line 277.
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 424.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -602,11 +602,14 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 
 [8]
 
-Package hyperref Warning: Suppressing link with empty target on input line 292.
+Package hyperref Warning: Suppressing link with empty target on input line 439.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 451.
 
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
-Package pdftex.def Info: Logo_Cesuma.png  used on input line 305.
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 459.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -627,18 +630,18 @@ Package rerunfilecheck Info: File `Caso-Práctico-101-Herramientas-del-Científi
 (rerunfilecheck)             Checksum: 7C8735350EBC66B90E167038DA763DE3;1065.
  ) 
 Here is how much of TeX's memory you used:
- 12759 strings out of 476108
- 201901 string characters out of 5792216
- 1934542 words of memory out of 5000000
+ 12761 strings out of 476108
+ 201944 string characters out of 5792216
+ 1936542 words of memory out of 5000000
  34597 multiletter control sequences out of 15000+600000
  596646 words of font info for 62 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,15n,79p,406b,538s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,15n,79p,406b,536s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Caso-Práctico-101-Herramientas-del-Científico-de-Datos.pdf (9 pages, 2340127 bytes).
+Output written on Caso-Práctico-101-Herramientas-del-Científico-de-Datos.pdf (9 pages, 2356078 bytes).
 PDF statistics:
- 148 PDF objects out of 1000 (max. 8388607)
- 116 compressed objects within 2 object streams
- 33 named destinations out of 1000 (max. 500000)
+ 151 PDF objects out of 1000 (max. 8388607)
+ 119 compressed objects within 2 object streams
+ 35 named destinations out of 1000 (max. 500000)
  82 words of extra memory for PDF output out of 10000 (max. 10000000)
 
