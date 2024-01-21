@@ -176,7 +176,87 @@ Estas son solo algunas de las muchas aplicaciones de R. Su flexibilidad y la amp
 \newpage
 # Ejemplo de aplicación
 
+Como ejemplo de aplicación se mostrara el proceso de minería de datos a una serie temporal. el primer paso es ingresar los datos del archivo `Rmissing.csv`. Para ingresas o leer los datos de un archivo `csv` se debe tener en cuenta si los valores están separados por `,` o por `;`. En el primer caso se utiliza la función `read.csv()` y en el segundo `read.csv2()`
 
+```{r}
+datos_t <- read.csv("Rmissing.csv")
+```
+
+Para la visualización de las tablas se utiliza la librería `knitr`
+
+```{r}
+library(knitr)
+```
+
+En la tabla \ref{tab:st} se muestra los 10 primeros con el código `kable(head(datos_t, 10) , align = "lr")`. Con esta visualización se puede dar idea de la estructura de los datos y planificar la limpieza de los mismo.
+
+\begin{table}[H]
+\caption{Los 10 primeros registros de la serie de tiempo (columna mydata). El registro 3 es un dato faltante.}
+\label{tab:st}
+\end{table}
+```{r,  echo=FALSE}
+kable(head(datos_t, 10) , align = "lr")
+
+```
+
+La función `summary` nos indica la cantidad de datos faltantes de cada variable de un `data.frame`. A continuación, se muestra la tabla de los resultados de la función con el código `kable(summary(dato_t))`
+
+\begin{table}[H]
+\caption{Resumen estadístico de las varibales del data.frame datos\_t.}
+\label{tab:summary}
+\end{table}
+```{r, echo=FALSE}
+kable(summary(datos_t))
+```
+
+Lo que se observa de este resumen estadístico es que la variable `mydata` tiene 5 datos faltantes y al menos un dato atípico o `outliers`. La mejor forma de visualizar los `outliers` es por medio de una gráfica. En la gráfica \ref{grafica:dt_ol} se observan 4 `outliers`.
+
+Se utiliza la librería o paquete `ggplot2` para crear gráficas más estilizadas.
+
+```{r}
+library(ggplot2)
+```
+
+Con la librería `ggplot2` se muestra la gráfica \ref{grafica:dt_ol}
+
+```{r}
+ggplot(datos_t, aes(x = X, y = mydata))+
+  geom_line(colour = "cyan2", lwd = 0.5) +
+  theme_minimal()
+```
+\begin{grafica}[H]
+  \caption{Datos no temporales. Los  datos aún no pertenecen a la clase temporal por lo que son variables de tipo integer y numeric}
+  \label{grafica:dt_ol}
+\end{grafica}
+
+La variable que se graficó aún no son del tipo temporal:
+
+```{r}
+sapply(datos_t, class)
+```
+
+Ahora procedemos a crear una variable que corresponde a la variable `mydata` convertida en una del tipo temporal.
+
+```{r}
+datos_ts <- ts(datos_t$mydata)
+```
+
+Como serie de tiempo se dificulta utilizar la librería `ggplot2`, pero esto no  implica que debamos conformarnos con gráficas poco estéticas.
+
+Con algunas funciones de bajo nivel se puede replicar las gráficas de la librería `ggplot2`. De hecho, esta librería hace uso de estas funciones para crear sus temas y funciones.
+
+```{r}
+par(mar = c(4, 4, 0, 0))
+plot(datos_ts, col = "cyan2", axes = FALSE)
+for (i in c(1,2)) axis(i, col = "white", cex.axis = 0.7, col.axis = "gray26")
+grid(col = "gainsboro", lwd = 1, lty = 1)
+```
+\begin{grafica}[H]
+  \caption{Datos temporales. Los datos han sido convertidos a un tipo de datos temporales denominado ts}
+  \label{grafica:st_ol}
+\end{grafica}
+
+En la gráfica \ref{grafica:st_ol} se evidencia 4 `outliers` (4 picos) y también se alcanza a ver los datos faltante en los lugares donde se evidencia los saltos de la gráfica.
 
 \newpage
 # Referencias
