@@ -20,7 +20,7 @@ header-includes:
 \definecolor{azul}{RGB}{40,100,160}
 
 \fancypagestyle{fancy}{
- \lhead{\includegraphics[width=200pt]{Logo_Cesuma.png}}
+ \lhead{\includegraphics[width=200pt]{fig/Logo_Cesuma.png}}
  \rhead{\textcolor{naranja}{
   \textbf{Maestría en Ciencia de Datos para Negocios}\\
   \textcolor{azul}{\rule[1mm]{80mm}{0.2mm}} \\
@@ -42,7 +42,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 \bfseries{\LARGE{CASO PRÁCTICO 101  HERRAMIENTAS PARA EL CIENTÍFICO DE DATOS\\[1.0cm]}}
 
-\includegraphics[]{pexels-google-deepmind.jpg}\\[1.0cm]
+\includegraphics[]{fig/pexels-google-deepmind.jpg}\\[1.0cm]
 
 
 \bfseries{\large{R COMO HERRAMIENTA DEL CIENTÍFICO DE DATOS\\ CIENCIA DE DATOS PARA NEGOCIOS}}
@@ -65,7 +65,7 @@ R es un lenguaje que fue desarrollado por estadísticos como un entorno para el 
 
 \begin{figure}[H]
   \caption{Entorno de R con ventanas separadas. En la ventana de la izquierda se muestra la consola y en la ventana de la derecha el area donde se ecribe el script}
-  \includegraphics[]{R_Project.png}
+  \includegraphics[]{fig/R_Project.png}
   \label{fig:RProject}
 \end{figure}
 
@@ -101,7 +101,7 @@ El entorno de desarrollo integrado o IDE (integrated development environment) m�
 
 \begin{figure}[H]
   \caption{Vista general del IDE de RStudio. RStudio se divide en la zona de los scrits, el terminal y un panel lateral donde se muestra las variables creadas, el directorio de trabajo, las gráficas, entre otros elementos}
-  \includegraphics[]{IDE_RStudio.png}
+  \includegraphics[]{fig/IDE_RStudio.png}
   \label{fig:IDE}
 \end{figure}
 
@@ -109,7 +109,7 @@ Utilizando el procesador de texto RMarkdown que nos ofrece RStudio se abre la po
 
 \begin{figure}[H]
   \caption{plataforma de publicación abierta para documentos HTML producidos con RMarkdown desde RStudio}
-  \center{\includegraphics[width=8cm]{Publicacion_Web.png}}
+  \center{\includegraphics[width=8cm]{fig/Publicacion_Web.png}}
   \label{fig:Public}
 \end{figure}
 
@@ -263,13 +263,13 @@ R facilita el desarrollo de paquetes, lo que ha llevado a una rica colección de
 
 La capacidad de generar informes reproducibles es una característica importante de R. `R Markdown` permite integrar código, resultados y narrativa en un solo documento, facilitando la generación de informes y documentos interactivos brindando la posibilidad de exportar los informes a formato `Html` y publicarlos en un repositorio, `Word` o `pdf` con una versión ligera de `LaTex`.
 
-## Análisis Estadístico:*
+## Análisis Estadístico:
 
 R es especialmente fuerte en análisis estadísticos. Ofrece una amplia gama de funciones y paquetes para estadísticas descriptivas, inferencia estadística, pruebas de hipótesis, análisis de regresión y más.
 
 ## Manipulación de Datos:
 
-R facilita la manipulación de datos con funciones como `subset()`, `merge()`, `aggregate()`, y otras. Además, la manipulación de datos se simplifica mediante paquetes como `dplyr` y `tidyr`.
+R facilita la manipulación de datos con funciones como `subset()`, `merge()`, `aggregate()` entre otras. Para los `data.frame` las funciones `apply`, `sapply` y `mapply` amplían las opciones presentes para modificar o trabajar sobre los objetos `data.frame`. Además, la manipulación de datos se simplifica mediante paquetes como `dplyr`, `tidyr` y las librerías del `tidyverse`.
 
 ## Modelado Predictivo y Machine Learning:
 
@@ -337,7 +337,7 @@ library(kableExtra)
 
 En la tabla \ref{tab:datos} se muestra los 10 primeros datos. Con esta visualización se puede dar idea de la estructura de los datos y planificar la limpieza de los mismo.
 
-*Nota: Se muestra el código para fines didácticos, aunque este se puede obtener en el repositorio: https://github.com/FernandoAleisy/Maestria_Ciencia_Datos_Negocios.git*
+A la hora de hacer un informe es que el código no aparezca, por lo que se puede usar el parámetro `echo=FALSE` en el `Chunk` ($```\{r\ ...\}\ ...\ ```\ $) quedando $```\{r\ echo=FALSE \}\ ...\ ```$. Como se puede ver, el código de la tabla \ref{tab:summary} no se ve cuando se usa ese parámetro en `Chunk`. Se muestra el código para fines didácticos, aunque este se puede obtener en el repositorio: https://github.com/FernandoAleisy/Maestria_Ciencia_Datos_Negocios.git. Se mostrará solo código de la primera tabla y la primera gráfica.
 
 ```{r}
 kbl(head(datos_t, 10),
@@ -348,9 +348,9 @@ kbl(head(datos_t, 10),
     longtable = T)
 ```
 
-La función `summary` nos indica la cantidad de datos faltantes de cada variable de un `data.frame`. A continuación, se muestra la tabla \ref{tab:summary} con los resultados de la función con el código `kbl(summary(dato_t)...)`
+La función `summary` nos indica la cantidad de datos faltantes de cada variable de un `data.frame`. A continuación, se muestra la tabla \ref{tab:summary} con los resultados de la función con el código `kbl(summary(dato_t)...)`. Los `...` en este código corresponde a los mismos argumentos de la primera tabla, a saber, `caption`, `label`, `booktabs` y `longtable`.
 
-```{r}
+```{r  echo=FALSE}
 kbl(summary(datos_t),
     caption = "Resumen estadístico de las varibales del data.frame datos\\_t en 
     el que se incluye la información de los datos faltantes",
@@ -371,7 +371,19 @@ Para gragicar una serie de tiempo se debe convertir a la variable principal en u
 datos_ts <- ts(datos_t$mydata, start = c(2000, 1), frequency = 12)
 ```
 
-Con R base y un poco de trabajo se puede lograr una buena gráfica, como en el ejemplo de la gráfica \ref{grafica:st_ol}.
+Con R base y un poco de trabajo se puede lograr una buena gráfica, como en el ejemplo de la gráfica \ref{grafica:st_ol}. Inclusive, el usuario puede crear sus temas y guardarlos en un archivo con extensión R (`*.R`) para incluirlos en sus informes, en sus gráficas.
+
+El tema que se crea a continuación, se empieza crea de la siguiente forma:
+
+- Se modifica las margenes con la función `par()` que recibe una lista de los valores de las 4 margenes, en el orden margen inferior, izquierda, superior y derecha.
+
+- Se crea la gráfica con la serie temporal con el parámetro col que hace referencia al color (`col = "cyan2"`) e indicando que no se debe crear los ejes con `axes = FALSE`.
+
+- Se recrea los ejes pero con un formato personalizado. La función `axis()` tiene como primer argumento el eje, siendo 1 para el eje `X` y 2 para el eje `Y`. Como no se desea que aparezca las lineas de los ejes, estos se colorean de blanco (`col = "white"`) para que se mimetice con el fondo de la figura. Finalmente se establece el tamaño y el color de los números de los ejes con  `cex.axis = 0.7` y `col.axis = "gray26"` respectivamente.
+
+- El ultimo paso en la creación de nuestro tema es agregarle una grilla o malla a la zona de la gráfica, con una lineas de un gris suave (`col = "gainsboro"`), delgadas (`lwd = 1`) y continuas (`lty = 1`).
+
+Volviendo al análisis, en la gráfica \ref{grafica:st_ol} se evidencia 4 `outliers` (4 picos) y también se alcanza a ver los datos faltante en los lugares donde se evidencia los saltos de la gráfica.
 
 ```{r}
 par(mar = c(4, 4, 0, 0))
@@ -383,8 +395,6 @@ grid(col = "gainsboro", lwd = 1, lty = 1)
   \caption{Datos temporales con valores faltantes y datos atípicos. Se ha creado un tema minimalista con fuunciones base de R}
   \label{grafica:st_ol}
 \end{grafica}
-
-En la gráfica \ref{grafica:st_ol} se evidencia 4 `outliers` (4 picos) y también se alcanza a ver los datos faltante en los lugares donde se evidencia los saltos de la gráfica.
 
 ### La librería ggplot2
 
@@ -438,7 +448,7 @@ datos_t$valor <- as.numeric(tsclean(datos_ts))
 
 Al realizar la gráfica se observa que han desperecido los `outliers` y los datos faltantes, gráfica \ref{grafica:dt_clear}.
 
-```{r, message=FALSE}
+```{r  echo=FALSE, message=FALSE}
 ggplot(datos_t, aes(x = fecha, y = valor))+
   geom_line(colour = "cyan2", lwd = 0.5) +
   theme_minimal()
@@ -448,7 +458,7 @@ ggplot(datos_t, aes(x = fecha, y = valor))+
   \label{grafica:dt_clear}
 \end{grafica}
 
-O directamente con la función `summary()` se obtiene el resumen estadístico en el que ya no aparecen los datos faltantes y el valor máximo de la variable ya es razonable. Algo extra, a la hora de hacer un informe es que el código no aparezca, por lo que se puede usar el parámetro `echo=FALSE` en el `Chunk` ($```\{r \}`$) quedando $```\{r echo=FALSE \}`$. Como se puede ver, el código de la tabla \ref{tab:summary2} ya no se ve cuando se usa ese parámetro en `Chunk`.
+O directamente con la función `summary()` se obtiene el resumen estadístico en el que ya no aparecen los datos faltantes y el valor máximo de la variable ya es razonable.
 
 ```{r echo=FALSE}
 kbl(summary(datos_t),
