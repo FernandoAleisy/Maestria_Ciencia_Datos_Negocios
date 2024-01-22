@@ -176,7 +176,7 @@ Estas son solo algunas de las muchas aplicaciones de R. Su flexibilidad y la amp
 \newpage
 # Ejemplo de aplicación
 
-Como ejemplo de aplicación se mostrara el proceso de minería de datos a una serie temporal. el primer paso es ingresar los datos del archivo `Rmissing.csv`.
+Como ejemplo de aplicación se mostrara el proceso de minería de datos a una serie temporal. El primer paso es ingresar los datos del archivo `Rmissing.csv`.
 
 ## Importar datos
 
@@ -188,14 +188,15 @@ datos_t <- read.csv("Rmissing.csv")
 
 ## Tablas
 
-Para la visualización de las tablas, al exportar al pdf, se utiliza la librería `knitr`.
+Para la visualización de las tablas, al exportar al pdf, se utiliza la librería `kableExtra`.
 
 ```{r}
 library(kableExtra)
-library(knitr)
 ```
 
-En la tabla \ref{tab:datos} se muestra los 10 primeros con el código `kable(head(datos_t, 10) , align = "lr")`. Con esta visualización se puede dar idea de la estructura de los datos y planificar la limpieza de los mismo.
+En la tabla \ref{tab:datos} se muestra los 10 primeros datos. Con esta visualización se puede dar idea de la estructura de los datos y planificar la limpieza de los mismo.
+
+*Nota: Se muestra el código para fines didácticos, aunque este se puede obtener en el repositorio: https://github.com/FernandoAleisy/Maestria_Ciencia_Datos_Negocios.git*
 
 ```{r}
 kbl(head(datos_t, 10),
@@ -206,7 +207,7 @@ kbl(head(datos_t, 10),
     longtable = T)
 ```
 
-La función `summary` nos indica la cantidad de datos faltantes de cada variable de un `data.frame`. A continuación, se muestra la tabla \ref{tab:summary} con los resultados de la función con el código `kable(summary(dato_t))`
+La función `summary` nos indica la cantidad de datos faltantes de cada variable de un `data.frame`. A continuación, se muestra la tabla \ref{tab:summary} con los resultados de la función con el código `kbl(summary(dato_t)...)`
 
 ```{r}
 kbl(summary(datos_t),
