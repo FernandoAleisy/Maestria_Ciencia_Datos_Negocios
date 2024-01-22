@@ -176,74 +176,60 @@ Estas son solo algunas de las muchas aplicaciones de R. Su flexibilidad y la amp
 \newpage
 # Ejemplo de aplicación
 
-Como ejemplo de aplicación se mostrara el proceso de minería de datos a una serie temporal. el primer paso es ingresar los datos del archivo `Rmissing.csv`. Para ingresas o leer los datos de un archivo `csv` se debe tener en cuenta si los valores están separados por `,` o por `;`. En el primer caso se utiliza la función `read.csv()` y en el segundo `read.csv2()`
+Como ejemplo de aplicación se mostrara el proceso de minería de datos a una serie temporal. el primer paso es ingresar los datos del archivo `Rmissing.csv`.
+
+## Importar datos
+
+Para ingresas o leer los datos de un archivo `csv` se debe tener en cuenta si los valores están separados por `,` o por `;`. En el primer caso se utiliza la función `read.csv()` y en el segundo `read.csv2()`
 
 ```{r}
 datos_t <- read.csv("Rmissing.csv")
 ```
 
-Para la visualización de las tablas se utiliza la librería `knitr`
+## Tablas
+
+Para la visualización de las tablas, al exportar al pdf, se utiliza la librería `knitr`.
 
 ```{r}
+library(kableExtra)
 library(knitr)
 ```
 
-En la tabla \ref{tab:st} se muestra los 10 primeros con el código `kable(head(datos_t, 10) , align = "lr")`. Con esta visualización se puede dar idea de la estructura de los datos y planificar la limpieza de los mismo.
-
-\begin{table}[H]
-\caption{Los 10 primeros registros de la serie de tiempo (columna mydata). El registro 3 es un dato faltante.}
-\label{tab:st}
-\end{table}
-```{r,  echo=FALSE}
-kable(head(datos_t, 10) , align = "lr")
-
-```
-
-La función `summary` nos indica la cantidad de datos faltantes de cada variable de un `data.frame`. A continuación, se muestra la tabla de los resultados de la función con el código `kable(summary(dato_t))`
-
-\begin{table}[H]
-\caption{Resumen estadístico de las varibales del data.frame datos\_t.}
-\label{tab:summary}
-\end{table}
-```{r, echo=FALSE}
-kable(summary(datos_t))
-```
-
-Lo que se observa de este resumen estadístico es que la variable `mydata` tiene 5 datos faltantes y al menos un dato atípico o `outliers`. La mejor forma de visualizar los `outliers` es por medio de una gráfica. En la gráfica \ref{grafica:dt_ol} se observan 4 `outliers`.
-
-Se utiliza la librería o paquete `ggplot2` para crear gráficas más estilizadas.
+En la tabla \ref{tab:datos} se muestra los 10 primeros con el código `kable(head(datos_t, 10) , align = "lr")`. Con esta visualización se puede dar idea de la estructura de los datos y planificar la limpieza de los mismo.
 
 ```{r}
-library(ggplot2)
+kbl(head(datos_t, 10),
+    caption = "Los 10 primeros registros de la serie de tiempo (columna mydata).
+    El registro 3 es un dato faltante.",
+    label = 'datos',
+    booktabs = T,
+    longtable = T)
 ```
 
-Con la librería `ggplot2` se muestra la gráfica \ref{grafica:dt_ol}
+La función `summary` nos indica la cantidad de datos faltantes de cada variable de un `data.frame`. A continuación, se muestra la tabla \ref{tab:summary} con los resultados de la función con el código `kable(summary(dato_t))`
 
 ```{r}
-ggplot(datos_t, aes(x = X, y = mydata))+
-  geom_line(colour = "cyan2", lwd = 0.5) +
-  theme_minimal()
+kbl(summary(datos_t),
+    caption = "Resumen estadístico de las varibales del data.frame datos\\_t en 
+    el que se incluye la información de los datos faltantes",
+    label = 'summary',
+    booktabs = T,
+    longtable = T)
 ```
-\begin{grafica}[H]
-  \caption{Datos no temporales. Los  datos aún no pertenecen a la clase temporal por lo que son variables de tipo integer y numeric}
-  \label{grafica:dt_ol}
-\end{grafica}
 
-La variable que se graficó aún no son del tipo temporal:
+## Gráficas
+
+Lo que se observa de este resumen estadístico es que la variable `mydata` tiene 5 datos faltantes y al menos un dato atípico o `outliers`. La mejor forma de visualizar los `outliers` es por medio de una gráfica.
+
+### R base
+
+Para gragicar una serie de tiempo se debe convertir a la variable principal en una variable del tipo temporal. Suponiendo que los datos son mensuales y el primer registro corresponde a enero del año 2000, su crea la variable `datos_ts` como una del tipo `ts`.
 
 ```{r}
-sapply(datos_t, class)
+datos_ts <- ts(datos_t$mydata, start = c(2000, 1), frequency = 12)
 ```
 
-Ahora procedemos a crear una variable que corresponde a la variable `mydata` convertida en una del tipo temporal.
-
-```{r}
-datos_ts <- ts(datos_t$mydata)
-```
-
-Como serie de tiempo se dificulta utilizar la librería `ggplot2`, pero esto no  implica que debamos conformarnos con gráficas poco estéticas.
-
-Con algunas funciones de bajo nivel se puede replicar las gráficas de la librería `ggplot2`. De hecho, esta librería hace uso de estas funciones para crear sus temas y funciones.
+Con R base y un poco de trabajo se puede lograr una buena gráfica, como en el ejemplo de la gráfica \ref{grafica:st_ol}.
 
 ```{r}
 par(mar = c(4, 4, 0, 0))
@@ -252,11 +238,84 @@ for (i in c(1,2)) axis(i, col = "white", cex.axis = 0.7, col.axis = "gray26")
 grid(col = "gainsboro", lwd = 1, lty = 1)
 ```
 \begin{grafica}[H]
-  \caption{Datos temporales. Los datos han sido convertidos a un tipo de datos temporales denominado ts}
+  \caption{Datos temporales con valores faltantes y datos atípicos. Se ha creado un tema minimalista con fuunciones base de R}
   \label{grafica:st_ol}
 \end{grafica}
 
 En la gráfica \ref{grafica:st_ol} se evidencia 4 `outliers` (4 picos) y también se alcanza a ver los datos faltante en los lugares donde se evidencia los saltos de la gráfica.
+
+### La librería ggplot2
+
+La librería ggplot2 es hecha por la comunidad y está basada en la función de R base `plot()` y las funciones de bajo nivel que permite agregar y/o modificar características de las gráficas.
+Para poder usar la serie temporal con la librería `ggplot2`, más precisamente con la función `ggplot()`, se debe utilizar un pequeño truco, el cual consiste en crear un `data.frame` como se muestra a continuación.
+
+```{r}
+datos_t <- data.frame(fecha = time(datos_ts), valor = as.numeric(datos_ts))
+```
+
+Con la función `class()` combinada con la función `sapply()` se puede ver el tipo de variables que posee el `data.frame`. Observamos que la variable que se está analizando es del tipo `numeric` el cual se requiere para poder realizar la gráfica con la función `ggplot()`.
+
+```{r}
+sapply(datos_t, class)
+```
+La ventaja de la librería o paquete `ggplot2` es que tiene temas que permite crear gráficas más estilizadas con solo hacer el llamado de la función del tema deseado. A continuación, se carga la librería.
+
+```{r}
+library(ggplot2)
+```
+
+Con la librería `ggplot2` se muestra la gráfica \ref{grafica:dt_ol}
+
+```{r, message=FALSE}
+ggplot(datos_t, aes(x = fecha, y = valor))+
+  geom_line(colour = "cyan2", lwd = 0.5) +
+  theme_minimal()
+```
+\begin{grafica}[H]
+  \caption{Datos temporales con valores faltantes y datos atípicos. Se ha aplicado el tema minimalista de la librería \bfseries{ggplot2}}
+  \label{grafica:dt_ol}
+\end{grafica}
+
+Con la gráfica \ref{grafica:dt_ol} se obtiene un tema parecido al creado con R base. Uno puede crear sus propios temas y crear una función que pueda ser utilizada cada vez que sea necesario.
+
+Nuevamente, con esta gráfica, se observan 4 `outliers` y identifica que la variable tiene datos faltantes.
+
+## Limpiando la variable
+
+Para cambiar los `outleirs` e imputar los valores faltante, en una serie temporal, se suele utilizar la interpolación. El paquete `forscat` permite realizar estas dos actividades por separados o a la vez con la función `tsclean()`.
+
+```{r, message=FALSE}
+library(forecast)
+```
+
+Ahora ya podemos limpiar los datos:
+
+```{r}
+datos_t$valor <- as.numeric(tsclean(datos_ts))
+```
+
+Al realizar la gráfica se observa que han desperecido los `outliers` y los datos faltantes, gráfica \ref{grafica:dt_clear}.
+
+```{r, message=FALSE}
+ggplot(datos_t, aes(x = fecha, y = valor))+
+  geom_line(colour = "cyan2", lwd = 0.5) +
+  theme_minimal()
+```
+\begin{grafica}[H]
+  \caption{Datos temporales luego de realizar la mineria de datos o la limpieza de datos}
+  \label{grafica:dt_clear}
+\end{grafica}
+
+O directamente con la función `summary()` se obtiene el resumen estadístico en el que ya no aparecen los datos faltantes y el valor máximo de la variable ya es razonable. Algo extra, a la hora de hacer un informe es que el código no aparezca, por lo que se puede usar el parámetro `echo=FALSE` en el `Chunk` ($```\{r \}`$) quedando $```\{r echo=FALSE \}`$. Como se puede ver, el código de la tabla \ref{tab:summary2} ya no se ve cuando se usa ese parámetro en `Chunk`.
+
+```{r echo=FALSE}
+kbl(summary(datos_t),
+    caption = "Resumen estadístico de las varibales del data.frame datos\\_t después
+    de la limpiza de los datos",
+    label = 'summary2',
+    booktabs = T,
+    longtable = T)
+```
 
 \newpage
 # Referencias
