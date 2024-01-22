@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.21)  21 JAN 2024 22:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.1.21)  22 JAN 2024 12:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -584,12 +584,12 @@ Package hyperref Info: Link coloring OFF on input line 156.
 \@outlinefile=\write4
 \openout4 = `Caso-Práctico-101-Herramientas-del-Científico-de-Datos.out'.
 
-<pexels-google-deepmind.jpg, id=56, 7708.8pt x 4336.2pt>
+<pexels-google-deepmind.jpg, id=96, 7708.8pt x 4336.2pt>
 File: pexels-google-deepmind.jpg Graphic file (type jpg)
 <use pexels-google-deepmind.jpg>
 Package pdftex.def Info: pexels-google-deepmind.jpg  used on input line 181.
 (pdftex.def)             Requested size: 455.2152pt x 256.05855pt.
-<Logo_Cesuma.png, id=57, 290.832pt x 52.341pt>
+<Logo_Cesuma.png, id=97, 290.832pt x 52.341pt>
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
 Package pdftex.def Info: Logo_Cesuma.png  used on input line 192.
@@ -651,7 +651,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
 [2]
-<R_Project.png, id=85, 1445.4pt x 777.65532pt>
+<R_Project.png, id=135, 1445.4pt x 777.65532pt>
 File: R_Project.png Graphic file (type png)
 <use R_Project.png>
 Package pdftex.def Info: R_Project.png  used on input line 211.
@@ -677,12 +677,12 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
 [3 <./R_Project.png>]
-<IDE_RStudio.png, id=96, 963.6pt x 510.40688pt>
+<IDE_RStudio.png, id=146, 963.6pt x 510.40688pt>
 File: IDE_RStudio.png Graphic file (type png)
 <use IDE_RStudio.png>
 Package pdftex.def Info: IDE_RStudio.png  used on input line 297.
 (pdftex.def)             Requested size: 455.2446pt x 241.13736pt.
-<Publicacion_Web.png, id=97, 570.63188pt x 372.64218pt>
+<Publicacion_Web.png, id=147, 570.63188pt x 372.64218pt>
 File: Publicacion_Web.png Graphic file (type png)
 <use Publicacion_Web.png>
 Package pdftex.def Info: Publicacion_Web.png  used on input line 310.
@@ -711,9 +711,11 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
 [5 <./Publicacion_web.png>]
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 351.
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
-Package pdftex.def Info: Logo_Cesuma.png  used on input line 402.
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 448.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -725,7 +727,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 [6]
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
-Package pdftex.def Info: Logo_Cesuma.png  used on input line 473.
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 531.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -735,15 +737,9 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
 [7]
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 492.
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 521.
-(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
-File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
-Package pdftex.def Info: Logo_Cesuma.png  used on input line 578.
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 631.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -752,16 +748,10 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
-[8{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
-<Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-6-1.pdf, id=139, 469.755pt x 325.215pt>
-File: Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
-<use Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-6-1.pdf>
-Package pdftex.def Info: Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-6-1.pdf  used on input line 614.
-(pdftex.def)             Requested size: 455.24608pt x 315.17035pt.
-Package hyperref Info: bookmark level for unknown grafica defaults to 0 on input line 617.
+[8]
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
-Package pdftex.def Info: Logo_Cesuma.png  used on input line 619.
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 663.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -773,7 +763,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 [9]
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
-Package pdftex.def Info: Logo_Cesuma.png  used on input line 667.
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 734.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -782,15 +772,61 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
-[10 <./Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-6-1.pdf>]
-<Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-10-1.pdf, id=160, 469.755pt x 325.215pt>
-File: Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
-<use Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-10-1.pdf>
-Package pdftex.def Info: Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-10-1.pdf  used on input line 680.
+[10]
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 782.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
+File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+File: Logo_Cesuma.png Graphic file (type png)
+<use Logo_Cesuma.png>
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 839.
+(pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
+
+Package fancyhdr Warning: \headheight is too small (28.45274pt): 
+(fancyhdr)                Make it at least 39.59396pt, for example:
+(fancyhdr)                \setlength{\headheight}{39.59396pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
+
+[11{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
+<Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-18-1.pdf, id=212, 469.755pt x 325.215pt>
+File: Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (type pdf)
+<use Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-18-1.pdf>
+Package pdftex.def Info: Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-18-1.pdf  used on input line 875.
+(pdftex.def)             Requested size: 455.24608pt x 315.17035pt.
+Package hyperref Info: bookmark level for unknown grafica defaults to 0 on input line 878.
+File: Logo_Cesuma.png Graphic file (type png)
+<use Logo_Cesuma.png>
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 880.
+(pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
+
+Package fancyhdr Warning: \headheight is too small (28.45274pt): 
+(fancyhdr)                Make it at least 39.59396pt, for example:
+(fancyhdr)                \setlength{\headheight}{39.59396pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
+
+[12]
+File: Logo_Cesuma.png Graphic file (type png)
+<use Logo_Cesuma.png>
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 928.
+(pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
+
+Package fancyhdr Warning: \headheight is too small (28.45274pt): 
+(fancyhdr)                Make it at least 39.59396pt, for example:
+(fancyhdr)                \setlength{\headheight}{39.59396pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
+
+[13 <./Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-18-1.pdf>]
+<Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-22-1.pdf, id=233, 469.755pt x 325.215pt>
+File: Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (type pdf)
+<use Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-22-1.pdf>
+Package pdftex.def Info: Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-22-1.pdf  used on input line 941.
 (pdftex.def)             Requested size: 455.24608pt x 315.17035pt.
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
-Package pdftex.def Info: Logo_Cesuma.png  used on input line 719.
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 980.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -799,15 +835,15 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
-[11 <./Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-10-1.pdf>]
-<Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-13-1.pdf, id=175, 469.755pt x 325.215pt>
-File: Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
-<use Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-13-1.pdf>
-Package pdftex.def Info: Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-13-1.pdf  used on input line 727.
+[14 <./Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-22-1.pdf>]
+<Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-25-1.pdf, id=248, 469.755pt x 325.215pt>
+File: Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (type pdf)
+<use Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-25-1.pdf>
+Package pdftex.def Info: Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-25-1.pdf  used on input line 988.
 (pdftex.def)             Requested size: 455.24608pt x 315.17035pt.
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
-Package pdftex.def Info: Logo_Cesuma.png  used on input line 759.
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 1020.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -816,19 +852,19 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
-[12{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc} <./Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-13-1.pdf>]
+[15{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc} <./Caso-Práctico-101-Herramientas-del-Científico-de-Datos_files/figure-latex/unnamed-chunk-25-1.pdf>]
 
-Package hyperref Warning: Suppressing link with empty target on input line 774.
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 778.
+Package hyperref Warning: Suppressing link with empty target on input line 1035.
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 794.
+Package hyperref Warning: Suppressing link with empty target on input line 1039.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 1055.
 
 File: Logo_Cesuma.png Graphic file (type png)
 <use Logo_Cesuma.png>
-Package pdftex.def Info: Logo_Cesuma.png  used on input line 812.
+Package pdftex.def Info: Logo_Cesuma.png  used on input line 1073.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -837,7 +873,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
-[13] (./Caso-Práctico-101-Herramientas-del-Científico-de-Datos.aux
+[16] (./Caso-Práctico-101-Herramientas-del-Científico-de-Datos.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -846,21 +882,21 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `Caso-Práctico-101-Herramientas-del-Científico-de-Datos.out' has not changed.
-(rerunfilecheck)             Checksum: 22944925CBF7224B68B6820047E8EBBF;1794.
+(rerunfilecheck)             Checksum: E685E752DE0946328C78CA70AAC732D8;3986.
  ) 
 Here is how much of TeX's memory you used:
- 15017 strings out of 476108
- 240567 string characters out of 5792216
- 1941542 words of memory out of 5000000
- 36747 multiletter control sequences out of 15000+600000
+ 15060 strings out of 476108
+ 241483 string characters out of 5792216
+ 1940542 words of memory out of 5000000
+ 36767 multiletter control sequences out of 15000+600000
  597375 words of font info for 65 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,15n,79p,430b,537s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Caso-Práctico-101-Herramientas-del-Científico-de-Datos.pdf (13 pages, 2431437 bytes).
+Output written on Caso-Práctico-101-Herramientas-del-Científico-de-Datos.pdf (16 pages, 2443339 bytes).
 PDF statistics:
- 281 PDF objects out of 1000 (max. 8388607)
- 230 compressed objects within 3 object streams
- 61 named destinations out of 1000 (max. 500000)
- 145 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 358 PDF objects out of 1000 (max. 8388607)
+ 303 compressed objects within 4 object streams
+ 84 named destinations out of 1000 (max. 500000)
+ 225 words of extra memory for PDF output out of 10000 (max. 10000000)
 

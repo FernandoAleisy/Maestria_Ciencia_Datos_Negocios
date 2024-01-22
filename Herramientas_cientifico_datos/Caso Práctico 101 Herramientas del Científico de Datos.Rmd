@@ -122,25 +122,166 @@ En términos sencillos RMarkdown es un procesador de texto que ofrece además la
 
 R es un lenguaje de programación y entorno de software ampliamente utilizado en estadísticas y análisis de datos. Algunas de las funciones más destacadas de R incluyen:
 
-- **Programación Funcional:** R es un lenguaje de programación funcional, lo que significa que admite programación funcional y permite el uso de funciones como objetos de primera clase. Esto implica que los usuarios de R pueden crear funciones que permiten reciclar código recurrente.
+## Programación Funcional:
 
-- **Programación Orientada a Datos:** R se diseñó pensando en la manipulación y análisis de datos. Su sintaxis es especialmente eficiente para trabajar con marcos de datos y realizar operaciones en columnas y filas. Esta característica se puede aprovechar para reciclar un conjunto de funciones que siempre se van a aplicar a los objetos que pertenecen a la misma clase. Un ejemplo de esto es la clase `data.frame`.
+R es un lenguaje de programación funcional, lo que significa que admite programación funcional y permite el uso de funciones como objetos de primera clase. Esto implica que los usuarios de R pueden crear funciones que permiten reciclar código recurrente.
 
-- **Comunidad Activa y Paquetes:** La comunidad de usuarios de R es activa y contribuye con numerosos paquetes que amplían las funcionalidades del lenguaje. Existen paquetes para una amplia variedad de tareas, desde análisis de imágenes hasta procesamiento de texto.
+Por ejemplo, se puede calcular el área y el perímetro de un rectángulo multiplicando la base por la altura y multiplicando la suma de la base con la altura por 2.
 
-- **Desarrollo de Paquetes y Extensiones:** R facilita el desarrollo de paquetes, lo que ha llevado a una rica colección de extensiones que abordan diversas necesidades analíticas y científicas.
+```{r}
+b <- 5; h <- 6
+cat("El área del rectángulo es", b*h, " y su perímetro es", (b+h)*2)
 
-- **Reproducibilidad y Documentación:** La capacidad de generar informes reproducibles es una característica importante de R. `R Markdown` permite integrar código, resultados y narrativa en un solo documento, facilitando la generación de informes y documentos interactivos brindando la posibilidad de exportar los informes a formato `Html` y publicarlos en un repositorio, `Word` o `pdf` con una versión ligera de `LaTex`.
+```
+Podemos crear una función que nos dé este resultado para cualquier rectángulo.
 
-- **Análisis Estadístico:** R es especialmente fuerte en análisis estadísticos. Ofrece una amplia gama de funciones y paquetes para estadísticas descriptivas, inferencia estadística, pruebas de hipótesis, análisis de regresión y más.
+```{r}
+aypRectangulo <- function(b, h) cat(
+  "El área del rectángulo es", b*h, " y su perímetro es", (b+h)*2, "\n")
+```
 
-- **Manipulación de Datos:** R facilita la manipulación de datos con funciones como `subset()`, `merge()`, `aggregate()`, y otras. Además, la manipulación de datos se simplifica mediante paquetes como `dplyr` y `tidyr`.
+Con esta función, con una sola linea se puede obtener el mismo resultado que el inicial.
 
-- **Modelado Predictivo y Machine Learning:** R cuenta con una amplia variedad de paquetes para modelado predictivo y machine learning, como `caret`, `randomForest`, `glmnet`, `xgboost`, entre otros.
+```{r}
+aypRectangulo(5,6)
+```
 
-- **Visualización de Datos:** La librería `ggplot2` en R es muy popular para la creación de gráficos y visualización de datos. Proporciona una sintaxis clara y flexible para producir gráficos de alta calidad.
+Ahora probemos esta función con tres rectángulos de bases 6, 8 y 2 y alturas 3, 4, 2 respectivamente
 
-- **Interfaz con Bases de Datos y Otros Lenguajes:** R puede conectarse a bases de datos y trabajar con datos almacenados en diferentes formatos. También se puede integrar con otros lenguajes de programación como `C`, `C++`, `Java` y `Python`.
+```{r}
+aypRectangulo(6,3)
+aypRectangulo(8,4)
+aypRectangulo(2,2)
+```
+
+Si se quiere todo en una sola linea, se puede usar la función `mapply` ya que se va a tomar, no una lista `sapply` sino una matriz (dos listas o vectores)
+
+```{r}
+mapply(aypRectangulo, c(6, 8, 2), c(3, 4, 2))[0]
+```
+
+Al final nos indica que el resultado de la función `mapply` es una lista (`list()`).
+
+
+## Programación Orientada a Datos:
+
+R se diseñó pensando en la manipulación y análisis de datos. Su sintaxis es especialmente eficiente para trabajar con marcos de datos y realizar operaciones en columnas y filas. Esta característica se puede aprovechar para reciclar un conjunto de funciones que siempre se van a aplicar a los objetos que pertenecen a la misma clase. Un ejemplo de esto es la clase `data.frame`.
+
+- SIMULANDO LA FUNCIÓN `_init_`:
+
+Se define el método iniciador de la clase "`rectangulo`"
+
+```{r}
+rectangulo <- function(altura = 0, base = 0){
+	obj <- list(
+	altura = altura,
+	base	 = base
+	)
+	class(obj) <- "rectangulo"
+	return(obj)
+}
+```
+
+-	METODOS
+
+Se utiliza una función que pedirá usar el método. Se suele utilizar el mismo nombre para la función que llama al método y el método.
+
+```
+Nombre <- function(...) UseMethod("Nombre")
+
+Nombre.NombreClase <- function(...){
+	...
+}
+```
+Por ejemplo, creamos el método que nos permita imprimir en forma de tabla los datos de los objetos de nuestra clase.
+
+```{r}
+printt <- function(obj) UseMethod("printt")
+
+printt.rectangulo <- function(df){
+	n <- paste(names(df))
+	m = ""
+	for(i in 1:length(df)){
+		texto	<- rep(" ", nchar(names(df)[i])-nchar(df[[i]])-1)
+		texto	<- paste(texto ,collapse = "")
+		m	<- paste(m, texto, df[[i]], "  ", sep = "")
+	}
+	cat(n, "\n", m, "\n")
+}
+```
+
+A continuación, creamos el método que permite calcular el área del rectángulo y guardarlo en la entrada `Area` del objeto.
+
+```{r}
+area <- function(obj) UseMethod("area")
+
+area.rectangulo <- function(obj){
+	obj$area = obj$altura*obj$base
+	cat("El área del rectángulo es", obj$area, "\n")
+	return(obj)
+}
+```
+
+- Instanciar un objeto en la clase
+
+Ahora miremos un ejemplo. Se define el método iniciador de la clase "`rectangulo`".
+
+```{r}
+rect1 <- rectangulo(5,6)
+printt(rect1)
+```
+
+Se utiliza el método `area` que nos devuelve el área del rectángulo.
+
+```{r}
+rect1 <- area(rect1)
+```
+
+Ahora el objeto tiene la propiedad `area` a la cual se puede acceder por medio de `obj$area`. En este caso, el objeto es `rect1`  (`rect1$area`). 
+
+```{r}
+rect1$area
+```
+
+Veamos que elementos o propiedades tiene nuestro objeto:
+
+```{r}
+printt(rect1)
+```
+
+Se deja el ejercicio de crear el método `perimetro` (perímetro).
+
+## Comunidad Activa y Paquetes:
+
+La comunidad de usuarios de R es activa y contribuye con numerosos paquetes que amplían las funcionalidades del lenguaje. Existen paquetes para una amplia variedad de tareas, desde análisis de imágenes hasta procesamiento de texto.
+
+## Desarrollo de Paquetes y Extensiones:
+
+R facilita el desarrollo de paquetes, lo que ha llevado a una rica colección de extensiones que abordan diversas necesidades analíticas y científicas.
+
+## Reproducibilidad y Documentación:
+
+La capacidad de generar informes reproducibles es una característica importante de R. `R Markdown` permite integrar código, resultados y narrativa en un solo documento, facilitando la generación de informes y documentos interactivos brindando la posibilidad de exportar los informes a formato `Html` y publicarlos en un repositorio, `Word` o `pdf` con una versión ligera de `LaTex`.
+
+## Análisis Estadístico:*
+
+R es especialmente fuerte en análisis estadísticos. Ofrece una amplia gama de funciones y paquetes para estadísticas descriptivas, inferencia estadística, pruebas de hipótesis, análisis de regresión y más.
+
+## Manipulación de Datos:
+
+R facilita la manipulación de datos con funciones como `subset()`, `merge()`, `aggregate()`, y otras. Además, la manipulación de datos se simplifica mediante paquetes como `dplyr` y `tidyr`.
+
+## Modelado Predictivo y Machine Learning:
+
+R cuenta con una amplia variedad de paquetes para modelado predictivo y machine learning, como `caret`, `randomForest`, `glmnet`, `xgboost`, entre otros.
+
+## Visualización de Datos:
+
+Si bien, R base tiene la función `plot()` que acompañada con algunas funciones de bajo nivel, el usuario puede crear múltiples estilos de gráficas, estos estilos se encuentran guardados en la librería `ggplot2`, lo que  La implica que su uso puede simplificar el desarrollo de visualizaciones ahorrando tiempo. La librería `ggplot2` en R es muy popular para la creación de gráficos y visualización de datos. Proporciona una sintaxis clara y flexible para producir gráficos de alta calidad.
+
+## Interfaz con Bases de Datos y Otros Lenguajes:
+
+R puede conectarse a bases de datos y trabajar con datos almacenados en diferentes formatos. También se puede integrar con otros lenguajes de programación como `C`, `C++`, `Java` y `Python`.
 
 Estas son solo algunas de las funciones destacadas de R. Su versatilidad y la comunidad activa de usuarios y desarrolladores continúan impulsando su popularidad en el ámbito del análisis de datos y la investigación estadística.
 
