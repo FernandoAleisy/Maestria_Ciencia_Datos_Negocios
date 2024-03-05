@@ -1,0 +1,149 @@
+---
+output: pdf_document
+linestretch: 1.0
+geometry: "a4paper, left=2.5cm, right=2.5cm, top=2.0cm, bottom=2.5cm"
+csl: apa.csl
+bibliography: bibliografia.bib
+nocite: |
+  @*
+header-includes:
+  - \usepackage{fancyhdr}
+  - \usepackage[spanish, es-tabla]{babel}
+  - \usepackage{caption}
+  - \usepackage{float}
+  - \usepackage{newfloat}
+  - \DeclareFloatingEnvironment[fileext=loq]{grafica}
+  - \addto\captionsspanish{\renewcommand{\refname}{Referencias}}
+  - \usepackage{xcolor}
+---
+
+\definecolor{naranja}{RGB}{245,145,55}
+\definecolor{azul}{RGB}{40,100,160}
+
+\fancypagestyle{fancy}{
+ \lhead{\includegraphics[width=200pt]{fig/Logo_Cesuma.png}}
+ \rhead{\textcolor{naranja}{
+  \textbf{Maestría en Ciencia de Datos para Negocios}\\
+  \textcolor{azul}{\rule[1mm]{80mm}{0.2mm}} \\
+  Impacto y Valor del Big Data}}
+ \renewcommand{\headrulewidth}{0.0pt}
+}
+
+\thispagestyle{fancy}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\setlength{\headheight}{1.0cm}
+
+\null\vfill
+
+\begin{center}
+
+\bfseries{\LARGE{CASO PRÁCTICO 102  IMPACTO Y VALOR DEL BIG DATA\\[1.0cm]}}
+
+\includegraphics[]{fig/big_data.png}\\[1.0cm]
+
+
+\bfseries{\large{IMPACTO Y VALOR DEL BIG DATA}}
+
+\null\vfill
+
+\bfseries{ Fernando Aleisy González\\ \today}
+
+\end{center}
+
+\newpage
+\pagestyle{fancy}
+
+\tableofcontents
+
+\newpage
+# Netflix y recomendación de contenido
+
+Netflix es conocido por su capacidad para recomendar contenido personalizado a sus usuarios. Utilizan Big Data para analizar el comportamiento de visualización de millones de usuarios y ofrecer recomendaciones precisas y relevantes.
+
+\begin{figure}[H]
+  \captionsetup{justification=raggedright, singlelinecheck=false} 
+  \caption{Sistema de recomendación de Neflix}
+  \includegraphics[]{fig/Neflix_recomendaciones.jpg}
+  \label{fig:NeflixRec}
+\end{figure}
+
+## Datos de visualización
+
+Netflix recopila minuciosamente datos sobre el contenido que los usuarios visualizan, cuándo lo hacen y cómo interactúan, desde pausar hasta retroceder, almacenando esta información en vastas bases de datos que nutren continuamente sus algoritmos. Cada visita al servicio proporciona datos que son utilizados para reentrenar los algoritmos, mejorando así la precisión de las predicciones sobre los gustos y preferencias individuales de los usuarios. Esta retroalimentación constante entre datos, algoritmos y sistemas informáticos permite a Netflix generar recomendaciones personalizadas y ofrecer un producto que se adapte a tus intereses y te proporcione una experiencia de visualización satisfactoria [@Neflixsfsistema].
+
+## Análisis de patrones
+
+Mediante técnicas de Big Data, Netflix analiza minuciosamente los datos para descubrir patrones y tendencias en el comportamiento de visualización de sus usuarios. Por ejemplo, pueden detectar que aquellos que disfrutan de cierto tipo de contenido tienden a tener interés en otro tipo específico. Esta exploración profunda del Big Data ha sido fundamental para personalizar la experiencia del consumidor, así como para identificar tendencias que señalan clases de contenido que podrían tener éxito. Un ejemplo emblemático de esta estrategia fue el lanzamiento de la serie House of Cards, que surgió de una lectura precisa de datos. Netflix pudo prever su triunfo gracias al Big Data, ajustando además las campañas de marketing y publicidad según las indicaciones obtenidas [@Neflix2020IA].
+
+## Algoritmos de recomendación
+
+Con base en estos análisis, Netflix utiliza la inteligencia artifical para predecir qué contenido le gustará a un usuario en función de su historial de visualización y el comportamiento de usuarios similares. la IA les permite comprender las conexiones entre unos contenidos y otros y establecer modelos de audiencias [@Neflix2020IA].
+
+## Personalización en tiempo real
+
+A medida que los usuarios interactúan con la plataforma, Netflix actualiza continuamente sus recomendaciones en tiempo real. Esto significa que las recomendaciones se vuelven más precisas y relevantes a medida que el sistema recopila más datos sobre las preferencias del usuario.
+
+# JPMorgan Chase, la detección y prevención de fraude
+
+PMorgan Chase es una de las instituciones financieras más grandes del mundo. Con más de 150 petabytes de datos, aproximadamente 3.500 millones de cuentas de usuario y 30.000 bases de datos, se ha visto en la obligación de invertido en tecnologías de Big Data y análisis avanzado para combatir el fraude [@Project2023pro].
+
+\begin{figure}[H]
+  \captionsetup{justification=raggedright, singlelinecheck=false} 
+  \caption{JPMorgan Chase, la detección y prevención de fraude}
+  \includegraphics[]{fig/JPMorgan.jpg}
+  \label{fig:JPMorgan}
+\end{figure}
+
+Entre las estrategias que JPMorgan Chase ha implementado para utilizar Big Data en la detección de fraude se encuentran:
+
+## Análisis de patrones de comportamiento
+
+Utilizan algoritmos de análisis de Big Data para identificar patrones de comportamiento inusuales en las transacciones de los clientes. Por ejemplo, si una tarjeta de crédito se utiliza repentinamente para realizar una compra en un lugar inusual o en un horario poco común, el sistema puede detectar esta actividad como potencialmente fraudulenta.
+
+## Modelos predictivos de fraude
+
+JPMorgan Chase utiliza técnicas de machine learning y modelos predictivos basados en Big Data para prever y anticipar posibles actividades fraudulentas. Estos modelos analizan grandes volúmenes de datos históricos de transacciones para identificar características y señales de alerta que podrían indicar fraude.
+
+## Análisis en tiempo real
+
+La institución realiza análisis en tiempo real de las transacciones que se realizan en sus plataformas para detectar patrones de fraude y tomar medidas inmediatas para prevenir pérdidas financieras. Esto implica procesar grandes cantidades de datos de manera eficiente para identificar transacciones sospechosas en el momento en que ocurren.
+
+## Colaboración con la industria
+
+JPMorgan Chase también participa en iniciativas de colaboración con otras instituciones financieras y organizaciones de la industria para compartir datos y mejores prácticas en la detección y prevención del fraude. Esto les permite ampliar su alcance y mejorar la eficacia de sus sistemas de seguridad.
+
+# Climate Corporation y la agricultura de precisión
+
+Un ejemplo de una empresa que ha utilizado la agricultura de precisión junto con el Big Data es Climate Corporation, una subsidiaria de Monsanto, ahora parte de Bayer Crop Science.
+
+Climate Corporation fue fundada en 2006 y desde el 2013 paso a ser una subsidiaria de Monsanto. Esta empresa se especializa en el análisis de datos con el fin de mejorar el rendimiento de las plantaciones agrícolas. Climate Corporation ofrece una plataforma de agricultura digital llamada Climate FieldView, que utiliza tecnologías de Big Data para ayudar a los agricultores a tomar decisiones más informadas y maximizar el rendimiento de sus cultivos mientras minimizan el impacto ambiental [@Climate2013Corporation].
+
+\begin{figure}[H]
+  \captionsetup{justification=raggedright, singlelinecheck=false} 
+  \caption{Climate Corporation y la agricultura de precisión}
+  \includegraphics[]{fig/Climate-Corporation.jpg}
+  \label{fig:ClimateCorporation}
+\end{figure}
+
+## Recopilación de datos
+
+Climate FieldView recopila datos de múltiples fuentes, incluidos sensores instalados en maquinaria agrícola, drones, imágenes satelitales y estaciones meteorológicas. Estos datos incluyen información sobre la salud de los cultivos, la composición del suelo, la humedad, la temperatura y otros factores relevantes para la agricultura.
+
+## Análisis de datos
+
+Utilizando técnicas de Big Data, Climate Corporation analiza grandes volúmenes de datos para identificar patrones y tendencias que pueden influir en el rendimiento de los cultivos. Por ejemplo, pueden identificar áreas específicas de un campo que requieren un riego adicional o aplicaciones de fertilizantes para maximizar el rendimiento.
+
+## Modelos predictivos
+
+Climate FieldView utiliza modelos predictivos basados en Big Data para predecir el rendimiento de los cultivos y anticipar condiciones climáticas adversas. Esto permite a los agricultores tomar decisiones proactivas sobre la gestión de sus campos y minimizar el riesgo de pérdidas.
+
+## Recomendaciones personalizadas
+
+Basándose en el análisis de datos y los modelos predictivos, Climate FieldView proporciona recomendaciones personalizadas a los agricultores sobre prácticas de siembra, riego, fertilización y protección de cultivos. Estas recomendaciones están diseñadas para optimizar el rendimiento de los cultivos y maximizar la rentabilidad de la operación agrícola.
+
+\newpage
+# Referencias

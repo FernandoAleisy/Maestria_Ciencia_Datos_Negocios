@@ -365,7 +365,7 @@ Lo que se observa de este resumen estadístico es que la variable `mydata` tiene
 
 ### R base
 
-Para gragicar una serie de tiempo se debe convertir a la variable principal en una variable del tipo temporal. Suponiendo que los datos son mensuales y el primer registro corresponde a enero del año 2000, su crea la variable `datos_ts` como una del tipo `ts`.
+Para graficar una serie de tiempo se debe convertir a la variable principal en una variable del tipo temporal. Suponiendo que los datos son mensuales y el primer registro corresponde a enero del año 2000, su crea la variable `datos_ts` como una del tipo `ts`.
 
 ```{r}
 datos_ts <- ts(datos_t$mydata, start = c(2000, 1), frequency = 12)
