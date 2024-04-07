@@ -17,3 +17,4 @@ gantt
     Liderazgo Integral y Creativo : a3, 10-03-2024, 1M
     Técnicas de Análisis, Minería y Visualización : a4, 10-04-2024, 1M
 ```
+Diagrama hecho con la libreria [Mermaid](https://github.com/mermaid-js/mermaid?tab=readme-ov-file)
