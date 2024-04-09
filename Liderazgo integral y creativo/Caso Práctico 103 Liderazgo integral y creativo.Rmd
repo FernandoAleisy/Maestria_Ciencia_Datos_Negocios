@@ -60,8 +60,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 
 \newpage
 
-# 1. Rueda de la vida
-
+<!--Librerías a usar en el documento-->
 
 ```{r}
 library(ggplot2)
@@ -69,12 +68,15 @@ library(ggplot2)
 library(kableExtra)
 ```
 
+# 1. Rueda de la vida
+
+En la gráfica \ref{gráfica:RV} se encuentra plasmada la primera actividad, mi rueda de la vida. En mi caso, no suelo dejarme llevar por la comodidad, siempre estoy en buscada de nuevas formas de hacer las cosas, lo que me llevó a dar valoraciones altas a las dimensiones sin temor de que esto signifique que estoy estancado en mi vida.
 
 ```{r}
 dimensiones <- c("Trabajo", "Mente", "Amigos", "Físico", "Económico", "Ético", "Familia", "Ocio")
 
 x <- factor(dimensiones, levels = dimensiones)
-y <- c(8,9,9,8,5,9,10,9)
+y <- c(8,9,9,7,5,9,10,9)
 
 df <- data.frame(x = x, y = y)
 ```
@@ -102,9 +104,29 @@ p
   \label{gráfica:RV}
 \end{gráfica}
 
+## Evaluación de la rueda de la vida
+
+En general, aunque encuentro muchas de mis dimensiones muy satisfechas, también tengo algunas dimensiones en las que tengo que trabajar o buscar las situación adecuada para mejorar el nivel de satisfacción. Las principales dimensiones en las que siempre me encuentro buscando mejorar son del trabajo y la económica.
+
+### La cultura
+
+Según la cultura más inmediata, la familiar, prima el estudio, el aprendizaje. Esto me ha llevado a siempre querer aprender, por ello mi nivel de satisfacción es muy alto en esta dimensión, aunque no me puse el nivel más alto porque, por situaciones económicas, no he podido estudiar todo lo que he querido al ritmo deseado. 
+
+Un nivel medio en la dimensión del físico se explica por la poca importancia que se le da a esta dimensión en mi familia, lo que me ha llevado a no practicar frecuentemente algún deporte. Otro aspecto importante que influye en la valoración es mi condición de autista de alto rendimiento, ya que este tipo de autismo impide un buen desarrollo en el lenguaje corporal, lo cual es primordial al momento de presentar algo de habilidad corporal. Esta condición me ha llevado a no sentirme insatisfecho por la poca actividad física que realizo, dándole más valor a actividades como el atletismo que a el fútbol o demás deportes que impliquen coordinación.
+
+La dimensión de la familia la he valorado con el nivel de satisfacción más alto ya que vivo según los principios propios que e ha transmitido mi mamá, a saber, "la familia siempre está en el primer lugar". Por ello es que recibí todo el apoyo que mi familia me pudo dar, dentro de las limitaciones de una familia de pocos ingreso. El apoyo que recibo y doy a mi familia me ha llevado a tener un nivel de satisfacción alto en esta dimensión.
+
+### La figura
+
+Si bien, las dimensiones mente, amigos, ética y ocio aportan a una figura ideal de la rueda de la vida, dimensiones como la del trabajo, la física y la económica presentan menos satisfacción. El trabajo, aunque me presenta comodidad y un buen ingreso, me genera algo de insatisfacción por el poco reto que me representa, lo que me puede llevar a estancarme en el crecimiento como profesional. Con respecto a esto, cabe aclarar que no me quedo siempre busco mejorar en mi trabajo a pesar de que esto no represente logros con mis superiores. La dimensión económica me genera bastante insatisfacción ya que aún no he logrado salir de todas las deudas que adquirí durante mis estudios del pre grado y cuando siento que estoy a punto de alcanzar esa meta surge algún inconveniente que me aleja de ella. Finalmente, la dimensión física tiene menos satisfacción porque solo practico atletismo y los lugares disponibles para ello, para las personas particulares, suelen ser escasos. También, cuando se hace referencia al atractivo físico, la misma condición del autismo de alto rendimiento implica un gran reto para conseguir pareja por falta de lenguaje corporal.
+
+### El tamaño de la rueda
+
+El tamaño de la rueda, al contrario de como lo indica el texto guía, no me implica que tenga una tendencia a quedarme en el área del confort, pues siempre busco ver que puedo mejorar en cada una de esas dimensiones, exceptuando la física.
+
 # 2. Deseos y molestias
 
-
+A continuación, plasmo mis deseos y mis molestias en cada dimensión de vida. Se evidencia una clara predominancia en las molestias y los deseos en la dimensión económica, también traté de mantener una correlación entre las molestias y los deseos.
 
 ```{r}
 deseo <- c("Mejor ingreso",
@@ -192,78 +214,87 @@ tabla
 
 ```
 
+La franja que más molestias presenta es la misma en la que más deseos tengo, ya que cada molestia me lleva a tener un deseo que permita eliminarla. Esta dimensión, la económica, no permite que se deje de lado ya que las demás dimensiones depende de lo que suceda en el ámbito económico, por que las molestias nunca serán suficientes para adquirir la tendencia a huir o no afrontar a esta dimensión.
+
+En resumen, para no dejar que las molestias me lleven a la inacción he procurado generar deseos y metas que me lleven a la acción y poder llegar a un nivel óptimo de satisfacción.
 
 # 3. Rueda de la vida, sueños y molestias.
 
-```{r}
-TL <- 2.4
+La gráfica \ref{gráfica:RVSM} muestra mis deseos y molestias de cada dimensión. En ella se puede ver claramente como la dimensión que más elementos tiene es la económica, la cual es así porque, como ya lo había mencionado, esta influye en las demás dimensiones. Si se tiene un buen ingreso, por ejemplo, se puede apoyar a la familia en situaciones difíciles, en el estudio de los sobrinos y sobrinas. Con una casa propia se puede vivir más tranquilo y holgado. Sin deudas uno no se preocupa por tener que limitar gastos y ahorros.
 
+
+```{r}
 p <- ggplot(df, aes(x = x, y = y, fill = colores)) +
   geom_bar(stat = "identity", width = 0, linewidth = 0.5) +
-  scale_fill_manual(values = alpha(colores, 0.5), labels = x) +
+  scale_fill_manual(values = alpha(colores, 0.6), labels = x) +
   coord_polar() +
   theme_minimal()+
   scale_y_continuous(breaks = seq(0, 10, by = 1)) +
   labs(x = NULL, y = NULL, fill = "Dimensiones")+ 
-  theme(axis.text.y = element_blank(), legend.position = "none" )
+  theme(axis.text.y = element_blank(), axis.text.x = element_blank(), legend.position = "none")
 ```
 
 
 ```{r}
+TL <- 2.6
+col_inc <- "#f72585"
+
 q = p+
   annotate(x = 1, y = 9,
            label = "· Poco trabajo \n · Lejos de casa",
-           geom = "text", angle = -22, size = TL, color = "red") +
+           geom = "text", angle = -22, size = TL, color = col_inc) +
   annotate(x = 2, y = 9,
            label = "· Poco tiempo \n · Otras responsabilidades",
-           geom = "text", angle = -67, size = TL, color = "red") +
+           geom = "text", angle = -67, size = TL, color = col_inc) +
   annotate(x = 3, y = 9.5,
            label = "· A veces distraen",
-           geom = "text", angle = -112, size = TL, color = "red") +
+           geom = "text", angle = -112, size = TL, color = col_inc) +
   annotate(x = 4, y = 9.5,
            label = "· Más bajo que la media",
-           geom = "text", angle = -157, size = TL, color = "red") +
+           geom = "text", angle = -157, size = TL, color = col_inc) +
   annotate(x = 5, y = 8.5,
            label = "· Pocos ingresos \n · Deudas  \n · Muchos gastos",
-           geom = "text", angle = -202, size = TL, color = "red") +
+           geom = "text", angle = -202, size = TL, color = col_inc) +
   annotate(x = 6, y = 8.5,
            label = "· A veces no pienso para\n actuar",
-           geom = "text", angle = -247, size = TL, color = "red") +
+           geom = "text", angle = -247, size = TL, color = col_inc) +
   annotate(x = 7, y = 8.5,
            label = "· Falta de tiempo por mi\n trabajo",
-           geom = "text", angle = -292, size = TL, color = "red") +
+           geom = "text", angle = -292, size = TL, color = col_inc) +
   annotate(x = 8, y = 8.5,
            label = "· A veces se requiere\n dinero",
-           geom = "text", angle = -337, size = TL, color = "red")
+           geom = "text", angle = -337, size = TL, color = col_inc)
 
 ```
 
 ```{r}
 r = q+
-  annotate(x = 1, y = 4.5,
+  annotate(x = 1, y = 5.5,
            label = "· Mejor ingreso\n · Transporte\n más comodo",
            geom = "text", angle = -22, size = TL, color = "blue") +
-  annotate(x = 2, y = 5,
+  annotate(x = 2, y = 6,
            label = "· Estudiar más",
            geom = "text", angle = -67, size = TL, color = "blue") +
-  annotate(x = 3, y = 5,
+  annotate(x = 3, y = 6,
            label = "· Poder salir\n más",
            geom = "text", angle = -112, size = TL, color = "blue") +
-  annotate(x = 4, y = 4.5,
+  annotate(x = 4, y = 5.5,
            label = "· Tener espacio\n para\n ejercicios",
            geom = "text", angle = -157, size = TL, color = "blue") +
-  annotate(x = 5, y = 3.5,
+  annotate(x = 5, y = 4.5,
            label = "· Pagar las deudas\n · Mejor ingres\n · Menos gastos\n · casa\n propia",
            geom = "text", angle = -202, size = TL, color = "blue") +
-  annotate(x = 6, y = 4,
+  annotate(x = 6, y = 5,
            label = "· Estar más\n consciente\n de lo que\n hago",
            geom = "text", angle = -247, size = TL, color = "blue") +
-  annotate(x = 7, y = 4.5,
+  annotate(x = 7, y = 5.5,
            label = "· Tener más\n tiempo para\n mi familia",
            geom = "text", angle = -292, size = TL, color = "blue") +
-  annotate(x = 8, y = 4.5,
+  annotate(x = 8, y = 5.5,
            label = "· Tener lugares\n de\n ocio",
            geom = "text", angle = -337, size = TL, color = "blue")
+
+r <- r+ geom_label(data = df, aes( x = x, y = rep(11.5, 8), label=x), color="white", size=3)
 
 print(r)
 
@@ -272,6 +303,12 @@ print(r)
   \caption{Rueda de la vida en la que plaso mis sueños y molestias}
   \label{gráfica:RVSM}
 \end{gráfica}
+
+La dimensión con más deseos es la económica. Para lograr un equilibrio en la satisfacción de esta dimensión debo dedicarle más tiempo a los deseos "pagar mis deudas" y "mejorar mis ingresos". Para ambos deseos estoy dando un gran esfuerzo y prueba de ellos es la maestría que estoy cursando. También me esfuerzo mucho en organizar mis gastos para salir de mis deudas.
+
+## Cotejo de los resultados
+
+Se me ha presentado la situación en la que la franja que más molestias tengo también es en la que más insatisfacción presento. Esto me indica que tengo la oportunidad de lograr más satisfacción cuando logre mis metas de no tener deudas. El área de oportunidad implicaría que puedo acortar gastos para reducir las deudas dramáticamente, lo cual hago cada vez que tengo oportunidad.
 
 \newpage
 # Referencias
