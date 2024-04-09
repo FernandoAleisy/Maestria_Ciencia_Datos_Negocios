@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 output: pdf_document
 linestretch: 1.0
@@ -312,3 +313,282 @@ Se me ha presentado la situación en la que la franja que más molestias tengo t
 
 \newpage
 # Referencias
+=======
+---
+output: pdf_document
+linestretch: 1.0
+geometry: "a4paper, left=2.5cm, right=2.5cm, top=2.0cm, bottom=2.5cm"
+csl: apa.csl
+bibliography: bibliografia.bib
+nocite: |
+  @*
+header-includes:
+  - \usepackage{fancyhdr}
+  - \usepackage[spanish, es-tabla]{babel}
+  - \usepackage{float}
+  - \usepackage{newfloat}
+  - \DeclareFloatingEnvironment[fileext=loq]{gráfica}
+  - \addto\captionsspanish{\renewcommand{\refname}{Referencias}}
+  - \usepackage{xcolor}
+---
+
+\definecolor{naranja}{RGB}{245,145,55}
+\definecolor{azul}{RGB}{40,100,160}
+
+\fancypagestyle{fancy}{
+ \lhead{\includegraphics[width=200pt]{fig/Logo_Cesuma.png}}
+ \rhead{\textcolor{naranja}{
+  \textbf{Maestría en Ciencia de Datos para Negocios}\\
+  \textcolor{azul}{\rule[1mm]{80mm}{0.2mm}} \\
+  Liderazgo integral y creativo}}
+ \renewcommand{\headrulewidth}{0.0pt}
+}
+
+\thispagestyle{fancy}
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+```
+
+\setlength{\headheight}{1.0cm}
+
+\null\vfill
+
+\begin{center}
+
+\bfseries{\LARGE{CASO PRÁCTICO 103  LIDERAZGO INTEGRAL Y CREATIVO\\[1.0cm]}}
+
+\includegraphics[]{fig/Rueda_vida.png}\\[1.0cm]
+
+
+\bfseries{\large{LIDERAZGO INTEGRAL Y CREATIVO\\ CIENCIA DE DATOS PARA NEGOCIOS}}
+
+\null\vfill
+
+\bfseries{ Fernando Aleisy González\\ \today}
+
+\end{center}
+
+\newpage
+\pagestyle{fancy}
+
+\tableofcontents
+
+\newpage
+
+# 1. Rueda de la vida
+
+
+```{r}
+library(ggplot2)
+ library(dplyr)
+library(kableExtra)
+```
+
+
+```{r}
+dimensiones <- c("Trabajo", "Mente", "Amigos", "Físico", "Económico", "Ético", "Familia", "Ocio")
+
+x <- factor(dimensiones, levels = dimensiones)
+y <- c(8,9,9,8,5,9,10,9)
+
+df <- data.frame(x = x, y = y)
+```
+
+
+```{r}
+colores <- c("#FF5400","#00F717","#00D873","#00B9D0","#1E8BFF","#9A0FFF","#C116B9","#E0355C")
+colores <- factor(colores, levels = colores)
+```
+
+
+```{r}
+p <- ggplot(df, aes(x = x, y = y, fill = colores)) +
+  geom_bar(stat = "identity", width = 1, linewidth = 0.5) +
+  scale_fill_manual(values = alpha(colores, 0.6), labels = x) +
+  coord_polar() +
+  theme_minimal()+
+  scale_y_continuous(breaks = seq(0, 10, by = 1)) +
+  labs(x = NULL, y = NULL, fill = "Dimensiones")+ 
+  theme(axis.text.y = element_blank() )
+p
+```
+\begin{gráfica}[H]
+  \caption{Rueda de la vida en la que plaso mi evaluación de cada dimensión de mi vida}
+  \label{gráfica:RV}
+\end{gráfica}
+
+# 2. Deseos y molestias
+
+
+
+```{r}
+deseo <- c("Mejor ingreso",
+           "Transporte más comodo",
+           "Estudiar más",
+           "Poder salir más",
+           "Tener espacio para ejercicios",
+           "Mejores ingresos",
+           "Pagar todas las deudas",
+           "Reducir gastos",
+           "Conseguir casa propia",
+           "Estar más consciente de lo que hago",
+           "Tener más tiempo para mi familia",
+           "Tener lugares de esparcimiento"
+           )
+
+dimension_deseos <- c("Trabajo",
+                     "Trabajo",
+                     "Mente",
+                     "Amigos",
+                     "Físico",
+                     "Económico",
+                     "Económico",
+                     "Económico",
+                     "Económico",
+                     "Ético",
+                     "Familia",
+                     "Ocio"
+                     )
+
+molestias <- c("Poco trabajo",
+               "Lejos de casa",
+               "Poco tiempo",
+               "Otras responsabilidades",
+               "A veces distraen",
+               "Más bajo que la media",
+               "Pocos ingresos",
+               "Deudas",
+               "Muchos gastos",
+               "A veces no actuo como se debe",
+               "Falta de tiempo por mi trabajo",
+               "A veces se requiere dinero"
+               )
+
+dimension_molestias <- c("Trabajo",
+                        "Trabajo",
+                        "Mente",
+                        "Mente",
+                        "Amigos",
+                        "Físico",
+                        "Económico",
+                        "Económico",
+                        "Económico",
+                        "Ético",
+                        "Familia",
+                        "Ocio"
+                        )
+
+Deseos_molestias <- data.frame(deseo, dimension_deseos, molestias, dimension_molestias)
+```
+
+
+```{r}
+colnames(Deseos_molestias) <- c("Deseos", "Dimension deseos", "Molestias", "Dimension molestia")
+```
+
+
+```{r}
+tabla <- kbl(Deseos_molestias,
+             "latex",
+             caption = "Deseos y molestias con sus respectivas dimensiones de la vida",
+             label = 'des_mol',
+             booktabs = T,
+             escape = F,
+             position = "h"
+             )
+
+tabla <- kable_styling(
+  tabla, latex_options = c("striped", "condensed","repeat_header"),
+  position = "center")
+
+tabla <- column_spec(tabla, c(2,4), width = "2cm")
+
+tabla
+
+```
+
+
+# 3. Rueda de la vida, sueños y molestias.
+
+```{r}
+TL <- 2.4
+
+p <- ggplot(df, aes(x = x, y = y, fill = colores)) +
+  geom_bar(stat = "identity", width = 0, linewidth = 0.5) +
+  scale_fill_manual(values = alpha(colores, 0.5), labels = x) +
+  coord_polar() +
+  theme_minimal()+
+  scale_y_continuous(breaks = seq(0, 10, by = 1)) +
+  labs(x = NULL, y = NULL, fill = "Dimensiones")+ 
+  theme(axis.text.y = element_blank(), legend.position = "none" )
+```
+
+
+```{r}
+q = p+
+  annotate(x = 1, y = 9,
+           label = "· Poco trabajo \n · Lejos de casa",
+           geom = "text", angle = -22, size = TL, color = "red") +
+  annotate(x = 2, y = 9,
+           label = "· Poco tiempo \n · Otras responsabilidades",
+           geom = "text", angle = -67, size = TL, color = "red") +
+  annotate(x = 3, y = 9.5,
+           label = "· A veces distraen",
+           geom = "text", angle = -112, size = TL, color = "red") +
+  annotate(x = 4, y = 9.5,
+           label = "· Más bajo que la media",
+           geom = "text", angle = -157, size = TL, color = "red") +
+  annotate(x = 5, y = 8.5,
+           label = "· Pocos ingresos \n · Deudas  \n · Muchos gastos",
+           geom = "text", angle = -202, size = TL, color = "red") +
+  annotate(x = 6, y = 8.5,
+           label = "· A veces no pienso para\n actuar",
+           geom = "text", angle = -247, size = TL, color = "red") +
+  annotate(x = 7, y = 8.5,
+           label = "· Falta de tiempo por mi\n trabajo",
+           geom = "text", angle = -292, size = TL, color = "red") +
+  annotate(x = 8, y = 8.5,
+           label = "· A veces se requiere\n dinero",
+           geom = "text", angle = -337, size = TL, color = "red")
+
+```
+
+```{r}
+r = q+
+  annotate(x = 1, y = 4.5,
+           label = "· Mejor ingreso\n · Transporte\n más comodo",
+           geom = "text", angle = -22, size = TL, color = "blue") +
+  annotate(x = 2, y = 5,
+           label = "· Estudiar más",
+           geom = "text", angle = -67, size = TL, color = "blue") +
+  annotate(x = 3, y = 5,
+           label = "· Poder salir\n más",
+           geom = "text", angle = -112, size = TL, color = "blue") +
+  annotate(x = 4, y = 4.5,
+           label = "· Tener espacio\n para\n ejercicios",
+           geom = "text", angle = -157, size = TL, color = "blue") +
+  annotate(x = 5, y = 3.5,
+           label = "· Pagar las deudas\n · Mejor ingres\n · Menos gastos\n · casa\n propia",
+           geom = "text", angle = -202, size = TL, color = "blue") +
+  annotate(x = 6, y = 4,
+           label = "· Estar más\n consciente\n de lo que\n hago",
+           geom = "text", angle = -247, size = TL, color = "blue") +
+  annotate(x = 7, y = 4.5,
+           label = "· Tener más\n tiempo para\n mi familia",
+           geom = "text", angle = -292, size = TL, color = "blue") +
+  annotate(x = 8, y = 4.5,
+           label = "· Tener lugares\n de\n ocio",
+           geom = "text", angle = -337, size = TL, color = "blue")
+
+print(r)
+
+```
+\begin{gráfica}[H]
+  \caption{Rueda de la vida en la que plaso mis sueños y molestias}
+  \label{gráfica:RVSM}
+\end{gráfica}
+
+\newpage
+# Referencias
+>>>>>>> cafa0d90456cd1f5e93f8c373d1c53a8c03ce702

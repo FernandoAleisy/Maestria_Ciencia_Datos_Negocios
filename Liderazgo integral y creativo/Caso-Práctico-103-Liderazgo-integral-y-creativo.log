@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.2)  8 APR 2024 21:58
+=======
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.4.2)  7 APR 2024 22:32
+>>>>>>> cafa0d90456cd1f5e93f8c373d1c53a8c03ce702
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -591,6 +595,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
  <./fig/Logo_Cesuma.png> <./fig/Rueda_vida.png>] (./Caso-Práctico-103-Liderazgo-integral-y-creativo.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
+<<<<<<< HEAD
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 3.
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -621,6 +626,9 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ))
+=======
+)
+>>>>>>> cafa0d90456cd1f5e93f8c373d1c53a8c03ce702
 \tf@toc=\write3
 \openout3 = `Caso-Práctico-103-Liderazgo-integral-y-creativo.toc'.
 
@@ -636,6 +644,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
 [2]
+<<<<<<< HEAD
 <Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-4-1.pdf, id=41, 469.755pt x 325.215pt>
 File: Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-4-1.pdf>
@@ -645,6 +654,56 @@ Package hyperref Info: bookmark level for unknown gráfica defaults to 0 on inpu
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 212.
+=======
+<Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-4-1.pdf, id=30, 469.755pt x 325.215pt>
+File: Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
+<use Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-4-1.pdf>
+Package pdftex.def Info: Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-4-1.pdf  used on input line 162.
+(pdftex.def)             Requested size: 455.24608pt x 315.17035pt.
+Package hyperref Info: bookmark level for unknown gráfica defaults to 0 on input line 165.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 176.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 176.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 176.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 176.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 176.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 176.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 176.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 176.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 176.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Overfull \hbox (2.09447pt too wide) in paragraph at lines 176--196
+ [][] 
+ []
+
+<Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-10-1.pdf, id=31, 469.755pt x 325.215pt>
+File: Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-10-1.pdf>
+Package pdftex.def Info: Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-10-1.pdf  used on input line 202.
+(pdftex.def)             Requested size: 455.24608pt x 315.17035pt.
+File: fig/Logo_Cesuma.png Graphic file (type png)
+<use fig/Logo_Cesuma.png>
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 207.
+>>>>>>> cafa0d90456cd1f5e93f8c373d1c53a8c03ce702
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -654,6 +713,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
 [3 <./Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-4-1.pdf>]
+<<<<<<< HEAD
 Overfull \hbox (2.09447pt too wide) in paragraph at lines 254--274
  [][] 
  []
@@ -661,6 +721,11 @@ Overfull \hbox (2.09447pt too wide) in paragraph at lines 254--274
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 289.
+=======
+File: fig/Logo_Cesuma.png Graphic file (type png)
+<use fig/Logo_Cesuma.png>
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 209.
+>>>>>>> cafa0d90456cd1f5e93f8c373d1c53a8c03ce702
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -669,6 +734,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
+<<<<<<< HEAD
 [4]
 <Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-10-1.pdf, id=66, 469.755pt x 325.215pt>
 File: Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
@@ -678,6 +744,21 @@ Package pdftex.def Info: Caso-Práctico-103-Liderazgo-integral-y-creativo_files/
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 324.
+=======
+[4 <./Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-10-1.pdf>]
+
+Package hyperref Warning: Suppressing link with empty target on input line 224.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 228.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 244.
+
+File: fig/Logo_Cesuma.png Graphic file (type png)
+<use fig/Logo_Cesuma.png>
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 262.
+>>>>>>> cafa0d90456cd1f5e93f8c373d1c53a8c03ce702
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -686,6 +767,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
+<<<<<<< HEAD
 [5 <./Caso-Práctico-103-Liderazgo-integral-y-creativo_files/figure-latex/unnamed-chunk-10-1.pdf>]
 
 Package hyperref Warning: Suppressing link with empty target on input line 339.
@@ -711,6 +793,9 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
 [6] (./Caso-Práctico-103-Liderazgo-integral-y-creativo.aux
+=======
+[5] (./Caso-Práctico-103-Liderazgo-integral-y-creativo.aux
+>>>>>>> cafa0d90456cd1f5e93f8c373d1c53a8c03ce702
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
 )
@@ -720,6 +805,7 @@ L3 programming layer <2024-03-14>
  ***********
  ) 
 Here is how much of TeX's memory you used:
+<<<<<<< HEAD
  14593 strings out of 476046
  232269 string characters out of 5790201
  1945496 words of memory out of 5000000
@@ -734,4 +820,20 @@ PDF statistics:
  149 compressed objects within 2 object streams
  43 named destinations out of 1000 (max. 500000)
  93 words of extra memory for PDF output out of 10000 (max. 10000000)
+=======
+ 14568 strings out of 476046
+ 231897 string characters out of 5790201
+ 1940496 words of memory out of 5000000
+ 36415 multiletter control sequences out of 15000+600000
+ 593434 words of font info for 61 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 89i,15n,93p,612b,488s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
+Output written on Caso-Práctico-103-Liderazgo-integral-y-creativo.pdf (5 pages, 832356 bytes).
+PDF statistics:
+ 130 PDF objects out of 1000 (max. 8388607)
+ 105 compressed objects within 2 object streams
+ 29 named destinations out of 1000 (max. 500000)
+ 53 words of extra memory for PDF output out of 10000 (max. 10000000)
+>>>>>>> cafa0d90456cd1f5e93f8c373d1c53a8c03ce702
 
