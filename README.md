@@ -4,8 +4,14 @@
 
 Mis trabajos de la maestría de ciencia de datos para negocios
 
+<<<<<<< HEAD
 - color_naranja -> 245, 145, 55
 - color_azul -> 40, 100, 160
+=======
+🟠 color_naranja -> 245, 145, 55
+
+🔵 color_azul -> 40, 100, 160
+>>>>>>> 6cff4519df2306164f30e2041b9376afae229fd0
 
 ## Ciclo 1 o semestre 1
 
