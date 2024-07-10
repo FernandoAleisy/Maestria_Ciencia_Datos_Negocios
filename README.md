@@ -36,3 +36,23 @@ gantt
 ```
 
 Diagrama hecho con la libreria [Mermaid](https://github.com/mermaid-js/mermaid?tab=readme-ov-file)
+
+## Ciclo 2 o semestre 2
+
+Los cursos son:
+
+* Ingeniería de negocios y visualización.
+* Introducción a la investigación.
+* Estadística para científico de datos.
+* Métodos Cuantitativos y cualitativos en investigación.
+
+```mermaid
+gantt
+    title MAESTRÍA EN CIENCIA DE DATOS PARA NEGOCIOS.
+    dateFormat  DD-MM-YYYY
+    section Ciclo 1
+    Ingeniería de negocios y visualización : a1, 10-06-2024, 1M
+    Introducción a la investigación : a2, 10-07-2024, 1M
+    Estadística para científico de datos : a3, 10-08-2024, 1M
+    Métodos Cuantitativos y cualitativos en investigación : a4, 10-09-2024, 1M
+```
