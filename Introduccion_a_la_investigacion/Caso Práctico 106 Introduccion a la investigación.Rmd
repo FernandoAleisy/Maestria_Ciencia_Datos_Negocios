@@ -1,0 +1,478 @@
+---
+output: pdf_document
+linestretch: 1.0
+geometry: "a4paper, left=2.5cm, right=2.5cm, top=2.0cm, bottom=2.5cm"
+csl: apa.csl
+bibliography: bibliografia.bib
+nocite: |
+  @*
+header-includes:
+  - \usepackage{fancyhdr}
+  - \usepackage[spanish, es-tabla]{babel}
+  - \usepackage{float}
+  - \usepackage{newfloat}
+  - \DeclareFloatingEnvironment[fileext=loq]{grafica}
+  - \addto\captionsspanish{\renewcommand{\refname}{Referencias}}
+  - \usepackage{xcolor}
+---
+
+\definecolor{naranja}{RGB}{245,145,55}
+\definecolor{azul}{RGB}{40,100,160}
+
+\fancypagestyle{fancy}{
+ \lhead{\includegraphics[width=200pt]{fig/Logo_Cesuma.png}}
+ \rhead{\textcolor{naranja}{
+  \textbf{Maestría en Ciencia de Datos para Negocios}\\
+  \textcolor{azul}{\rule[1mm]{80mm}{0.2mm}} \\
+  Herramientas del científico de datos}}
+ \renewcommand{\headrulewidth}{0.0pt}
+}
+
+\thispagestyle{fancy}
+
+```{r}
+# tinytex::tlmgr_install("babel-spanish")
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\setlength{\headheight}{1.0cm}
+
+\null\vfill
+
+\begin{center}
+
+\bfseries{\LARGE{CASO PRÁCTICO 101  HERRAMIENTAS PARA EL CIENTÍFICO DE DATOS\\[1.0cm]}}
+
+\includegraphics[]{fig/pexels-google-deepmind.jpg}\\[1.0cm]
+
+
+\bfseries{\large{R COMO HERRAMIENTA DEL CIENTÍFICO DE DATOS\\ CIENCIA DE DATOS PARA NEGOCIOS}}
+
+\null\vfill
+
+\bfseries{ Fernando Aleisy González\\ \today}
+
+\end{center}
+
+\newpage
+\pagestyle{fancy}
+
+\tableofcontents
+
+\newpage
+# Descripción de la Herramienta
+
+R es un lenguaje que fue desarrollado por estadísticos como un entorno para el análisis de datos, lo que implica que no es un lenguaje para el desarrollo de software. La interactividad que nos ofrece R es fundamental para el éxito en el campo del análisis de los datos ya que esta permite una rápida exploración de los datos [@Introduction2019r].
+
+\begin{figure}[H]
+  \caption{Entorno de R con ventanas separadas. En la ventana de la izquierda se muestra la consola y en la ventana de la derecha el area donde se ecribe el script}
+  \includegraphics[]{fig/R_Project.png}
+  \label{fig:RProject}
+\end{figure}
+
+## Por qué usar R
+
+R es un entorno de software libre para computación estadística y gráficos. Compila y se ejecuta en una amplia variedad de plataformas UNIX, Windows y MacOS lo que permite que el desarrollo se de más rápido que en los softwares de uso comercial debido a que los usuarios hacen desarrollos, los documentan y los suben al CRAN de R de manera  cotidiana [@econometria2016r]. Estos aportes de la comunidad y de los mismo desarrolladores se les conoce como paquetes y amplían las capacidades base de R.
+
+Los paquetes más importantes para el tratamiento de datos se han recopilado en lo que se conoce el tidyverse. Los paquetes tidyverse comparten la misma filosofía en el formato de datos y programación, y están diseñados para trabajar de forma conjunta cubriendo todas las tareas en el análisis de un proyecto típico en ciencia de datos [@cienciadatosR].
+
+Por los anterior, existen algunas razones de peso para decidirse por el uso de R en el análisis de datos:
+
+- R es ampliamente utilizado en la comunidad estadística y científica para realizar análisis estadísticos complejos, por lo que en Internet se puede encontrar respuestas a casi todos los inconvenientes que se presenten a la hora de realizar un análisis de datos.
+
+- R es ampliamente utilizado en entornos académicos y de investigación, lo que hace que sea más fácil colaborar y compartir código y resultados con colegas.
+
+- R tiene una amplia gama de funciones y paquetes específicos para estadísticas descriptivas, inferencia estadística, regresión, análisis multivariado y más.
+
+- R proporciona herramientas poderosas para crear visualizaciones de datos de alta calidad. La librería `ggplot2` es especialmente popular por su flexibilidad y capacidad para producir gráficos estéticos y personalizables.
+
+- R está diseñado para trabajar con conjuntos de datos de manera eficiente. Su sintaxis es especialmente adecuada para manipular y transformar datos, lo que facilita la limpieza y preparación de datos para análisis.
+
+- R cuenta con una comunidad activa de usuarios y desarrolladores. Existen numerosos paquetes que amplían las funcionalidades de R para abordar diversas necesidades analíticas. Esta riqueza de paquetes permite a los usuarios acceder a una amplia gama de herramientas especializadas.
+
+- R facilita la reproducibilidad en la investigación y análisis de datos. Los scripts y notebooks de R pueden documentar de manera efectiva los pasos realizados, lo que facilita compartir y reproducir análisis.
+
+- R puede integrarse con otros lenguajes de programación, como C, C++, Java y Python, en especial cuando se utiliza el IDE RStudio. Esto permite aprovechar bibliotecas específicas de otros lenguajes cuando sea necesario.
+
+- R es un software de código abierto, lo que significa que es gratuito y está disponible para su modificación y distribución. Esto ha contribuido a su popularidad y a la creación de una comunidad activa de usuarios y desarrolladores.
+
+## RStudio, el IDE más usado
+
+El entorno de desarrollo integrado o IDE (integrated development environment) más usado con R es RStudio, con el cual se está desarrollando este informe. Al contrario de como su nombre lo indica RStudio no es exclusivamente para el desarrollo en R, sino que también permite el desarrollo en Python y su versión RStudio Server también permite el desarrollo en SQL y NoSQL.
+
+\begin{figure}[H]
+  \caption{Vista general del IDE de RStudio. RStudio se divide en la zona de los scrits, el terminal y un panel lateral donde se muestra las variables creadas, el directorio de trabajo, las gráficas, entre otros elementos}
+  \includegraphics[]{fig/IDE_RStudio.png}
+  \label{fig:IDE}
+\end{figure}
+
+Utilizando el procesador de texto RMarkdown que nos ofrece RStudio se abre la posibilidad de crear documentos en el lenguaje Markdown, el cual es un lenguaje de marcado sencillo que sirve para agregar formato, vínculos e imágenes con facilidad al texto simple, lo que permite crear paginas web de manera sencilla que luego se pueden alojar en RPubs, Posit Connect o Posit Cloud, siendo la primera la más popular.
+
+\begin{figure}[H]
+  \caption{plataforma de publicación abierta para documentos HTML producidos con RMarkdown desde RStudio}
+  \center{\includegraphics[width=8cm]{fig/Publicacion_Web.png}}
+  \label{fig:Public}
+\end{figure}
+
+RMarkdown también nos ofrece la posibilidad de exportar nuestros informes a un documento de Word y si instalamos una versión ligera de LaTex, también podremos exportar los informes en pdf permitiendo utilizar el lenguaje de marcado de LaTex en RStudio como complemento al lenguaje de marcado Markdown [@rmarkdown2019beginners]. Cabe recalcar que no se debe mezclar LaTex con Markdown, por lo que se debe avitar ciertas formalidades si se desea aprovechar el etiquetado de RMardown y mostrar tablas (data.frames) y gráficas hechas con código R.
+
+En términos sencillos RMarkdown es un procesador de texto que ofrece además la posibilidad de incluir trozos de código desde R u otros formatos como Python o SQL [@rstudio2019estadistica].
+
+\newpage
+# Funciones más destacadas
+
+R es un lenguaje de programación y entorno de software ampliamente utilizado en estadísticas y análisis de datos. Algunas de las funciones más destacadas de R incluyen:
+
+## Programación Funcional:
+
+R es un lenguaje de programación funcional, lo que significa que admite programación funcional y permite el uso de funciones como objetos de primera clase. Esto implica que los usuarios de R pueden crear funciones que permiten reciclar código recurrente.
+
+Por ejemplo, se puede calcular el área y el perímetro de un rectángulo multiplicando la base por la altura y multiplicando la suma de la base con la altura por 2.
+
+```{r}
+b <- 5; h <- 6
+cat("El área del rectángulo es", b*h, " y su perímetro es", (b+h)*2)
+
+```
+Podemos crear una función que nos dé este resultado para cualquier rectángulo.
+
+```{r}
+aypRectangulo <- function(b, h) cat(
+  "El área del rectángulo es", b*h, " y su perímetro es", (b+h)*2, "\n")
+```
+
+Con esta función, con una sola linea se puede obtener el mismo resultado que el inicial.
+
+```{r}
+aypRectangulo(5,6)
+```
+
+Ahora probemos esta función con tres rectángulos de bases 6, 8 y 2 y alturas 3, 4, 2 respectivamente
+
+```{r}
+aypRectangulo(6,3)
+aypRectangulo(8,4)
+aypRectangulo(2,2)
+```
+
+Si se quiere todo en una sola linea, se puede usar la función `mapply` ya que se va a tomar, no una lista `sapply` sino una matriz (dos listas o vectores)
+
+```{r}
+mapply(aypRectangulo, c(6, 8, 2), c(3, 4, 2))[0]
+```
+
+Al final nos indica que el resultado de la función `mapply` es una lista (`list()`).
+
+
+## Programación Orientada a Datos:
+
+R se diseñó pensando en la manipulación y análisis de datos. Su sintaxis es especialmente eficiente para trabajar con marcos de datos y realizar operaciones en columnas y filas. Esta característica se puede aprovechar para reciclar un conjunto de funciones que siempre se van a aplicar a los objetos que pertenecen a la misma clase. Un ejemplo de esto es la clase `data.frame`.
+
+- SIMULANDO LA FUNCIÓN `_init_`:
+
+Se define el método iniciador de la clase "`rectangulo`"
+
+```{r}
+rectangulo <- function(altura = 0, base = 0){
+	obj <- list(
+	altura = altura,
+	base	 = base
+	)
+	class(obj) <- "rectangulo"
+	return(obj)
+}
+```
+
+-	METODOS
+
+Se utiliza una función que pedirá usar el método. Se suele utilizar el mismo nombre para la función que llama al método y el método.
+
+```
+Nombre <- function(...) UseMethod("Nombre")
+
+Nombre.NombreClase <- function(...){
+	...
+}
+```
+Por ejemplo, creamos el método que nos permita imprimir en forma de tabla los datos de los objetos de nuestra clase.
+
+```{r}
+printt <- function(obj) UseMethod("printt")
+
+printt.rectangulo <- function(df){
+	n <- paste(names(df))
+	m = ""
+	for(i in 1:length(df)){
+		texto	<- rep(" ", nchar(names(df)[i])-nchar(df[[i]])-1)
+		texto	<- paste(texto ,collapse = "")
+		m	<- paste(m, texto, df[[i]], "  ", sep = "")
+	}
+	cat(n, "\n", m, "\n")
+}
+```
+
+A continuación, creamos el método que permite calcular el área del rectángulo y guardarlo en la entrada `Area` del objeto.
+
+```{r}
+area <- function(obj) UseMethod("area")
+
+area.rectangulo <- function(obj){
+	obj$area = obj$altura*obj$base
+	cat("El área del rectángulo es", obj$area, "\n")
+	return(obj)
+}
+```
+
+- Instanciar un objeto en la clase
+
+Ahora miremos un ejemplo. Se define el método iniciador de la clase "`rectangulo`".
+
+```{r}
+rect1 <- rectangulo(5,6)
+printt(rect1)
+```
+
+Se utiliza el método `area` que nos devuelve el área del rectángulo.
+
+```{r}
+rect1 <- area(rect1)
+```
+
+Ahora el objeto tiene la propiedad `area` a la cual se puede acceder por medio de `obj$area`. En este caso, el objeto es `rect1`  (`rect1$area`). 
+
+```{r}
+rect1$area
+```
+
+Veamos que elementos o propiedades tiene nuestro objeto:
+
+```{r}
+printt(rect1)
+```
+
+Se deja el ejercicio de crear el método `perimetro` (perímetro).
+
+## Comunidad Activa y Paquetes:
+
+La comunidad de usuarios de R es activa y contribuye con numerosos paquetes que amplían las funcionalidades del lenguaje. Existen paquetes para una amplia variedad de tareas, desde análisis de imágenes hasta procesamiento de texto.
+
+## Desarrollo de Paquetes y Extensiones:
+
+R facilita el desarrollo de paquetes, lo que ha llevado a una rica colección de extensiones que abordan diversas necesidades analíticas y científicas.
+
+## Reproducibilidad y Documentación:
+
+La capacidad de generar informes reproducibles es una característica importante de R. `R Markdown` permite integrar código, resultados y narrativa en un solo documento, facilitando la generación de informes y documentos interactivos brindando la posibilidad de exportar los informes a formato `Html` y publicarlos en un repositorio, `Word` o `pdf` con una versión ligera de `LaTex`.
+
+## Análisis Estadístico:
+
+R es especialmente fuerte en análisis estadísticos. Ofrece una amplia gama de funciones y paquetes para estadísticas descriptivas, inferencia estadística, pruebas de hipótesis, análisis de regresión y más.
+
+## Manipulación de Datos:
+
+R facilita la manipulación de datos con funciones como `subset()`, `merge()`, `aggregate()` entre otras. Para los `data.frame` las funciones `apply`, `sapply` y `mapply` amplían las opciones presentes para modificar o trabajar sobre los objetos `data.frame`. Además, la manipulación de datos se simplifica mediante paquetes como `dplyr`, `tidyr` y las librerías del `tidyverse`.
+
+## Modelado Predictivo y Machine Learning:
+
+R cuenta con una amplia variedad de paquetes para modelado predictivo y machine learning, como `caret`, `randomForest`, `glmnet`, `xgboost`, entre otros.
+
+## Visualización de Datos:
+
+Si bien, R base tiene la función `plot()` que acompañada con algunas funciones de bajo nivel, el usuario puede crear múltiples estilos de gráficas, estos estilos se encuentran guardados en la librería `ggplot2`, lo que  La implica que su uso puede simplificar el desarrollo de visualizaciones ahorrando tiempo. La librería `ggplot2` en R es muy popular para la creación de gráficos y visualización de datos. Proporciona una sintaxis clara y flexible para producir gráficos de alta calidad.
+
+## Interfaz con Bases de Datos y Otros Lenguajes:
+
+R puede conectarse a bases de datos y trabajar con datos almacenados en diferentes formatos. También se puede integrar con otros lenguajes de programación como `C`, `C++`, `Java` y `Python`.
+
+Estas son solo algunas de las funciones destacadas de R. Su versatilidad y la comunidad activa de usuarios y desarrolladores continúan impulsando su popularidad en el ámbito del análisis de datos y la investigación estadística.
+
+\newpage
+# Aplicaciones
+
+R es ampliamente utilizado en diversas aplicaciones, especialmente en áreas relacionadas con estadísticas, análisis de datos, y ciencia de datos. Algunas de las principales aplicaciones de R incluyen:
+
+- **Análisis Estadístico:** R es extremadamente poderoso para realizar análisis estadísticos complejos. Se utiliza para llevar a cabo pruebas de hipótesis, análisis de varianza, regresiones y otros métodos estadísticos.
+
+- **Ciencia de Datos:** R es una herramienta fundamental en la ciencia de datos. Se utiliza para limpiar, explorar y analizar conjuntos de datos, así como para construir modelos predictivos y realizar minería de datos.
+
+- **Visualización de Datos:** La librería `ggplot2` de R es conocida por su capacidad para crear visualizaciones de datos de alta calidad. R se utiliza para generar gráficos, diagramas y tablas que ayudan a visualizar patrones y tendencias en los datos.
+
+- **Bio informática y Genómica:** En la investigación en biología y genómica, R es utilizado para analizar datos de secuenciación genética, realizar estudios de expresión génica, y visualizar resultados en forma de gráficos y diagramas.
+
+- **Economía y Finanzas:** R es utilizado en el análisis financiero y económico para modelar series temporales, calcular métricas financieras, y realizar pronósticos económicos.
+
+- **Investigación Académica:** R es una herramienta comúnmente utilizada en la investigación académica en una variedad de disciplinas, desde las ciencias sociales hasta la biología y la física. Facilita el análisis y la visualización de datos experimentales.
+
+- **Educación en Estadísticas:** R es utilizado en entornos académicos para enseñar estadísticas y análisis de datos. Su accesibilidad y naturaleza de código abierto hacen que sea una opción popular en cursos de estadística.
+
+- **Desarrollo de Modelos Predictivos:** R es ampliamente utilizado en la construcción de modelos predictivos en áreas como la predicción de ventas, la evaluación del riesgo crediticio y la predicción de enfermedades.
+
+- **Epidemiología:** R se utiliza en `epidemiología` para analizar datos relacionados con la propagación de enfermedades, modelar tasas de incidencia y realizar análisis de riesgos.
+
+- **Automatización de Informes:** La integración de R con R `Markdown` permite la creación de informes reproducibles que combinan código, análisis y narrativa en un solo documento, facilitando la comunicación de resultados.
+
+- **Análisis de Redes Sociales:** En sociología y otras disciplinas, R se utiliza para el análisis de redes sociales, permitiendo visualizar y analizar patrones de interacción en redes complejas.
+
+Estas son solo algunas de las muchas aplicaciones de R. Su flexibilidad y la amplia variedad de paquetes disponibles hacen que sea una herramienta valiosa en diferentes campos de la investigación y la toma de decisiones basada en datos.
+
+\newpage
+# Ejemplo de aplicación
+
+Como ejemplo de aplicación se mostrara el proceso de minería de datos a una serie temporal. El primer paso es ingresar los datos del archivo `Rmissing.csv`.
+
+## Importar datos
+
+Para ingresas o leer los datos de un archivo `csv` se debe tener en cuenta si los valores están separados por `,` o por `;`. En el primer caso se utiliza la función `read.csv()` y en el segundo `read.csv2()`
+
+```{r}
+datos_t <- read.csv("Rmissing.csv")
+```
+
+## Tablas
+
+Para la visualización de las tablas, al exportar al pdf, se utiliza la librería `kableExtra`.
+
+```{r}
+library(kableExtra)
+```
+
+En la tabla \ref{tab:datos} se muestra los 10 primeros datos. Con esta visualización se puede dar idea de la estructura de los datos y planificar la limpieza de los mismo.
+
+A la hora de hacer un informe es que el código no aparezca, por lo que se puede usar el parámetro `echo=FALSE` en el `Chunk` ($```\{r\ ...\}\ ...\ ```\ $) quedando $```\{r\ echo=FALSE \}\ ...\ ```$. Como se puede ver, el código de la tabla \ref{tab:summary} no se ve cuando se usa ese parámetro en `Chunk`. Se muestra el código para fines didácticos, aunque este se puede obtener en el repositorio: https://github.com/FernandoAleisy/Maestria_Ciencia_Datos_Negocios.git. Se mostrará solo código de la primera tabla y la primera gráfica.
+
+```{r}
+kbl(head(datos_t, 10),
+    caption = "Los 10 primeros registros de la serie de tiempo (columna mydata).
+    El registro 3 es un dato faltante.",
+    label = 'datos',
+    booktabs = T,
+    longtable = T)
+```
+
+La función `summary` nos indica la cantidad de datos faltantes de cada variable de un `data.frame`. A continuación, se muestra la tabla \ref{tab:summary} con los resultados de la función con el código `kbl(summary(dato_t)...)`. Los `...` en este código corresponde a los mismos argumentos de la primera tabla, a saber, `caption`, `label`, `booktabs` y `longtable`.
+
+```{r  echo=FALSE}
+kbl(summary(datos_t),
+    caption = "Resumen estadístico de las varibales del data.frame datos\\_t en 
+    el que se incluye la información de los datos faltantes",
+    label = 'summary',
+    booktabs = T,
+    longtable = T)
+```
+
+## Gráficas
+
+Lo que se observa de este resumen estadístico es que la variable `mydata` tiene 5 datos faltantes y al menos un dato atípico o `outliers`. La mejor forma de visualizar los `outliers` es por medio de una gráfica.
+
+### R base
+
+Para graficar una serie de tiempo se debe convertir a la variable principal en una variable del tipo temporal. Suponiendo que los datos son mensuales y el primer registro corresponde a enero del año 2000, su crea la variable `datos_ts` como una del tipo `ts`.
+
+```{r}
+datos_ts <- ts(datos_t$mydata, start = c(2000, 1), frequency = 12)
+```
+
+Con R base y un poco de trabajo se puede lograr una buena gráfica, como en el ejemplo de la gráfica \ref{grafica:st_ol}. Inclusive, el usuario puede crear sus temas y guardarlos en un archivo con extensión R (`*.R`) para incluirlos en sus informes, en sus gráficas.
+
+El tema que se crea a continuación, se empieza crea de la siguiente forma:
+
+- Se modifica las margenes con la función `par()` que recibe una lista de los valores de las 4 margenes, en el orden margen inferior, izquierda, superior y derecha.
+
+- Se crea la gráfica con la serie temporal con el parámetro col que hace referencia al color (`col = "cyan2"`) e indicando que no se debe crear los ejes con `axes = FALSE`.
+
+- Se recrea los ejes pero con un formato personalizado. La función `axis()` tiene como primer argumento el eje, siendo 1 para el eje `X` y 2 para el eje `Y`. Como no se desea que aparezca las lineas de los ejes, estos se colorean de blanco (`col = "white"`) para que se mimetice con el fondo de la figura. Finalmente se establece el tamaño y el color de los números de los ejes con  `cex.axis = 0.7` y `col.axis = "gray26"` respectivamente.
+
+- El ultimo paso en la creación de nuestro tema es agregarle una grilla o malla a la zona de la gráfica, con una lineas de un gris suave (`col = "gainsboro"`), delgadas (`lwd = 1`) y continuas (`lty = 1`).
+
+Volviendo al análisis, en la gráfica \ref{grafica:st_ol} se evidencia 4 `outliers` (4 picos) y también se alcanza a ver los datos faltante en los lugares donde se evidencia los saltos de la gráfica.
+
+```{r}
+par(mar = c(4, 4, 0, 0))
+plot(datos_ts, col = "cyan2", axes = FALSE)
+for (i in c(1,2)) axis(i, col = "white", cex.axis = 0.7, col.axis = "gray26")
+grid(col = "gainsboro", lwd = 1, lty = 1)
+```
+\begin{grafica}[H]
+  \caption{Datos temporales con valores faltantes y datos atípicos. Se ha creado un tema minimalista con fuunciones base de R}
+  \label{grafica:st_ol}
+\end{grafica}
+
+### La librería ggplot2
+
+La librería ggplot2 es hecha por la comunidad y está basada en la función de R base `plot()` y las funciones de bajo nivel que permite agregar y/o modificar características de las gráficas.
+Para poder usar la serie temporal con la librería `ggplot2`, más precisamente con la función `ggplot()`, se debe utilizar un pequeño truco, el cual consiste en crear un `data.frame` como se muestra a continuación.
+
+```{r}
+datos_t <- data.frame(fecha = time(datos_ts), valor = as.numeric(datos_ts))
+```
+
+Con la función `class()` combinada con la función `sapply()` se puede ver el tipo de variables que posee el `data.frame`. Observamos que la variable que se está analizando es del tipo `numeric` el cual se requiere para poder realizar la gráfica con la función `ggplot()`.
+
+```{r}
+sapply(datos_t, class)
+```
+La ventaja de la librería o paquete `ggplot2` es que tiene temas que permite crear gráficas más estilizadas con solo hacer el llamado de la función del tema deseado. A continuación, se carga la librería.
+
+```{r}
+library(ggplot2)
+```
+
+Con la librería `ggplot2` se muestra la gráfica \ref{grafica:dt_ol}
+
+```{r, message=FALSE}
+ggplot(datos_t, aes(x = fecha, y = valor))+
+  geom_line(colour = "cyan2", lwd = 0.5) +
+  theme_minimal()
+```
+\begin{grafica}[H]
+  \caption{Datos temporales con valores faltantes y datos atípicos. Se ha aplicado el tema minimalista de la librería \bfseries{ggplot2}}
+  \label{grafica:dt_ol}
+\end{grafica}
+
+Con la gráfica \ref{grafica:dt_ol} se obtiene un tema parecido al creado con R base. Uno puede crear sus propios temas y crear una función que pueda ser utilizada cada vez que sea necesario.
+
+Nuevamente, con esta gráfica, se observan 4 `outliers` y identifica que la variable tiene datos faltantes.
+
+## Limpiando la variable
+
+Para cambiar los `outleirs` e imputar los valores faltante, en una serie temporal, se suele utilizar la interpolación. El paquete `forscat` permite realizar estas dos actividades por separados o a la vez con la función `tsclean()`.
+
+```{r, message=FALSE}
+library(forecast)
+```
+
+Ahora ya podemos limpiar los datos:
+
+```{r}
+datos_t$valor <- as.numeric(tsclean(datos_ts))
+```
+
+Al realizar la gráfica se observa que han desperecido los `outliers` y los datos faltantes, gráfica \ref{grafica:dt_clear}.
+
+```{r  echo=FALSE, message=FALSE}
+ggplot(datos_t, aes(x = fecha, y = valor))+
+  geom_line(colour = "cyan2", lwd = 0.5) +
+  theme_minimal()
+```
+\begin{grafica}[H]
+  \caption{Datos temporales luego de realizar la mineria de datos o la limpieza de datos}
+  \label{grafica:dt_clear}
+\end{grafica}
+
+O directamente con la función `summary()` se obtiene el resumen estadístico en el que ya no aparecen los datos faltantes y el valor máximo de la variable ya es razonable.
+
+```{r echo=FALSE}
+kbl(summary(datos_t),
+    caption = "Resumen estadístico de las varibales del data.frame datos\\_t después
+    de la limpiza de los datos",
+    label = 'summary2',
+    booktabs = T,
+    longtable = T)
+```
+
+\newpage
+# Referencias
