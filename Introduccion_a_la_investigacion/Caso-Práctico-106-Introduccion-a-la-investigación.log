@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.6)  6 AUG 2024 10:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.6)  8 AUG 2024 14:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -178,21 +178,6 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layouthoffset=\dimen157
 \Gm@layoutvoffset=\dimen158
 \Gm@dimlist=\toks25
-) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Package: fancyvrb 2024/01/20 4.5c verbatim text (tvz,hv)
-\FV@CodeLineNo=\count283
-\FV@InFile=\read2
-\FV@TabBox=\box54
-\c@FancyVerbLine=\count284
-\FV@StepNumber=\count285
-\FV@OutFile=\write3
-) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/framed/framed.sty
-Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip54
-\fb@frw=\dimen159
-\fb@frh=\dimen160
-\FrameRule=\dimen161
-\FrameSep=\dimen162
 ) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
@@ -204,46 +189,46 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 106.
 )
-\Gin@req@height=\dimen163
-\Gin@req@width=\dimen164
+\Gin@req@height=\dimen159
+\Gin@req@width=\dimen160
 )
-\cslhangindent=\skip55
-\csllabelwidth=\skip56
+\cslhangindent=\skip54
+\csllabelwidth=\skip55
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count286
-\calc@Bcount=\count287
-\calc@Adimen=\dimen165
-\calc@Bdimen=\dimen166
-\calc@Askip=\skip57
-\calc@Bskip=\skip58
+\calc@Acount=\count283
+\calc@Bcount=\count284
+\calc@Adimen=\dimen161
+\calc@Bdimen=\dimen162
+\calc@Askip=\skip56
+\calc@Bskip=\skip57
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count288
-\calc@Cskip=\skip59
+\calc@Ccount=\count285
+\calc@Cskip=\skip58
 ) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2024/07/23 v4.3.1 Extensive control of page headers and footers
-\f@nch@headwidth=\skip60
-\f@nch@O@elh=\skip61
-\f@nch@O@erh=\skip62
-\f@nch@O@olh=\skip63
-\f@nch@O@orh=\skip64
-\f@nch@O@elf=\skip65
-\f@nch@O@erf=\skip66
-\f@nch@O@olf=\skip67
-\f@nch@O@orf=\skip68
+\f@nch@headwidth=\skip59
+\f@nch@O@elh=\skip60
+\f@nch@O@erh=\skip61
+\f@nch@O@olh=\skip62
+\f@nch@O@orh=\skip63
+\f@nch@O@elf=\skip64
+\f@nch@O@erf=\skip65
+\f@nch@O@olf=\skip66
+\f@nch@O@orf=\skip67
 ) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2024/06/26 v24.7 The Babel package
-\babel@savecnt=\count289
-\U@D=\dimen167
+\babel@savecnt=\count286
+\U@D=\dimen163
 \l@unhyphenated=\language6
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/babel/txtbabel.def)
-\bbl@readstream=\read3
-\bbl@dirlevel=\count290
+\bbl@readstream=\read2
+\bbl@dirlevel=\count287
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/babel-spanish/spanish.ldf
 Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
 \es@quottoks=\toks26
-\es@quotdepth=\count291
+\es@quotdepth=\count288
 Package babel Info: Making " an active character on input line 570.
 Package babel Info: Making . an active character on input line 675.
 Package babel Info: Making < an active character on input line 722.
@@ -253,148 +238,18 @@ Package babel Info: Importing font and identification data for spanish
 (babel)             from babel-es.ini. Reported on input line 11.
 ) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count292
+\c@float@type=\count289
 \float@exts=\toks27
-\float@box=\box55
+\float@box=\box54
 \@float@everytoks=\toks28
-\@floatcapt=\box56
+\@floatcapt=\box55
 ) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/newfloat/newfloat.sty
 Package: newfloat 2023/10/01 v1.2 Defining new floating environments (AR)
 )
-Package newfloat Info: New float `grafica' with options `fileext=loq' on input line 136.
-\c@grafica=\count293
-Package newfloat Info: float type `grafica'=4 on input line 136.
-(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
-Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen168
-\lightrulewidth=\dimen169
-\cmidrulewidth=\dimen170
-\belowrulesep=\dimen171
-\belowbottomsep=\dimen172
-\aboverulesep=\dimen173
-\abovetopsep=\dimen174
-\cmidrulesep=\dimen175
-\cmidrulekern=\dimen176
-\defaultaddspace=\dimen177
-\@cmidla=\count294
-\@cmidlb=\count295
-\@aboverulesep=\dimen178
-\@belowrulesep=\dimen179
-\@thisruleclass=\count296
-\@lastruleclass=\count297
-\@thisrulewidth=\dimen180
-) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
-Package: longtable 2024-04-26 v4.20 Multi-page Table package (DPC)
-\LTleft=\skip69
-\LTright=\skip70
-\LTpre=\skip71
-\LTpost=\skip72
-\LTchunksize=\count298
-\LTcapwidth=\dimen181
-\LT@head=\box57
-\LT@firsthead=\box58
-\LT@foot=\box59
-\LT@lastfoot=\box60
-\LT@gbox=\box61
-\LT@cols=\count299
-\LT@rows=\count300
-\c@LT@tables=\count301
-\c@LT@chunks=\count302
-\LT@p@ftn=\toks29
-) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/array.sty
-Package: array 2024/06/14 v2.6d Tabular extension package (FMi)
-\col@sep=\dimen182
-\ar@mcellbox=\box62
-\extrarowheight=\dimen183
-\NC@list=\toks30
-\extratabsurround=\skip73
-\backup@length=\skip74
-\ar@cellbox=\box63
-) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
-Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
-\multirow@colwidth=\skip75
-\multirow@cntb=\count303
-\multirow@dima=\skip76
-\bigstrutjot=\dimen184
-) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen185
-\WF@size=\dimen186
-\c@WF@wrappedlines=\count304
-\WF@box=\box64
-\WF@everypar=\toks31
-Package: wrapfig 2003/01/31  v 3.6
-) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/colortbl/colortbl.sty
-Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
-\everycr=\toks32
-\minrowclearance=\skip77
-\rownum=\count305
-) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape.sty
-Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
-(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
-Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PDF (HO)
-(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/lscape.sty
-Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
-)
-Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
-)) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tabu/tabu.sty
-Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
-(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/varwidth/varwidth.sty
-Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box65
-\sift@deathcycles=\count306
-\@vwid@loff=\dimen187
-\@vwid@roff=\dimen188
-)
-\c@taburow=\count307
-\tabu@nbcols=\count308
-\tabu@cnt=\count309
-\tabu@Xcol=\count310
-\tabu@alloc=\count311
-\tabu@nested=\count312
-\tabu@target=\dimen189
-\tabu@spreadtarget=\dimen190
-\tabu@naturalX=\dimen191
-\tabucolX=\dimen192
-\tabu@Xsum=\dimen193
-\extrarowdepth=\dimen194
-\abovetabulinesep=\dimen195
-\belowtabulinesep=\dimen196
-\tabustrutrule=\dimen197
-\tabu@thebody=\toks33
-\tabu@footnotes=\toks34
-\tabu@box=\box66
-\tabu@arstrutbox=\box67
-\tabu@hleads=\box68
-\tabu@vleads=\box69
-\tabu@cellskip=\skip78
-) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/threeparttable/threeparttable.sty
-Package: threeparttable 2003/06/13  v 3.0
-\@tempboxb=\box70
-) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/threeparttablex/threeparttablex.sty
-Package: threeparttablex 2013/07/23 v0.3 by daleif
-(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/environ/environ.sty
-Package: environ 2014/05/04 v0.3 A new way to define environments
-(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/trimspaces/trimspaces.sty
-Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
-))
-\TPTL@width=\skip79
-) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/ulem/ulem.sty
-\UL@box=\box71
-\UL@hyphenbox=\box72
-\UL@skip=\skip80
-\UL@hook=\toks35
-\UL@height=\dimen198
-\UL@pe=\count313
-\UL@pixel=\dimen199
-\ULC@box=\box73
-Package: ulem 2019/11/18
-\ULdepth=\dimen256
-) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/makecell/makecell.sty
-Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
-\rotheadsize=\dimen257
-\c@nlinenum=\count314
-\TeXr@lab=\toks36
-) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
+Package newfloat Info: New float `grafica' with options `fileext=loq' on input line 96.
+\c@grafica=\count290
+Package newfloat Info: float type `grafica'=4 on input line 96.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2024-07-10 v7.01j Hypertext links for LaTeX
@@ -425,16 +280,16 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count315
+\c@section@level=\count291
 ) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count316
+\etb@tempcnta=\count292
 ) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
-\@linkdim=\dimen258
-\Hy@linkcounter=\count317
-\Hy@pagecounter=\count318
+\@linkdim=\dimen164
+\Hy@linkcounter=\count293
+\Hy@pagecounter=\count294
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2024-07-10 v7.01j Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -442,7 +297,7 @@ Now handling font encoding PD1 ...
 ) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count319
+\Hy@SavedSpaceFactor=\count295
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2024-07-10 v7.01j Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -456,21 +311,21 @@ Package hyperref Info: Plain pages OFF on input line 4172.
 Package hyperref Info: Backreferencing OFF on input line 4177.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4424.
-\c@Hy@tempcnt=\count320
+\c@Hy@tempcnt=\count296
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4763.
-\XeTeXLinkMargin=\dimen259
+\XeTeXLinkMargin=\dimen165
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count321
-\Field@Width=\dimen260
-\Fld@charsize=\dimen261
+\Fld@menulength=\count297
+\Field@Width=\dimen166
+\Fld@charsize=\dimen167
 Package hyperref Info: Hyper figures OFF on input line 6042.
 Package hyperref Info: Link nesting OFF on input line 6047.
 Package hyperref Info: Hyper index ON on input line 6050.
@@ -482,9 +337,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6072.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count322
-\c@Item=\count323
-\c@Hfootnote=\count324
+\Hy@abspage=\count298
+\c@Item=\count299
+\c@Hfootnote=\count300
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -493,8 +348,8 @@ File: hpdftex.def 2024-07-10 v7.01j Hyperref driver for pdfTeX
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
-\Fld@listcount=\count325
-\c@bookmark@seq@number=\count326
+\Fld@listcount=\count301
+\c@bookmark@seq@number=\count302
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -502,42 +357,42 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
-\Hy@SectionHShift=\skip81
+\Hy@SectionHShift=\skip68
 ) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
 File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO)
-\BKM@id=\count327
+\BKM@id=\count303
 ))
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 166.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 112.
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count328
-\l__pdf_internal_box=\box74
+\l__color_backend_stack_int=\count304
+\l__pdf_internal_box=\box56
 ) (./Caso-Práctico-106-Introduccion-a-la-investigación.aux
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
 )
 \openout1 = `Caso-Práctico-106-Introduccion-a-la-investigación.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 166.
-LaTeX Font Info:    ... okay on input line 166.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -578,26 +433,21 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \. on input line 166.
-LaTeX Info: Redefining \% on input line 166.
+LaTeX Info: Redefining \. on input line 112.
+LaTeX Info: Redefining \% on input line 112.
 Package newfloat Info: `float' package detected.
-Package newfloat Info: `wrapfig' package detected.
-Package hyperref Info: Link coloring OFF on input line 166.
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 184.
-(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-<fig/pexels-google-deepmind.jpg, id=4, 7708.8pt x 4336.2pt>
-File: fig/pexels-google-deepmind.jpg Graphic file (type jpg)
-<use fig/pexels-google-deepmind.jpg>
-Package pdftex.def Info: fig/pexels-google-deepmind.jpg  used on input line 197.
-(pdftex.def)             Requested size: 455.2152pt x 256.05855pt.
+Package hyperref Info: Link coloring OFF on input line 112.
+<fig/BancoDigital_2.png, id=4, 915.42pt x 484.05844pt>
+File: fig/BancoDigital_2.png Graphic file (type png)
+<use fig/BancoDigital_2.png>
+Package pdftex.def Info: fig/BancoDigital_2.png  used on input line 137.
+(pdftex.def)             Requested size: 455.23651pt x 240.72127pt.
 
 
 <fig/Logo_Cesuma.png, id=5, 290.832pt x 52.341pt>
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 208.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 148.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -608,47 +458,47 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 
 [1{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}
 
- <./fig/Logo_Cesuma.png> <./fig/pexels-google-deepmind.jpg>] (./Caso-Práctico-106-Introduccion-a-la-investigación.toc
+ <./fig/Logo_Cesuma.png> <./fig/BancoDigital_2.png>] (./Caso-Práctico-106-Introduccion-a-la-investigación.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 3.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 4.
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 3.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 4.
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 3.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 4.
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 3.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 4.
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 3.
+(Font)              <10> on input line 4.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 3.
+(Font)              <7> on input line 4.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 3.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
+(Font)              <5> on input line 4.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 4.
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ))
-\tf@toc=\write4
-\openout4 = `Caso-Práctico-106-Introduccion-a-la-investigación.toc'.
+\tf@toc=\write3
+\openout3 = `Caso-Práctico-106-Introduccion-a-la-investigación.toc'.
 
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 213.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 153.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -658,21 +508,10 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
 [2]
-<fig/R_Project.png, id=67, 1445.4pt x 777.65532pt>
-File: fig/R_Project.png Graphic file (type png)
-<use fig/R_Project.png>
-Package pdftex.def Info: fig/R_Project.png  used on input line 226.
-(pdftex.def)             Requested size: 455.23724pt x 244.92712pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 226--228
-[][]
- []
-
-
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 276.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 242.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -681,22 +520,11 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
-[3 <./fig/R_Project.png>]
-<fig/IDE_RStudio.png, id=76, 963.6pt x 510.40688pt>
-File: fig/IDE_RStudio.png Graphic file (type png)
-<use fig/IDE_RStudio.png>
-Package pdftex.def Info: fig/IDE_RStudio.png  used on input line 310.
-(pdftex.def)             Requested size: 455.2446pt x 241.13736pt.
-<fig/Publicacion_Web.png, id=77, 570.63188pt x 372.64218pt>
-File: fig/Publicacion_Web.png Graphic file (type png)
-<use fig/Publicacion_Web.png>
-Package pdftex.def Info: fig/Publicacion_Web.png  used on input line 323.
-(pdftex.def)             Requested size: 227.6218pt x 148.64482pt.
-
+[3]
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 326.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 329.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -705,11 +533,11 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
-[4 <./fig/IDE_RStudio.png>]
+[4]
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 340.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 414.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -718,14 +546,11 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
-[5 <./fig/Publicacion_web.png>]
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 362.
-
+[5]
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 458.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 501.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -738,7 +563,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 541.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 590.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -751,7 +576,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 636.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 676.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -764,7 +589,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 668.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 711.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -775,9 +600,19 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 
 [9]
 
+Package hyperref Warning: Suppressing link with empty target on input line 725.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 729.
+
+
+Package hyperref Warning: Suppressing link with empty target on input line 745.
+
+
+
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 738.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 763.
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -786,117 +621,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
-[10]
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 789.
-(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
-File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-
-File: fig/Logo_Cesuma.png Graphic file (type png)
-<use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 838.
-(pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
-
-Package fancyhdr Warning: \headheight is too small (28.45274pt): 
-(fancyhdr)                Make it at least 39.59396pt, for example:
-(fancyhdr)                \setlength{\headheight}{39.59396pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
-
-[11{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}]
-<Caso-Práctico-106-Introduccion-a-la-investigación_files/figure-latex/unnamed-chunk-19-1.pdf, id=129, 469.755pt x 325.215pt>
-File: Caso-Práctico-106-Introduccion-a-la-investigación_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (type pdf)
-<use Caso-Práctico-106-Introduccion-a-la-investigación_files/figure-latex/unnamed-chunk-19-1.pdf>
-Package pdftex.def Info: Caso-Práctico-106-Introduccion-a-la-investigación_files/figure-latex/unnamed-chunk-19-1.pdf  used on input line 906.
-(pdftex.def)             Requested size: 455.24608pt x 315.17035pt.
-Package hyperref Info: bookmark level for unknown grafica defaults to 0 on input line 909.
-
-
-File: fig/Logo_Cesuma.png Graphic file (type png)
-<use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 911.
-(pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
-
-Package fancyhdr Warning: \headheight is too small (28.45274pt): 
-(fancyhdr)                Make it at least 39.59396pt, for example:
-(fancyhdr)                \setlength{\headheight}{39.59396pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
-
-[12]
-
-File: fig/Logo_Cesuma.png Graphic file (type png)
-<use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 965.
-(pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
-
-Package fancyhdr Warning: \headheight is too small (28.45274pt): 
-(fancyhdr)                Make it at least 39.59396pt, for example:
-(fancyhdr)                \setlength{\headheight}{39.59396pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
-
-[13 <./Caso-Práctico-106-Introduccion-a-la-investigación_files/figure-latex/unnamed-chunk-19-1.pdf>]
-<Caso-Práctico-106-Introduccion-a-la-investigación_files/figure-latex/unnamed-chunk-23-1.pdf, id=148, 469.755pt x 325.215pt>
-File: Caso-Práctico-106-Introduccion-a-la-investigación_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (type pdf)
-<use Caso-Práctico-106-Introduccion-a-la-investigación_files/figure-latex/unnamed-chunk-23-1.pdf>
-Package pdftex.def Info: Caso-Práctico-106-Introduccion-a-la-investigación_files/figure-latex/unnamed-chunk-23-1.pdf  used on input line 967.
-(pdftex.def)             Requested size: 455.24608pt x 315.17035pt.
-<Caso-Práctico-106-Introduccion-a-la-investigación_files/figure-latex/unnamed-chunk-26-1.pdf, id=151, 469.755pt x 325.215pt>
-File: Caso-Práctico-106-Introduccion-a-la-investigación_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type pdf)
-<use Caso-Práctico-106-Introduccion-a-la-investigación_files/figure-latex/unnamed-chunk-26-1.pdf>
-Package pdftex.def Info: Caso-Práctico-106-Introduccion-a-la-investigación_files/figure-latex/unnamed-chunk-26-1.pdf  used on input line 1005.
-(pdftex.def)             Requested size: 455.24608pt x 315.17035pt.
-
-
-File: fig/Logo_Cesuma.png Graphic file (type png)
-<use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 1010.
-(pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
-
-Package fancyhdr Warning: \headheight is too small (28.45274pt): 
-(fancyhdr)                Make it at least 39.59396pt, for example:
-(fancyhdr)                \setlength{\headheight}{39.59396pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
-
-[14 <./Caso-Práctico-106-Introduccion-a-la-investigación_files/figure-latex/unnamed-chunk-23-1.pdf>]
-
-File: fig/Logo_Cesuma.png Graphic file (type png)
-<use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 1032.
-(pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
-
-Package fancyhdr Warning: \headheight is too small (28.45274pt): 
-(fancyhdr)                Make it at least 39.59396pt, for example:
-(fancyhdr)                \setlength{\headheight}{39.59396pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
-
-[15 <./Caso-Práctico-106-Introduccion-a-la-investigación_files/figure-latex/unnamed-chunk-26-1.pdf>]
-
-Package hyperref Warning: Suppressing link with empty target on input line 1046.
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 1050.
-
-
-Package hyperref Warning: Suppressing link with empty target on input line 1066.
-
-
-
-File: fig/Logo_Cesuma.png Graphic file (type png)
-<use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 1084.
-(pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
-
-Package fancyhdr Warning: \headheight is too small (28.45274pt): 
-(fancyhdr)                Make it at least 39.59396pt, for example:
-(fancyhdr)                \setlength{\headheight}{39.59396pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
-
-[16] (./Caso-Práctico-106-Introduccion-a-la-investigación.aux
+[10] (./Caso-Práctico-106-Introduccion-a-la-investigación.aux
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
 )
@@ -906,18 +631,18 @@ L3 programming layer <2024-07-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 15420 strings out of 475521
- 246548 string characters out of 5774962
- 1942960 words of memory out of 5000000
- 37738 multiletter control sequences out of 15000+600000
- 597694 words of font info for 66 fonts, out of 8000000 for 9000
+ 13057 strings out of 475521
+ 205904 string characters out of 5774962
+ 1938960 words of memory out of 5000000
+ 35485 multiletter control sequences out of 15000+600000
+ 596327 words of font info for 61 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 89i,15n,93p,672b,542s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on Caso-Práctico-106-Introduccion-a-la-investigación.pdf (16 pages, 2458277 bytes).
+ 89i,16n,93p,471b,462s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
+Output written on Caso-Práctico-106-Introduccion-a-la-investigación.pdf (10 pages, 304275 bytes).
 PDF statistics:
- 335 PDF objects out of 1000 (max. 8388607)
- 279 compressed objects within 3 object streams
- 61 named destinations out of 1000 (max. 500000)
- 225 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 173 PDF objects out of 1000 (max. 8388607)
+ 148 compressed objects within 2 object streams
+ 36 named destinations out of 1000 (max. 500000)
+ 115 words of extra memory for PDF output out of 10000 (max. 10000000)
 
