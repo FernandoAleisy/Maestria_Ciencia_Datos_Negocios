@@ -1,0 +1,315 @@
+---
+output: pdf_document
+linestretch: 1.0
+geometry: "a4paper, left=2.5cm, right=2.5cm, top=2.0cm, bottom=2.5cm"
+csl: apa.csl
+bibliography: bibliografia.bib
+nocite: |
+  @*
+header-includes:
+  - \usepackage{fancyhdr}
+  - \usepackage[spanish, es-tabla]{babel}
+  - \usepackage{float}
+  - \usepackage{newfloat}
+  - \DeclareFloatingEnvironment[fileext=loq]{grafica}
+  - \addto\captionsspanish{\renewcommand{\refname}{Referencias}}
+  - \usepackage{xcolor}
+---
+
+\definecolor{naranja}{RGB}{245,145,55}
+\definecolor{azul}{RGB}{40,100,160}
+
+\fancypagestyle{fancy}{
+ \lhead{\includegraphics[width=200pt]{fig/Logo_Cesuma.png}}
+ \rhead{\textcolor{naranja}{
+  \textbf{Maestría en Ciencia de Datos para Negocios}\\
+  \textcolor{azul}{\rule[1mm]{80mm}{0.2mm}} \\
+  Estadística para Científico de Datos}}
+ \renewcommand{\headrulewidth}{0.0pt}
+}
+
+\thispagestyle{fancy}
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\setlength{\headheight}{1.0cm}
+
+\null\vfill
+
+\begin{center}
+
+\bfseries{\LARGE{CASO PRÁCTICO 207 ESTADÍSTICA PARA CIENTÍFICO DE DATOS\\[1.0cm]}}
+
+\includegraphics[]{fig/BancoDigital_2.png}\\[1.0cm]
+
+
+\bfseries{\large{¿CÓMO APLICAR LA ESTADÍSTICA EN LA INTELIGENCIA DE NEGOCIOS?\\ CIENCIA DE DATOS PARA NEGOCIOS}}
+
+\null\vfill
+
+\bfseries{ Fernando Aleisy González\\ \today}
+
+\end{center}
+
+\newpage
+\pagestyle{fancy}
+
+\tableofcontents
+
+\newpage
+
+# Caso práctico: Banco Digital
+
+Un banco digital desea analizar sus datos de transacciones y comportamiento del cliente para obtener información valiosa sobre el uso de sus servicios, identificar patrones de comportamiento financiero y tomar decisiones informadas sobre la oferta de nuevos productos financieros y la personalización de servicios.
+
+# Preguntas de Investigación
+
+## Pregunta 1
+
+**¿Qué características demográficas (edad, género, ubicación, etc.) influyen más en el comportamiento financiero de los clientes?**
+
+![Representación de los conceptos de edad, genero y ubicación según inteligencia artificail (IA) freepik](fig\Pre_1.jpeg)
+
+Con esta pregunta se busca personalizar los productos y servicios financieros según el perfil demográfico de los clientes.
+
+  **A. Definición del Objetivo y Alcance:** Identificar las características demográficas que tienen mayor influencia en el comportamiento financiero de los clientes del banco digital. Determinar el periodo de tiempo para el análisis y definir los comportamientos financieros a estudiar (frecuencia de transacciones, tipos de cuentas, métodos de pago, etc.).
+
+  **B. Recolección de Datos:** Recopilar datos demográficos de los clientes, como edad, género, ubicación, nivel educativo, ingreso, estado civil, etc. Recopilar datos detallados de transacciones y comportamientos financieros, incluyendo tipo y valor de transacciones, uso de productos financieros, etc.
+
+  **C. Limpieza y Preparación de Datos:** Eliminar duplicados, corregir errores y gestionar valores faltantes.
+Transformación de Datos: Estandarizar formatos de datos y crear nuevas variables si es necesario (por ejemplo, frecuencia de transacciones mensual).
+
+  **D. Análisis Exploratorio de Datos:** Calcular estadísticas básicas (media, mediana, desviación estándar) para las características demográficas y comportamientos financieros. Crear gráficos (histogramas, gráficos de dispersión, diagramas de caja) para visualizar la relación entre características demográficas y comportamientos financieros.
+
+  **E. Segmentación de Clientes:** Agrupar clientes según las características demográficas. Analizar los comportamientos financieros en diferentes segmentos demográficos para identificar patrones significativos.
+
+  **F. Modelado y Análisis Avanzado:** Utilizar análisis de correlación para identificar relaciones entre características demográficas y comportamientos financieros. Desarrollar modelos de regresión o modelos de clasificación para predecir comportamientos financieros basados en características demográficas.
+
+  **G. Interpretación de Resultados:** Resumir los hallazgos clave sobre las características demográficas que influyen más en el comportamiento financiero. Describir cómo varían los comportamientos financieros entre diferentes segmentos demográficos.
+
+  Siguiendo estos pasos, el banco digital podrá identificar las características demográficas que influyen más en el comportamiento financiero de sus clientes, permitiendo tomar decisiones informadas para personalizar sus servicios y estrategias de marketing.
+
+## Pregunta 2
+
+**¿Cuáles son los patrones de uso de las diferentes cuentas bancarias (corriente, ahorro, inversión) entre los clientes?**
+
+![Representación del concepto Banco Digital según inteligencia artificail (IA) fooocos](fig\Pre_2.png)
+
+Con esta pregunta se busca identificar qué tipos de cuentas son más populares y evidenciar las que son menos populares para diseñar estrategias para promover el uso de productos menos utilizados.
+
+**A. Definición del Objetivo y Alcance:** Identificar y analizar los patrones de uso de las diferentes cuentas bancarias (corriente, ahorro, inversión) entre los clientes. Determinar el periodo de tiempo para el análisis, definir las métricas y variables clave (número de transacciones, saldo promedio, frecuencia de uso, etc.), y especificar los segmentos de clientes a estudiar.
+
+**B. Recolección de Datos:** Recopilar datos históricos de transacciones para las diferentes cuentas bancarias. Esto incluye información sobre depósitos, retiros, transferencias, pagos, etc. Recopilar datos demográficos de los clientes (edad, género, ubicación, etc.) para analizar patrones de uso en diferentes segmentos.Recopilar datos sobre el uso de servicios digitales (banca móvil, banca en línea, etc.).
+
+**C. Limpieza y Preparación de Datos:** Eliminar datos duplicados, corregir errores y manejar valores faltantes. Estandarizar formatos de datos y crear nuevas variables si es necesario (por ejemplo, frecuencia de uso mensual).
+
+**D. Análisis Exploratorio de Datos (EDA):** Calcular estadísticas descriptivas básicas (medias, medianas, desviaciones estándar) para entender la distribución de los datos. Crear gráficos y visualizaciones (histogramas, diagramas de caja, gráficos de barras) para identificar patrones y tendencias.
+
+**E. Segmentación de Clientes:** Utilizar técnicas de clusterización (por ejemplo, k-means) para agrupar clientes en segmentos basados en su comportamiento transaccional. Analizar los segmentos resultantes en función de datos demográficos para identificar diferencias significativas.
+
+**F. Modelado y Análisis Avanzado:** Si es relevante, analizar patrones de uso a lo largo del tiempo utilizando técnicas de análisis de series temporales. Desarrollar modelos predictivos para anticipar futuros patrones de uso basados en datos históricos.
+
+**G. Interpretación de Resultados:** Resumir los patrones de uso más significativos para cada tipo de cuenta (corriente, ahorro, inversión). Describir cómo varían los patrones de uso entre diferentes segmentos de clientes.
+
+**H. Comunicación de Resultados:** Crear informes y dashboards interactivos para presentar los hallazgos a las partes interesadas. Preparar una presentación para comunicar los resultados y recomendaciones de manera efectiva.
+
+Siguiendo estos pasos, el banco digital podrá identificar y analizar los patrones de uso de las diferentes cuentas bancarias entre sus clientes y tomar decisiones informadas para mejorar sus servicios y estrategias de marketing.
+
+## Pregunta 3
+
+**¿Qué métodos de pago (tarjetas de crédito, débito, transferencias, etc.) son los más utilizados por los clientes?**
+
+![Representación del concepto de tarjeta de crédito según inteligencia artificail (IA) freepik](fig\Pre_3.jpeg)
+
+Con esta pregunta se busca entender las preferencias de pago de los clientes lo que permitirá al banco optimizar los servicios ofrecidos.
+
+**A. Definición del Objetivo y Alcance:** Determinar los métodos de pago más utilizados por los clientes del banco digital, especificar el periodo de tiempo para el análisis, definir los métodos de pago a estudiar (tarjetas de crédito, débito, transferencias, etc.) y segmentar a los clientes si es necesario.
+
+**B. Recolección de Datos:** Recopilar datos detallados de transacciones que incluyan información sobre el método de pago utilizado.
+
+**C. Limpieza y Preparación de Datos:** Eliminar duplicados, corregir errores y gestionar valores faltantes. Estandarizar formatos y preparar datos para el análisis, por ejemplo, categorizando tipos de pagos.
+
+**D. Análisis Exploratorio de Datos:** Calcular estadísticas básicas (frecuencia, porcentajes) para cada método de pago y crear gráficos (gráficos de barras, gráficos de torta) para visualizar la distribución del uso de métodos de pago.
+
+**E. Segmentación de Clientes:** Agrupar clientes según sus preferencias de pago y analizar estas preferencias en los segmentos demográficos para identificar diferencias o similitudes significativas utilizando ANOVA.
+
+**F. Modelado y Análisis Avanzado:** Utilizar técnicas como el análisis de asociación para descubrir relaciones entre métodos de pago y otros comportamientos de los clientes. Desarrollar modelos predictivos para anticipar futuras preferencias de métodos de pago basados en datos históricos.
+
+**G. Interpretación de Resultados:** Resumir los métodos de pago más utilizados y cómo varían según diferentes segmentos de clientes. Describir las variaciones en las preferencias de pago entre diferentes segmentos demográficos y comportamentales.
+
+## Pregunta 4
+
+**¿Cuál es la frecuencia y el valor promedio de las transacciones realizadas por los clientes?**
+
+![Representación del concepto de transacción bancaria según IA freepik](fig\Pre_4.jpeg)
+
+Con esta pregunta se busca segmentar a los clientes según su actividad transaccional lo que permitirá personalizar las ofertas de servicios financieros.
+
+**A. Definición del Objetivo y Alcance:** Determinar la frecuencia y el valor promedio de las transacciones realizadas por los clientes del banco digital, especificar el periodo de tiempo para el análisis y definir los tipos de transacciones a estudiar (depósitos, retiros, transferencias, pagos, etc.).
+
+**B. Recolección de Datos:** Recopilar datos detallados de transacciones que incluyan la fecha, el tipo de transacción y el valor de cada transacción.
+
+**C. Limpieza y Preparación de Datos:** Eliminar duplicados, corregir errores y gestionar valores faltantes. Estandarizar formatos de datos y crear nuevas variables si es necesario (por ejemplo, frecuencia mensual de transacciones).
+
+**D. Análisis Exploratorio de Datos:** Calcular estadísticas básicas (media, mediana, desviación estándar) para la frecuencia y el valor de las transacciones y crear gráficos (histogramas, diagramas de caja, gráficos de barras) para visualizar la distribución de la frecuencia y el valor de las transacciones.
+
+**E. Segmentación de Clientes:** Agrupar clientes según la frecuencia y el valor de sus transacciones y analizar la frecuencia y el valor de las transacciones en diferentes segmentos demográficos para identificar diferencias significativas haciendo uso de herramientas estadísticas como la ANOVA.
+
+**F. Modelado y Análisis:** Utilizar técnicas de análisis de series temporales para identificar patrones y tendencias en la frecuencia y valor de las transacciones a lo largo del tiempo. Desarrollar modelos predictivos para anticipar futuras frecuencias y valores de transacciones basados en datos históricos.
+
+**G. Interpretación de Resultados:** Resumir los hallazgos clave sobre la frecuencia y el valor promedio de las transacciones. Describir cómo varían la frecuencia y el valor de las transacciones entre diferentes segmentos de clientes.
+
+Siguiendo estos pasos, el banco digital podrá identificar la frecuencia y el valor promedio de las transacciones realizadas por sus clientes, lo que permitirá tomar decisiones informadas para mejorar sus servicios y estrategias de marketing.
+
+## Pregunta 5
+
+**¿Cuál es la tasa de adopción de servicios digitales como la banca móvil y las plataformas en línea?**
+
+![Representación del concepto de servicios digitales del banco según IA fooocos](fig\Pre_5.png)
+
+Con esta pregunta se busca evaluar la aceptación de tecnologías digitales y mejorar la experiencia del usuario.
+
+**A. Definición del Objetivo y Alcance:** Determinar la tasa de adopción de servicios digitales como la banca móvil y las plataformas en línea entre los clientes del banco digital, especificar el periodo de tiempo para el análisis y definir los servicios digitales a estudiar (banca móvil, plataformas en línea, aplicaciones específicas, etc.).
+
+**B. Recolección de Datos:** Recopilar datos de inicio de sesión, transacciones realizadas a través de servicios digitales, descargas de aplicaciones móviles, registros de uso de funciones específicas, etc.
+
+**C. Limpieza y Preparación de Datos:** Eliminar duplicados, corregir errores y gestionar valores faltantes.
+Transformación de Datos: Estandarizar formatos de datos y crear nuevas variables si es necesario (por ejemplo, frecuencia de uso de servicios digitales).
+
+**D. Análisis Exploratorio de Datos:** Calcular estadísticas básicas (porcentajes de adopción, tasas de crecimiento) para el uso de servicios digitales. Crear gráficos (gráficos de barras, gráficos de torta) para visualizar la adopción de servicios digitales.
+
+**E. Segmentación de Clientes:** Agrupar clientes según su nivel de adopción de servicios digitales (usuarios frecuentes, ocasionales, no usuarios) y Analizar la adopción de servicios digitales según las categorías demográficas para identificar si estas categorías influyen en la tasa de adopción de servicios digitales.
+
+**F. Modelado y Análisis Avanzado:** Utilizar técnicas de análisis de series temporales para identificar patrones y tendencias en la adopción de servicios digitales a lo largo del tiempo. Desarrollar modelos predictivos para anticipar futuras tasas de adopción de servicios digitales basados en datos históricos.
+
+**G. Interpretación de Resultados:** Resumir los hallazgos clave sobre la tasa de adopción de servicios digitales. Describir cómo varía la adopción de servicios digitales entre diferentes segmentos de clientes.
+
+Siguiendo estos pasos, el banco digital podrá identificar la tasa de adopción de servicios digitales entre sus clientes y tomar decisiones informadas para mejorar sus servicios y estrategias de marketing.
+
+## Pregunta 6
+
+**¿Cuáles son los patrones de ahorro e inversión de los clientes y qué características influyen en en estos patrones?**
+
+![Representación de los conceptos ahorro e inversión según IA fooocos](fig\Pre_6.png)
+
+Con esta pregunta se busca identificar oportunidades de ofrecer productos de ahorro e inversión personalizados.
+
+**A. Definición del Objetivo y Alcance:** Identificar y analizar los patrones de ahorro e inversión de los clientes del banco digital y cómo varían según las características de cada cliente. Determinar el periodo de tiempo para el análisis y definir los tipos de productos de ahorro e inversión a estudiar (cuentas de ahorro, certificados de depósito, fondos de inversión, etc.).
+
+**B. Recolección de Datos:** Recopilar datos sobre los productos de ahorro e inversión utilizados por los clientes, incluyendo saldos, frecuencia de aportes y retiros, tipos de productos, etc. Recopilar datos demográficos de los clientes (edad, género, ubicación, nivel de ingresos, etc.) para analizar variaciones en los patrones de ahorro e inversión entre las diferentes características de cada cliente.
+
+**C. Limpieza y Preparación de Datos:** Eliminar duplicados, corregir errores y gestionar valores faltantes.
+Transformación de Datos: Estandarizar formatos de datos y crear nuevas variables si es necesario (por ejemplo, tasa de ahorro mensual).
+
+**D. Análisis Exploratorio de Datos:** Calcular estadísticas básicas (media, mediana, desviación estándar) para los patrones de ahorro e inversión. Crear gráficos (histogramas, gráficos de barras, gráficos de dispersión) para visualizar la distribución de los patrones de ahorro e inversión.
+
+**E. Segmentación de Clientes:** Agrupar clientes según características demográficas y comportamentales clave (frecuencia de ahorro, tipos de inversión preferidos, etc.). Comparar los patrones de ahorro e inversión entre diferentes segmentos para identificar variaciones significativas.
+
+**F. Modelado y Análisis Avanzado:** Utilizar análisis de correlación para identificar relaciones entre características demográficas y patrones de ahorro e inversión. Desarrollar modelos predictivos para anticipar futuros patrones de ahorro e inversión basados en datos históricos y demográficos.
+
+**G. Interpretación de Resultados:** Resumir los hallazgos clave sobre los patrones de ahorro e inversión y cómo varían según diferentes segmentos. Describir cómo varían los patrones de ahorro e inversión entre diferentes segmentos demográficos y comportamentales.
+
+Siguiendo estos pasos, el banco digital podrá identificar los patrones de ahorro e inversión de sus clientes y cómo varían según diferentes segmentos, permitiendo tomar decisiones informadas para personalizar sus servicios y estrategias de marketing.
+
+## Pregunta 7
+
+**¿Cuál es la tasa de retención de clientes y qué factores influyen en la fidelidad de los clientes?**
+
+![Representación de los conceptos retencion fidelidad de los clientes según IA freepik](fig\Pre_7.jpeg)
+
+Con esta pregunta se busca desarrollar estrategias de retención de clientes y mejorar la lealtad.
+
+**A. Definición del Objetivo y Alcance:** Determinar la tasa de retención de clientes del banco digital e identificar los factores que influyen en la fidelidad de los clientes. Especificar el periodo de tiempo para el análisis y definir los factores potenciales a estudiar (satisfacción del cliente, calidad del servicio, productos utilizados, etc.).
+
+**B. Recolección de Datos** Recopilar datos sobre el historial de clientes, incluyendo fechas de alta y baja, productos y servicios utilizados, y datos de contacto. Recopilar datos de interacción del cliente con el banco, incluyendo visitas a la web, uso de aplicaciones móviles, llamadas al servicio al cliente, etc. Recopilar datos de encuestas de satisfacción del cliente y feedback directo para entender mejor las razones detrás de la retención y abandono.
+
+**C. Limpieza y Preparación de Datos:** Eliminar duplicados, corregir errores y gestionar valores faltantes. Estandarizar formatos de datos y crear nuevas variables si es necesario (por ejemplo, tasa de retención mensual).
+
+**D. Análisis Exploratorio de Datos (EDA):** Calcular estadísticas básicas (tasas de retención, porcentajes de abandono) y describir las características generales de los clientes retenidos y abandonados. Crear gráficos (histogramas, gráficos de barras, gráficos de dispersión) para visualizar la distribución de la retención de clientes y factores asociados.
+
+**E. Segmentación de Clientes:** Agrupar clientes según características demográficas y comportamentales clave (frecuencia de uso de servicios, satisfacción, etc.). Comparar las tasas de retención y factores de fidelidad entre diferentes segmentos para identificar variaciones significativas.
+
+**F. Modelado y Análisis Avanzado:** Utilizar análisis de correlación para identificar relaciones entre características demográficas, comportamentales y la retención de clientes. Desarrollar modelos predictivos (por ejemplo, modelos de regresión logística) para anticipar la retención de clientes basados en datos históricos y factores identificados.
+
+**G. Identificación de Factores Clave:** Identificar los factores que tienen mayor influencia en la fidelidad de los clientes, como la satisfacción del cliente, la calidad del servicio, la variedad de productos, etc. Describir cómo varían los factores de fidelidad entre diferentes segmentos demográficos y comportamentales.
+
+Siguiendo estos pasos, el banco digital podrá determinar la tasa de retención de clientes e identificar los factores que influyen en la fidelidad de los clientes, permitiendo tomar decisiones informadas para mejorar la retención y la satisfacción del cliente.
+
+## Pregunta 8
+
+**¿Cómo reaccionan los clientes a las campañas de marketing y promociones?**
+
+![Representación de los conceptos campañas de marketing y promociones de un banco digital según inteligencia artificail (IA) fooocos](fig\Pre_8.png)
+
+Con esta pregunta se busca evaluar la efectividad de las estrategias de marketing para optimizar futuras campañas.
+
+**A. Definición del Objetivo y Alcance:** Evaluar la reacción de los clientes a las campañas de marketing y promociones del banco digital. Determinar el periodo de tiempo para el análisis y definir los tipos de campañas y promociones a estudiar (descuentos, ofertas especiales, nuevos productos, etc.).
+
+**B. Recolección de Datos:** Recopilar datos sobre las campañas y promociones, incluyendo fechas, canales utilizados, audiencias objetivo, y detalles de las ofertas. Recopilar datos sobre los clientes que han sido expuestos a las campañas y promociones, incluyendo su interacción con las mismas (clics, conversiones, uso de promociones, etc.). Recopilar datos sobre las transacciones realizadas antes, durante y después de las campañas para medir su impacto. Recopilar datos de encuestas y feedback directo de los clientes sobre las campañas y promociones.
+
+**C. Limpieza y Preparación de Datos:** Eliminar duplicados, corregir errores y gestionar valores faltantes. Estandarizar formatos de datos y crear nuevas variables si es necesario (por ejemplo, tasa de conversión por campaña).
+
+**D. Análisis Exploratorio de Datos:** Calcular estadísticas básicas (tasas de clics, tasas de conversión, ingresos generados) para las campañas de marketing y promociones. Crear gráficos (gráficos de barras, gráficos de líneas, mapas de calor) para visualizar la reacción de los clientes a las campañas y promociones.
+
+**E. Segmentación de Clientes:** Agrupar clientes según su respuesta a las campañas (clientes que participaron vs. clientes que no participaron). Analizar la reacción de diferentes segmentos demográficos a las campañas y promociones.
+
+**F. Modelado y Análisis Avanzado:** Utilizar análisis de correlación para identificar relaciones entre características de las campañas y la respuesta de los clientes. Desarrollar modelos predictivos (por ejemplo, modelos de regresión logística) para anticipar la respuesta de los clientes a futuras campañas basados en datos históricos.
+
+**G. Identificación de Patrones Clave:** Identificar patrones en la respuesta de los clientes a las campañas y promociones, como los tipos de campañas más efectivos, los canales de marketing más exitosos, etc. Describir cómo varía la respuesta a las campañas entre diferentes segmentos demográficos y comportamentales.
+
+Siguiendo estos pasos, el banco digital podrá evaluar cómo reaccionan los clientes a las campañas de marketing y promociones, permitiendo tomar decisiones informadas para mejorar la efectividad de sus estrategias de marketing y aumentar la satisfacción del cliente.
+
+## Pregunta 9
+
+**¿Qué problemas o quejas reportan los clientes con mayor frecuencia y cómo afectan su satisfacción general?**
+
+![Representación de un hombre quejandose según inteligencia artificail (IA) fooocos](fig\Pre_9.png)
+
+Con esta pregunta se busca mejorar el servicio al cliente y reducir la tasa de insatisfacción.
+
+**A. Definición del Objetivo y Alcance:** Identificar los problemas y quejas más frecuentes reportados por los clientes del banco digital y analizar cómo estos problemas afectan su satisfacción general. Especificar el periodo de tiempo para el análisis y definir los tipos de problemas y quejas a estudiar (servicio al cliente, errores en transacciones, problemas técnicos, etc.).
+
+**B. Recolección de Datos:** Recopilar datos de quejas y problemas reportados a través de diferentes canales (centro de atención al cliente, correos electrónicos, redes sociales, encuestas, etc.). Recopilar datos demográficos de los clientes que reportaron quejas (edad, género, ubicación, etc.) para analizar diferencias en la frecuencia y tipo de quejas entre diferentes segmentos. Recopilar datos de encuestas de satisfacción del cliente y feedback directo relacionado con su experiencia general y con los problemas reportados.
+
+**C. Limpieza y Preparación de Datos:** Eliminar duplicados, corregir errores y gestionar valores faltantes. Estandarizar formatos de datos y categorizar los problemas y quejas en tipos específicos (problemas técnicos, errores de facturación, etc.).
+
+**D. Análisis Exploratorio de Datos (EDA):** Calcular estadísticas básicas (frecuencia de diferentes tipos de quejas, tasa de resolución, tiempo de resolución) para las quejas y problemas reportados. Crear gráficos (gráficos de barras, gráficos de líneas, mapas de calor) para visualizar la distribución de quejas y problemas.
+
+**E. Segmentación de Clientes:** Agrupar clientes según el tipo de queja reportada. Analizar las diferencias en la frecuencia y tipo de quejas entre diferentes segmentos demográficos.
+
+**F. Modelado y Análisis Avanzado:** Utilizar análisis de correlación para identificar relaciones entre características demográficas, tipos de quejas y satisfacción del cliente. Desarrollar modelos predictivos para anticipar la satisfacción del cliente basado en la frecuencia y tipo de quejas reportadas.
+
+**G. Identificación de Factores Clave:** Evaluar cómo diferentes tipos de quejas afectan la satisfacción general del cliente. Describir cómo varían los niveles de satisfacción entre clientes que han reportado diferentes tipos de quejas.
+
+Siguiendo estos pasos, el banco digital podrá identificar los problemas y quejas más frecuentes reportados por los clientes y entender cómo afectan su satisfacción general, permitiendo tomar decisiones informadas para mejorar la calidad del servicio y aumentar la satisfacción del cliente.
+
+## Pregunta 10
+
+**¿Cómo varía el uso de los servicios bancarios en función del ciclo de vida del cliente (nuevos clientes vs. clientes de largo plazo)?**
+
+![Representación del concepto de ciclos de vida de las personas según IA freepik](fig\Pre_10.jpeg)
+
+Al realizar una investigación para responder esta pregunta se podrá adaptar estrategias de marketing y servicio a las diferentes etapas del ciclo de vida del cliente.
+
+**A. Definición del Objetivo y Alcance:** Analizar cómo varía el uso de los servicios bancarios entre nuevos clientes y clientes de largo plazo. Determinar el periodo de tiempo para el análisis y definir los servicios bancarios a estudiar (cuentas corrientes, ahorro, préstamos, tarjetas de crédito, banca móvil, etc.).
+
+**B. Recolección de Datos:** Recopilar datos sobre la fecha de incorporación de los clientes para identificar nuevos clientes (por ejemplo, menos de un año) y clientes de largo plazo (por ejemplo, más de cinco años). Recopilar datos sobre el uso de servicios bancarios por parte de los clientes, incluyendo tipos de cuentas, frecuencia de transacciones, montos de ahorro, uso de crédito, etc. Recopilar datos demográficos de los clientes (edad, género, ubicación, ingresos, etc.) para analizar diferencias en el uso de servicios entre diferentes segmentos.
+
+**C. Limpieza y Preparación de Datos:** Eliminar duplicados, corregir errores y gestionar valores faltantes. Estandarizar formatos de datos y crear nuevas variables si es necesario (por ejemplo, frecuencia mensual de uso de servicios).
+
+**D. Análisis Exploratorio de Datos:** Calcular estadísticas básicas (media, mediana, desviación estándar) para el uso de servicios bancarios entre nuevos clientes y clientes de largo plazo. Crear gráficos (gráficos de barras, gráficos de líneas, diagramas de caja) para visualizar la distribución del uso de servicios bancarios entre los dos grupos.
+
+**E. Segmentación de Clientes:** Agrupar clientes según su ciclo de vida (nuevos clientes vs. clientes de largo plazo). Analizar las diferencias en el uso de servicios entre diferentes segmentos demográficos dentro de cada grupo de ciclo de vida.
+
+**F. Modelado y Análisis Avanzado:** Utilizar análisis de correlación para identificar relaciones entre características demográficas, ciclo de vida y uso de servicios bancarios. Desarrollar modelos predictivos para anticipar el uso de servicios bancarios basado en el ciclo de vida del cliente y otros factores relevantes.
+
+**G. Identificación de Patrones Clave:** Identificar patrones en el uso de servicios bancarios entre nuevos clientes y clientes de largo plazo, como la frecuencia de uso, tipos de servicios preferidos, etc. Describir cómo varía el comportamiento de uso de servicios bancarios entre diferentes segmentos del ciclo de vida del cliente.
+
+Siguiendo estos pasos, el banco digital podrá analizar cómo varía el uso de los servicios bancarios en función del ciclo de vida del cliente, permitiendo tomar decisiones informadas para mejorar la experiencia del cliente y aumentar la fidelidad y satisfacción de los clientes.
+
+\newpage
+
+# Referencias
