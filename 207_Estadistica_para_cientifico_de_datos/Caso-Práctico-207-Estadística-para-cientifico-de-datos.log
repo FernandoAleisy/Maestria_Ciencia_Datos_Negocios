@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.8)  13 SEP 2024 08:15
+=======
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.6)  8 SEP 2024 10:51
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Caso-Práctico-207-Estadística-para-cientifico-de-datos.tex
 (./Caso-Práctico-207-Estadística-para-cientifico-de-datos.tex
 LaTeX2e <2024-06-01> patch level 2
+<<<<<<< HEAD
 L3 programming layer <2024-08-16>
+=======
+L3 programming layer <2024-07-20>
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2024/02/08 v1.4n Standard LaTeX document class
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size10.clo
@@ -218,7 +226,11 @@ Package: fancyhdr 2024/07/23 v4.3.1 Extensive control of page headers and footer
 \f@nch@O@olf=\skip66
 \f@nch@O@orf=\skip67
 ) (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
+<<<<<<< HEAD
 Package: babel 2024/08/29 v24.9 The Babel package
+=======
+Package: babel 2024/06/26 v24.7 The Babel package
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 \babel@savecnt=\count286
 \U@D=\dimen163
 \l@unhyphenated=\language6
@@ -437,11 +449,19 @@ LaTeX Info: Redefining \. on input line 112.
 LaTeX Info: Redefining \% on input line 112.
 Package newfloat Info: `float' package detected.
 Package hyperref Info: Link coloring OFF on input line 112.
+<<<<<<< HEAD
 <fig/Comercio_electronico.jpeg, id=4, 1413.28pt x 706.64pt>
 File: fig/Comercio_electronico.jpeg Graphic file (type jpg)
 <use fig/Comercio_electronico.jpeg>
 Package pdftex.def Info: fig/Comercio_electronico.jpeg  used on input line 137.
 (pdftex.def)             Requested size: 455.2348pt x 227.61739pt.
+=======
+<fig/BancoDigital_2.png, id=4, 915.42pt x 484.05844pt>
+File: fig/BancoDigital_2.png Graphic file (type png)
+<use fig/BancoDigital_2.png>
+Package pdftex.def Info: fig/BancoDigital_2.png  used on input line 137.
+(pdftex.def)             Requested size: 455.23651pt x 240.72127pt.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 
 
 <fig/Logo_Cesuma.png, id=5, 290.832pt x 52.341pt>
@@ -458,6 +478,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 
 [1{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}
 
+<<<<<<< HEAD
  <./fig/Logo_Cesuma.png> <./fig/Comercio_electronico.jpeg>] (./Caso-Práctico-207-Estadística-para-cientifico-de-datos.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
@@ -474,10 +495,29 @@ LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 3
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 3.
+=======
+ <./fig/Logo_Cesuma.png> <./fig/BancoDigital_2.png>] (./Caso-Práctico-207-Estadística-para-cientifico-de-datos.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 4.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 4.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 4.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 4.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
+<<<<<<< HEAD
 (Font)              <10> on input line 3.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 3.
@@ -488,6 +528,18 @@ LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
+=======
+(Font)              <10> on input line 4.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 4.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 4.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 4.
+(c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 (c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ))
@@ -508,6 +560,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
 [2]
+<<<<<<< HEAD
 <fig/E_commerce.jpeg, id=80, 1413.28pt x 706.64pt>
 File: fig/E_commerce.jpeg Graphic file (type jpg)
 <use fig/E_commerce.jpeg>
@@ -518,11 +571,22 @@ File: fig/Datos.jpg Graphic file (type jpg)
 <use fig/Datos.jpg>
 Package pdftex.def Info: fig/Datos.jpg  used on input line 216.
 (pdftex.def)             Requested size: 455.2196pt x 222.35986pt.
+=======
+<fig/Pre_1.jpeg, id=46, 1349.04pt x 770.88pt>
+File: fig/Pre_1.jpeg Graphic file (type jpg)
+<use fig/Pre_1.jpeg>
+Package pdftex.def Info: fig/Pre_1.jpeg  used on input line 174.
+(pdftex.def)             Requested size: 455.22989pt x 260.13136pt.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
+<<<<<<< HEAD
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 221.
+=======
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 211.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -531,11 +595,25 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
+<<<<<<< HEAD
 [3 <./fig/E_commerce.jpeg>]
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 291.
+=======
+[3 <./fig/Pre_1.jpeg>]
+<fig/Pre_2.png, id=52, 867.24pt x 525.46312pt>
+File: fig/Pre_2.png Graphic file (type png)
+<use fig/Pre_2.png>
+Package pdftex.def Info: fig/Pre_2.png  used on input line 234.
+(pdftex.def)             Requested size: 455.24167pt x 275.83218pt.
+
+
+File: fig/Logo_Cesuma.png Graphic file (type png)
+<use fig/Logo_Cesuma.png>
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 268.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -544,17 +622,30 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
+<<<<<<< HEAD
 [4 <./fig/Datos.jpg>]
 <fig/Estadistica.jpeg, id=92, 1413.28pt x 706.64pt>
 File: fig/Estadistica.jpeg Graphic file (type jpg)
 <use fig/Estadistica.jpeg>
 Package pdftex.def Info: fig/Estadistica.jpeg  used on input line 309.
 (pdftex.def)             Requested size: 455.2348pt x 227.61739pt.
+=======
+[4 <./fig/Pre_2.png>]
+<fig/Pre_3.jpeg, id=60, 1349.04pt x 770.88pt>
+File: fig/Pre_3.jpeg Graphic file (type jpg)
+<use fig/Pre_3.jpeg>
+Package pdftex.def Info: fig/Pre_3.jpeg  used on input line 302.
+(pdftex.def)             Requested size: 455.22989pt x 260.13136pt.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
+<<<<<<< HEAD
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 349.
+=======
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 324.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -563,17 +654,30 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
+<<<<<<< HEAD
 [5{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc} <./fig/Estadistica.jpeg>]
 <fig/Metricas.jpeg, id=103, 1349.04pt x 712.91344pt>
 File: fig/Metricas.jpeg Graphic file (type jpg)
 <use fig/Metricas.jpeg>
 Package pdftex.def Info: fig/Metricas.jpeg  used on input line 413.
 (pdftex.def)             Requested size: 455.22989pt x 240.57071pt.
+=======
+[5 <./fig/Pre_3.jpeg>]
+<fig/Pre_4.jpeg, id=66, 1349.04pt x 770.88pt>
+File: fig/Pre_4.jpeg Graphic file (type jpg)
+<use fig/Pre_4.jpeg>
+Package pdftex.def Info: fig/Pre_4.jpeg  used on input line 353.
+(pdftex.def)             Requested size: 455.22989pt x 260.13136pt.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
+<<<<<<< HEAD
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 428.
+=======
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 382.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -582,11 +686,25 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
+<<<<<<< HEAD
 [6{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 475.
+=======
+[6 <./fig/Pre_4.jpeg>]
+<fig/Pre_5.png, id=72, 867.24pt x 554.07pt>
+File: fig/Pre_5.png Graphic file (type png)
+<use fig/Pre_5.png>
+Package pdftex.def Info: fig/Pre_5.png  used on input line 412.
+(pdftex.def)             Requested size: 455.24167pt x 290.84883pt.
+
+
+File: fig/Logo_Cesuma.png Graphic file (type png)
+<use fig/Logo_Cesuma.png>
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 434.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -595,11 +713,25 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
+<<<<<<< HEAD
 [7 <./fig/Metricas.jpeg>]
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 572.
+=======
+[7 <./fig/Pre_5.png>]
+<fig/Pre_6.png, id=80, 867.24pt x 484.81125pt>
+File: fig/Pre_6.png Graphic file (type png)
+<use fig/Pre_6.png>
+Package pdftex.def Info: fig/Pre_6.png  used on input line 468.
+(pdftex.def)             Requested size: 455.24167pt x 254.49272pt.
+
+
+File: fig/Logo_Cesuma.png Graphic file (type png)
+<use fig/Logo_Cesuma.png>
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 490.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -608,11 +740,25 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
+<<<<<<< HEAD
 [8]
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 666.
+=======
+[8 <./fig/Pre_6.png>]
+<fig/Pre_7.jpeg, id=87, 1011.78pt x 531.48563pt>
+File: fig/Pre_7.jpeg Graphic file (type jpg)
+<use fig/Pre_7.jpeg>
+Package pdftex.def Info: fig/Pre_7.jpeg  used on input line 530.
+(pdftex.def)             Requested size: 455.25047pt x 239.14198pt.
+
+
+File: fig/Logo_Cesuma.png Graphic file (type png)
+<use fig/Logo_Cesuma.png>
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 552.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -621,11 +767,25 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
+<<<<<<< HEAD
 [9]
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 739.
+=======
+[9 <./fig/Pre_7.jpeg>]
+<fig/Pre_8.png, id=93, 867.24pt x 441.14813pt>
+File: fig/Pre_8.png Graphic file (type png)
+<use fig/Pre_8.png>
+Package pdftex.def Info: fig/Pre_8.png  used on input line 596.
+(pdftex.def)             Requested size: 455.24167pt x 231.57257pt.
+
+
+File: fig/Logo_Cesuma.png Graphic file (type png)
+<use fig/Logo_Cesuma.png>
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 611.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -634,17 +794,30 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
+<<<<<<< HEAD
 [10]
 <fig/Desafio.jpeg, id=128, 770.88pt x 458.46281pt>
 File: fig/Desafio.jpeg Graphic file (type jpg)
 <use fig/Desafio.jpeg>
 Package pdftex.def Info: fig/Desafio.jpeg  used on input line 823.
 (pdftex.def)             Requested size: 455.23872pt x 270.74255pt.
+=======
+[10 <./fig/Pre_8.png>]
+<fig/Pre_9.png, id=100, 1284.8pt x 770.88pt>
+File: fig/Pre_9.png Graphic file (type png)
+<use fig/Pre_9.png>
+Package pdftex.def Info: fig/Pre_9.png  used on input line 662.
+(pdftex.def)             Requested size: 455.2348pt x 273.14088pt.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
+<<<<<<< HEAD
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 826.
+=======
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 706.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -654,10 +827,23 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
 [11]
+<<<<<<< HEAD
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 887.
+=======
+<fig/Pre_10.jpeg, id=105, 1349.04pt x 770.88pt>
+File: fig/Pre_10.jpeg Graphic file (type jpg)
+<use fig/Pre_10.jpeg>
+Package pdftex.def Info: fig/Pre_10.jpeg  used on input line 726.
+(pdftex.def)             Requested size: 455.22989pt x 260.13136pt.
+
+
+File: fig/Logo_Cesuma.png Graphic file (type png)
+<use fig/Logo_Cesuma.png>
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 762.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -666,11 +852,19 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
+<<<<<<< HEAD
 [12 <./fig/Desafio.jpeg>]
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 966.
+=======
+[12 <./fig/Pre_9.png (PNG copy)>]
+
+File: fig/Logo_Cesuma.png Graphic file (type png)
+<use fig/Logo_Cesuma.png>
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 785.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -679,6 +873,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
+<<<<<<< HEAD
 [13]
 <fig/Musica_3.jpeg, id=143, 1349.04pt x 683.55376pt>
 File: fig/Musica_3.jpeg Graphic file (type jpg)
@@ -690,6 +885,13 @@ Package pdftex.def Info: fig/Musica_3.jpeg  used on input line 980.
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 1036.
+=======
+[13 <./fig/Pre_10.jpeg>]
+
+File: fig/Logo_Cesuma.png Graphic file (type png)
+<use fig/Logo_Cesuma.png>
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 828.
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 (pdftex.def)             Requested size: 199.99976pt x 35.99393pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -698,6 +900,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
+<<<<<<< HEAD
 [14 <./fig/Musica_3.jpeg>]
 <fig/Probabilidad.png, id=150, 867.24pt x 422.32782pt>
 File: fig/Probabilidad.png Graphic file (type png)
@@ -863,11 +1066,15 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-11.14122pt}.
 
 [25] (./Caso-Práctico-207-Estadística-para-cientifico-de-datos.aux
+=======
+[14] (./Caso-Práctico-207-Estadística-para-cientifico-de-datos.aux
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
 )
  ***********
 LaTeX2e <2024-06-01> patch level 2
+<<<<<<< HEAD
 L3 programming layer <2024-08-16>
  ***********
  ) 
@@ -886,4 +1093,24 @@ PDF statistics:
  292 compressed objects within 3 object streams
  74 named destinations out of 1000 (max. 500000)
  230 words of extra memory for PDF output out of 10000 (max. 10000000)
+=======
+L3 programming layer <2024-07-20>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 13139 strings out of 475521
+ 207537 string characters out of 5774962
+ 1938960 words of memory out of 5000000
+ 35556 multiletter control sequences out of 15000+600000
+ 596327 words of font info for 61 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 89i,16n,93p,476b,464s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
+Output written on Caso-Práctico-207-Estadística-para-cientifico-de-datos.pdf (14 pages, 8099665 bytes).
+PDF statistics:
+ 203 PDF objects out of 1000 (max. 8388607)
+ 160 compressed objects within 2 object streams
+ 47 named destinations out of 1000 (max. 500000)
+ 165 words of extra memory for PDF output out of 10000 (max. 10000000)
+>>>>>>> 7b7c4481857d5e48cc0e0c19938d473121132acd
 
