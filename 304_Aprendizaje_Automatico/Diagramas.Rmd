@@ -1,0 +1,117 @@
+---
+title: "Diagramas"
+author: "Fernando Aleisy González"
+date: "2024-12-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Procesos de la empresa manufacturera *IndustriaTech*
+
+
+```{r}
+# install.packages(c('DiagrammeR', 'DiagrammeRsvg', 'rsvg'))
+```
+
+```{r, message = FALSE}
+library(DiagrammeR)
+library(DiagrammeRsvg)
+library(rsvg)
+```
+
+```{r}
+diagrama <- grViz("
+  digraph {
+    graph [rankdir = TB]
+
+    node [shape = rectangle, style = 'filled,rounded', margin = 0.25, penwidth = 0]
+
+    subgraph cluster_0 {
+      style = rounded
+      penwidth = 0
+      bgcolor = \"#e4c1f9\"
+      label = 'Procesos Previos'
+
+      Diseño [label = 'Diseño y Preparación del Producto', fillcolor = \"#ffffff\"]
+      Fabricacion [label = 'Fabricación de PCB', fillcolor = \"#ffffff\"]
+    }
+
+    subgraph cluster_1 {
+      style = rounded
+      penwidth = 0
+      bgcolor = \"#a9def9\"
+      label = 'Procesos de Ensamblaje'
+
+      SMT [label = 'Montaje SMT (Surface Mount Technology)', fillcolor = \"#ffffff\"]
+      THT [label = 'Montaje THT (Through-Hole Technology)', fillcolor = \"#ffffff\"]
+      Ensamblaje [label = 'Ensamblaje Final del Producto', fillcolor = \"#ffffff\"]
+    }
+
+    subgraph cluster_2 {
+      style = rounded
+      penwidth = 0
+      bgcolor = \"#d0f4de\"
+      label = 'Procesos de Control de Calidad'
+
+      Inspeccion [label = 'Inspección  Pruebas Intermedias', fillcolor = \"#ffffff\"]
+      Pruebas [label = 'Pruebas Funcionales', fillcolor = \"#ffffff\"]
+      ControlQA [label = 'Control de Calidad (QA)', fillcolor = \"#ffffff\"]
+    }
+
+    subgraph cluster_3 {
+      style = rounded
+      penwidth = 0
+      bgcolor = \"#fcf6bd\"
+      label = 'Procesos de Distribución'
+
+      Empaque [label = 'Empaque y Etiquetado', fillcolor = \"#ffffff\"]
+      Distribucion [label = 'Distribución y Logística', fillcolor = \"#ffffff\"]
+    }
+
+    edge [color = blue4, arrowhead = vee, arrowsize = 1.25]
+
+    Diseño -> Fabricacion
+    Fabricacion -> {SMT THT}
+    {SMT THT} -> Inspeccion
+    Inspeccion -> Ensamblaje
+    Ensamblaje -> Pruebas
+    Pruebas -> ControlQA
+    ControlQA -> Empaque
+    Empaque -> Distribucion
+  }
+")
+
+```
+
+```{r}
+diagrama
+```
+
+
+```{r}
+svg <- export_svg(diagrama)
+rsvg_png(charToRaw(svg), file = "fig/diagrama.png")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

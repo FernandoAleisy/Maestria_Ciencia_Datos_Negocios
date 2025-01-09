@@ -568,4 +568,3 @@ tabla
 \newpage
 
 # REFERENCIAS
->>>>>>> e8ffd7bf0df77691ac2b1ed5736d4c120566f732
