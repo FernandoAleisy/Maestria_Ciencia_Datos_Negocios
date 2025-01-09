@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 output: pdf_document
 linestretch: 1.0
@@ -126,3 +127,133 @@ VIII. ¿Qué elementos adicionales (descuentos, promociones, garantías de preci
 \newpage
 
 # Referencias
+=======
+---
+output: pdf_document
+linestretch: 1.0
+geometry: "a4paper, left=2.5cm, right=2.5cm, top=2.0cm, bottom=2.5cm"
+csl: apa.csl
+bibliography: bibliografia.bib
+nocite: |
+  @*
+header-includes:
+  - \usepackage{fancyhdr}
+  - \usepackage[spanish, es-tabla]{babel}
+  - \usepackage{float}
+  - \usepackage{newfloat}
+  - \DeclareFloatingEnvironment[fileext=loq]{grafica}
+  - \addto\captionsspanish{\renewcommand{\refname}{Referencias}}
+  - \usepackage{xcolor}
+---
+
+\definecolor{naranja}{RGB}{245,145,55}
+\definecolor{azul}{RGB}{40,100,160}
+
+\fancypagestyle{fancy}{
+ \lhead{\includegraphics[width=200pt]{fig/Logo_Cesuma.png}}
+ \rhead{\textcolor{naranja}{
+  \textbf{Maestría en Ciencia de Datos para Negocios}\\
+  \textcolor{azul}{\rule[1mm]{80mm}{0.2mm}} \\
+  Métodos Cuantitativos y Cualitativos en Investigación}}
+ \renewcommand{\headrulewidth}{0.0pt}
+}
+
+\thispagestyle{fancy}
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\setlength{\headheight}{1.0cm}
+
+\null\vfill
+
+\begin{center}
+
+\bfseries{\LARGE{CASO PRÁCTICO 208 MÉTODOS CUANTITATIVOS Y CUALITATIVOS EN INVESTIGACIÓN\\[1.0cm]}}
+
+\includegraphics[]{fig/Analisis.jpeg}\\[1.0cm]
+
+
+\bfseries{\large{MODELOS DE PRECIO DINÁMICO\\ CIENCIA DE DATOS PARA NEGOCIOS}}
+
+\null\vfill
+
+\bfseries{ Fernando Aleisy González\\ \today}
+
+\end{center}
+
+\newpage
+\pagestyle{fancy}
+
+\tableofcontents
+
+\newpage
+
+# CASO PRÁCTICO
+
+**Precios en tiempo real en función de la demanda en una empresa de comercio electrónico**
+
+Una empresa de comercio electrónico que ha implementado un sistema de ajuste de precios en tiempo real en función de varios factores, desea evaluar cómo estos ajustes impactan en diversos aspectos del negocio, como la percepción de los clientes, los ingresos, la demanda y la competitividad de la empresa.
+
+La investigación combinará métodos cuantitativos y cualitativos para obtener una comprensión completa del impacto de los modelos de precios dinámicos en los ingresos y en la percepción del cliente.
+
+## Metodología Cuantitativa
+
+La metodología cuantitativa de esta investigación se centrará en la recolección y análisis de datos numéricos para evaluar el impacto de un modelo de precios dinámicos en los ingresos y la demanda. Se utilizarán bases de datos de ventas históricas de la empresa, junto con información sobre inventarios, demanda del mercado y comportamiento de compra de los clientes. Adicionalmente, se realizarán encuestas con escalas de Likert para medir la percepción de los consumidores. El análisis incluirá técnicas estadísticas como regresiones y correlaciones, así como simulaciones, para comparar los efectos de los precios dinámicos frente a los precios fijos.
+
+### Pregunta de investigación
+
+¿Cómo influye la implementación de un modelo de precio dinámico en los ingresos y la demanda de los productos en comparación con un modelo de precios fijos?
+
+### Método
+
+Se recopilará datos de bases de datos de ventas históricas de la empresa acerca de la demanda del mercado, variaciones de inventario y comportamiento de compra de los clientes.También se utilizará encuestas con preguntas de escala de Likert para evaluar la percepción de los clientes.
+
+![Representación del concepto Metodología Cuantitativa según inteligencia artificail (IA) freepik](fig\Cuantitativo.jpeg)
+
+### Análisis estadístico
+
+Usar análisis de regresión y correlación para entender la relación entre las variaciones de precios dinámicos y las fluctuaciones en la demanda y los ingresos.
+Implementar simulaciones para comparar los resultados de los modelos de precios fijos y dinámicos.
+
+### Preguntas para el análisis cuantitativo
+
+\ \ \ \ I. ¿Cuál es el impacto del modelo de precios dinámicos en la elasticidad de la demanda?
+
+II. ¿En qué medida la estrategia de precios dinámicos afecta el volumen de ventas en períodos de alta y baja demanda?
+
+III. ¿Cómo varía el rendimiento financiero de la empresa antes y después de la implementación del modelo de precios dinámicos?
+
+IV. ¿Cuáles son los factores (competencia, estacionalidad, etc.) que más influyen en las variaciones de precios dinámicos y su efecto en los ingresos?
+
+## Metodología Cualitativa
+
+La metodología cualitativa de esta investigación se enfocará en explorar cómo los consumidores perciben el uso de precios dinámicos y cómo esta percepción influye en sus decisiones de compra. Para ello, se realizarán entrevistas con clientes que han experimentado variaciones de precios dinámicos, con el fin de entender sus opiniones sobre la transparencia y la justicia del modelo. Además, se entrevistará a gerentes y responsables de marketing para analizar cómo implementan y ajustan estas estrategias. Se organizarán grupos focales para profundizar en las expectativas de los consumidores y en las respuestas emocionales ante las fluctuaciones de precios.
+
+### Pregunta de investigación
+
+¿Cómo perciben los consumidores el uso de precios dinámicos y cómo afecta esta percepción su decisión de compra?
+
+![Representación del concepto Metodología Cualitativa según inteligencia artificail (IA) freepik](fig\Cualitativo.jpeg)
+
+### Método
+
+Se realizará entrevistas con consumidores que han experimentado variaciones de precios dinámicos para explorar sus opiniones sobre la transparencia y la justicia percibida en este tipo de modelo.
+Entrevistar a gerentes y responsables de marketing sobre cómo implementan y ajustan las estrategias de precios dinámicos. Se organizará grupos focales con clientes para comprender mejor sus expectativas respecto al precio de los productos y su respuesta emocional ante fluctuaciones en los precios.
+
+### Preguntas para el análisis cualitativo
+
+\ \ \ \  V. ¿Cómo perciben los clientes la transparencia de los precios dinámicos en comparación con precios fijos?
+
+VI. ¿Qué factores emocionales o psicológicos influyen en la decisión de compra cuando los precios cambian en tiempo real?
+
+VII. ¿Cómo cambia la confianza del cliente en la marca o el servicio cuando se enfrenta a un sistema de precios dinámicos?
+
+VIII. ¿Qué elementos adicionales (descuentos, promociones, garantías de precios) pueden influir en la aceptación del precio dinámico por parte de los clientes?
+
+\newpage
+
+# Referencias
+>>>>>>> 979361645d311ac1193b50bb8aa82990739d6435
