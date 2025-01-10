@@ -1,4 +1,4 @@
-![](Logo_Cesuma.png)
+![](Figuras\Logo_Cesuma.png)
 
 # <center>Maestria Ciencia Datos Negocios
 
