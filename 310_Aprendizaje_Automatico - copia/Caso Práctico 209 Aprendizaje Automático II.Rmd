@@ -1,0 +1,160 @@
+---
+title: INFORME DE SOLUCIÓN DE APRENDIZAJE AUTOMÁTICO A UN PROBLEMA DE CLASIFICACIÓN
+  DE EQUIPOS ELECTRÓNICOS DEFECTUOSOS.
+author: "Fernando Aleisy González"
+date: "2025-01-03"
+output: pdf_document
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Librerías o módulos a usar
+
+Se limpia la memoria de las variables que se hallan creado en el entrono de Python.
+
+```{r}
+library(reticulate)
+```
+
+```{python}
+globals().clear()
+```
+
+Se instalan las librerías a usar
+
+```{python}
+# !pip install pandas
+# !pip install numpy
+# !pip install kagglehub
+```
+
+Se leen las librerías.
+
+```{python}
+import numpy as np
+import pandas as pd
+import os
+```
+
+El consumo de energía eléctrica en Colombia oscila entre 100 y 300 kWh al mes y las temperaturas varían entre 12 y 35 °C, teniendo lugares con temperaturas entre 0 y 12 °C, en los páramos e inferiores a 0 °C en las nieves "perpetuas". Como la mayoría de las ciudades se encuentra a alturas inferiores a los páramos y las  nieves "perpetuas" (menos de 3200 m.s.n.), entonces se trabajará el rango de 12 a 35 °C.
+
+
+```{python}
+path = kagglehub.dataset_download("esathyaprakash/electrical-fault-detection-and-classification")
+print('Path to dataset files:', path)
+```
+
+Se verifica los archivos descargados en la dirección del módulo *kagglehub*
+
+```{python}
+archivos = os.listdir(path)
+archivos
+```
+
+Se va a trabajar con el archivo `r py$archivos[2]`
+
+```{python}
+datos = pd.read_csv(path+'\\'+os.listdir(path)[1])
+```
+
+Se ve una muestra del DataFrame obtenido
+
+```{python}
+datos.head(10)
+```
+
+# Calidad de los datos
+
+Inspeccionamos las dimensiones del DataFrame
+
+```{python}
+dimensiones = datos.shape
+dimensiones
+```
+
+El DataFrame tiene `r py$dimensiones[1]` observaciones y `r py$dimensiones[2]` variables.
+
+Se verifica que el DataFrame no tenga valores nulos
+
+```{python}
+datos.isnull().sum()
+```
+
+Hay dos columnas que no tienen valores o tiene todos sus valores nulos (`r py$dimensiones[1]` valores). Posiblemente se crearon al construir el data set de forma involuntaria. Se procede a eliminar estas columnas, lo cual se puede hacer de varias formas. Una de esas formas es la función drop():
+
+```{python}
+datos.drop(columns = datos.columns[7:], inplace =  True)
+```
+
+Otra es reemplazando al DataFrame con la selección de las columna a conservar:
+
+```{python}
+# datos = datos[datos.columns[0:7]]
+```
+
+También, se pueden eliminar estas columna con la función iloc()
+
+```{python}
+# datos = datos.iloc[:, 0:7]
+```
+
+Verificamos que las columnas nulas ya no forman parte del DataFrame.
+
+```{python}
+datos.isnull().sum()
+```
+
+```{python}
+entradas = datos.columns[0]
+```
+
+La columna `r py$entradas`, Salida, hace referencia a su hay fallos (1) o no (0). Se puede verificar que exista valores "1" o fallos con la función value_count(), ya que la muestra de 10 fila del DataFrame solo muestra valores "0" o sin fallos.
+
+```{python}
+datos[entradas].value_counts()
+```
+
+Se verifica el tipo de cada variable.
+
+```{python}
+datos.info()
+```
+
+Se verifica que las observaciones no se encuentren repetidas.
+
+```{python}
+datos.duplicated().sum()
+```
+
+# Análisis gráfico
+
+```{python}
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+Se define la paleta de colores
+
+```{python}
+colores = colors= ['#ff006ebb','#3a86ffbb','#1dd3b0bb','#fb5607bb','#ffbe0bbb']
+```
+
+```{python,  message=FALSE}
+labels = ['No', 'Si']
+values = list(datos['Output (S)'].value_counts())
+
+f, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
+sns.barplot(x = labels, y = values, hue = labels, palette=colores[:2], ax=ax1)
+ax1.set_ylabel("Sequential")
+ax1.spines['top'].set_visible(False)
+ax1.spines['right'].set_visible(False)
+wedges, texts, autotexts = ax2.pie(values, labels = labels, autopct =  '%.2f%%', colors= colores[:2])
+for wedge in wedges:
+    wedge.set_edgecolor('white')
+
+plt.show()
+```
