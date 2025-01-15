@@ -1,0 +1,920 @@
+---
+output: pdf_document
+linestretch: 1.0
+geometry: "a4paper, left=2.5cm, right=2.5cm, top=2.0cm, bottom=2.5cm"
+csl: apa.csl
+bibliography: bibliografia.bib
+nocite: |
+  @*
+header-includes:
+  - \usepackage{fancyhdr}
+  - \usepackage[spanish, es-tabla]{babel}
+  - \usepackage{float}
+  - \usepackage{newfloat}
+  - \DeclareFloatingEnvironment[fileext=loq]{gráfica}
+  - \addto\captionsspanish{\renewcommand{\refname}{Referencias}}
+  - \usepackage{xcolor}
+---
+
+\definecolor{naranja}{RGB}{245,145,55}
+\definecolor{azul}{RGB}{40,100,160}
+
+\fancypagestyle{fancy}{
+ \lhead{\includegraphics[width=200pt]{fig/Logo_Cesuma.png}}
+ \rhead{\textcolor{naranja}{
+  \textbf{Maestría en Ciencia de Datos para Negocios}\\
+  \textcolor{azul}{\rule[1mm]{80mm}{0.2mm}} \\
+  Aprendizaje Automático}}
+ \renewcommand{\headrulewidth}{0.0pt}
+}
+
+\thispagestyle{fancy}
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+\setlength{\headheight}{1.0cm}
+
+\null\vfill
+
+\begin{center}
+
+\bfseries{\LARGE{CASO PRÁCTICO 310 INTELIGENCIA ARTIFICIAL PARA LA EMPRESA\\[1.0cm]}}
+
+\includegraphics[]{fig/Inteliegncia_artificial_empresas}\\[1.0cm]
+
+\bfseries{\large{INTELIGENCIA ARTIFICIAL PARA LA EMPRESA\\ CIENCIA DE DATOS PARA NEGOCIOS}}
+
+\null\vfill
+
+\bfseries{Fernando Aleisy González\\ \today}
+
+\end{center}
+
+\newpage
+\pagestyle{fancy}
+
+\tableofcontents
+
+\newpage
+
+<!--Librerías a usar en el documento-->
+
+```{r, message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(kableExtra)
+```
+
+```{r}
+# Función para rellenar las filas con gris y blanco de forma alternada
+
+rellenos <- function(dataframe){
+  return(rep(c("#f8f8f8", "white"), nrow(dataframe)/2+1)[1:nrow(dataframe)])
+}
+```
+
+```{r}
+# Para trabajar en tiempo real los dataframe, ya que se está utilizando tildes, toca usar:
+# Sys.setlocale("LC_ALL", "es_ES.UTF-8")
+```
+
+# Caso práctico
+
+Una empresa de telecomunicaciones busca mejorar la experiencia del cliente y agilizar la atención al cliente. Para lograrlo, deciden implementar un asistente virtual basado en IA que utilice técnicas de procesamiento de lenguaje natural (PLN) y aprendizaje por refuerzo.
+
+La empresa de telecomunicaciones desea implementar un asistente virtual basado en IA debido a problemas pasados y desafíos recurrentes en su atención al cliente. A continuación, se justifica esta decisión en base a algunos problemas pasados que podrían haber enfrentado:
+
+\begin{figure}[H]
+  \caption{Representación de una empresa de telecomunicaciones usando la inteligencia artificial.}
+  \includegraphics[]{fig/Ind_Telecomunicaciones.png}
+  \label{fig:ind_tel}
+\end{figure}
+
+**1. Larga espera y tiempos de respuesta lentos:** La empresa podría haber experimentado problemas en la gestión de grandes volúmenes de consultas de los clientes, lo que resultó en largos tiempos de espera y respuestas lentas. Esto puede llevar a la insatisfacción del cliente y una mala experiencia general.
+
+**2. Inconsistencia en las respuestas y falta de precisión:** Sin un sistema automatizado de atención al cliente es posible que los agentes hayan brindado respuestas inconsistentes o imprecisas a las consultas de los clientes. Esto puede generar confusión y falta de confianza por parte de los clientes.
+
+**3. Necesidad de soporte 24/7:** Los clientes pueden requerir soporte en cualquier momento del día, incluidas las horas fuera de la jornada laboral. Sin un sistema automatizado, la empresa puede haber tenido dificultades para brindar soporte constante y responder a las consultas de los clientes fuera del horario comercial regular.
+
+**4. Dificultad para gestionar consultas repetitivas y de rutina:** Los agentes de atención al cliente pueden haberse visto abrumados por consultas repetitivas y de rutina que podrían haberse resuelto de manera más eficiente mediante un sistema automatizado. Esto puede afectar la productividad y la eficiencia en la atención al cliente.
+
+**5. Falta de personalización en la atención al cliente:** La empresa podría haber tenido dificultades para proporcionar una atención al cliente personalizada y adaptada a las necesidades individuales de cada cliente. Esto puede llevar a una experiencia impersonal y menos satisfactoria para los clientes.
+
+\newpage
+
+# Actividad inicial de reflexión
+
+## Punto 1
+
+**¿Cómo crees que la implementación de un asistente virtual basado en IA podría mejorar la experiencia del cliente en una empresa de telecomunicaciones?**
+
+La implementación de un asistente virtual basado en IA en una empresa de telecomunicaciones puede mejorar significativamente la experiencia del cliente. Según [@ahumada2023impacto], los chatbots, una de las aplicaciones más comunes de la inteligencia artificial, ofrecen respuestas rápidas y efectivas a las consultas de los usuarios, lo que contribuye a automatizar procesos y mejorar la satisfacción del cliente. No obstante, también es importante considerar las limitaciones de esta tecnología y el rol crucial que desempeña la interacción humana en ciertos casos complejos.
+
+Por otro lado, como señala [@ornelas2020diseno], los asistentes virtuales destacan por su capacidad de ofrecer atención al cliente las 24 horas del día, resolviendo preguntas de forma eficiente y reduciendo costos operativos al filtrar las interacciones que realmente requieren intervención humana. Esto optimiza los recursos disponibles y mejora la percepción de disponibilidad y atención personalizada por parte de los clientes.
+
+\begin{figure}[H]
+  \caption{Asistente virtual de una empresa de telecomunicaciones.}
+  \includegraphics[]{fig/telcoasistente.png}
+  \label{fig:ind_tel}
+\end{figure}
+
+Desde una perspectiva de marketing, [@zuniga2023importancia] destacan cómo la inteligencia artificial permite anticiparse a las necesidades de los usuarios mediante el análisis predictivo, técnicas de deep learning y el uso de datos recopilados para ofrecer soluciones personalizadas. En el sector de telecomunicaciones, esto podría traducirse en campañas de marketing más efectivas y en servicios que respondan de forma proactiva a los requerimientos de los clientes, creando experiencias más adaptadas y satisfactorias.
+
+Además, según [@telefonica2019asistentes], los asistentes virtuales basados en datos ofrecen a los usuarios un mejor acceso a su propia información, ayudándoles a comprender sus opciones y dotándoles de capacidad de elección. Esto implica una mayor transparencia en las políticas de precios, condiciones de facturación y características del servicio técnico, lo que puede fortalecer la relación entre la empresa y sus clientes.
+
+En conclusión, un asistente virtual basado en IA no solo mejora la eficiencia operativa y la accesibilidad del servicio, sino que también optimiza la experiencia del cliente al proporcionar soluciones personalizadas y predictivas, fortaleciendo así la relación entre la empresa y sus usuarios.
+
+## Punto 2
+
+**Proporciona al menos dos beneficios específicos que podrían obtener los clientes.**
+
+**Disponibilidad 24/7 para resolver consultas:** Un asistente virtual basado en IA puede brindar atención continua, permitiendo a los clientes resolver sus inquietudes en cualquier momento del día. Según [@ornelas2020diseno], esta disponibilidad constante mejora la experiencia del cliente al proporcionar un servicio rápido y fácil, al mismo tiempo que reduce los tiempos de espera.
+
+**Soluciones personalizadas y predictivas:** Los asistentes virtuales pueden anticiparse a las necesidades de los clientes mediante el análisis de datos y técnicas de aprendizaje profundo. Esto permite ofrecer soluciones personalizadas incluso antes de que los usuarios soliciten ayuda. Como indica [@zuniga2023importancia], esta capacidad de personalización y predicción mejora significativamente la satisfacción del cliente al proporcionar experiencias más adaptadas.
+
+## Punto 3
+
+**Considerando las aplicaciones prácticas de la IA en la cadena de suministro de una empresa de comercio electrónico, ¿qué desafíos crees que podrían resolverse mediante la implementación de técnicas de Deep Learning y PLN? Menciona al menos dos desafíos y cómo la IA podría abordarlos.**
+
+Anticipar con precisión la demanda de productos es esencial para evitar tanto el exceso como la escasez de inventario. Las técnicas de Deep Learning analizan datos históricos y patrones de compra para prever la demanda futura, mejorando la planificación y reduciendo costos asociados al inventario [@turn0search3].
+
+Determinar las rutas más eficientes para la entrega de productos, considerando variables como tráfico y condiciones climáticas, es complejo pero crucial para la eficiencia operativa. Los algoritmos de Deep Learning procesan datos en tiempo real para optimizar las rutas de entrega, reduciendo tiempos y costos logísticos [@turn0search1].
+
+\begin{figure}[H]
+  \caption{Aplicaciones prácticas de la IA en la cadena de suministro de una empresa de comercio electrónico.}
+  \includegraphics[]{fig/comercio_electronico.png}
+  \label{fig:com_elec}
+\end{figure}
+
+Mantener niveles óptimos de inventario para satisfacer la demanda sin incurrir en costos excesivos es un equilibrio delicado. Las técnicas de Deep Learning analizan patrones de ventas y otros factores para optimizar la gestión de inventarios, asegurando disponibilidad de productos y reduciendo costos de almacenamiento[@turn0search7].
+
+Las tareas manuales y repetitivas en la cadena de suministro pueden ser propensas a errores y consumir recursos valiosos. La IA automatiza procesos como la clasificación de productos y el seguimiento de envíos, aumentando la velocidad de procesamiento y reduciendo errores [@turn0search9].
+
+\newpage
+
+# Introducción a la inteligencia artificial
+
+## Punto 4
+
+**Enumera al menos tres áreas principales de la Inteligencia Artificial y proporciona ejemplos de aplicaciones en la empresa de telecomunicaciones.**
+
+**Aprendizaje automático (Machine Learning):** El aprendizaje automático permite que las máquinas aprendan de los datos y mejoren su rendimiento sin ser explícitamente programadas.
+
+\begin{figure}[H]
+  \caption{áreas de la Inteligencia Artificial y ejemplos de aplicaciones en la empresa de telecomunicaciones.}
+  \includegraphics[]{fig/IA_telecomunicaciones.png}
+  \label{fig:com_elec}
+\end{figure}
+
+**Procesamiento de Lenguaje Natural (PLN):** El PLN se enfoca en la interacción entre las computadoras y el lenguaje humano, permitiendo que las máquinas comprendan, procesen y respondan a texto o voz en lenguaje natural.
+
+**Visión por Computadora:** Esta área permite que las máquinas interpreten y analicen imágenes o videos para extraer información útil.
+
+
+```{r}
+Areas <- c(
+  rep('Aprendizaje automático (Machine Learning)', 3),
+  rep('Procesamiento de Lenguaje Natural (PLN)', 3),
+  rep('Visión por Computadora', 3)
+  )
+
+Aplicaciones <- c(
+  'Predicción de fallas en la red',
+  'Optimización de redes',
+  'Recomendaciones personalizadas',
+  'Chatbots y asistentes virtuales',
+  'Análisis de opiniones',
+  'Traducción automática',
+  'Inspección de infraestructura',
+  'Autenticación biométrica',
+  'Seguridad de la red'
+)
+
+Descripción <- c(
+  'Modelos de ML analizan datos históricos y en tiempo real para anticipar problemas en la red, reduciendo el tiempo de inactividad provocada por estos fallos.',
+  'Ajustan dinámicamente los recursos de red para mejorar la calidad del servicio y minimizar interrupciones.',
+  'Ofrecen paquetes de servicios adaptados a las necesidades y patrones de uso de los clientes.',
+  'Proporcionan soporte técnico a clientes, respondiendo preguntas frecuentes o resolviendo problemas técnicos básicos.',
+  'Analizan comentarios en redes sociales o encuestas para identificar la satisfacción del cliente y posibles problemas de servicio.',
+  'Facilitan la comunicación en diferentes idiomas, útil para empresas globales.',
+  'Utilizan drones equipados con cámaras y algoritmos de visión por computadora para identificar daños en torres de telecomunicaciones o cables.',
+  'Implementan reconocimiento facial para la autenticación segura de clientes en servicios móviles o pagos en línea.',
+  'Detectan intrusiones físicas en instalaciones críticas mediante análisis de video en tiempo real.'
+) 
+
+df_Ejemplos <- data.frame(Areas, Aplicaciones, Descripción)
+```
+
+```{r}
+
+alternado <- rellenos(df_Ejemplos)
+
+tabla_Ejemplos <- kbl(df_Ejemplos,
+             caption = "Ejemplos de aplicaciones de áreas de la Inteligencia Artificial en la empresa de telecomunicaciones",
+             label = 'Ejemplos',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "2.5cm") %>%
+  column_spec(2, width = "3cm", background = alternado) %>%
+  column_spec(3, width = "9.5cm", background = alternado) %>%
+  collapse_rows(columns = 1, valign = "middle", latex_hline = "major") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+
+tabla_Ejemplos
+```
+
+\newpage
+
+##  Punto 5
+
+**¿Cuáles son algunas aplicaciones prácticas de la IA en el ámbito empresarial?**
+
+La Inteligencia Artificial (IA) tiene múltiples aplicaciones prácticas en el ámbito empresarial que ayudan a mejorar la eficiencia operativa, optimizar procesos y brindar mejores experiencias al cliente. A continuación, se destacan algunas de las principales aplicaciones
+
+```{r}
+Aplicación <- c(
+  rep('Automatización de procesos empresariales', 2),
+  rep('Atención al cliente', 2),
+  rep('Optimización de la cadena de suministro', 3),
+  rep('Marketing y personalización', 3),
+  rep('Seguridad y gestión de riesgos', 3),
+  rep('Operaciones financieras', 2),
+  rep('Producción y manufactura', 2)
+  )
+
+Casos <- c(
+  'Robotic Process Automation (RPA)',
+  'Gestión de recursos humanos',
+  'Asistentes virtuales y chatbots',
+  'Análisis de sentimiento',
+  'Predicción de la demanda',
+  'Gestión de inventarios',
+  'Optimización de rutas logísticas',
+  'Recomendaciones personalizadas',
+  'Publicidad programática',
+  'Análisis predictivo',
+  'Detección de fraude',
+  'Ciberseguridad',
+  'Evaluación de riesgos',
+  'Análisis financiero',
+  'Asesores financieros virtuales',
+  'Mantenimiento predictivo',
+  'Control de calidad'
+)
+
+Descripción <- c(
+  'Automatización de tareas repetitivas como entrada de datos, generación de informes y procesamiento de facturas.',
+  'Cribado automatizado de currículums, análisis de desempeño y predicción de la rotación de empleados.',
+  'Ofrecen soporte 24/7, responden preguntas frecuentes y resuelven problemas básicos.',
+  'Identifican la satisfacción del cliente mediante el análisis de comentarios en redes sociales, encuestas y correos electrónicos.',
+  'Modelos de IA anticipan las necesidades del mercado basándose en patrones históricos y factores externos.',
+  'Ajustan automáticamente los niveles de inventario para minimizar costos y evitar faltantes.',
+  'Planifican rutas eficientes para reducir costos de transporte y tiempos de entrega.',
+  'Ofrecen productos y servicios adaptados a las preferencias de los clientes (como los sistemas de recomendación de Netflix o Amazon).',
+  'Optimización de campañas publicitarias en tiempo real según el comportamiento del usuario.',
+  'Anticipan comportamientos de compra y permiten ofrecer ofertas en el momento adecuado.',
+  'Identifican transacciones sospechosas o patrones anómalos en tiempo real.',
+  'Detectan y mitigan amenazas mediante el análisis continuo del tráfico de red y el comportamiento de los usuarios.',
+  'Analizan datos financieros y operativos para identificar riesgos y tomar decisiones informadas.',
+  'Automatizan tareas como la predicción de ingresos, análisis de costos y generación de reportes financieros.',
+  'Ofrecen recomendaciones personalizadas para inversiones o gestión de presupuesto.',
+  'Identifican fallas en equipos antes de que ocurran para evitar interrupciones en la producción.',
+  'Usan visión por computadora para identificar defectos en productos en tiempo real.'
+) 
+
+df_Aplicaciones <- data.frame(Aplicación, Casos, Descripción)
+```
+
+```{r}
+
+alternado <- rellenos(df_Aplicaciones)
+
+tabla_Aplicaciones <- kbl(df_Aplicaciones,
+             caption = "Aplicaciones prácticas de la IA en el ámbito empresarial",
+             label = 'Aplicaciones',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "3cm") %>%
+  column_spec(2, width = "3cm", background = alternado) %>%
+  column_spec(3, width = "9cm", background = alternado) %>%
+  collapse_rows(columns = 1, valign = "middle", latex_hline = "major") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+
+tabla_Aplicaciones
+```
+
+La inteligencia artificial está revolucionando áreas empresariales como la automatización, atención al cliente, marketing, seguridad, finanzas y manufactura, utilizando tecnologías como RPA, chatbots y análisis predictivo para optimizar operaciones, reducir costos y mejorar la experiencia del cliente y la toma de decisiones.
+
+\newpage
+
+## Punto 6
+
+**Describe cómo la IA puede mejorar la atención al cliente en una empresa de telecomunicaciones.**
+
+La Inteligencia Artificial mejora la atención al cliente en telecomunicaciones mediante chatbots 24/7, resolución instantánea de problemas, personalización de servicios, detección proactiva de fallos y análisis de sentimientos. Además, optimiza recursos humanos con clasificación de solicitudes y capacitación personalizada, logrando una atención más eficiente y satisfactoria. En la tabla \ref{tab:Mejoras} se presentan algunas formas clave en las que la IA puede lograrlo
+
+```{r}
+Mejora <- c(
+  rep('Automatización del servicio al cliente', 2),
+  rep('Resolución proactiva de problemas', 2),
+  rep('Personalización de la experiencia', 2),
+  rep('Análisis del feedback del cliente', 2),
+  rep('Optimización de recursos humanos', 2)
+  )
+
+Forma <- c(
+  'Chatbots y asistentes virtuales',
+  'Reducción de tiempos de espera',
+  'Detección temprana de problemas técnicos',
+  'Notificaciones personalizadas',
+  'Recomendaciones de productos y servicios',
+  'Comunicación adaptada',
+  'Análisis de sentimiento',
+  'Seguimiento automático',
+  'Clasificación inteligente de solicitudes',
+  'Capacitación de agentes'
+)
+
+Descripción <- c(
+  'Responden preguntas frecuentes, resuelven problemas técnicos básicos y realizan configuraciones de servicios de forma automática, disponible 24/7.',
+  'Los sistemas de IA pueden atender múltiples consultas simultáneamente, reduciendo el tiempo que los clientes pasan en cola.',
+  'Los algoritmos de aprendizaje automático pueden identificar problemas en la red antes de que afecten al cliente, permitiendo una solución rápida.',
+  'Informan a los clientes sobre problemas en la red y los tiempos estimados de resolución, lo que mejora la transparencia.',
+  'Analizan el historial de uso y las preferencias del cliente para ofrecerles servicios que se adapten mejor a sus necesidades.',
+  'Los sistemas de Procesamiento de Lenguaje Natural (PLN) pueden adaptar el tono y estilo de la conversación según el perfil del cliente.',
+  'Analizan comentarios en redes sociales, encuestas o interacciones con el servicio de atención al cliente para medir la satisfacción y detectar áreas de mejora.',
+  'La IA puede enviar encuestas de satisfacción tras cada interacción y clasificar automáticamente el feedback recibido.',
+  'Clasifica las consultas de los clientes según su prioridad y las dirige al agente adecuado, mejorando la eficiencia y reduciendo la frustración del cliente.',
+  'Los sistemas de IA pueden analizar conversaciones pasadas para identificar áreas donde los agentes necesitan mejorar y sugerir entrenamientos personalizados.'
+) 
+
+df_Mejoras <- data.frame(Mejora, Forma, Descripción)
+```
+
+```{r}
+
+alternado <- rellenos(df_Mejoras)
+
+tabla_Mejoras <- kbl(df_Mejoras,
+             caption = "Mejorar de la atención al cliente en una empresa de telecomunicaciones usando la inteligencia artificial",
+             label = 'Mejoras',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "3cm") %>%
+  column_spec(2, width = "3cm", background = alternado) %>%
+  column_spec(3, width = "9cm", background = alternado) %>%
+  collapse_rows(columns = 1, valign = "middle", latex_hline = "major") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+
+tabla_Mejoras
+```
+
+La implementación de IA en el servicio al cliente ha revolucionado la atención mediante chatbots disponibles 24/7, sistemas de detección temprana de problemas y comunicación personalizada. Estas tecnologías optimizan la experiencia del usuario a través del análisis de sentimientos, seguimiento automático y clasificación inteligente de solicitudes, mientras mejoran la eficiencia operativa mediante la capacitación continua de agentes y la reducción de tiempos de espera, todo ello contribuyendo a una atención más efectiva y satisfactoria.
+
+\newpage
+
+# Deep Learning en la empresa
+
+## Punto 7
+
+**Enumera y explica al menos tres aplicaciones específicas de la IA en la cadena de suministro de una empresa de comercio electrónico.**
+
+La implementación de Inteligencia Artificial en la gestión de la cadena de suministro está revolucionando la forma en que las empresas manejan sus operaciones logísticas. Esta tecnología innovadora ofrece soluciones avanzadas en tres áreas críticas: la predicción precisa de la demanda, la optimización dinámica de rutas logísticas y el mantenimiento predictivo de equipos, tabla \ref{tab:Aplicaciones_2}.
+
+```{r}
+Aplicación <- c(
+  rep('Predicción de la Demanda', 2),
+  rep('Optimización de Rutas Logísticas', 2),
+  rep('Mantenimiento Predictivo', 2)
+  )
+
+Descripción <- c(
+  rep('Los algoritmos de aprendizaje automático analizan datos históricos, tendencias del mercado y factores externos (como temporadas, promociones o clima) para prever la demanda futura de productos.', 2),
+  rep('La IA procesa datos en tiempo real, como tráfico, condiciones climáticas y restricciones de entrega, para diseñar rutas de transporte más eficientes.', 2),
+  rep('La IA monitorea el estado de los equipos utilizados en almacenes (como cintas transportadoras o robots de clasificación) mediante sensores IoT, identificando patrones que podrían indicar fallos inminentes.', 2)
+) 
+
+Beneficio <- c(
+  'Evita el exceso o la escasez de inventario, optimizando los costos de almacenamiento.',
+  'Ayuda a planificar mejor los pedidos de proveedores y a mantener una disponibilidad adecuada de productos.',
+  'Reduce los costos de transporte al minimizar el consumo de combustible y el tiempo de viaje.',
+  'Mejora la puntualidad de las entregas, lo que se traduce en una mejor experiencia para el cliente.',
+  'Evita interrupciones en las operaciones al programar reparaciones antes de que ocurra una falla.',
+  'Reduce los costos de mantenimiento reactivo y el tiempo de inactividad de los equipos.'
+)
+
+df_Aplicaciones_2 <- data.frame(Aplicación, Descripción, Beneficio)
+```
+
+```{r}
+
+alternado <- rellenos(df_Aplicaciones_2)
+
+tabla_Aplicaciones_2 <- kbl(df_Aplicaciones_2,
+             caption = "Aplicaciones de la IA en la cadena de suministro de una empresa de comercio electrónico",
+             label = 'Aplicaciones_2',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "3cm") %>%
+  column_spec(2, width = "7cm") %>%
+  column_spec(3, width = "5cm", background = alternado) %>%
+  collapse_rows(columns = 1:2, valign = "top", latex_hline = "major") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_Aplicaciones_2
+```
+
+La integración de la IA optimiza operaciones, reduce costos y mejora el servicio, ofreciendo ventajas como gestión eficiente del inventario, transporte optimizado y mantenimiento preventivo, lo que permite a las empresas adaptarse ágilmente a las demandas del mercado con altos estándares de eficiencia.
+
+\begin{figure}[H]
+  \caption{Aplicaciones de la IA en la cadena de suministro de una empresa de comercio electrónico.}
+  \includegraphics[]{fig/cadena_suministro.png}
+  \label{fig:cad_sum}
+\end{figure}
+
+\newpage
+
+## Punto 8
+
+**¿Cómo puede la IA mejorar la eficiencia y la experiencia del cliente en una empresa de telecomunicaciones?**
+
+La Inteligencia Artificial (IA) tiene un impacto significativo en la mejora de la eficiencia operativa y la experiencia del cliente en una empresa de telecomunicaciones. En la tabla \ref{tab:mejora} se presentan las formas clave en las que logra este objetivo.
+
+```{r}
+Tipo <- c(
+  rep('Eficiencia operativa', 3),
+  rep('Experiencia del cliente', 3)
+  )
+
+Mejora <- c(
+  'Gestión de redes inteligente',
+  'Optimización de recursos',
+  'Automatización de tareas repetitivas',
+  'Atención al cliente automatizada',
+  'Personalización de servicios',
+  'Resolución proactiva de problemas'
+) 
+
+Descripción <- c(
+  'Los sistemas basados en IA monitorean continuamente el rendimiento de la red, detectan anomalías y realizan ajustes automáticos para evitar interrupciones en el servicio.',
+  'La IA puede asignar dinámicamente el ancho de banda según el tráfico en tiempo real, garantizando un uso eficiente de los recursos de red.',
+  'Tareas como la configuración de dispositivos, generación de reportes y gestión de tickets se automatizan, liberando tiempo para actividades estratégicas.',
+  'Los asistentes virtuales (chatbots) y sistemas de respuesta por voz interactiva (IVR) basados en IA ofrecen soporte 24/7, respondiendo consultas y resolviendo problemas básicos sin intervención humana.',
+  'Los modelos de IA analizan datos sobre el comportamiento de los clientes y ofrecen recomendaciones personalizadas, como planes de datos adaptados a su uso habitual o descuentos relevantes.',
+  'Mediante el análisis predictivo, la IA identifica y soluciona problemas antes de que afecten al cliente.'
+)
+
+df_mejora <- data.frame(Tipo, Mejora, Descripción)
+colnames(df_mejora) <- c('Tipo de Mejora', 'Mejora', 'Descripción')
+```
+
+```{r}
+
+alternado <- rellenos(df_mejora)
+
+tabla_mejora <- kbl(df_mejora,
+             caption = "Mejorar de la eficiencia y la experiencia del cliente en empresas de telecomunicaciones con IA.",
+             label = 'mejora',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "2cm") %>%
+  column_spec(2, width = "3.5cm", background = alternado) %>%
+  column_spec(3, width = "9.5cm", background = alternado) %>%
+  collapse_rows(columns = 1:2, valign = "top", latex_hline = "major") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_mejora
+```
+
+La IA en telecomunicaciones mejora la eficiencia operativa y la experiencia del cliente mediante gestión inteligente de redes, automatización de tareas y atención 24/7. Esto optimiza procesos, reduce costos y eleva la calidad del servicio, posicionando a las empresas como líderes del sector.
+
+\begin{figure}[H]
+  \caption{La IA para Mejor eficiencia y experiencia del cliente en empresas de telecomunicaciones.}
+  \includegraphics[]{fig/mejora_IA_telecom.png}
+  \label{fig:mejora_IA_telecom}
+\end{figure}
+
+\newpage
+
+## Punto 9
+
+¿Qué técnicas de PLN se utilizan en el ejemplo de la empresa de telecomunicaciones?
+
+En el contexto de la empresa de telecomunicaciones descrita, se pueden identificar varias técnicas de procesamiento de lenguaje natural (PLN) utilizadas para abordar los problemas pasados mencionados y mejorar la experiencia del cliente mediante el asistente virtual basado en IA
+
+```{r}
+Técnica <- c(
+  'Clasificación de texto',
+  'Extracción de entidades',
+  'Respuesta automatizada',
+  'Detección de tono y emociones',
+  'Traducción de texto',
+  'Conversión de voz a texto (ASR)',
+  'Modelos de diálogo basados en memoria'
+  )
+
+Objetivo <- c(
+  'Análisis de intención del usuario',
+  'Reconocimiento de entidades nombradas (NER)',
+  'Generación de lenguaje natural (NLG)',
+  'Análisis de sentimientos',
+  'Traducción automática y manejo multilingüe',
+  'Reconocimiento de habla y transcripción',
+  'Manejo de consultas contextuales'
+) 
+
+Descripción <- c(
+  'El asistente virtual utiliza modelos de PLN para identificar la intención detrás de las consultas de los clientes, como solicitudes de soporte técnico, preguntas sobre facturación o cambios en los planes.',
+  'Esta técnica permite al asistente virtual extraer información clave de las consultas de los clientes, como nombres, números de cuenta, fechas o ubicaciones.',
+  'El asistente genera respuestas coherentes, naturales y específicas basándose en la intención del cliente y los datos disponibles.',
+  'El asistente analiza el tono del cliente (positivo, neutral o negativo) para ajustar la interacción y priorizar casos urgentes o insatisfacciones.',
+  'Permite a la empresa ofrecer soporte en varios idiomas mediante la traducción en tiempo real de las consultas y respuestas.',
+  'Para soporte por voz, el asistente convierte las consultas habladas en texto para procesarlas y generar respuestas.',
+  'El asistente utiliza el historial de interacciones para comprender mejor el contexto de la conversación y ofrecer respuestas más precisas y personalizadas.'
+)
+
+df_tecnica <- data.frame(Técnica, Objetivo, Descripción)
+colnames(df_mejora) <- c('Tipo de Mejora', 'Mejora', 'Descripción')
+```
+
+
+```{r}
+
+alternado <- rellenos(df_tecnica)
+
+tabla_tecnica <- kbl(df_tecnica,
+             caption = "Técnicas de PLN que se pueden utilizan en el caso de la empresa de telecomunicaciones.",
+             label = 'tecnica',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  column_spec(1, width = "3cm") %>%
+  column_spec(2, width = "3cm") %>%
+  column_spec(3, width = "9cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_tecnica
+```
+
+El Procesamiento de Lenguaje Natural (PLN) en asistentes virtuales mejora la interacción empresa-cliente al comprender y responder de forma natural y contextualizada. Con técnicas como análisis de sentimientos y manejo de múltiples idiomas, ofrece una experiencia personalizada, optimizando recursos y estableciendo un nuevo estándar en atención al cliente.
+
+\begin{figure}[H]
+  \caption{Técnicas de PLN que se pueden utilizan en el caso de la empresa de telecomunicaciones.}
+  \includegraphics[]{fig/tecnicas_PNL.png}
+  \label{fig:tecnicas_PNL}
+\end{figure}
+
+\newpage
+
+## Punto 10
+
+¿Cómo puede el PLN mejorar la interacción con los clientes y la atención al cliente?
+
+El Procesamiento de Lenguaje Natural (PLN) puede mejorar significativamente la interacción con los clientes y la atención al cliente al facilitar una comunicación más eficiente, personalizada y efectiva. Aquí se destacan las formas clave en que el PLN aporta valor. El PLN es una herramienta poderosa para transformar la interacción con los clientes, haciéndola más intuitiva, eficiente y empática.
+
+```{r}
+Mejora <- c(
+  'Comprensión de las consultas de los clientes',
+  'Respuestas rápidas y personalizadas',
+  'Análisis de sentimientos',
+  'Manejo de múltiples idiomas',
+  'Automatización de tareas repetitivas',
+  'Contexto y coherencia en conversaciones',
+  'Proactividad mediante análisis predictivo'
+  )
+
+Descripción <- c(
+  'El PLN permite a los sistemas de atención al cliente interpretar y procesar el lenguaje humano en su forma natural, ya sea escrito o hablado.',
+  'El PLN utiliza técnicas como la generación de lenguaje natural (NLG) para ofrecer respuestas rápidas, claras y personalizadas según el contexto del cliente.',
+  'El PLN analiza el tono emocional de las consultas para detectar frustración, insatisfacción o urgencia.',
+  'El PLN permite a los sistemas interactuar con clientes en varios idiomas mediante traducción automática en tiempo real.',
+  'El PLN clasifica y resuelve consultas comunes, como preguntas frecuentes (FAQ), sin necesidad de intervención humana.',
+  'El PLN utiliza modelos avanzados de diálogo basados en memoria (como GPT o BERT) para mantener el contexto a lo largo de una conversación.',
+  'El PLN puede predecir necesidades del cliente basándose en patrones de conversación y datos históricos.'
+)
+
+Benficio <- c(
+  'Responde con precisión a las consultas de los clientes al comprender la intención detrás de las palabras.',
+  'Reduce tiempos de espera y mejora la experiencia del cliente al ofrecer soluciones relevantes.',
+  'Prioriza automáticamente las consultas críticas y ajusta el tono de la respuesta para empatizar con el cliente.',
+  'Ampliación del alcance global de la atención al cliente y mejor accesibilidad.',
+  'Libera a los agentes para enfocarse en problemas más complejos y personalizados.',
+  'Garantiza una interacción fluida y coherente, incluso en conversaciones largas o con cambios de tema.',
+  'Ofrece soluciones antes de que el cliente las solicite, mejorando la experiencia de atención.'
+)
+
+
+df_interaccion <- data.frame(Técnica, Objetivo, Descripción)
+colnames(df_mejora) <- c('Tipo de Mejora', 'Mejora', 'Descripción')
+```
+
+
+```{r}
+
+alternado <- rellenos(df_interaccion)
+
+tabla_interaccion <- kbl(df_interaccion,
+             caption = "Mejorar de la interacción con los clientes y la atención al cliente utilizando PLN.",
+             label = 'mejora_PLN',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  column_spec(1, width = "3cm") %>%
+  column_spec(2, width = "3cm") %>%
+  column_spec(3, width = "9cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_interaccion
+```
+
+La implementación de tecnologías en la atención al cliente ha revolucionado la interacción empresa-usuario, ofreciendo una comunicación más rápida y personalizada que aumenta la satisfacción del cliente. Esta automatización reduce significativamente los costos operativos al minimizar la intervención humana en tareas rutinarias, mientras que la experiencia positiva resultante fortalece la lealtad del cliente hacia la marca.
+
+\begin{figure}[H]
+  \caption{Mejorar de la interacción con los clientes y la atención al cliente utilizando PLN.}
+  \includegraphics[]{fig/interaccion_PLN.png}
+  \label{fig:mejora_PLN}
+\end{figure}
+
+\newpage
+
+# Otros campos relevantes en la inteligencia artificial
+
+## Punto 11
+
+**¿Qué es el aprendizaje por refuerzo y cómo se aplica en el ejemplo de la empresa de telecomunicaciones?**
+
+**Qué es aprendizaje automático por refuerzo**
+
+El **aprendizaje por refuerzo** (Reinforcement Learning, RL) es una rama del aprendizaje automático en la que un agente (un modelo o sistema) aprende a tomar decisiones mediante interacciones con un entorno. Este aprendizaje se basa en un sistema de recompensas y castigos, donde el objetivo del agente es maximizar las recompensas acumuladas a largo plazo. Es así, como el proceso de aprendizaje por refuerzo se basa en el principio de ensayo y error.
+
+\begin{figure}[H]
+  \caption{Sistema de recompensa del aprendizaje por refuerzo.}
+  \includegraphics[]{fig/Recompensa_Apr_refu.png}
+  \label{fig:mejora_PLN}
+\end{figure}
+
+**Aplicación del aprendizaje por refuerzo en la empresa de telecomunicaciones**
+
+El aprendizaje por refuerzo en asistentes virtuales de telecomunicaciones mejora significativamente la eficiencia de las respuestas y permite un proceso de aprendizaje continuo basado en cada interacción, incluyendo los errores. Esto facilita la priorización de problemas críticos, reduciendo la insatisfacción del cliente. Además, su naturaleza adaptativa le permite ajustarse rápidamente a nuevas necesidades de los usuarios y a los cambios en el entorno empresarial, asegurando un servicio más eficiente y alineado con las expectativas de los clientes.
+
+```{r}
+Aplicación <- c(
+  'Personalización de la atención al cliente',
+  'Optimización de las interacciones del asistente virtual',
+  'Priorización de problemas críticos',
+  'Aprendizaje continuo del asistente virtual'
+  )
+
+Descripción <- c(
+  'Los clientes tienen necesidades y preferencias diferentes, por lo que un enfoque genérico puede no ser efectivo. El asistente virtual aprende a personalizar las respuestas mediante el análisis de las interacciones pasadas con cada cliente.',
+  'Algunas consultas requieren más pasos para resolverse, lo que puede llevar a una experiencia menos eficiente.El asistente aprende a minimizar el número de pasos necesarios para resolver una consulta.',
+  'No todos los problemas de los clientes tienen la misma urgencia, y los agentes humanos no siempre pueden priorizarlos adecuadamente. El asistente aprende a identificar consultas críticas (como quejas de servicio) y priorizarlas automáticamente, enviándolas a un agente humano cuando sea necesario.',
+  'Las necesidades de los clientes y los patrones de interacción cambian con el tiempo. El asistente mejora continuamente su desempeño ajustando su política de respuestas según el feedback recibido.'
+)
+
+df_aplicacion_ec <- data.frame(Aplicación, Descripción)
+```
+
+```{r}
+
+alternado <- rellenos(df_aplicacion_ec)
+
+tabla_aplicacion_ec <- kbl(df_aplicacion_ec,
+             caption = "Aplicaciones del aprendizaje por refuerzo en el caso de la empresa de telecomunicaciones",
+             label = 'aplicacion_apr_refu',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  column_spec(1, width = "3cm") %>%
+  column_spec(2, width = "12cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_aplicacion_ec
+```
+
+\newpage
+
+## Punto 12
+
+**¿Cuáles son algunas tendencias actuales en Inteligencia Artificial que podrían ser relevantes para la optimización de la cadena de suministro?**
+
+El uso de IA en la cadena de suministro está impulsado por tecnologías innovadoras que permiten una mayor eficiencia, agilidad y sostenibilidad. Estas son algunas de las tendencias más relevantes:
+
+```{r}
+Tendencia <- c(
+  rep('Aprendizaje automático avanzado (ML)', 2),
+  rep('Gemelos digitales (Digital Twins)', 2),
+  rep('Internet de las cosas (IoT) con IA', 2),
+  rep('Análisis predictivo y prescriptivo', 2),
+  rep('Automatización robótica impulsada por IA', 2),
+  rep('Procesamiento de lenguaje natural (PLN)' ,2),
+  rep('IA generativa y simulaciones avanzadas', 2)
+)
+
+Descripción_tendencia <- c(
+  rep('El ML permite a las empresas analizar datos masivos para identificar patrones y predecir eventos futuros.', 2),
+  rep('Los gemelos digitales son réplicas virtuales de procesos físicos que simulan y optimizan operaciones en tiempo real.', 2),
+  rep('La combinación de IoT e IA permite recopilar datos en tiempo real de dispositivos conectados y analizarlos para tomar decisiones inteligentes.', 2),
+  rep('El análisis predictivo utiliza datos históricos para anticipar a los eventos y el prescriptivo sugiere acciones óptimas.', 2),
+  rep('La robótica avanzada automatiza tareas repetitivas y optimiza operaciones en almacenes.', 2),
+  rep('El PLN permite a los sistemas interpretar y responder a datos no estructurados como correos y solicitudes.', 2),
+  rep('La IA generativa crea escenarios hipotéticos para evaluar estrategias en la cadena de suministro.', 2)
+)
+
+Aplicación <- c(
+  'Anticipar necesidades de inventario para reducir el exceso o la falta de stock.',
+  'Identificar rutas más eficientes para la distribución, minimizando costos y tiempos.',
+  'Evaluar el impacto de cambios en la cadena, como interrupciones en proveedores.',
+  'Ajustar estrategias de producción y transporte para mejorar la eficiencia.',
+  'Rastreo en tiempo real del movimiento de productos mediante sensores IoT.',
+  'Detección temprana de fallas en equipos de transporte o almacenamiento.',
+  'Prevenir fallas en máquinas o vehículos logísticos.',
+  'Anticipar interrupciones en la cadena por factores como clima o conflictos geopolíticos.',
+  'Clasificación, recolección y empaque de productos.',
+  'Transporte de mercancías sin intervención humana.',
+  'Analizar contratos y comunicados para detectar riesgos o ineficiencias.',
+  'Resolver consultas sobre envíos y productos mediante chatbots.',
+  'Evaluar decisiones antes de implementarlas.',
+  'Planificar rutas o estrategias en caso de interrupciones.'
+)
+
+df_tendencias_ia <- data.frame(Tendencia, Descripción_tendencia, Aplicación)
+colnames(df_tendencias_ia)[2] <- 'Descripción de la tendencia'
+```
+
+```{r}
+alternado <- rellenos(df_tendencias_ia)
+
+tabla_tendencias_ia <- kbl(df_tendencias_ia,
+             caption = "tendencias actuales en Inteligencia Artificial que podrían ser relevantes para la optimización de la cadena de suministro",
+             label = 'tendencias_ia',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "2.5cm") %>%
+  column_spec(2, width = "6.5cm") %>%
+  column_spec(3, width = "6cm", background = alternado) %>%
+  collapse_rows(columns = 1:2, valign = "bottom", latex_hline = "major") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_tendencias_ia
+```
+
+Las tendencias actuales en IA están transformando la optimización de cadenas de suministro en comercio electrónico y otros sectores, mediante predicción, automatización y sostenibilidad. Adaptarse a estas innovaciones es esencial para mantener la competitividad en un entorno dinámico y globalizado, reduciendo incertidumbres de gestión.
+
+La implementación de estas tecnologías ofrece una visión integral y predictiva que reduce riesgos y costos operativos, mejora la visibilidad y trazabilidad, y permite una planificación proactiva y respuesta ágil ante problemas. Además, optimiza operaciones logísticas y mejora la comunicación y eficiencia en la gestión de relaciones con proveedores y clientes, proporcionando herramientas valiosas para la planificación estratégica en situaciones complejas.
+
+\newpage
+
+## Punto 13
+
+**¿Cómo se utilizan las técnicas de aprendizaje por refuerzo en el ejemplo de la empresa de telecomunicaciones?**
+
+En el ejemplo de la empresa de telecomunicaciones que busca mejorar la experiencia del cliente mediante un asistente virtual basado en IA, las **técnicas de aprendizaje por refuerzo (Reinforcement Learning, RL)** son aplicadas para optimizar la interacción con los clientes y la toma de decisiones del asistente virtual. A continuación, se detallan cómo estas técnicas son utilizadas:
+
+```{r}
+Técnica <- c(
+  'Personalización de las respuestas del asistente virtual',
+  'Optimización del flujo de conversación',
+  'Gestión de escalaciones a agentes humanos',
+  'Aprendizaje continuo de las interacciones',
+  'Priorización y clasificación de solicitudes'
+)
+
+Funcionamiento <- c(
+  'El asistente recibe recompensas cuando el cliente califica positivamente la interacción o resuelve su problema en menos tiempo y es penalizado cuando el cliente requiere a un agente humano o abandona la interacción insatisfecho.',
+  'Durante cada interacción, el modelo prueba diferentes enfoques de diálogo y evalúa cuál obtiene el mejor resultado (recompensas). El modelo ajusta sus estrategias para maximizar el éxito de las conversaciones.',
+  'El asistente evalúa su confianza en resolver la consulta en tiempo real. Si la confianza es baja o el cliente muestra señales de frustración, el sistema realiza una escalación automática. Recompensas se asignan cuando las transferencias son oportunas y efectivas.',
+  'El sistema recopila datos en tiempo real sobre las interacciones y los utiliza para ajustar sus estrategias de respuesta. Recompensas se otorgan cuando el asistente logra resultados consistentes con las métricas de éxito definidas (resolución rápida, feedback positivo, etc.).',
+  'El modelo asigna un nivel de prioridad a cada consulta basándose en palabras clave, tono del cliente (analizado con PNL) y contexto histórico. Recompensas se asignan por clasificaciones precisas y resoluciones eficientes.'
+)
+
+Implementación <- c(
+  'El asistente virtual utiliza aprendizaje por refuerzo para aprender a proporcionar respuestas más precisas y relevantes en función de las consultas de los clientes. ',
+  'El asistente utiliza RL para identificar las mejores secuencias de preguntas y respuestas que guían al cliente hacia una solución rápida.',
+  'El aprendizaje por refuerzo ayuda a determinar cuándo es necesario transferir una consulta a un agente humano.',
+  'El asistente emplea RL para analizar patrones de interacción y adaptar su comportamiento a cambios en las preferencias de los clientes o nuevas políticas de la empresa.',
+  'El aprendizaje por refuerzo permite al asistente clasificar y priorizar solicitudes según su urgencia o impacto en la experiencia del cliente.'
+)
+
+Beneficio <- c(
+  'Mejora continua de las respuestas, ofreciendo una experiencia más personalizada y eficiente.',
+  'Minimiza el tiempo necesario para resolver consultas, aumentando la satisfacción del cliente.',
+  'Mejora la eficiencia operativa al reducir escalaciones innecesarias y garantizar que los agentes humanos se concentren en problemas complejos.',
+  'Garantiza que el asistente se mantenga actualizado y continúe ofreciendo valor a largo plazo.',
+  'Mejora la gestión del flujo de solicitudes, asegurando que las consultas críticas sean atendidas primero.'
+)
+
+
+
+df_aprendizaje_refuerzo <- data.frame(Técnica, Funcionamiento, Implementación, Beneficio)
+```
+
+```{r}
+tabla_aprendizaje_refuerzo <- kbl(df_aprendizaje_refuerzo,
+             caption = "Uso de técnicas de aprendizaje por refuerzo en el ejemplo de la empresa de telecomunicaciones",
+             label = 'aprendizaje_refuerzo',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  column_spec(1, width = "2.5cm") %>%
+  column_spec(2, width = "5.5cm") %>%
+  column_spec(3, width = "4cm") %>%
+  column_spec(4, width = "3cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_aprendizaje_refuerzo
+```
+
+El aprendizaje por refuerzo es clave para el éxito del asistente virtual, ya que le permite aprender y mejorar continuamente a partir de la experiencia. En el contexto de la empresa de telecomunicaciones, esta técnica no solo mejora la experiencia del cliente al ofrecer interacciones más rápidas y precisas, sino que también optimiza los recursos internos, como la carga de trabajo de los agentes humanos, logrando un servicio más eficiente y escalable.
+
+\newpage
+
+## Punto 14
+
+**¿Qué beneficios pueden aportar las técnicas de toma de decisiones basadas en datos en la cadena de suministro de una empresa?**
+
+Las técnicas de toma de decisiones basadas en datos, conocidas también como **data-driven decision-making** (DDDM), están transformando la forma en que las empresas gestionan sus cadenas de suministro. A continuación, se destacan los principales beneficios:
+
+```{r}
+Técnica <- c(
+  'Mejora en la precisión de la previsión de la demanda',
+  'Optimización de inventarios',
+  'Mayor eficiencia logística',
+  'Identificación temprana de riesgos',
+  'Personalización de la experiencia del cliente',
+  'Sostenibilidad y reducción de desperdicios',
+  'Mejora en la toma de decisiones estratégicas',
+  'Reducción de costos generales'
+)
+
+
+Beneficio <- c(
+  'La recopilación y el análisis de datos históricos y en tiempo real permiten predecir patrones de consumo con mayor precisión.',
+  'Facilita el mantenimiento de niveles óptimos de inventario mediante el análisis de datos en tiempo real y tendencias históricas.',
+  'La toma de decisiones basada en datos optimiza rutas de transporte, reduce tiempos de entrega y disminuye costos logísticos.',
+  'Los datos permiten detectar riesgos potenciales en la cadena de suministro antes de que se conviertan en problemas graves.',
+  'Los datos permiten ofrecer productos y servicios adaptados a las necesidades específicas de cada cliente.',
+  'Permite optimizar recursos y procesos para disminuir el impacto ambiental.',
+  'Las decisiones basadas en datos permiten evaluar escenarios futuros con simulaciones.',
+  'La automatización y optimización basadas en datos eliminan ineficiencias y reducen gastos innecesarios.'
+)
+
+
+Aplicación <- c(
+  'Los algoritmos de aprendizaje automático analizan datos de ventas pasadas, tendencias del mercado, estacionalidad y comportamiento de los consumidores para anticipar la demanda.',
+  'Sistemas de inventario automatizados que ajustan las existencias basándose en datos de consumo, tasas de reposición y demanda futura.',
+  'Algoritmos de optimización calculan rutas más rápidas y económicas teniendo en cuenta tráfico, clima y costos operativos.',
+  'Monitoreo en tiempo real de proveedores, transporte y condiciones climáticas.',
+  'Análisis del historial de compras y preferencias para ofrecer recomendaciones personalizadas.',
+  'Análisis de datos para planificar rutas más sostenibles y reducir consumos innecesarios.',
+  'Uso de gemelos digitales para modelar escenarios hipotéticos en la cadena de suministro.',
+  'Integración de sistemas de gestión de recursos empresariales (ERP) con herramientas de análisis avanzado.'
+)
+
+Resultado <- c(
+  'Reducción de costos de almacenamiento y minimización de pérdidas por productos no vendidos.',
+  'Reducción de costos de almacenamiento y mejora en la disponibilidad de productos.',
+  'Mejora la puntualidad de entregas y reduce la huella de carbono.',
+  'Reducción de interrupciones y aumento de la resiliencia en la cadena de suministro.',
+  'Incremento en la satisfacción y fidelidad del cliente.',
+  'Mejora la reputación de la empresa y reduce costos asociados al desperdicio.',
+  'Decisiones más informadas y mejor preparación ante cambios en el mercado.',
+  'Maximización de márgenes de ganancia.'
+)
+
+df_beneficio_refuerzo <- data.frame(Técnica, Beneficio, Aplicación, Resultado)
+```
+
+```{r}
+tabla_beneficio_refuerzo <- kbl(df_beneficio_refuerzo,
+             caption = "Bneficios que aporta las técnicas de toma de decisiones basadas en datos en la cadena de suministro de una empresa",
+             label = 'beneficio_refuerzo',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  column_spec(1, width = "3cm") %>%
+  column_spec(2, width = "4.4cm") %>%
+  column_spec(3, width = "4.5cm") %>%
+  column_spec(4, width = "3.5cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_beneficio_refuerzo
+```
+
+La toma de decisiones basada en datos no solo mejora la eficiencia operativa de la cadena de suministro, sino que también ayuda a las empresas a ser más resilientes, sostenibles y centradas en el cliente. La adopción de estas técnicas es fundamental para competir en un entorno dinámico y globalizado.
+
+\newpage
+
+# Referencias
