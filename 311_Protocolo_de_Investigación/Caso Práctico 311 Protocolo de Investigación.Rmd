@@ -1,0 +1,990 @@
+---
+output: pdf_document
+linestretch: 1.5
+geometry: "a4paper, left=2.54cm, right=2.54cm, top=2.4cm, bottom=2.54cm"
+csl: apa.csl
+bibliography: bibliografia.bib
+nocite: |
+  @*
+header-includes:
+  - \usepackage{fancyhdr}
+  - \usepackage[spanish, es-tabla]{babel}
+  - \usepackage{float}
+  - \usepackage{newfloat}
+  - \DeclareFloatingEnvironment[fileext=loq]{gráfica}
+  - \addto\captionsspanish{\renewcommand{\refname}{Referencias}}
+  - \usepackage{xcolor}
+  - \usepackage{helvet}
+  - \renewcommand{\familydefault}{\sfdefault}
+  - \usepackage{tikz}
+---
+
+\definecolor{naranja}{RGB}{245,145,55}
+\definecolor{azul}{RGB}{40,100,160}
+\definecolor{circulo1}{RGB}{255,0,0}
+\definecolor{circulo2}{RGB}{250,66,0}
+\definecolor{circulo3}{RGB}{245,131,0}
+\definecolor{circulo4}{RGB}{123,193,98}
+\definecolor{circulo5}{RGB}{0,255,195}
+
+\fancypagestyle{fancy}{
+ \lhead{\includegraphics[width=200pt]{fig/Logo_Cesuma.png}}
+ \rhead{\textcolor{naranja}{
+  \textbf{Maestría en Ciencia de Datos para Negocios}\\
+  \textcolor{azul}{\rule[1mm]{80mm}{0.2mm}} \\ Protocolo de Investigación}}
+ \renewcommand{\headrulewidth}{0.0pt}
+}
+
+\thispagestyle{fancy}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+\setlength{\headheight}{1.0cm}
+
+\null\vfill
+
+\begin{center}
+
+\bfseries{\large{CASO PRÁCTICO 310 INTELIGENCIA ARTIFICIAL PARA LA EMPRESA\\[1.0cm]}}
+
+\includegraphics[]{fig/protocolo_investigacion.png}
+
+\bfseries{\large{CURSO PROTOCOLO DE INVESTIGACIÓN\\MAESTRÍA EN CIENCIA DE DATOS PARA NEGOCIOS}}
+
+\null\vfill
+
+\bfseries{\large{Fernando Aleisy González\\ \today}}
+
+\end{center}
+
+\newpage
+\pagestyle{fancy}
+
+\tableofcontents
+
+\newpage
+
+<!--Librerías a usar en el documento-->
+
+```{r, message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(kableExtra)
+```
+
+
+```{r}
+# Para trabajar en tiempo real los dataframe, ya que se está utilizando tildes, toca usar:
+# Sys.setlocale("LC_ALL", "es_ES.UTF-8")
+```
+
+\begin{center}
+
+\bfseries{\large{PROCOLO DE INVESTIGACIÓN}}
+
+\end{center}
+
+```{r}
+# Función para rellenar las filas con gris y blanco de forma alternada
+
+rellenos <- function(dataframe){
+  return(rep(c("#f8f8f8", "white"), nrow(dataframe)/2+1)[1:nrow(dataframe)])
+}
+```
+
+# Introducción
+
+En un entorno de negocios caracterizado por la alta competitividad y los rápidos cambios en las preferencias del mercado, las estrategias de precios dinámicos se han convertido en una herramienta fundamental para optimizar los ingresos y mejorar la satisfacción del cliente. Este modelo de precios, que ajusta las tarifas de los productos o servicios en tiempo real según factores como la demanda, la competencia y las condiciones del mercado, ofrece una ventaja significativa frente a los modelos de precios fijos. Sin embargo, su implementación también plantea desafíos relacionados con la percepción del cliente, la transparencia y la equidad, lo que justifica una investigación más profunda sobre sus impactos en los diferentes aspectos del negocio.
+
+La adopción de precios dinámicos no solo tiene implicaciones financieras, sino también estratégicas. Al permitir a las empresas adaptarse rápidamente a las fluctuaciones del mercado, este modelo puede maximizar los ingresos en períodos de alta demanda y minimizar las pérdidas durante temporadas bajas. Sin embargo, estas ventajas deben equilibrarse con la percepción del cliente, ya que decisiones de compra basadas en cambios constantes en los precios pueden generar frustración o desconfianza. Por esta razón, es crucial analizar tanto el impacto económico como las implicaciones emocionales y psicológicas de este enfoque.
+
+Este estudio tiene como objetivo evaluar cómo la implementación de un modelo de precios dinámicos afecta a los ingresos y la demanda en comparación con un modelo de precios fijos. Además, se explorará cómo los consumidores perciben este modelo, enfocándose en factores como la transparencia, la justicia y la confianza en la marca. A través de un enfoque mixto que combina análisis cuantitativo y cualitativo, la investigación busca proporcionar una visión integral de los beneficios y limitaciones de esta estrategia, tanto desde la perspectiva empresarial como desde la del cliente.
+
+Finalmente, esta investigación no solo pretende contribuir al entendimiento de los modelos de precios dinámicos en el ámbito del comercio electrónico, sino también ofrecer recomendaciones prácticas para su implementación efectiva. Los hallazgos serán relevantes no solo para la empresa en estudio, sino también para otras organizaciones que deseen adoptar esta estrategia en un mercado cada vez más orientado al cliente y basado en datos. Este trabajo representa un esfuerzo por generar conocimiento que sea aplicable tanto académicamente como en la práctica empresarial. 
+
+\newpage
+
+# 1. Planteamiento del problema
+
+En el contexto de una empresa de comercio electrónico, se ha implementado un sistema de ajuste de precios en tiempo real basado en diversos factores como la demanda, la competencia y las características del producto. Sin embargo, se desconoce cómo estas estrategias influyen en la percepción de los clientes, los ingresos de la empresa, el comportamiento de la demanda y la competitividad en el mercado. Este estudio busca analizar el impacto de esta práctica para determinar si los beneficios económicos superan posibles efectos negativos, como una percepción desfavorable por parte de los consumidores.
+
+**Pregunta de investigación**
+
+¿Cómo influye la implementación de un modelo de precio dinámico, en una empresa de comercio electrónico, en los ingresos y la demanda de los productos, en comparación con un modelo de precios fijos?
+
+# 2. Justificación
+
+La implementación de precios dinámicos es una práctica creciente en el comercio electrónico, impulsada por la capacidad de ajustar precios en tiempo real según factores como la demanda, la competencia y la estacionalidad. Si bien esta estrategia promete maximizar ingresos y mejorar la competitividad, su impacto no se limita a métricas económicas, sino que también afecta la percepción de los clientes y su comportamiento de compra [@kerlinger1975investigacion]. Entender esta interacción es fundamental para determinar la viabilidad y sostenibilidad de estos modelos en el largo plazo.
+
+Desde una perspectiva cuantitativa, analizar la relación entre precios dinámicos, demanda e ingresos permitirá a las empresas identificar patrones y optimizar su desempeño financiero. Además, comparar los resultados entre modelos de precios fijos y dinámicos ofrecerá evidencia empírica sobre la efectividad de esta estrategia [@christensen1980experimental].
+
+Desde un enfoque cualitativo, explorar las percepciones y emociones de los clientes frente a los precios dinámicos es crucial para comprender cómo este modelo influye en su confianza, lealtad y decisión de compra. Las decisiones basadas únicamente en indicadores financieros pueden ignorar aspectos subjetivos, como la percepción de justicia y transparencia, que afectan la experiencia del cliente y, en última instancia, la sostenibilidad de la estrategia [@doe2019consumer_perception].
+
+Esta investigación no solo generará información valiosa para la toma de decisiones empresariales, sino que también contribuirá al conocimiento en el campo del comercio electrónico, ofreciendo un análisis integral que combina métricas financieras y percepciones del cliente. Esto permitirá a las empresas desarrollar estrategias más equilibradas, maximizando ingresos mientras mantienen altos niveles de satisfacción y confianza del cliente.
+
+
+\newpage
+
+# 3. Objetivos
+
+**Objetivo general**
+
+Evaluar el impacto del sistema de precios dinámicos en los aspectos clave del negocio, como la percepción de los clientes, la demanda, los ingresos y la competitividad de una empresa de comercio electrónico, integrando análisis cuantitativos y cualitativos.
+
+**Objetivos específicos**
+
+   - Analizar la relación entre las variaciones de precios dinámicos y las fluctuaciones en la demanda y los ingresos mediante modelos de regresión y correlación.
+   - Evaluar el impacto de los precios dinámicos en la elasticidad de la demanda y el volumen de ventas en períodos de alta y baja demanda.
+   - Identificar los factores que más influyen en las variaciones de precios dinámicos, como la competencia o la estacionalidad, y cómo afectan a los ingresos de la empresa.
+   - Comparar los resultados financieros entre modelos de precios dinámicos y fijos mediante simulaciones.
+
+   - Explorar cómo los clientes perciben la transparencia y la justicia del modelo de precios dinámicos en comparación con precios fijos.
+   - Investigar los factores emocionales o psicológicos que afectan la decisión de compra de los clientes cuando los precios varían en tiempo real.
+   - Evaluar cómo la implementación de precios dinámicos afecta la confianza del cliente en la marca o el servicio.
+   - Identificar elementos complementarios, como descuentos o garantías, que puedan influir en la aceptación del modelo de precios dinámicos por parte de los clientes.
+
+\newpage
+
+# 4. Antecedentes
+
+El uso de precios dinámicos en el comercio electrónico es una práctica cada vez más extendida, permitiendo a las empresas ajustar precios en tiempo real en función de factores como la demanda, la competencia y la estacionalidad. 
+
+Este enfoque representa un avance significativo en la capacidad de las empresas para asegurar la competitividad en un entorno empresarial en constante cambio, asegurando así su relevancia y éxito a largo plazo.
+
+\begin{figure}[H]
+  \caption{Precios dinámicos en el comercio electrónico.}
+  \includegraphics[]{fig/dinamicos.png}
+  \label{fig:dinamico}
+\end{figure}
+
+Según estudios recientes, esta esta estrategia puede mejorar la competencia y beneficiar a los consumidores al aumentar tanto la eficiencia estática como dinámica, promoviendo la innovación y maximizando las transacciones [@suarez2024aplicacion]. Aquellos que están al tanto de la herramienta de los precios dinámicos la han utilizado a su favor al realizar compras en línea utilizando. Sería interesante conocer cómo los consumidores tratan de explotar el dynamic pricing obteniendo un beneficio de ello, haciendo un análisis más profundo en el futuro [@del2024algorithmic].
+
+En segundo lugar, establecemos que, tanto con los precios pre-anunciados como con los responsivos, aunque el proceso de aprendizaje social exacerba el comportamiento estratégico del consumidor (es decir, aumenta los retrasos en las compras estratégicas), su presencia da como resultado un aumento en las ganancias esperadas de la empresa [@papanastasiou2017dynamic].
+
+\newpage
+
+# 5. Hipótesis
+
+**General**
+
+Los ingresos y la demanda de los productos son significativamente mayores con la implementación de un modelo de precios dinámicos en comparación con un modelo de precios fijos.
+
+\begin{figure}[H]
+  \caption{Hipótesis de la implementación del modelo de precios dinámicos.}
+  \includegraphics[]{fig/hipotesis.jpeg}
+  \label{fig:hipotesis}
+\end{figure}
+
+**Específicos**
+
+Con respecto a la metodología cuantitativa:
+
+* La elasticidad de la demanda es significativamente mayor en un modelo de precios dinámicos que en un modelo de precios fijos.
+
+* El volumen de ventas en periodos de alta y baja demanda, en un modelo de precios dinámicos es mayor que en un modelo de precios fijos.
+
+* El rendimiento financiero de la empresa es mejor en el modelo de precios dinámicos que en el modelo de precios fijos
+
+Con respecto a la metodología cualitativa:
+
+* El porcentaje de clientes que tienen una percepción de transparencia de los precios es significativamente mayor en el modelo de los precios dinámicos que en el modelo de los precios fijos.
+
+* El porcentaje de clientes que tiene confianza en la marca o el servicio es significativamente mayor en el modelo de los precios dinámicos que en el modelo de los precios fijos.
+
+* Algunos de estos elementos adicionales, a saber, descuentos, promociones, garantías de precios, pueden influir en el aumento del porcentaje de aceptación de los precio, por parte de los cliente, en el modelo de los precios dinámicos con respecto al modelo de los precios fijos.
+
+\newpage
+
+# 6. Metodología Cuantitativa
+
+La metodología cuantitativa de esta investigación se centrará en la recolección y análisis de datos numéricos para evaluar el impacto de un modelo de precios dinámicos en los ingresos y la demanda. Se utilizarán bases de datos de ventas históricas de la empresa, junto con información sobre inventarios, demanda del mercado y comportamiento de compra de los clientes. Adicionalmente, se realizarán encuestas con escalas de Likert para medir la percepción de los consumidores. El análisis incluirá técnicas estadísticas como regresiones y correlaciones, así como simulaciones, para comparar los efectos de los precios dinámicos frente a los precios fijos.
+
+## 6.1 Pregunta de investigación
+
+¿Cómo influye la implementación de un modelo de precio dinámico en los ingresos y la demanda de los productos en comparación con un modelo de precios fijos?
+
+## 6.2. Método
+
+Se recopilará datos de bases de datos de ventas históricas de la empresa acerca de la demanda del mercado, variaciones de inventario y comportamiento de compra de los clientes.También se utilizará encuestas con preguntas de escala de Likert para evaluar la percepción de los clientes.
+
+\begin{figure}[H]
+  \caption{Un profesional realizando una investigación cuantitativa en una empresa.}
+  \includegraphics[]{fig/Cuantitativo.png}
+  \label{fig:Cuantitativo}
+\end{figure}
+
+## 6.3. Análisis estadístico
+
+El análisis estadístico en esta investigación cuantitativa integrará diversas técnicas para examinar el impacto del modelo de precios dinámicos en los ingresos y la demanda. Inicialmente, se aplicarán análisis de regresión múltiple para evaluar la relación entre las variaciones de precios dinámicos y las fluctuaciones en la demanda, ingresos y elasticidad del mercado. Este enfoque permitirá identificar los factores más relevantes que explican dichos cambios y cuantificar su impacto.
+
+Además, se llevará a cabo un análisis de correlación para explorar las asociaciones entre variables clave, como precios, volúmenes de ventas y períodos de alta o baja demanda. Esto proporcionará información sobre cómo estas variables interactúan y se influencian mutuamente.
+
+Para complementar este análisis, se implementarán simulaciones computacionales que permitan comparar el rendimiento financiero de la empresa bajo los modelos de precios fijos y dinámicos. Estas simulaciones incluirán escenarios hipotéticos para distintas condiciones del mercado, como variaciones estacionales, cambios en la competencia y fluctuaciones en la demanda. De esta manera, será posible identificar las ventajas y desventajas operativas de cada modelo y proponer estrategias basadas en datos.
+
+\begin{figure}[H]
+  \caption{una persona está realizando un análisis estadístico de la empresa de comercio electrónico.}
+  \includegraphics[]{fig/analisis.png}
+  \label{fig:analisis}
+\end{figure}
+
+Finalmente, se realizarán pruebas estadísticas, como el análisis de varianza (ANOVA), para determinar si las diferencias observadas entre ambos modelos son estadísticamente significativas, brindando mayor robustez a las conclusiones obtenidas.
+
+## 6.4. Preguntas para el análisis cuantitativo
+
+* ¿Cuál es el impacto del modelo de precios dinámicos en la elasticidad de la demanda?
+
+* ¿En qué medida la estrategia de precios dinámicos afecta el volumen de ventas en períodos de alta y baja demanda?
+
+* ¿Cómo varía el rendimiento financiero de la empresa antes y después de la implementación del modelo de precios dinámicos?
+
+* ¿Cuáles son los factores (competencia, estacionalidad, etc.) que más influyen en las variaciones de precios dinámicos y su efecto en los ingresos?
+
+\newpage
+
+# 7. Metodología Cualitativa
+
+La metodología cualitativa de esta investigación se enfocará en explorar cómo los consumidores perciben el uso de precios dinámicos y cómo esta percepción influye en sus decisiones de compra. Para ello, se realizarán entrevistas con clientes que han experimentado variaciones de precios dinámicos, con el fin de entender sus opiniones sobre la transparencia y la justicia del modelo. Además, se entrevistará a gerentes y responsables de marketing para analizar cómo implementan y ajustan estas estrategias. Se organizarán grupos focales para profundizar en las expectativas de los consumidores y en las respuestas emocionales ante las fluctuaciones de precios.
+
+## 7.1. Pregunta de investigación
+
+¿Cómo perciben los consumidores el uso de precios dinámicos y cómo afecta esta percepción su decisión de compra?
+
+## 7.2. Método
+
+Se realizará entrevistas con consumidores que han experimentado variaciones de precios dinámicos para explorar sus opiniones sobre la transparencia y la justicia percibida en este tipo de modelo.
+Entrevistar a gerentes y responsables de marketing sobre cómo implementan y ajustan las estrategias de precios dinámicos. Se organizará grupos focales con clientes para comprender mejor sus expectativas respecto al precio de los productos y su respuesta emocional ante fluctuaciones en los precios.
+
+\begin{figure}[H]
+  \caption{Un profesional realizando una investigación cualitativa en una empresa.}
+  \includegraphics[]{fig/Cualitativo.png}
+  \label{fig:Cualitativo}
+\end{figure}
+
+## 7.3. Análisis estadístico
+
+El análisis cualitativo se realizará mediante la codificación y categorización de la información obtenida en entrevistas y grupos focales, utilizando un enfoque temático para identificar patrones y perspectivas comunes. Este análisis permitirá explorar en profundidad las percepciones, opiniones y emociones de los clientes frente al modelo de precios dinámicos.
+
+Las entrevistas serán transcritas y revisadas para extraer categorías clave relacionadas con la transparencia, justicia percibida y confianza en el modelo de precios dinámicos. Se emplearán herramientas como Atlas.ti o NVivo para organizar y visualizar estas categorías.
+
+\begin{figure}[H]
+  \caption{una persona está realizando un análisis estadístico de los clientes de la empresa de comercio electrónico.}
+  \includegraphics[]{fig/analisis_sentimientos.png}
+  \label{fig:analisis_sentimientos}
+\end{figure}
+
+Finalmente, los hallazgos se interpretarán en función de las preguntas de investigación, permitiendo comprender las actitudes de los clientes hacia los precios dinámicos y cómo estas influyen en su toma de decisiones y confianza en la marca.
+
+## 7.4. Preguntas para el análisis cualitativo
+
+* ¿Cómo perciben los clientes la transparencia de los precios dinámicos en comparación con precios fijos?
+
+* ¿Qué factores emocionales o psicológicos influyen en la decisión de compra cuando los precios cambian en tiempo real?
+
+* ¿Cómo cambia la confianza del cliente en la marca o el servicio cuando se enfrenta a un sistema de precios dinámicos?
+
+* ¿Qué elementos adicionales (descuentos, promociones, garantías de precios) pueden influir en la aceptación del precio dinámico por parte de los clientes?
+
+\newpage
+
+# 8. Recursos materiales y humanos
+
+En la tabla \ref{tab:recursos} se presenta un desglose de los recursos materiales y humanos necesarios para la investigación, los cuales son fundamentales para garantizar el desarrollo efectivo de cada etapa del estudio, desde la recolección de datos hasta la generación de conclusiones.
+
+```{r}
+Tipo <- c(
+  rep('Materiales', 12),
+  rep('Humanos', 8)
+  )
+
+Clase <- c(
+  rep('Infraestructura tecnológica', 3),
+  rep('Bases de datos', 2),
+  rep('Herramientas de recopilación de datos', 2),
+  rep('Recursos de comunicación', 2),
+  'Material de oficina',
+  rep('Presupuesto', 2),
+  rep('Equipo de investigación', 4),
+  rep('Participantes', 2),
+  rep('Consultores externos (si es necesario)', 2)
+) 
+
+Recursos <- c(
+  'Computadoras y software especializado para análisis de datos (e.g., R, Python, SPSS).',
+  'Herramientas de simulación de precios dinámicos.',
+  'Plataforma de comercio electrónico (acceso al sistema actual de la empresa).',
+  'Datos históricos de ventas, precios, inventarios y demanda de la empresa.',
+  'Encuestas de percepción del cliente (digitales o en papel).',
+  'Formularios para encuestas (Google Forms, SurveyMonkey, etc.).',
+  'Grabadoras o aplicaciones para entrevistas y grupos focales.',
+  'Servicios de videoconferencias para entrevistas (Zoom, Teams, etc.).',
+  'Correo electrónico para contactar a participantes.',
+  'Papel, bolígrafos, cuadernos, carpetas (en caso de documentos físicos).',
+  'Recursos financieros para posibles incentivos a los participantes.',
+  'Gastos asociados con el diseño, implementación y análisis de encuestas.',
+  'Investigador principal: Responsable de coordinar el proyecto, supervisar la recolección y análisis de datos, y redactar los resultados.',
+  'Analista de datos: Encargado de realizar el análisis estadístico y las simulaciones.',
+  'Especialista en metodología cualitativa: Responsable de diseñar las entrevistas y moderar los grupos focales.',
+  'Asistente de investigación: Apoya en la recopilación de datos, transcripción de entrevistas y organización de la información.',
+  'Clientes de la empresa: Para responder encuestas y participar en entrevistas o grupos focales sobre su percepción del modelo de precios dinámicos.',
+  'Personal interno de la empresa: Gerentes de marketing y responsables de la implementación del modelo de precios.',
+  'Expertos en precios dinámicos o comercio electrónico para validar los modelos propuestos.',
+  'Psicólogos o sociólogos para profundizar en el análisis cualitativo (opcional).'
+)
+
+df_recursos <- data.frame(Tipo, Clase, Recursos)
+```
+
+```{r}
+
+alternado <- rellenos(df_recursos)
+
+tabla_recursos <- kbl(df_recursos,
+             caption = "Recursos que se utilizaran para la investigación sobre el impacto del modelo de precios dinámicos.",
+             label = 'recursos',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "1.5cm") %>%
+  column_spec(2, width = "4cm") %>%
+  column_spec(3, width = "10cm", background = alternado) %>%
+  collapse_rows(columns = 1:2, valign = "top", latex_hline = "custom", row_group_label_position = 'stack') %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_recursos
+```
+
+\newpage
+
+# 9. Alcances y metas
+
+En la tabla \ref{tab:Alcance} se detalla los principales alcances y metas que esta investigación busca lograr en relación con la implementación de un modelo de precios dinámicos en una empresa de comercio electrónico.
+
+```{r}
+Alcance <- c(
+  'Evaluación del impacto en ingresos y demanda',
+  'Identificación de factores externos',
+  'Análisis de la percepción del cliente',
+  'Propuesta de mejorar',
+  'Comparación de modelos de precios',
+  'Contribución al conocimiento del sector'
+  )
+
+
+Descripción <- c(
+   'Determinar cómo la implementación del modelo de precios dinámicos influye en los ingresos y la elasticidad de la demanda en comparación con un modelo de precios fijos.',
+   'Analizar qué factores externos (como competencia, estacionalidad y tendencias de mercado) afectan la efectividad del modelo de precios dinámicos en la generación de ingresos.',
+   'Explorar cómo los consumidores perciben la transparencia, justicia y aceptación del modelo de precios dinámicos, y cómo estas percepciones impactan su decisión de compra y confianza en la marca.',
+   'Desarrollar recomendaciones para optimizar la implementación del modelo de precios dinámicos, considerando tanto aspectos operativos como estrategias que mejoren la percepción del cliente (e.g., promociones, garantías de precios).',
+   'Realizar simulaciones para comparar el desempeño financiero de la empresa bajo los modelos de precios fijos y dinámicos, identificando ventajas y limitaciones de cada enfoque.',
+   'Generar hallazgos relevantes que puedan ser utilizados por otras empresas del sector para implementar estrategias de precios dinámicos con base en evidencia empírica.'
+) 
+
+df_Alcance <- data.frame(Alcance, Descripción)
+```
+
+```{r}
+tabla_Alcance <- kbl(df_Alcance,
+             caption = "Los principales alcances y metas que esta investigación busca lograr en relación con la implementación de un modelo de precios dinámicos en una empresa de comercio electrónico",
+             label = 'Alcance',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  column_spec(1, width = "3.5cm") %>%
+  column_spec(2, width = "11.5cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+
+tabla_Alcance
+```
+
+Este desglose permite estructurar las metas de la investigación en áreas clave como el impacto en ingresos y demanda, la percepción del cliente y la generación de conocimiento estratégico. Los resultados obtenidos de estos alcances no solo servirán para optimizar el modelo de precios dinámicos en la empresa en estudio, sino que también serán relevantes para otras organizaciones que deseen adoptar esta estrategia en mercados competitivos.
+
+\begin{figure}[H]
+  \caption{Representación de los alcances de la investigación de los ingresos.}
+  \includegraphics[]{fig/alcances.png}
+  \label{fig:alcances}
+\end{figure}
+
+# 10. Cronograma
+
+En el cronograma de actividades presentado a en la figura \ref{fig:cronograma} se detalla las etapas clave del desarrollo de la investigación, desde la definición de objetivos hasta la entrega del informe final. Estas actividades se distribuyen a lo largo de ocho meses, con un enfoque progresivo que incluye la recopilación de datos históricos, la aplicación de metodologías cuantitativas y cualitativas, y la comparación de modelos de precios. El objetivo es garantizar un desarrollo estructurado y eficiente, permitiendo cumplir con los tiempos establecidos para cada fase del proyecto.
+
+\begin{figure}[H]
+  \caption{Cronograma para la aplicación de la investigación para evaluar el impacto del modelo de precios fijos implementado en el negocio electrónico.}
+  \includegraphics[]{fig/cronograma.png}
+  \label{fig:cronograma}
+\end{figure}
+
+El cronograma refleja una planificación detallada que asegura el cumplimiento de cada etapa del proyecto dentro de los plazos establecidos. Este enfoque sistemático permite optimizar los recursos y mantener un equilibrio entre las actividades de análisis y las fases de recopilación de datos. Asimismo, la estructuración temporal garantiza que los resultados obtenidos sean integrales y que las conclusiones del estudio se basen en un proceso de investigación sólido y bien coordinado.
+
+\newpage
+
+# 11. Recolección de datos
+
+El enfoque mixto es esencial en esta investigación porque los datos cuantitativos se utilizarán para analizar el impacto del modelo de precios dinámicos en ingresos y demanda, mediante el uso de información estructurada y estadísticas descriptivas e inferenciales. mientras que los datos cualitativos explorarán cómo los clientes perciben los precios dinámicos y cómo esta percepción afecta su decisión de compra. Este enfoque permitirá captar matices emocionales y contextuales que no se reflejan en los datos numéricos
+
+```{r}
+Tipo <- c(
+  rep('Cuantitativos', 2),
+  rep('Cualitativos', 2)
+  )
+
+Fuentes <- c(
+  'Bases de datos internas',
+  'Clientes',
+  'Clientes.',
+  'Gerentes y responsables de marketing.'
+) 
+
+Explicación <- c(
+  'Se recopilarán datos históricos de ventas, inventarios y precios proporcionados por la empresa de comercio electrónico.',
+  'Se aplicarán encuestas con preguntas cerradas de escala Likert (1 al 5) para evaluar la percepción de los clientes sobre el sistema de precios dinámicos.',
+  'Entrevistas a profundidad a clientes que hayan experimentado el modelo de precios dinámicos.',
+  'Entrevistas a personal para analizar cómo diseñan e implementan el modelo.'
+)
+
+Método <- c(
+  'Colaborar con el departamento de ventas para obtener información sobre volúmenes de ventas, variaciones de precios y periodos de alta y baja demanda.',
+  'Cuestionario con preguntas enfocadas en la satisfacción del cliente, percepción de justicia de los precios y experiencia de compra. Distribuir las encuestas en formato digital entre una muestra de clientes que hayan experimentado precios dinámicos.',
+  'Entrevistas semiestructuradas a clientes, enfocándose en temas como percepción de transparencia, justicia y confianza hacia el modelo. Registrar las entrevistas con grabadoras o plataformas de videoconferencia.',
+  'Entrevista semiestructuradas a responsables de marketing y operaciones para comprender los objetivos, estrategias y desafíos del modelo de precios dinámicos.'
+)
+
+Muestra <- c(
+  'Todos los registros disponibles en un periodo de tiempo definido.',
+  'Selección aleatoria de 200 clientes con diversidad en términos de edad, género y frecuencia de compra.',
+  'Selección de 15 y 20 participantes que hayan realizado compras durante periodos de precios dinámicos.',
+  'Entre 5 y 10 personas con experiencia directa en la implementación y ajuste del modelo.'
+)
+
+df_recoleccion <- data.frame(Tipo, Fuentes, Explicación, Método, Muestra)
+colnames(df_recoleccion)[1] <- 'Tipo de datos'
+```
+
+```{r}
+alternado <- rellenos(df_recoleccion)
+
+tabla_recoleccion <- kbl(df_recoleccion,
+             caption = "Recursos que se utilizaran para la investigación del impacto del modelo de precios dinámicos.",
+             label = 'recursos',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "1cm") %>%
+  column_spec(2, width = "2cm", background = alternado) %>%
+  column_spec(3, width = "3cm", background = alternado) %>%
+  column_spec(4, width = "5cm", background = alternado) %>%
+  column_spec(5, width = "3cm", background = alternado) %>%
+  collapse_rows(columns = 1:2, valign = "top", latex_hline = "custom", row_group_label_position = 'stack') %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_recoleccion
+```
+
+Los datos cuantitativos y cualitativos se integrarán para obtener una visión más completa del fenómeno, por ejemplo, comparar los hallazgos numéricos (impacto en ingresos y demanda) con los datos cualitativos (percepción de los clientes) para identificar relaciones y contradicciones.  
+
+\newpage
+
+# 12. Diseño de los instrumentos de recolección de datos
+
+## 12.1. Instrumentos Cuantitativos
+
+### 12.1.1. Base de datos internas
+   
+A continuación, se presenta un diseño estructurado para la **Solicitud de Datos** dirigida al departamento de ventas y operaciones. Este formato está alineado con los objetivos de la investigación y garantiza claridad en los requerimientos:  
+
+\rule{\linewidth}{0.4pt}
+
+![Logo de la empresa](fig\logo-empresa.png){width=1em height=1em} **E-STUCOMPRA**
+
+\today.  
+
+Departamento solicitante: Investigación y Análisis.  
+
+Departamento destinatario: Ventas y Operaciones.
+
+\vspace{2em}
+
+**Solicitud de Datos para Investigación**  
+
+**Asunto:** Requerimiento de datos históricos de ventas, precios e inventarios.  
+
+\vspace{2em}
+
+**Estimado/a responsable del Departamento de Ventas y Operaciones:**  
+
+Con el objetivo de realizar un análisis exhaustivo sobre el impacto del modelo de precios dinámicos en los ingresos y la demanda, solicitamos su amable apoyo proporcionando la siguiente información:  
+
+**1. Detalle de los datos requeridos**
+
+a) **Variables clave:**
+
+- **Fecha de la transacción:** Día, mes y año.
+
+- **Precio unitario:** Precio de venta por unidad del producto.
+
+- **Número de unidades vendidas:** Cantidad total vendida por transacción.
+
+- **Segmento de cliente:** Información categórica (e.g., cliente frecuente, nuevo cliente, etc.).
+
+- **Período de alta o baja demanda:** Indicador temporal (e.g., promociones, temporadas altas).
+
+- **Inventarios:** Niveles de inventario iniciales y finales por período.
+
+b) **Rango temporal:**
+
+- Fechas de inicio y fin: 1 de enero del 2020 a 31 de diciembre de 2024.
+
+c) **Formato de entrega:**
+
+- Archivo en formato CSV.
+
+- Estructura tabular con columnas claras para cada variable.
+
+**2. Propósito de los datos**
+
+Los datos serán utilizados exclusivamente para:
+
+a) Analizar la relación entre precios dinámicos y patrones de compra.
+
+b) Evaluar la elasticidad de la demanda en períodos específicos.
+
+c) Comparar el rendimiento financiero entre modelos de precios dinámicos y precios fijos.
+
+**3. Validación y confidencialidad**
+
+- **Validación previa:** Solicitamos que los datos se revisen para garantizar su integridad, consistencia y completitud antes de su entrega.
+
+- **Confidencialidad:** Garantizamos que la información será tratada con estricta confidencialidad y utilizada únicamente para los fines de esta investigación.
+
+**4. Plazos y contacto**
+
+- Fecha límite para la entrega de datos: Un mes a partir de la fecha, \today.
+
+- Persona de contacto: Fernando Aleisy González
+
+- Correo electrónico: fernando.aleisy\@estucompra.com
+
+- Teléfono: 3902314823
+
+Agradecemos de antemano su colaboración y quedamos atentos a cualquier duda o comentario respecto a esta solicitud.  
+
+**Atentamente,**
+
+Fernando Aleisy González
+
+Científico de datos
+
+![Tu firma electrónica creada con IA con fines didácticos](fig\firma_electronica.png){height=3em}.
+
+\rule{\linewidth}{0.4pt}
+
+### 12.1.2. Encuestas para clientes
+   
+A continuación, se presenta un diseño de encuesta con preguntas cerradas basadas en una **escala Likert (1 al 5)**, que evalúa la percepción de los clientes sobre el modelo de precios dinámicos:  
+
+\rule{\linewidth}{0.4pt}
+
+![Logo de la empresa](fig\logo-empresa.png){width=1em height=1em} **E-STUCOMPRA**
+
+- **Encuesta de Opinión**
+
+- **Tema:** Percepción del sistema de precios dinámicos.
+
+- **Propósito:** Recopilar información para mejorar nuestras estrategias de precios.
+
+- **Instrucciones:** Por favor, selecciona la opción que mejor refleje tu nivel de acuerdo con cada afirmación.
+
+\rule{\linewidth}{0.4pt}
+
+**Sección 1: Experiencia general con los precios dinámicos**
+
+1. Entiendo claramente cómo se calculan los precios de los productos que compro.
+
+\begin{tikzpicture}[overlay]
+	\draw[color=black, ultra thick] (1,0.3) --(15,0.3);
+  \fill[color=circulo1] (1,0.3) circle(0.2);
+	\fill[color=circulo2] (4.5,0.3) circle(0.2);
+	\fill[color=circulo3] (8,0.3) circle(0.2);
+	\fill[color=circulo4] (11.5,0.3) circle(0.2);
+	\fill[color=circulo5] (15,0.3) circle(0.2);
+\end{tikzpicture}
+
+\begin{tabular}{>{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm}}
+Totalmente en desacuerdo & En desacuerdo & Neutral & De acuerdo & Totalmente de acuerdo
+\end{tabular}
+
+2. Considero que los precios varían de manera transparente y justa.
+
+\begin{tikzpicture}[overlay]
+	\draw[color=black, ultra thick] (1,0.3) --(15,0.3);
+  \fill[color=circulo1] (1,0.3) circle(0.2);
+	\fill[color=circulo2] (4.5,0.3) circle(0.2);
+	\fill[color=circulo3] (8,0.3) circle(0.2);
+	\fill[color=circulo4] (11.5,0.3) circle(0.2);
+	\fill[color=circulo5] (15,0.3) circle(0.2);
+\end{tikzpicture}
+
+\begin{tabular}{>{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm}}
+Totalmente en desacuerdo & En desacuerdo & Neutral & De acuerdo & Totalmente de acuerdo
+\end{tabular}
+
+3. Me siento cómodo/a comprando productos cuyo precio cambia en función de la demanda o la temporada.
+
+\begin{tikzpicture}[overlay]
+	\draw[color=black, ultra thick] (1,0.3) --(15,0.3);
+  \fill[color=circulo1] (1,0.3) circle(0.2);
+	\fill[color=circulo2] (4.5,0.3) circle(0.2);
+	\fill[color=circulo3] (8,0.3) circle(0.2);
+	\fill[color=circulo4] (11.5,0.3) circle(0.2);
+	\fill[color=circulo5] (15,0.3) circle(0.2);
+\end{tikzpicture}
+
+\begin{tabular}{>{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm}}
+Totalmente en desacuerdo & En desacuerdo & Neutral & De acuerdo & Totalmente de acuerdo
+\end{tabular}
+
+4. Las fluctuaciones de precios no afectan negativamente mi confianza en la marca.
+
+\begin{tikzpicture}[overlay]
+	\draw[color=black, ultra thick] (1,0.3) --(15,0.3);
+  \fill[color=circulo1] (1,0.3) circle(0.2);
+	\fill[color=circulo2] (4.5,0.3) circle(0.2);
+	\fill[color=circulo3] (8,0.3) circle(0.2);
+	\fill[color=circulo4] (11.5,0.3) circle(0.2);
+	\fill[color=circulo5] (15,0.3) circle(0.2);
+\end{tikzpicture}
+
+\begin{tabular}{>{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm}}
+Totalmente en desacuerdo & En desacuerdo & Neutral & De acuerdo & Totalmente de acuerdo
+\end{tabular}
+
+5. Creo que el modelo de precios dinámicos beneficia tanto a los clientes como a la empresa.
+
+\begin{tikzpicture}[overlay]
+	\draw[color=black, ultra thick] (1,0.3) --(15,0.3);
+  \fill[color=circulo1] (1,0.3) circle(0.2);
+	\fill[color=circulo2] (4.5,0.3) circle(0.2);
+	\fill[color=circulo3] (8,0.3) circle(0.2);
+	\fill[color=circulo4] (11.5,0.3) circle(0.2);
+	\fill[color=circulo5] (15,0.3) circle(0.2);
+\end{tikzpicture}
+
+\begin{tabular}{>{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm}}
+Totalmente en desacuerdo & En desacuerdo & Neutral & De acuerdo & Totalmente de acuerdo
+\end{tabular}
+
+**Sección 2: Percepción de la transparencia y equidad**
+
+6. Los precios reflejan adecuadamente la calidad del producto o servicio.
+
+\begin{tikzpicture}[overlay]
+	\draw[color=black, ultra thick] (1,0.3) --(15,0.3);
+  \fill[color=circulo1] (1,0.3) circle(0.2);
+	\fill[color=circulo2] (4.5,0.3) circle(0.2);
+	\fill[color=circulo3] (8,0.3) circle(0.2);
+	\fill[color=circulo4] (11.5,0.3) circle(0.2);
+	\fill[color=circulo5] (15,0.3) circle(0.2);
+\end{tikzpicture}
+
+\begin{tabular}{>{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm}}
+Totalmente en desacuerdo & En desacuerdo & Neutral & De acuerdo & Totalmente de acuerdo
+\end{tabular}
+
+7. Me resulta fácil prever cuándo un producto tendrá un precio más bajo o más alto.
+
+\begin{tikzpicture}[overlay]
+	\draw[color=black, ultra thick] (1,0.3) --(15,0.3);
+  \fill[color=circulo1] (1,0.3) circle(0.2);
+	\fill[color=circulo2] (4.5,0.3) circle(0.2);
+	\fill[color=circulo3] (8,0.3) circle(0.2);
+	\fill[color=circulo4] (11.5,0.3) circle(0.2);
+	\fill[color=circulo5] (15,0.3) circle(0.2);
+\end{tikzpicture}
+
+\begin{tabular}{>{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm}}
+Totalmente en desacuerdo & En desacuerdo & Neutral & De acuerdo & Totalmente de acuerdo
+\end{tabular}
+
+8. Siento que la empresa es honesta al implementar precios dinámicos.
+
+\begin{tikzpicture}[overlay]
+	\draw[color=black, ultra thick] (1,0.3) --(15,0.3);
+  \fill[color=circulo1] (1,0.3) circle(0.2);
+	\fill[color=circulo2] (4.5,0.3) circle(0.2);
+	\fill[color=circulo3] (8,0.3) circle(0.2);
+	\fill[color=circulo4] (11.5,0.3) circle(0.2);
+	\fill[color=circulo5] (15,0.3) circle(0.2);
+\end{tikzpicture}
+
+\begin{tabular}{>{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm}}
+Totalmente en desacuerdo & En desacuerdo & Neutral & De acuerdo & Totalmente de acuerdo
+\end{tabular}
+
+9. Prefiero precios dinámicos sobre precios fijos, ya que siento que me permite encontrar mejores ofertas.
+
+\begin{tikzpicture}[overlay]
+	\draw[color=black, ultra thick] (1,0.3) --(15,0.3);
+  \fill[color=circulo1] (1,0.3) circle(0.2);
+	\fill[color=circulo2] (4.5,0.3) circle(0.2);
+	\fill[color=circulo3] (8,0.3) circle(0.2);
+	\fill[color=circulo4] (11.5,0.3) circle(0.2);
+	\fill[color=circulo5] (15,0.3) circle(0.2);
+\end{tikzpicture}
+
+\begin{tabular}{>{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm}}
+Totalmente en desacuerdo & En desacuerdo & Neutral & De acuerdo & Totalmente de acuerdo
+\end{tabular}
+
+**Sección 3: Impacto en la experiencia de compra**
+
+10. Las variaciones en los precios influyen positivamente en mi decisión de comprar.
+
+\begin{tikzpicture}[overlay]
+	\draw[color=black, ultra thick] (1,0.3) --(15,0.3);
+  \fill[color=circulo1] (1,0.3) circle(0.2);
+	\fill[color=circulo2] (4.5,0.3) circle(0.2);
+	\fill[color=circulo3] (8,0.3) circle(0.2);
+	\fill[color=circulo4] (11.5,0.3) circle(0.2);
+	\fill[color=circulo5] (15,0.3) circle(0.2);
+\end{tikzpicture}
+
+\begin{tabular}{>{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm}}
+Totalmente en desacuerdo & En desacuerdo & Neutral & De acuerdo & Totalmente de acuerdo
+\end{tabular}
+
+11. Las promociones y descuentos asociados a los precios dinámicos son atractivas.
+
+\begin{tikzpicture}[overlay]
+	\draw[color=black, ultra thick] (1,0.3) --(15,0.3);
+  \fill[color=circulo1] (1,0.3) circle(0.2);
+	\fill[color=circulo2] (4.5,0.3) circle(0.2);
+	\fill[color=circulo3] (8,0.3) circle(0.2);
+	\fill[color=circulo4] (11.5,0.3) circle(0.2);
+	\fill[color=circulo5] (15,0.3) circle(0.2);
+\end{tikzpicture}
+
+\begin{tabular}{>{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm}}
+Totalmente en desacuerdo & En desacuerdo & Neutral & De acuerdo & Totalmente de acuerdo
+\end{tabular}
+
+12. La posibilidad de pagar precios diferentes me motiva a buscar más productos en la tienda.
+
+\begin{tikzpicture}[overlay]
+	\draw[color=black, ultra thick] (1,0.3) --(15,0.3);
+  \fill[color=circulo1] (1,0.3) circle(0.2);
+	\fill[color=circulo2] (4.5,0.3) circle(0.2);
+	\fill[color=circulo3] (8,0.3) circle(0.2);
+	\fill[color=circulo4] (11.5,0.3) circle(0.2);
+	\fill[color=circulo5] (15,0.3) circle(0.2);
+\end{tikzpicture}
+
+\begin{tabular}{>{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm}}
+Totalmente en desacuerdo & En desacuerdo & Neutral & De acuerdo & Totalmente de acuerdo
+\end{tabular}
+
+13. En general, estoy satisfecho/a con mi experiencia de compra bajo este sistema de precios.
+
+\begin{tikzpicture}[overlay]
+	\draw[color=black, ultra thick] (1,0.3) --(15,0.3);
+  \fill[color=circulo1] (1,0.3) circle(0.2);
+	\fill[color=circulo2] (4.5,0.3) circle(0.2);
+	\fill[color=circulo3] (8,0.3) circle(0.2);
+	\fill[color=circulo4] (11.5,0.3) circle(0.2);
+	\fill[color=circulo5] (15,0.3) circle(0.2);
+\end{tikzpicture}
+
+\begin{tabular}{>{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm} >{\centering\arraybackslash}p{2.9cm}}
+Totalmente en desacuerdo & En desacuerdo & Neutral & De acuerdo & Totalmente de acuerdo
+\end{tabular}
+
+**Sección 4: Sugerencias adicionales (opcional)**
+
+Por favor, comparte cualquier comentario o sugerencia sobre el modelo de precios dinámicos:
+
+\begin{tikzpicture}
+    \draw (0,0) rectangle (16cm,5cm);
+\end{tikzpicture}
+
+**Agradecemos tu tiempo y opinión. Esta información nos ayudará a mejorar nuestra oferta y tu experiencia como cliente.**
+
+\rule{\linewidth}{0.4pt} 
+
+\newpage
+
+## 12.2. Instrumentos Cualitativos
+
+### 12.2.1. Entrevistas a clientes
+
+A continuación, se presenta un diseño de una *entrevista semiestructurada*, que evalúa la percepción de los clientes sobre respecto al modelo de precios dinámicos.
+
+El objetivo de esta entrevista es explorar cómo percibe la transparencia, justicia y efectividad de los precios dinámicos, así como entender las emociones que experimenta al realizar compras en nuestro sistema.
+
+\rule{\linewidth}{0.4pt} 
+
+Gracias por participar en esta entrevista. Su opinión es muy importante para ayudarnos a comprender la percepción de nuestros clientes sobre el modelo de precios dinámicos.
+
+**Temas a tratar:**
+
+- Percepción de transparencia.
+
+- Justicia percibida.
+
+- Confianza en el modelo de precios dinámicos.
+
+- Factores emocionales durante la experiencia de compra.
+
+**Consentimiento**
+
+- Con su permiso, esta entrevista será grabada únicamente con fines de análisis, asegurando la confidencialidad de su identidad y respuestas. ¿Está de acuerdo con esto?
+
+**Preguntas de la entrevista**
+
+- Percepción de Transparencia
+
+1. ¿Cómo describiría su entendimiento del modelo de precios dinámicos que utilizamos?
+
+2. ¿Siente que la información sobre cómo se calculan los precios es clara y accesible?
+
+3. ¿Qué tan fácil le resulta prever cambios en los precios durante sus compras?
+
+- Justicia Percibida
+
+4. ¿Considera que las variaciones de precios reflejan la calidad o valor del producto?
+
+5. ¿Alguna vez ha sentido que los precios son injustos o poco razonables? ¿Por qué?
+
+6. En su opinión, ¿cómo podría mejorar la percepción de equidad en este modelo de precios?
+
+- Confianza en el Modelo
+
+7. ¿Cómo han influido las fluctuaciones de precios en su confianza hacia nuestra marca?
+
+8. ¿El sistema de precios dinámicos le genera confianza para realizar compras en comparación con precios fijos?
+
+9. ¿Hay algo que podamos hacer para mejorar su confianza en el modelo de precios dinámicos?
+
+- Factores Emocionales
+
+10. ¿Qué emociones experimenta cuando nota un cambio en el precio de un producto que desea comprar?
+
+11. ¿Cómo afecta su decisión de compra si el precio de un producto sube repentinamente?
+
+12. ¿Qué rol juega la percepción de obtener una oferta justa en su satisfacción general como cliente?
+
+**Cierre de la entrevista**
+
+- Agradecimiento final
+
+Gracias por compartir su tiempo y perspectivas. Sus respuestas son muy valiosas para ayudarnos a mejorar.
+
+- Espacio para comentarios adicionales
+
+¿Hay algo más que le gustaría añadir sobre su experiencia con los precios dinámicos?
+
+**Registro y Materiales obtenidos**
+
+- Consentimiento
+
+Confirmar consentimiento previo al inicio de la grabación.
+
+- Formato de registro
+
+Grabación de audio o video (Zoom, Teams o grabadora).
+
+- Notas adicionales
+
+Registrar observaciones relevantes (tono, lenguaje corporal) durante la entrevista para complementar la grabación.
+
+\rule{\linewidth}{0.4pt}
+
+\newpage
+
+### 12.2.2. Entrevistas a marketing
+
+Lista de preguntas abiertas adaptadas a los roles específicos de los participantes para obtener información cualitativa sobre la perspectiva y experiencia del personal interno en relación con la implementación y operación del modelo de precios dinámicos.
+
+El objetivo de esta entrevista es recopilar su perspectiva sobre las estrategias, los desafíos enfrentados y los ajustes realizados para optimizar el modelo de precios dinámicos.
+
+\rule{\linewidth}{0.4pt}
+
+Muchas gracias por participar en esta entrevista. Sus conocimientos y experiencia son esenciales para comprender cómo se implementa y opera el modelo de precios dinámicos en nuestra organización.
+
+**Temas a tratar**  
+
+- Estrategias y objetivos del modelo de precios dinámicos.
+
+- Desafíos en la implementación del modelo.
+
+- Ajustes realizados durante la operación del modelo.
+
+**Consentimiento:**
+
+- Con su permiso, esta entrevista será grabada únicamente con fines de análisis, asegurando la confidencialidad de su identidad y respuestas. ¿Está de acuerdo con esto?
+
+**Preguntas de la Entrevista**  
+
+- Estrategias y Objetivos
+
+1. ¿Cuáles son los principales objetivos detrás de la implementación del modelo de precios dinámicos?  
+
+2. ¿Qué estrategias específicas han empleado para establecer las reglas de los precios dinámicos?  
+
+3. ¿Qué factores consideran clave para decidir los cambios de precios en tiempo real?  
+
+- Desafíos en la Implementación
+
+4. ¿Qué desafíos han enfrentado durante la implementación del modelo de precios dinámicos en comparación con el modelo de precios fijos?  
+
+5. ¿Cómo manejan las preocupaciones o quejas de los clientes sobre las variaciones de precios?  
+
+6. ¿Qué dificultades han surgido en términos de integración tecnológica para implementar los precios dinámicos?  
+
+- Ajustes y Mejoras en la Operación
+
+7. ¿Qué ajustes han realizado desde que comenzó a operar el modelo de precios dinámicos?  
+
+8. ¿Cómo evalúan el desempeño del modelo en términos de ingresos y demanda?  
+
+9. ¿Qué métricas utilizan para medir la efectividad de las estrategias de precios dinámicos?  
+
+10. ¿Han implementado alguna política para mitigar el impacto negativo de las fluctuaciones de precios en los clientes?  
+
+- Opiniones y Sugerencias
+
+11. ¿Qué mejoras recomendarían para optimizar el modelo de precios dinámicos en el futuro?  
+
+12. Desde su rol, ¿cómo ven la aceptación general del modelo dentro de la organización?  
+
+
+**Cierre de la Entrevista**
+
+- Agradecimiento final
+
+Gracias por su tiempo y por compartir su valiosa experiencia. Sus respuestas serán de gran utilidad para nuestro análisis y mejora continua.
+
+- Comentarios adicionales
+
+¿Hay algo más que le gustaría añadir sobre el modelo de precios dinámicos o su implementación?
+
+**Registro y Materiales obtenidos**
+
+- Formato de registro
+
+Grabaciones de audio o vídeo con el consentimiento del participante.  
+
+- Consentimiento
+
+Confirmar el consentimiento antes de iniciar la grabación.  
+
+- Notas adicionales
+
+Registrar observaciones y detalles relevantes durante la entrevista para complementar la grabación.  
+
+\rule{\linewidth}{0.4pt}
+
+\newpage
+
+# Bibliografía
