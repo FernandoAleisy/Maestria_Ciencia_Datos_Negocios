@@ -70,7 +70,25 @@ gantt
     title MAESTRÍA EN CIENCIA DE DATOS PARA NEGOCIOS.
     dateFormat  DD-MM-YYYY
     section Ciclo III
-    Aprendizaje Automático : a1, 10-09-2024, 1M
-    Técnicas y Aplicaciones para el Aprendizaje Automático : a2, 10-10-2024, 2M
+    Aprendizaje Automático : a1, 10-09-2024, 2M
+    Técnicas y Aplicaciones para el Aprendizaje Automático : a2, 10-11-2024, 1M
     Modelos para Machine y Deep Learning : a3, 10-12-2024, 1M
+```
+
+## Ciclo 4 o semestre 4
+
+Los cursos son:
+
+* Tecnología y Herramientas Big Data en la Empresa
+* Liderazgo Ético y Felicidad
+* Informe de Investigación
+
+```mermaid
+gantt
+    title MAESTRÍA EN CIENCIA DE DATOS PARA NEGOCIOS.
+    dateFormat  DD-MM-YYYY
+    section Ciclo IV
+    Tecnología y Herramientas Big Data en la Empresa : a1, 10-01-2025, 2M
+    Liderazgo Ético y Felicidad : a2, 10-03-2025, 1M
+    Informe de Investigación : a3, 10-04-2025, 1M
 ```
