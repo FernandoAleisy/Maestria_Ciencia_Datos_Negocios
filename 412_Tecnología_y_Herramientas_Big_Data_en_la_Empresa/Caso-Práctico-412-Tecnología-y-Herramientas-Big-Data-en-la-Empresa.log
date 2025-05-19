@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.15)  18 MAY 2025 20:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.15)  18 MAY 2025 20:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -578,11 +578,11 @@ LaTeX Info: Redefining \% on input line 125.
 Package newfloat Info: `float' package detected.
 Package newfloat Info: `wrapfig' package detected.
 Package hyperref Info: Link coloring OFF on input line 125.
-<fig/Big Data en la Empresa.jpeg, id=4, 455.45157pt x 212.29312pt>
-File: fig/Big Data en la Empresa.jpeg Graphic file (type jpg)
-<use fig/Big Data en la Empresa.jpeg>
-Package pdftex.def Info: fig/Big Data en la Empresa.jpeg  used on input line 150.
-(pdftex.def)             Requested size: 455.45045pt x 212.2926pt.
+<fig/Big Data en la Empresa.png, id=4, 455.45157pt x 180.675pt>
+File: fig/Big Data en la Empresa.png Graphic file (type png)
+<use fig/Big Data en la Empresa.png>
+Package pdftex.def Info: fig/Big Data en la Empresa.png  used on input line 150.
+(pdftex.def)             Requested size: 455.45045pt x 180.67455pt.
 
 Overfull \hbox (0.20634pt too wide) in paragraph at lines 150--150
  [][] 
@@ -590,7 +590,7 @@ Overfull \hbox (0.20634pt too wide) in paragraph at lines 150--150
 
 
 
-<fig/Logo_Cesuma.png, id=5, 66.138pt x 11.826pt>
+<fig/Logo_Cesuma.png, id=6, 66.138pt x 11.826pt>
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
 Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 160.
@@ -604,7 +604,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 
 [1{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}
 
- <./fig/Logo_Cesuma.png> <./fig/Big Data en la Empresa.jpeg>] (./Caso-Práctico-412-Tecnología-y-Herramientas-Big-Data-en-la-Empresa.toc
+ <./fig/Logo_Cesuma.png> <./fig/Big Data en la Empresa.png>] (./Caso-Práctico-412-Tecnología-y-Herramientas-Big-Data-en-la-Empresa.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 4.
@@ -654,12 +654,12 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
 [2]
-<fig/Salud_Total.jpeg, id=61, 455.45157pt x 166.37157pt>
+<fig/Salud_Total.jpeg, id=62, 455.45157pt x 166.37157pt>
 File: fig/Salud_Total.jpeg Graphic file (type jpg)
 <use fig/Salud_Total.jpeg>
 Package pdftex.def Info: fig/Salud_Total.jpeg  used on input line 180.
 (pdftex.def)             Requested size: 455.45045pt x 166.37114pt.
-<fig/medico_preocupados.png, id=62, 455.45157pt x 148.30406pt>
+<fig/medico_preocupados.png, id=63, 455.45157pt x 148.30406pt>
 File: fig/medico_preocupados.png Graphic file (type png)
 <use fig/medico_preocupados.png>
 Package pdftex.def Info: fig/medico_preocupados.png  used on input line 211.
@@ -678,7 +678,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
 [3 <./fig/Salud_Total.jpeg> <./fig/medico_preocupados.png>]
-<fig/gobierno_dato.png, id=70, 455.45157pt x 237.13594pt>
+<fig/gobierno_dato.png, id=71, 455.45157pt x 237.13594pt>
 File: fig/gobierno_dato.png Graphic file (type png)
 <use fig/gobierno_dato.png>
 Package pdftex.def Info: fig/gobierno_dato.png  used on input line 244.
@@ -701,7 +701,7 @@ Overfull \hbox (3.09444pt too wide) in paragraph at lines 290--300
  [][] 
  []
 
-<fig/Desafios_Big_data.png, id=77, 455.45157pt x 144.54pt>
+<fig/Desafios_Big_data.png, id=78, 455.45157pt x 144.54pt>
 File: fig/Desafios_Big_data.png Graphic file (type png)
 <use fig/Desafios_Big_data.png>
 Package pdftex.def Info: fig/Desafios_Big_data.png  used on input line 313.
@@ -720,12 +720,12 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
 [5 <./fig/Desafios_Big_data.png>]
-<fig/Toma_de_decisiones.png, id=85, 455.45157pt x 169.38281pt>
+<fig/Toma_de_decisiones.png, id=86, 455.45157pt x 169.38281pt>
 File: fig/Toma_de_decisiones.png Graphic file (type png)
 <use fig/Toma_de_decisiones.png>
 Package pdftex.def Info: fig/Toma_de_decisiones.png  used on input line 349.
 (pdftex.def)             Requested size: 455.45045pt x 169.38239pt.
-<fig/deteccion_enfermedades.png, id=86, 451.6875pt x 191.71625pt>
+<fig/deteccion_enfermedades.png, id=87, 451.6875pt x 191.71625pt>
 File: fig/deteccion_enfermedades.png Graphic file (type png)
 <use fig/deteccion_enfermedades.png>
 Package pdftex.def Info: fig/deteccion_enfermedades.png  used on input line 381.
@@ -744,7 +744,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
 [6 <./fig/Toma_de_decisiones.png>]
-<fig/experiencia_paciente.png, id=93, 455.45157pt x 170.13562pt>
+<fig/experiencia_paciente.png, id=94, 455.45157pt x 170.13562pt>
 File: fig/experiencia_paciente.png Graphic file (type png)
 <use fig/experiencia_paciente.png>
 Package pdftex.def Info: fig/experiencia_paciente.png  used on input line 401.
@@ -767,7 +767,7 @@ Overfull \hbox (7.5472pt too wide) in paragraph at lines 436--450
  [][] 
  []
 
-<fig/Big_Data.png, id=103, 455.45157pt x 157.33781pt>
+<fig/Big_Data.png, id=104, 455.45157pt x 157.33781pt>
 File: fig/Big_Data.png Graphic file (type png)
 <use fig/Big_Data.png>
 Package pdftex.def Info: fig/Big_Data.png  used on input line 463.
@@ -786,7 +786,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
 [8 <./fig/Big_Data.png>]
-<fig/reporte_medico.png, id=111, 451.6875pt x 191.71625pt>
+<fig/reporte_medico.png, id=112, 451.6875pt x 191.71625pt>
 File: fig/reporte_medico.png Graphic file (type png)
 <use fig/reporte_medico.png>
 Package pdftex.def Info: fig/reporte_medico.png  used on input line 509.
@@ -805,7 +805,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
 [9 <./fig/reporte_medico.png>]
-<fig/Medico_dasefios.png, id=117, 451.6875pt x 191.71625pt>
+<fig/Medico_dasefios.png, id=118, 451.6875pt x 191.71625pt>
 File: fig/Medico_dasefios.png Graphic file (type png)
 <use fig/Medico_dasefios.png>
 Package pdftex.def Info: fig/Medico_dasefios.png  used on input line 575.
@@ -828,7 +828,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
 [10 <./fig/Medico_dasefios.png>]
-<fig/datos_centralizados.png, id=128, 455.45157pt x 169.38281pt>
+<fig/datos_centralizados.png, id=129, 455.45157pt x 169.38281pt>
 File: fig/datos_centralizados.png Graphic file (type png)
 <use fig/datos_centralizados.png>
 Package pdftex.def Info: fig/datos_centralizados.png  used on input line 650.
@@ -873,7 +873,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
 [13]
-<fig/alerta_virus.png, id=148, 455.45157pt x 173.89969pt>
+<fig/alerta_virus.png, id=149, 455.45157pt x 173.89969pt>
 File: fig/alerta_virus.png Graphic file (type png)
 <use fig/alerta_virus.png>
 Package pdftex.def Info: fig/alerta_virus.png  used on input line 882.
@@ -892,7 +892,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
 [14 <./fig/alerta_virus.png>]
-<fig/privacidad_datos.png, id=156, 455.45157pt x 172.39406pt>
+<fig/privacidad_datos.png, id=157, 455.45157pt x 172.39406pt>
 File: fig/privacidad_datos.png Graphic file (type png)
 <use fig/privacidad_datos.png>
 Package pdftex.def Info: fig/privacidad_datos.png  used on input line 945.
@@ -955,16 +955,16 @@ LaTeX Warning: There were multiply-defined labels.
  ) 
 Here is how much of TeX's memory you used:
  15110 strings out of 475160
- 242519 string characters out of 5763557
+ 242512 string characters out of 5763557
  669339 words of memory out of 5000000
  37757 multiletter control sequences out of 15000+600000
  614192 words of font info for 75 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  89i,16n,93p,972b,543s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
-Output written on Caso-Práctico-412-Tecnología-y-Herramientas-Big-Data-en-la-Empresa.pdf (17 pages, 3557583 bytes).
+Output written on Caso-Práctico-412-Tecnología-y-Herramientas-Big-Data-en-la-Empresa.pdf (17 pages, 3812375 bytes).
 PDF statistics:
- 341 PDF objects out of 1000 (max. 8388607)
+ 342 PDF objects out of 1000 (max. 8388607)
  280 compressed objects within 3 object streams
  92 named destinations out of 1000 (max. 500000)
  236 words of extra memory for PDF output out of 10000 (max. 10000000)

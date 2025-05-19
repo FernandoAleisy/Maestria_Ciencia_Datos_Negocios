@@ -43,7 +43,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 \bfseries{\LARGE{CASO PRÁCTICO 412 TECNOLOGÍA Y HERRAMIENTAS BIG DATA EN LA EMPRESA\\[1.0cm]}}
 
-\includegraphics[]{fig/Big Data en la Empresa.jpeg}\\[1.0cm]
+\includegraphics[]{fig/Big Data en la Empresa.png}\\[1.0cm]
 
 \bfseries{\large{TECNOLOGÍA Y HERRAMIENTAS BIG DATA EN LA EMPRESA\\ CIENCIA DE DATOS PARA NEGOCIOS}}
 
