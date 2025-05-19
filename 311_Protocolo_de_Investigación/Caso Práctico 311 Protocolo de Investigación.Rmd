@@ -1,22 +1,24 @@
 ---
-output: pdf_document
+output:
+  word_document: default
+  pdf_document: default
 linestretch: 1.5
-geometry: "a4paper, left=2.54cm, right=2.54cm, top=2.4cm, bottom=2.54cm"
+geometry: a4paper, left=2.54cm, right=2.54cm, top=2.4cm, bottom=2.54cm
 csl: apa.csl
 bibliography: bibliografia.bib
 nocite: |
   @*
 header-includes:
-  - \usepackage{fancyhdr}
-  - \usepackage[spanish, es-tabla]{babel}
-  - \usepackage{float}
-  - \usepackage{newfloat}
-  - \DeclareFloatingEnvironment[fileext=loq]{gráfica}
-  - \addto\captionsspanish{\renewcommand{\refname}{Referencias}}
-  - \usepackage{xcolor}
-  - \usepackage{helvet}
-  - \renewcommand{\familydefault}{\sfdefault}
-  - \usepackage{tikz}
+- \usepackage{fancyhdr}
+- "\\usepackage[spanish, es-tabla]{babel}"
+- \usepackage{float}
+- \usepackage{newfloat}
+- \DeclareFloatingEnvironment[fileext=loq]{gráfica}
+- \addto\captionsspanish{\renewcommand{\refname}{Referencias}}
+- \usepackage{xcolor}
+- \usepackage{helvet}
+- \renewcommand{\familydefault}{\sfdefault}
+- \usepackage{tikz}
 ---
 
 \definecolor{naranja}{RGB}{245,145,55}

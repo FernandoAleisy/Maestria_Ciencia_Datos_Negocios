@@ -1,0 +1,570 @@
+---
+output: pdf_document
+linestretch: 1.0
+geometry: "a4paper, left=2.5cm, right=2.5cm, top=2.0cm, bottom=2.5cm"
+csl: apa.csl
+bibliography: bibliografia.bib
+nocite: |
+  @*
+header-includes:
+  - \usepackage{fancyhdr}
+  - \usepackage[spanish, es-tabla]{babel}
+  - \usepackage{float}
+  - \usepackage{newfloat}
+  - \DeclareFloatingEnvironment[fileext=loq]{gráfica}
+  - \addto\captionsspanish{\renewcommand{\refname}{Referencias}}
+  - \usepackage{xcolor}
+---
+
+\definecolor{naranja}{RGB}{245,145,55}
+\definecolor{azul}{RGB}{40,100,160}
+
+\fancypagestyle{fancy}{
+ \lhead{\includegraphics[width=200pt]{fig/Logo_Cesuma.png}}
+ \rhead{\textcolor{naranja}{
+  \textbf{Maestría en Ciencia de Datos para Negocios}\\
+  \textcolor{azul}{\rule[1mm]{80mm}{0.2mm}} \\
+  Tecnología y Herramientas Big Data en la Empresa}}
+ \renewcommand{\headrulewidth}{0.0pt}
+}
+
+\thispagestyle{fancy}
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+\setlength{\headheight}{1.0cm}
+
+\null\vfill
+
+\begin{center}
+
+\bfseries{\LARGE{CASO PRÁCTICO 412 TECNOLOGÍA Y HERRAMIENTAS BIG DATA EN LA EMPRESA\\[1.0cm]}}
+
+\includegraphics[]{fig/Big Data en la Empresa.jpeg}\\[1.0cm]
+
+\bfseries{\large{TECNOLOGÍA Y HERRAMIENTAS BIG DATA EN LA EMPRESA\\ CIENCIA DE DATOS PARA NEGOCIOS}}
+
+\null\vfill
+
+\bfseries{Fernando Aleisy González\\ \today}
+
+\end{center}
+
+\newpage
+\pagestyle{fancy}
+
+\tableofcontents
+
+\newpage
+
+<!--Librerías a usar en el documento-->
+
+```{r, message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(kableExtra)
+```
+
+```{r}
+# Función para rellenar las filas con gris y blanco de forma alternada
+
+rellenos <- function(dataframe){
+  return(rep(c("#f8f8f8", "white"), nrow(dataframe)/2+1)[1:nrow(dataframe)])
+}
+```
+
+```{r}
+# Para trabajar en tiempo real los dataframe, ya que se está utilizando tildes, toca usar:
+# Sys.setlocale("LC_ALL", "es_ES.UTF-8")
+```
+
+# Caso práctico
+
+Una organización de atención médica, “SaludTotal”, opera una red de clínicas y hospitales que atienden a un gran número de pacientes. La organización busca implementar un riguroso gobierno del dato debido a la creciente preocupación por la privacidad de los datos de salud y la necesidad de utilizar los datos para mejorar la atención al paciente y la eficiencia operativa. A medida que “SaludTotal” se enfrenta a desafíos cada vez más complejos, se da cuenta de la importancia de gestionar sus datos de manera efectiva y ética.
+
+\begin{figure}[H]
+  \caption{Representación de organización médica "SaludTotal".}
+  \includegraphics[]{fig/Salud_Total.jpeg}
+  \label{fig:ind_tel}
+\end{figure}
+
+Problema: “SaludTotal” se enfrenta a varios desafíos relacionados con la gestión de datos de salud:
+
+- Privacidad y Cumplimiento: La organización debe cumplir con regulaciones de privacidad de datos, como el GDPR y el HIPAA, y garantizar que los datos de salud del paciente estén protegidos contra amenazas de seguridad.
+
+- Calidad de Datos: La integridad y la calidad de los datos son fundamentales para garantizar la toma de decisiones médicas precisas. La organización tiene datos en diversos sistemas, y la consistencia y precisión son un problema.
+
+- Gestión de Cambios: “SaludTotal” se está expandiendo y actualizando sus sistemas de información. La gestión de cambios y la implementación de nuevas políticas de gobierno del dato son complejas.
+
+- Colaboración Interdepartamental: La organización consta de departamentos médicos, de TI y administrativos, y la colaboración y comunicación entre ellos son esenciales para una gestión efectiva de datos.
+
+\begin{figure}[H]
+  \caption{Las y los médicos de la organización "SaludTotal" preocupados por los desafios que relacionados a la gestión delos datos.}
+  \includegraphics[]{fig/medico_preocupados.png}
+  \label{fig:medico_preocupados}
+\end{figure}
+
+\newpage
+
+# Actividad inicial de reflexión
+
+## Punto 1
+
+**¿Por qué crees que es importante que "SaludTotal" implemente un gobierno del dato efectivo en su organización?**
+
+Porque una entidad con un gobierno de datos sabe el origen de los datos. En este caso los datos no solo tiene origen dentro de la misma entidad ya que la vinculación de bases de datos permite integrar datos de una misma persona con diversos orígenes, por lo que, además del sector salud, también se puede utilizar datos de educación, de justicia, de inmigración y de programas sociales, lo que posibilita investigaciones que informen una gestión más eficiente de programas y políticas de salud [@orozco2021vinculacion].
+
+Otro aspecto por el que es importante que la entidad "SaludTotal" implemente un gobierno de datos es que con ello se tiene claro quién puede acceder a datos sensibles ya que la privacidad, la seguridad de los datos, la equidad en el acceso a la tecnología y la toma de decisiones éticas en la práctica médica son de vital importancia en el contexto de la ética digital en la salud [@gonzalez2024etica].
+
+\begin{figure}[H]
+  \caption{Asistente virtual de una empresa de telecomunicaciones.}
+  \includegraphics[]{fig/gobierno_dato.png}
+  \label{fig:ind_tel}
+\end{figure}
+
+Con una política de datos bien estructurada se garantiza la calidad, consistencia y confiabilidad de la información recolectada, ya que permite establecer procesos y herramientas que aseguren la corrección de errores de manera automática y en tiempo real. Estos sistemas pueden incluir validaciones al momento de la captura de datos, algoritmos de detección de inconsistencias, y mecanismos de retroalimentación inmediata para los usuarios que ingresan la información. Un ejemplo destacado de esta práctica se encuentra en Brasil, donde la calidad de los datos del Sistema de Información de Registros Hospitalarios de Cáncer (SisRHC) ha mejorado progresivamente gracias a la implementación de políticas de gestión de datos más rigurosas. Este avance ha sido fundamental para fortalecer la vigilancia epidemiológica, mejorar la toma de decisiones clínicas y políticas, y optimizar el control y prevención del cáncer a nivel nacional [@preciado2021importancia].
+
+
+En el contexto de SaludTotal, la implementación de una política de datos podría contribuir significativamente a la optimización en la asignación de recursos clínicos y operativos. La integración de modelos predictivos como el índice de gravedad de embolia pulmonar (PESI) y el puntaje MELD (Model for End-stage Liver Disease) permitiría mejorar la priorización de pacientes en escenarios críticos, como las listas de espera para trasplantes. Asimismo, el desarrollo de sistemas de alerta temprana podría acelerarse mediante el uso de datos del mundo real y su ajuste continuo. Por otro lado, la incorporación de redes neuronales profundas tiene el potencial de llevar los sistemas de diagnóstico por imágenes a niveles de precisión que anteriormente eran técnicamente inviables [@pineda2022modelos].
+
+## Punto 2
+
+**¿Cuáles son los desafíos clave que enfrenta “SaludTotal” en relación con la gestión de datos de salud?.**
+
+Los desafíos clave que enfrenta SaludTotal en relación con la gestión de datos de salud pueden agruparse en cuatro grandes categorías interrelacionadas:
+
+```{r}
+`Desafío Clave` = c(
+    "Privacidad y Cumplimiento",
+    "Calidad e Integridad de Datos",
+    "Gestión del Cambio",
+    "Gobernanza Interdepartamental"
+  )
+
+Impacto = c(
+    "Riesgo legal y reputacional elevado",
+    "Baja confiabilidad de los datos clínicos y administrativos",
+    "Retrasos e inconsistencias en la modernización tecnológica y regulatoria",
+    "Fragmentación de responsabilidades y decisiones poco coordinadas"
+  )
+
+`Causas Identificadas` = c(
+    "Ausencia de controles uniformes. Falta de trazabilidad de accesos",
+    "Datos dispersos, duplicados, con formatos no estandarizados",
+    "Falta de un plan de transición. Resistencia interna",
+    "Silos organizacionales. Comunicación débil entre TI, clínica y gestión"
+  )
+
+`Riesgos Asociados` = c(
+    "Multas por incumplimiento. Pérdida de confianza del paciente",
+    "Diagnósticos erróneos. Ineficiencia operativa",
+    "Fallos en sistemas críticos. Pérdida de datos",
+    "Implementación desigual de políticas. Bajo aprovechamiento del dato"
+  )
+
+`Recomendaciones Estratégicas` = c(
+    "Implementar políticas de privacidad alineadas a estándares internacionales. Auditorías periódicas. Cifrado y control de accesos",
+    "Establecer una política de calidad de datos. Integración de sistemas. Validaciones y limpieza automatizada",
+    "Desarrollar un plan de gestión del cambio. Formación continua. Pruebas piloto",
+    "Crear comités de gobierno del dato. Asignar roles como CDO y Data Stewards. Fomentar cultura colaborativa"
+  )
+
+df_Desafios <- data.frame(`Desafío Clave`, Impacto, `Causas Identificadas`, `Riesgos Asociados`, `Recomendaciones Estratégicas`)
+colnames(df_Desafios) <- c("Desafío Clave", "Impacto", "Causas Identificadas", "Riesgos Asociados", "Recomendaciones Estratégicas")
+```
+
+```{r}
+
+tabla_Desafios <- kbl(df_Desafios,
+             caption = "Desafíos clave que enfrenta “SaludTotal” en relación con la gestión de datos de salud.",
+             label = 'desafios',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  column_spec(1:4, width = "2.5cm") %>%
+  column_spec(5, width = "4cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_Desafios
+```
+
+En general, SaludTotal se encuentra en un punto crítico para dar un aspecto más professional a su gestión de datos. Si bien cuenta con una base operativa amplia, el avance hacia una gobernanza del dato sólida requiere enfrentar desafíos tanto técnicos como organizacionales. El cumplimiento normativo, la mejora en la calidad de los datos, la gestión eficiente del cambio y la articulación inter departamental son los elementos fundamentales para lograr una transformación sostenible y orientada al valor en salud.
+
+\begin{figure}[H]
+  \caption{Los médicos enfrentando los desafíos que tiene el sistema de salud para implementar el Big Data}
+  \includegraphics[]{fig/Desafios_Big_data.png}
+  \label{fig:desafios_BD}
+\end{figure}
+
+\newpage
+
+# Introducción Al Uso De Tecnología Y Herramientas Big Data En La Empresa
+
+## Punto 3
+
+**¿Cómo crees que la tecnología y las herramientas Big Data podrían beneficiar a “SaludTotal” en la mejora de la atención médica y la eficiencia operativa?**
+
+La adopción de tecnologías Big Data representa una oportunidad estratégica para que SaludTotal transforme sus procesos clínicos y operativos mediante un enfoque basado en datos. Estas herramientas permiten procesar volúmenes masivos de información heterogénea en tiempo real, lo cual genera ventajas competitivas y mejoras sustanciales en la atención sanitaria. En general, el Big data, junto con la ciencia de datos, promete grandes oportunidades en el campo de la salud. A partir de esta disciplina, las entidades de salud podrán generar y gestionar de manera eficiente la información para la toma de decisiones de calidad [@rosa2022ciencia].
+
+**Toma de decisiones clínicas más precisas:** El análisis avanzado de datos clínicos, epidemiológicos y sociode mográficos permite desarrollar modelos predictivos capaces de anticipar complicaciones médicas, identificar poblaciones en riesgo y apoyar la medicina basada en evidencia. Esto se traduce en intervenciones más oportunas, reducción de errores clínicos y mayor personalización del tratamiento [@rajkomar2021scalable].
+
+\begin{figure}[H]
+  \caption{Médicos tomando decisiones sobre sus pacientes.}
+  \includegraphics[]{fig/Toma_de_decisiones.png}
+  \label{fig:toma_desiciones}
+\end{figure}
+
+**identificación temprana de enfermedades:** La  aplicación  de  Big  Data  integrada  con  los  sistemas de registros de la salud pública permite el desarrollo de modelos analíticos con la integración de diversas fuentes de datos, apoyada con los registros de salud pública de las diferentes entidades se puede obtener una mejor identificación, segmentación y caracterización de los pacientes, generando análisis sobre los individuos de cualquier población de la cual se tenga información. Esto permite crear y proyectar una identificación temprana de enfermedades [@rave2012revision].
+
+**Optimización operativa y asignación de recursos:** El Big Data facilita el análisis de la utilización de servicios, tiempos de espera, flujos de pacientes y recursos disponibles. A partir de estos datos, se pueden generar modelos prescriptivos para optimizar agendas médicas, gestión de camas, inventarios y turnos del personal. Como resultado, se incrementa la eficiencia operativa y se reducen los costos [@raghupathi2014big].
+
+**Vigilancia epidemiológica en tiempo real: ** La capacidad de analizar datos estructurados (como registros clínicos) y no estructurados (como redes sociales o notas médicas) permite detectar patrones anómalos en la aparición de enfermedades. Esto  fortalece la Atención Primaria de Salud al mejorar la detección y prevención de enfermedades y garantiza una respuesta efectiva ante emergencias sanitarias [@moncayo2024vigilancia].
+
+\begin{figure}[H]
+  \caption{Un médico usando el Big Data para realizar vigilancia epidemiológica en tiempo real.}
+  \includegraphics[]{fig/deteccion_enfermedades.png}
+  \label{fig:deteccion_enfermedades}
+\end{figure}
+
+**Personalización de la atención: ** El análisis de grandes volúmenes de datos permite identificar perfiles individuales y patrones de comportamiento que dan lugar a estrategias de atención personalizadas. Esta orientación favorece la medicina de precisión, mejora la adherencia terapéutica y minimiza eventos adversos [@maceachern2021machine].
+
+**Mejora de la experiencia del paciente: ** Mediante técnicas de análisis de texto y minería de sentimientos, es posible captar la percepción de los usuarios a través de encuestas, interacciones digitales y quejas. Esto permite rediseñar procesos de atención enfocados en la experiencia del paciente, incrementando la satisfacción y fidelización [@ghassemi2018opportunities].
+
+\begin{figure}[H]
+  \caption{Un paciente teniendo una buena experiencia recibiendo atención médica gracias al Big Data.}
+  \includegraphics[]{fig/experiencia_paciente.png}
+  \label{fig:experiencia_paciente}
+\end{figure}
+
+**Apoyo a la gestión estratégica: ** La integración de datos clínicos, administrativos y financieros en tableros ejecutivos facilita el seguimiento de indicadores clave de desempeño (KPIs). Esto fortalece la gobernanza institucional, permite una toma de decisiones más informada, mejorar los resultados de la atención al paciente mientras reducen los gastos de tratamiento y fomenta una cultura de mejora continua [@kothinti2022big].
+
+En conclusión, para aprovechar plenamente estos beneficios, SaludTotal debe avanzar hacia una arquitectura de datos moderna, con plataformas interoperables, estándares de calidad, talento especializado y una política robusta de gobernanza de datos que garantice seguridad, ética y sostenibilidad en el uso de la información.
+
+\newpage
+
+##  Punto 4
+
+**¿Qué diferencias ves entre las bases de datos tradicionales y las soluciones de Big Data en términos de escalabilidad y capacidad de procesamiento?**
+
+Las bases de datos tradicionales (como MySQL, PostgreSQL, Oracle, etc.) y las soluciones de Big Data (como Hadoop, Apache Spark, Cassandra, etc.) difieren principalmente en su diseño (un computador o un cluster de computadores), escalabilidad y capacidad de procesamiento de datos.
+
+```{r}
+Característica = c(
+  "Escalabilidad",
+  "Capacidad de procesamiento",
+  "Tipo de procesamiento",
+  "Flexibilidad del esquema",
+  "Tipos de datos soportados",
+  "Tolerancia a fallos",
+  "Ejemplos"
+)
+
+`Bases de Datos Tradicionales` = c(
+  "Escalado vertical (más recursos al servidor)",
+  "Limitada para grandes volúmenes de datos",
+  "Procesamiento de Transacciones en Línea",
+  "Esquema fijo (estructurado)",
+  "Estructurados (tablas relacionales)",
+  "Limitada o dependiente del hardware",
+  "MySQL, PostgreSQL, Oracle"
+)
+
+`Soluciones Big Data` = c(
+  "Escalado horizontal (más nodos al clúster)",
+  "Alta capacidad, procesamiento en paralelo",
+  "Procesamiento Analítico en Línea",
+  "Esquema flexible o sin esquema (NoSQL)",
+  "Estructurados, semi-estructurados y no estructurados",
+  "Alta (replicación y distribución de datos)",
+  "Hadoop, Apache Spark, Cassandra, MongoDB"
+)
+
+df_Comparativa <- data.frame(Característica, `Bases de Datos Tradicionales`, `Soluciones Big Data`)
+
+colnames(df_Comparativa) <- c("Característica", "Bases de Datos Tradicionales", "Soluciones Big Data")
+
+```
+
+```{r}
+
+tabla_Comparativa <- kbl(df_Comparativa,
+             caption = "Comparación entre bases de datos tradicionales y soluciones Big Data",
+             label = 'Comparativa',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  column_spec(1, width = "3cm") %>%
+  column_spec(2:3, width = "6cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_Comparativa
+```
+
+La tabla \ref{tab:Comparativa} resume las principales diferencias entre bases de datos tradicionales y soluciones Big Data en términos de escalabilidad, procesamiento y adaptabilidad. Las bases de datos tradicionales son más adecuadas para entornos donde los datos son estructurados, las operaciones son transaccionales y la escala no es excesiva. Sin embargo, estas tecnologías presentan limitaciones cuando se requiere procesar grandes volúmenes de datos en tiempo real o integrar fuentes heterogéneas.
+
+\begin{figure}[H]
+  \caption{Médicos usando Big Data en la organización de salud.}
+  \includegraphics[]{fig/Big_Data.png}
+  \label{fig:Big_Data}
+\end{figure}
+
+Por el contrario, las soluciones Big Data permiten escalar horizontalmente mediante la adición de nodos, lo cual es ideal para organizaciones como SaludTotal, que gestionan grandes volúmenes de información provenientes de múltiples clínicas y hospitales. Estas plataformas permiten realizar análisis complejos, como minería de datos, machine learning o visualización avanzada, y trabajar con datos estructurados y no estructurados (como imágenes médicas, notas clínicas o sensores de monitoreo).
+
+Además, el procesamiento distribuido y la tolerancia a fallos permiten mantener la disponibilidad del sistema y garantizar el rendimiento incluso ante fallas o sobrecarga, lo cual es esencial para garantizar la continuidad operativa en entornos críticos de atención médica.
+
+\newpage
+
+# Bases De Datos
+
+## Punto 5
+
+**¿Por qué es importante para “SaludTotal” garantizar la calidad y la integridad de sus datos de salud en las bases de datos?**
+
+**Precisión en la atención médica:** Los profesionales de la salud toman decisiones clínicas basadas en la información registrada en los sistemas. Si los datos son incorrectos, incompletos o inconsistentes (por ejemplo, errores en alergias, diagnósticos o tratamientos), se pueden cometer errores médicos que comprometan la seguridad del paciente.  Si se garantiza la calidad de los grandes conjuntos de datos (Big Data), el uso de inteligencia artificial permite identificar patrones para superar el rendimientos humano en diversos aspecto de la atención médica [@alowais2023revolutionizing].
+
+**Confiabilidad en los análisis y reportes:** Decisiones estratégicas y operativas dependen de datos confiables. Datos de baja calidad pueden conducir a conclusiones erróneas y decisiones mal fundamentadas. Por otro lado un conjunto de datos sesgado puede llevar a resultados igualmente sesgados y decisiones injustas en los análisis y reportes [@raraz2023importancia]
+
+\begin{figure}[H]
+  \caption{Médicos realizando un reporte sobre sus pacientes.}
+  \includegraphics[]{fig/reporte_medico.png}
+  \label{fig:reporte_medico}
+\end{figure}
+
+**Cumplimiento normativo y legal:** Mantener la integridad de los datos es esencial para cumplir con regulaciones como GDPR y HIPAA, evitando sanciones legales y protegiendo la reputación institucional. Por ejemplo, en la regulación GDPR se establece el derecho de rectificación y derecho de oposición, por lo que si una persona considera que sus datos personales son incorrectos, incompletos o inexactos, tiene derecho a rectificarlos o completarlos sin demoras indebidas [@EU_GDPR_2023].
+
+**Interoperabilidad entre sistemas:** La integridad de los datos facilita el intercambio efectivo de información entre diferentes sistemas y entidades de salud, mejorando la continuidad de la atención. El establecimiento de políticas claras de gobernanza de datos se presentan como soluciones viables para mejorar la interoperabilidad y la interoperabilidad es una necesidad urgente para la transformación digital del sector salud, ya que optimiza la gestión de datos (calidad e integridad de los datos), mejora la seguridad del paciente y reduce costos operativos [@londono2024analisis].
+
+**Confianza del paciente y del personal:** Datos precisos y confiables fortalecen la confianza de pacientes y profesionales en el sistema de salud, mejorando la satisfacción y la colaboración. La calidad de los datos y la gobernanza en la industria de la salud son esenciales para garantizar la efectividad y eficiencia de los servicios de salud, y que pueden ser confiables para la toma de decisiones, lo que a su vez se traduce en la confianza de los pacientes y el personal [@paramita2023public].
+
+**Soporte para inteligencia artificial y Big Data:** La calidad de los datos es crucial para el desarrollo y la eficacia de herramientas de inteligencia artificial y análisis predictivo en salud. En esencia, las bases de datos son la materia prima de la Inteligencia Artificial, por lo que su calidad e integridad son cruciales para determinar el éxito o el fracaso de la aplicación de esta herramienta.
+
+\newpage
+
+## Punto 6
+
+**¿Cuáles son los desafíos comunes asociados con la gestión de bases de datos en el sector de la salud?**
+
+**Privacidad y cumplimiento normativo:** Los datos de salud están sujetos a estrictas regulaciones (como HIPAA, GDPR y leyes locales). Es esencial garantizar que el acceso, almacenamiento y uso de la información cumpla con requisitos legales y éticos. Por lo que los sistemas actuales de gestión de datos sanitarios se enfrentan a retos clave en términos de transparencia, trazabilidad, inmutabilidad, procedencia, acceso flexible, confianza, privacidad y seguridad [@yaqoob2022blockchain].
+
+**Calidad e integridad de los datos:** Los errores de registro, duplicaciones y datos incompletos afectan diagnósticos y decisiones clínicas. Los datos incorrectos pueden representar una amenaza significativa para la salud de los pacientes y una gran responsabilidad para los profesionales sanitarios, lo que genera problemas como estafas, mala praxis, tratamientos inadecuados y robo de datos. La falta de estándares unificados puede causar inconsistencias entre departamentos o sistemas [@zarour2021ensuring]. 
+
+\begin{figure}[H]
+  \caption{Una médico reflexionando sobre cómo afrontar los desafíos asociados a la gestión de bases de datos.}
+  \includegraphics[]{fig/Medico_dasefios.png}
+  \label{fig:Medico_dasefios}
+\end{figure}
+
+**Fragmentación de la información:** Los datos suelen estar distribuidos en múltiples sistemas (EHR, laboratorios, facturación, imagenología). Esto dificulta la interoperabilidad y la consolidación de la información para obtener una visión completa del paciente. La interoperabilidad de los datos de salud permite la eficiencia del sistema, los resultados de los pacientes y la coordinación del paciente. Los dispositivos de salud portátiles, los registros electrónicos de salud y los datos generados por los pacientes han complicado la gestión de los datos de salud y las entidades de salud necesitan un intercambio de datos efectivo entre los proveedores de salud. Esto nos lleva a otro reto, la escalabilidad y el crecimiento del volumen de los datos [@saini2021evaluating].
+
+**Escalabilidad y crecimiento del volumen de los datos:** Con el uso de dispositivos IoT \footnote{Internet of Things o Internet de las Cosas en español} médicos, historiales electrónicos y tele medicina, los volúmenes de datos aumentan exponencialmente y muchas infraestructuras tradicionales no están preparadas para escalar eficientemente ante este crecimiento. También, las plataformas o herramientas existentes para la curación, el procesamiento y el almacenamiento de datos a gran escala, para lograr una relación coste-escala viable de velocidad de cálculo con fines de investigación, son demasiado lentas o demasiado caras. Además, la gestión y la coherencia del procesamiento de datos grandes de manera basada en equipos es una tarea no trivial [@kim2025scalable].
+
+**Seguridad informática:** El sector salud no está exento de problemas como las violaciones de datos, las amenazas internas y el creciente espectro de ataques de ransomware. Las regulaciones de privacidad se están endureciendo, instando a las organizaciones a mantener un manejo ético de los datos y adoptar prácticas de seguridad integrales. En este entorno, la colaboración y el intercambio de información emergen como grandes herramientas. La gestión de las bases de datos requieren de la noción de una defensa colectiva, adoptar una cultura de seguridad, mantenerse al tanto de los avances tecnológicos y fomentar una mentalidad proactiva [@yigzaw2022health].
+
+\newpage
+
+# Plataformas
+
+## Punto 7
+
+**¿Cómo podría una plataforma de gestión de datos ayudar a “SaludTotal” a centralizar y administrar sus datos de manera más efectiva?**
+
+SaludTotal podría optimizar significativamente su gestión mediante una plataforma integrada de datos. Esta solución centralizaría información dispersa, garantizaría calidad e integridad de los registros, cumpliría con normativas como HIPAA/GDPR y habilitaría análisis avanzados para una toma de decisiones basada en evidencia. Además, ofrecería escalabilidad para adaptarse a futuras necesidades, transformando datos en insights estratégicos que mejoren tanto la eficiencia operativa como la atención al paciente.
+
+**Centralización de datos clínicos y administrativos:** Los datos de múltiples clínicas y departamentos, integrar en un único repositorio, facilita el acceso rápido a la historia clínica completa del paciente, la reducción de redundancias y duplicación de registros y la interoperabilidad entre sistemas heredados y nuevos [@ops_sistemas_2025].
+
+**Mejora de la calidad e integridad de los datos:** Una plataforma adecuada permite implementar reglas automáticas para validar datos en tiempo real, estandarizar terminología médica y corregir inconsistencias. Esto es crucial para apoyar decisiones clínicas basadas en datos precisos [@astera_gestion_2025].
+
+\begin{figure}[H]
+  \caption{Médicos al rededor de una plataforma de gestión de datos centralizados.}
+  \includegraphics[]{fig/datos_centralizados.png}
+  \label{fig:datos_centralizados}
+\end{figure}
+
+**Cumplimiento normativo (HIPAA, GDPR):** La plataforma puede controlar accesos basados en roles, registrar auditorías de uso de los datos, cifrar datos sensibles y automatizar el cumplimiento de derechos del paciente. CentreStack ofrece una gestión de datos en la nube segura y compatible con HIPAA, con cifrado, alojamiento en AWS e integración fácil para instalaciones de salud [@centrestack_gestion_2025].
+
+**Soporte para análisis avanzados y Big Data:** Con datos bien organizados, SaludTotal puede aplicar análisis predictivos, evaluar eficiencia de tratamientos y realizar estudios de cohortes poblacionales. El análisis de datos desempeña un papel crucial en la atención sanitaria, permitiendo a las organizaciones aprovechar el poder de los datos para tomar decisiones informadas y mejorar los resultados de los pacientes [@ideascale_analisis_2025].
+
+**Facilita la toma de decisiones basada en evidencia:** Al integrar analítica, dashboards y reportes en tiempo real, la dirección de SaludTotal puede monitorear indicadores clave de salud y operación, tomar decisiones ágiles y detectar eventos adversos con mayor rapidez. La integración de datos sanitarios ayuda a los profesionales a intercambiar historiales médicos y facilita una mejor atención basada en el historial médico completo del paciente [@innowise_integracion_2025].
+
+**Escalabilidad y adaptabilidad:** Una buena plataforma permite incorporar nuevas clínicas o servicios sin rediseñar todo el sistema, integrar nuevas fuentes de datos y evolucionar sin perder trazabilidad ni compatibilidad. Informática España destaca que agiliza el acceso a los servicios sanitarios con un portal centralizado para citas, registros sanitarios electrónicos y más [@informatica_gestion_2025].
+
+\newpage
+
+## Punto 8
+
+**¿Qué ventajas y desventajas ves en la implementación de una plataforma de gestión de datos en la nube para “SaludTotal”?**
+
+La adopción de plataformas de gestión de datos en la nube puede aportar múltiples beneficios a organizaciones de salud como SaludTotal, como se observa en la tabla \ref{tab:ventajas}. Estas soluciones permiten mejorar la eficiencia operativa, facilitar el acceso a la información en tiempo real desde diferentes sedes y asegurar una escalabilidad adaptable a las necesidades cambiantes del sistema. Además, la integración con herramientas de análisis avanzado y la automatización de procesos administrativos y clínicos fortalecen la capacidad de respuesta institucional y la toma de decisiones basada en datos confiables [@OPS2021saluddigital].
+
+```{r}
+Aspecto <- c(
+  'Escalabilidad flexible',
+  'Acceso remoto y colaboración',
+  'Reducción de costos',
+  'Actualizaciones automáticas',
+  'Soporte para análisis avanzados y Big Data',
+  'Cumplimiento normativo automatizado'
+)
+
+Ventaja <- c(
+  'Permite ampliar la capacidad de almacenamiento y procesamiento a medida que crece la organización, sin necesidad de infraestructura física adicional.',
+  'Facilita el acceso seguro a datos clínicos desde múltiples ubicaciones, ideal para una red de clínicas como la de SaludTotal.',
+  'Disminuye la inversión en servidores locales, mantenimiento y personal técnico especializado.',
+  'Las plataformas en la nube suelen incluir soporte, actualizaciones de seguridad y mejoras automáticas sin interrumpir los servicios.',
+  'Plataformas en la nube están diseñadas para integrar herramientas analíticas, inteligencia artificial y machine learning para mejorar la atención médica y eficiencia.',
+  'Muchos proveedores de nube incluyen herramientas integradas para ayudar con el cumplimiento de normativas como HIPAA o GDPR.'
+)
+
+
+df_ventajas <- data.frame(Aspecto, Ventaja)
+```
+
+```{r}
+
+tabla_df_ventajas <- kbl(df_ventajas,
+             caption = "Ventajas en la implementación de una plataforma de gestión de datos en la nube para SaludTotal",
+             label = 'ventajas',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  column_spec(1, width = "4cm") %>%
+  column_spec(2, width = "11cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_df_ventajas
+```
+
+Sin embargo, la implementación de plataformas en la nube también implica desafíos importantes que deben ser considerados por SaludTotal, como se presentan en la tabla \ref{tab:desventajas}. La protección de la privacidad de los datos de los pacientes, la dependencia de terceros proveedores tecnológicos y las posibles interrupciones por conectividad deficiente son riesgos latentes. Asimismo, garantizar el cumplimiento de regulaciones como la HIPAA o el GDPR puede requerir inversiones adicionales en supervisión legal y tecnológica para evitar sanciones y preservar la confianza institucional. [@AxialERP2022nube].
+
+```{r}
+Aspecto <- c(
+  'Dependencia de la conectividad',
+  'Riesgos de seguridad y privacidad',
+  'Cumplimiento legal local',
+  'Curva de aprendizaje y adaptación'
+)
+
+Desventaja <- c(
+  'Requiere una conexión a internet estable; interrupciones pueden afectar el acceso a datos críticos.',
+  'Aunque se implementan medidas de seguridad, siempre existe el riesgo de ciberataques y filtraciones de datos sensibles.',
+  'Es necesario asegurar que el almacenamiento y procesamiento de datos cumplan con las leyes locales de protección de datos.',
+  'La transición a sistemas en la nube puede requerir capacitación adicional para el personal y adaptación a nuevos procesos.'
+)
+
+
+df_desventajas <- data.frame(Aspecto, Desventaja)
+```
+
+```{r}
+
+tabla_df_desventajas <- kbl(df_desventajas,
+             caption = "Desventajas en la implementación de una plataforma de gestión de datos en la nube para SaludTotal",
+             label = 'desventajas',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  column_spec(1, width = "4cm") %>%
+  column_spec(2, width = "11cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_df_desventajas
+```
+
+La adopción de una plataforma de gestión de datos en la nube ofrece a SaludTotal una vía eficaz para fortalecer la interoperabilidad entre sistemas, mejorar la eficiencia operativa y optimizar la gestión y el análisis de datos clínicos. Esta infraestructura permite integrar información dispersa, facilitar el acceso seguro en tiempo real y escalar recursos tecnológicos conforme crece la demanda. Sin embargo, su implementación exige una evaluación rigurosa de los riesgos relacionados con la seguridad de la información, la privacidad de los datos sensibles, el cumplimiento estricto de marcos regulatorios y adoptar estrategias para la capacitación adicional para el personal.
+
+\newpage
+
+# Soluciones en la nube
+
+## Punto 9
+
+**¿Cómo podrían las soluciones en la nube beneficiar a “SaludTotal” en términos de escalabilidad y acceso a datos desde múltiples ubicaciones?**
+
+Las soluciones en la nube pueden beneficiar significativamente a SaludTotal en escalabilidad y acceso distribuido a los datos, lo que es crucial para una organización que opera una red amplia de clínicas y hospitales. Aquí te presento una explicación clara y técnica dividida por cada aspecto [@diazcomputacion].
+
+**Escalabilidad:** Una plataforma en la nube permite a SaludTotal escalar sus recursos tecnológicos de manera flexible y bajo demanda, sin necesidad de adquirir o mantener infraestructura física adicional. Esto significa que ante un aumento en el volumen de pacientes, implementación de nuevos servicios digitales o integración de sedes adicionales, la infraestructura puede ajustarse dinámicamente con costos proporcionales al uso. La escalabilidad vertical (más potencia para un servidor) y horizontal (añadir más nodos) que ofrecen los proveedores en la nube es ideal para el crecimiento progresivo de sistemas de salud complejos.
+
+**Acceso a datos desde múltiples ubicaciones:** Gracias a la nube, los datos clínicos y administrativos de SaludTotal pueden ser almacenados de forma centralizada pero accedidos de forma segura desde cualquier sede o dispositivo autorizado, en tiempo real. Esto facilita:
+
+- La atención médica continua, incluso si un paciente cambia de clínica.
+- La colaboración entre equipos médicos en distintas ubicaciones.
+- La administración y análisis de datos desde centros operativos remotos.
+- La resiliencia ante desastres locales (gracias a backups distribuidos).
+- La nube también garantiza alta disponibilidad y sincronización, lo que evita duplicación de registros o pérdidas de información.
+
+## Punto 10
+
+**¿Cuáles son las consideraciones clave que “SaludTotal” debe abordar al migrar datos de salud a una solución en la nube?**
+
+Al migrar datos de salud a una solución en la nube, SaludTotal debe abordar varias consideraciones clave para garantizar una transición segura, eficiente y alineada con la regulación. Estas se pueden clasificar en cinco áreas principales:
+
+**Seguridad y privacidad de los datos:** SaludTotal debe implementar cifrado en tránsito y en reposo, establecer controles de acceso robustos (autenticación multifactor, roles), garantizar que el proveedor cumpla con estándares de seguridad como ISO/IEC 27001 o NIST y proteger datos sensibles conforme a regulaciones como HIPAA y GDPR.
+
+**Cumplimiento normativo:** Se debe verificar que la solución en la nube respete el marco legal nacional e internacional sobre datos de salud, firmar acuerdos de procesamiento de datos (DPA) con el proveedor  y asegurar trazabilidad y auditoría completa del acceso y modificación de registros.
+
+**Interoperabilidad y compatibilidad:** La entidad de salud deb garantizar que la nueva plataforma sea interoperable con sistemas actuales (HIS, ERP, EHR). Esta debe usar estándares como HL7, FHIR o LOINC para integrar datos clínicos. Por último es necesario planificar migración sin pérdida de información ni ruptura de flujos operativos.
+
+**Elección del proveedor de nube:** Evaluar reputación, historial de cumplimiento y disponibilidad del proveedor. Considerar modelos de despliegue (pública, privada o híbrida) según las necesidades. Asegurar redundancia, copias de respaldo automáticas y alta disponibilidad.
+
+**Gobernanza del dato y gestión del cambio:** Establecer una política clara de gobernanza del dato que incluya calidad, propiedad y ciclo de vida. Capacitar al personal técnico y clínico sobre el uso de la nueva plataforma. Asegurar liderazgo institucional para sostener el proceso de transformación digital.
+
+# Big Data En La Empresa
+
+## Punto 11
+
+**¿Qué aplicaciones específicas de Big Data crees que podrían ser útiles para “SaludTotal” en la mejora de la atención médica?**
+
+SaludTotal puede aprovechar aplicaciones específicas de Big Data para mejorar tanto la calidad de la atención médica como la eficiencia en sus operaciones clínicas y administrativas. A continuación se presentan algunas aplicaciones concretas con impacto directo en su entorno.
+
+**Modelos predictivos para diagnóstico y pronóstico:** Aplicando técnicas de aprendizaje automático (machine learning), SaludTotal puede identificar patrones en grandes volúmenes de datos clínicos y predecir la probabilidad de eventos como reingresos hospitalarios, complicaciones postoperatorias o progresión de enfermedades crónicas. Esto permite intervenciones tempranas y personalizadas. Ejemplo, un modelo que prediga el riesgo de insuficiencia cardíaca basado en datos del historial clínico, signos vitales y resultados de laboratorio.
+
+**Optimización de recursos hospitalarios:** Mediante el análisis de grandes volúmenes de datos operativos (ocupación de camas, tiempos de espera, demanda por especialidad), SaludTotal puede mejorar la asignación de personal médico, programar citas con mayor eficiencia y prever picos de demanda. Ejemplo, un panel analítico que indique en tiempo real la saturación de unidades de urgencias en distintas sedes.
+
+**Medicina personalizada basada en datos genómicos y clínicos:** El análisis conjunto de datos genéticos y clínicos puede ayudar a definir tratamientos individualizados para cada paciente. Aunque en etapas iniciales, esta práctica puede guiar decisiones terapéuticas más precisas y efectivas. Ejemplo, estratificación de pacientes con cáncer según biomarcadores para seleccionar la terapia más adecuada.
+
+\begin{figure}[H]
+  \caption{SaludTotal utiliza Big Data y por medio de modelos predictivos detecta brotes de epidemias.}
+  \includegraphics[]{fig/alerta_virus.png}
+  \label{fig:alerta_virus}
+\end{figure}
+
+**Detección temprana de brotes o eventos adversos:** El Big Data permite monitorear en tiempo real grandes cantidades de registros médicos, recetas y síntomas reportados, lo que facilita la identificación precoz de brotes epidémicos o efectos secundarios de medicamentos. Ejemplo, un sistema de vigilancia automatizada que detecte aumentos inusuales de infecciones respiratorias por zona geográfica.
+
+**Análisis de opinión y satisfacción del paciente:** A través del procesamiento de lenguaje natural (NLP), SaludTotal puede analizar encuestas, comentarios en línea y llamadas de atención al cliente para identificar áreas de mejora en la experiencia del paciente. Ejemplo, análisis automatizado de encuestas, realizadas luego de cada atención, para detectar términos recurrentes como "espera", "trato" o "explicación médica".
+
+\newpage
+
+## Punto 12
+
+**¿Cómo podría “SaludTotal” garantizar la ética y la privacidad de los datos al utilizar tecnologías de Big Data en la empresa?**
+
+Para garantizar la ética y privacidad de los datos al implementar Big Data, SaludTotal debería adoptar un marco integral que combine la Protección técnica, la gobernanza ética y protocolos específicos.
+
+**Protección técnica:** Implementar cifrado y tokenización como AES-256 para datos en reposo y TLS 1.3 en tránsito, usar tokenización en campos sensibles, como los nombres de pacientes, para análisis sin exponer datos crudos y la anonimización dinámica con técnicas como k-anonymity (agrupación de datos) o differential privacy (ruido estadístico) en informes agregados. Por ejemplo, Al compartir datos para investigación, asegurar que ningún paciente sea identificable.
+
+**Gobernanza ética:** Establecer comités de Ética de Datos de equipos con médicos, abogados, científicos de datos y representantes de pacientes para validar el uso de algoritmos para realizar auditorías periódicas para detectar sesgos en modelos predictivos. Por ejemplo, los diagnósticos inequitativos por género/raza. Mantener la transparencia algorítmica, documentando las fuentes de datos, lógica de modelos y límites de interpretación (ej.: explicar por qué un algoritmo sugiere un tratamiento).
+
+**Cumplimiento Normativo Automatizado** Realizar la gestión de consentimientos haciendo uso de plataformas tipo Consent Management Platforms (CMPs) que registran preferencias de pacientes. Integrarse con las regulaciones locales, por ejemplo, en México se debe cumplir con la Ley Federal de Protección de Datos. Realizar la monitorización en tiempo real con herramientas como "Collibra" o "Informatica" para detectar violaciones como acceso no autorizado a historias clínicas y generar alertas.
+
+**Protocolos específicos:** Auditorias automatizadas de linaje de datos para la trazabilidad, contratos con terceros que exijan cumplimiento normativo, y herramientas de Privacy by Design como federated learning para entrenar modelos sin compartir datos crudos.
+
+\begin{figure}[H]
+  \caption{SaludTotal” garantizar la ética y la privacidad de los datos al utilizar tecnologías de Big Data en la empresa.}
+  \includegraphics[]{fig/privacidad_datos.png}
+  \label{fig:privacidad_datos}
+\end{figure}
+
+**Privacidad desde el Diseño (Privacy by Design):** Entrenar modelos de IA en dispositivos locales como los hospitales, sin centralizar datos crudos, minimizando riesgos de filtración. Recopilar solo lo estrictamente necesario, por ejemplo, omitir dirección postal si no es relevante para un estudio clínico.
+
+**Cultura Organizacional y Capacitación:** Desarrollar programas de concienciación para capacitar a empleados en phishing, manejo seguro de datos y ética en IA. y realizar simulacros de ciberseguridad con ejercicios anuales para responder a brechas de datos, siguiendo protocolos tipo NIST Cybersecurity Framework.
+
+SaludTotal podría usar Big Data para predecir epidemias utilizando datos anonimalizados de pacientes con differential privacy. Los médicos podrán acceder a predicciones mediante dashboards con autenticación de 2 factores y un comité revisará que las conclusiones no discriminen a poblaciones vulnerables.
+
+Las herramientas que se le recomendaria a SaludTotal son Apache Atlas (linaje de datos), IBM Watson Health (analítica con enfoque ético) y OneTrust (gestión de consentimientos GDPR/HIPAA).
+
+\newpage
+
+# Referencias
