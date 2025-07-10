@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.15)  18 MAY 2025 21:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.15)  28 MAY 2025 11:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -662,13 +662,13 @@ Package pdftex.def Info: fig/Salud_Total.jpeg  used on input line 180.
 <fig/medico_preocupados.png, id=63, 455.45157pt x 148.30406pt>
 File: fig/medico_preocupados.png Graphic file (type png)
 <use fig/medico_preocupados.png>
-Package pdftex.def Info: fig/medico_preocupados.png  used on input line 211.
+Package pdftex.def Info: fig/medico_preocupados.png  used on input line 213.
 (pdftex.def)             Requested size: 455.45045pt x 148.30368pt.
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 215.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 216.
 (pdftex.def)             Requested size: 200.0pt x 35.76839pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -677,17 +677,30 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
-[3 <./fig/Salud_Total.jpeg> <./fig/medico_preocupados.png>]
-<fig/gobierno_dato.png, id=71, 455.45157pt x 237.13594pt>
+[3 <./fig/Salud_Total.jpeg>]
+
+File: fig/Logo_Cesuma.png Graphic file (type png)
+<use fig/Logo_Cesuma.png>
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 217.
+(pdftex.def)             Requested size: 200.0pt x 35.76839pt.
+
+Package fancyhdr Warning: \headheight is too small (28.45274pt): 
+(fancyhdr)                Make it at least 39.36842pt, for example:
+(fancyhdr)                \setlength{\headheight}{39.36842pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
+
+[4 <./fig/medico_preocupados.png>]
+<fig/gobierno_dato.png, id=75, 455.45157pt x 237.13594pt>
 File: fig/gobierno_dato.png Graphic file (type png)
 <use fig/gobierno_dato.png>
-Package pdftex.def Info: fig/gobierno_dato.png  used on input line 244.
+Package pdftex.def Info: fig/gobierno_dato.png  used on input line 246.
 (pdftex.def)             Requested size: 455.45045pt x 237.13535pt.
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 282.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 284.
 (pdftex.def)             Requested size: 200.0pt x 35.76839pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -696,21 +709,21 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
-[4 <./fig/gobierno_dato.png>]
-Overfull \hbox (3.09444pt too wide) in paragraph at lines 290--300
+[5 <./fig/gobierno_dato.png>]
+Overfull \hbox (3.09444pt too wide) in paragraph at lines 292--302
  [][] 
  []
 
-<fig/Desafios_Big_data.png, id=78, 455.45157pt x 144.54pt>
+<fig/Desafios_Big_data.png, id=82, 455.45157pt x 144.54pt>
 File: fig/Desafios_Big_data.png Graphic file (type png)
 <use fig/Desafios_Big_data.png>
-Package pdftex.def Info: fig/Desafios_Big_data.png  used on input line 313.
+Package pdftex.def Info: fig/Desafios_Big_data.png  used on input line 315.
 (pdftex.def)             Requested size: 455.45045pt x 144.53963pt.
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 317.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 319.
 (pdftex.def)             Requested size: 200.0pt x 35.76839pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -719,22 +732,22 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
-[5 <./fig/Desafios_Big_data.png>]
-<fig/Toma_de_decisiones.png, id=86, 455.45157pt x 169.38281pt>
+[6 <./fig/Desafios_Big_data.png>]
+<fig/Toma_de_decisiones.png, id=90, 455.45157pt x 169.38281pt>
 File: fig/Toma_de_decisiones.png Graphic file (type png)
 <use fig/Toma_de_decisiones.png>
-Package pdftex.def Info: fig/Toma_de_decisiones.png  used on input line 349.
+Package pdftex.def Info: fig/Toma_de_decisiones.png  used on input line 351.
 (pdftex.def)             Requested size: 455.45045pt x 169.38239pt.
-<fig/deteccion_enfermedades.png, id=87, 451.6875pt x 191.71625pt>
+<fig/deteccion_enfermedades.png, id=91, 451.6875pt x 191.71625pt>
 File: fig/deteccion_enfermedades.png Graphic file (type png)
 <use fig/deteccion_enfermedades.png>
-Package pdftex.def Info: fig/deteccion_enfermedades.png  used on input line 381.
+Package pdftex.def Info: fig/deteccion_enfermedades.png  used on input line 383.
 (pdftex.def)             Requested size: 451.68639pt x 191.71577pt.
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 384.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 386.
 (pdftex.def)             Requested size: 200.0pt x 35.76839pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -743,17 +756,17 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
-[6 <./fig/Toma_de_decisiones.png>]
-<fig/experiencia_paciente.png, id=94, 455.45157pt x 170.13562pt>
+[7 <./fig/Toma_de_decisiones.png>]
+<fig/experiencia_paciente.png, id=99, 455.45157pt x 170.13562pt>
 File: fig/experiencia_paciente.png Graphic file (type png)
 <use fig/experiencia_paciente.png>
-Package pdftex.def Info: fig/experiencia_paciente.png  used on input line 401.
+Package pdftex.def Info: fig/experiencia_paciente.png  used on input line 403.
 (pdftex.def)             Requested size: 455.45045pt x 170.1352pt.
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 419.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 421.
 (pdftex.def)             Requested size: 200.0pt x 35.76839pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -762,21 +775,21 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
-[7 <./fig/deteccion_enfermedades.png> <./fig/experiencia_paciente.png>]
-Overfull \hbox (7.5472pt too wide) in paragraph at lines 436--450
+[8 <./fig/deteccion_enfermedades.png> <./fig/experiencia_paciente.png>]
+Overfull \hbox (7.5472pt too wide) in paragraph at lines 438--452
  [][] 
  []
 
-<fig/Big_Data.png, id=104, 455.45157pt x 157.33781pt>
+<fig/Big_Data.png, id=108, 455.45157pt x 157.33781pt>
 File: fig/Big_Data.png Graphic file (type png)
 <use fig/Big_Data.png>
-Package pdftex.def Info: fig/Big_Data.png  used on input line 463.
+Package pdftex.def Info: fig/Big_Data.png  used on input line 465.
 (pdftex.def)             Requested size: 455.45045pt x 157.33742pt.
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 481.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 483.
 (pdftex.def)             Requested size: 200.0pt x 35.76839pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -785,17 +798,17 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
-[8 <./fig/Big_Data.png>]
-<fig/reporte_medico.png, id=112, 451.6875pt x 191.71625pt>
+[9 <./fig/Big_Data.png>]
+<fig/reporte_medico.png, id=116, 451.6875pt x 191.71625pt>
 File: fig/reporte_medico.png Graphic file (type png)
 <use fig/reporte_medico.png>
-Package pdftex.def Info: fig/reporte_medico.png  used on input line 509.
+Package pdftex.def Info: fig/reporte_medico.png  used on input line 511.
 (pdftex.def)             Requested size: 451.68639pt x 191.71577pt.
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 548.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 550.
 (pdftex.def)             Requested size: 200.0pt x 35.76839pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -804,21 +817,21 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
-[9 <./fig/reporte_medico.png>]
-<fig/Medico_dasefios.png, id=118, 451.6875pt x 191.71625pt>
+[10 <./fig/reporte_medico.png>]
+<fig/Medico_dasefios.png, id=122, 451.6875pt x 191.71625pt>
 File: fig/Medico_dasefios.png Graphic file (type png)
 <use fig/Medico_dasefios.png>
-Package pdftex.def Info: fig/Medico_dasefios.png  used on input line 575.
+Package pdftex.def Info: fig/Medico_dasefios.png  used on input line 577.
 (pdftex.def)             Requested size: 451.68639pt x 191.71577pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 594.
+(Font)              <8> on input line 596.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 594.
+(Font)              <6> on input line 596.
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 616.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 618.
 (pdftex.def)             Requested size: 200.0pt x 35.76839pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -827,17 +840,17 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
-[10 <./fig/Medico_dasefios.png>]
-<fig/datos_centralizados.png, id=129, 455.45157pt x 169.38281pt>
+[11 <./fig/Medico_dasefios.png>]
+<fig/datos_centralizados.png, id=133, 455.45157pt x 169.38281pt>
 File: fig/datos_centralizados.png Graphic file (type png)
 <use fig/datos_centralizados.png>
-Package pdftex.def Info: fig/datos_centralizados.png  used on input line 650.
+Package pdftex.def Info: fig/datos_centralizados.png  used on input line 652.
 (pdftex.def)             Requested size: 455.45045pt x 169.38239pt.
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 684.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 686.
 (pdftex.def)             Requested size: 200.0pt x 35.76839pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -846,24 +859,11 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
-[11 <./fig/datos_centralizados.png>]
+[12 <./fig/datos_centralizados.png>]
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 758.
-(pdftex.def)             Requested size: 200.0pt x 35.76839pt.
-
-Package fancyhdr Warning: \headheight is too small (28.45274pt): 
-(fancyhdr)                Make it at least 39.36842pt, for example:
-(fancyhdr)                \setlength{\headheight}{39.36842pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
-
-[12]
-
-File: fig/Logo_Cesuma.png Graphic file (type png)
-<use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 852.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 760.
 (pdftex.def)             Requested size: 200.0pt x 35.76839pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -873,16 +873,29 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
 [13]
-<fig/alerta_virus.png, id=149, 455.45157pt x 173.89969pt>
+
+File: fig/Logo_Cesuma.png Graphic file (type png)
+<use fig/Logo_Cesuma.png>
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 854.
+(pdftex.def)             Requested size: 200.0pt x 35.76839pt.
+
+Package fancyhdr Warning: \headheight is too small (28.45274pt): 
+(fancyhdr)                Make it at least 39.36842pt, for example:
+(fancyhdr)                \setlength{\headheight}{39.36842pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
+
+[14]
+<fig/alerta_virus.png, id=154, 455.45157pt x 173.89969pt>
 File: fig/alerta_virus.png Graphic file (type png)
 <use fig/alerta_virus.png>
-Package pdftex.def Info: fig/alerta_virus.png  used on input line 882.
+Package pdftex.def Info: fig/alerta_virus.png  used on input line 884.
 (pdftex.def)             Requested size: 455.45045pt x 173.89925pt.
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 901.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 903.
 (pdftex.def)             Requested size: 200.0pt x 35.76839pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -891,17 +904,17 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
-[14 <./fig/alerta_virus.png>]
-<fig/privacidad_datos.png, id=157, 455.45157pt x 172.39406pt>
+[15 <./fig/alerta_virus.png>]
+<fig/privacidad_datos.png, id=161, 455.45157pt x 172.39406pt>
 File: fig/privacidad_datos.png Graphic file (type png)
 <use fig/privacidad_datos.png>
-Package pdftex.def Info: fig/privacidad_datos.png  used on input line 945.
+Package pdftex.def Info: fig/privacidad_datos.png  used on input line 947.
 (pdftex.def)             Requested size: 455.45045pt x 172.39363pt.
 
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 971.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 973.
 (pdftex.def)             Requested size: 200.0pt x 35.76839pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -910,8 +923,8 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
-[15 <./fig/privacidad_datos.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1015--1018
+[16 <./fig/privacidad_datos.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 1017--1020
 []$\T1/lmr/m/n/10 https : / / europa . eu / youreurope / business / dealing -[] with -[] customers / data -[] protection / data -[] protection -[]
  []
 
@@ -919,7 +932,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1015--1018
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 1107.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 1109.
 (pdftex.def)             Requested size: 200.0pt x 35.76839pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -928,11 +941,11 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
-[16]
+[17]
 
 File: fig/Logo_Cesuma.png Graphic file (type png)
 <use fig/Logo_Cesuma.png>
-Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 1158.
+Package pdftex.def Info: fig/Logo_Cesuma.png  used on input line 1160.
 (pdftex.def)             Requested size: 200.0pt x 35.76839pt.
 
 Package fancyhdr Warning: \headheight is too small (28.45274pt): 
@@ -941,7 +954,7 @@ Package fancyhdr Warning: \headheight is too small (28.45274pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-10.91568pt}.
 
-[17] (./Caso-Práctico-412-Tecnología-y-Herramientas-Big-Data-en-la-Empresa.aux
+[18] (./Caso-Práctico-412-Tecnología-y-Herramientas-Big-Data-en-la-Empresa.aux
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
 )
@@ -954,18 +967,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 15110 strings out of 475160
- 242512 string characters out of 5763557
- 669339 words of memory out of 5000000
+ 15111 strings out of 475160
+ 242519 string characters out of 5763557
+ 669342 words of memory out of 5000000
  37757 multiletter control sequences out of 15000+600000
  614192 words of font info for 75 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  89i,16n,93p,972b,543s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/ferna/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
-Output written on Caso-Práctico-412-Tecnología-y-Herramientas-Big-Data-en-la-Empresa.pdf (17 pages, 3812375 bytes).
+Output written on Caso-Práctico-412-Tecnología-y-Herramientas-Big-Data-en-la-Empresa.pdf (18 pages, 3813250 bytes).
 PDF statistics:
- 342 PDF objects out of 1000 (max. 8388607)
- 280 compressed objects within 3 object streams
- 92 named destinations out of 1000 (max. 500000)
+ 346 PDF objects out of 1000 (max. 8388607)
+ 283 compressed objects within 3 object streams
+ 93 named destinations out of 1000 (max. 500000)
  236 words of extra memory for PDF output out of 10000 (max. 10000000)
 

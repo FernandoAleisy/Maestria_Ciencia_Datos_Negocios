@@ -100,7 +100,7 @@ p <- ggplot(df, aes(x = x, y = y, fill = colores)) +
 p
 ```
 \begin{gráfica}[H]
-  \caption{Rueda de la vida en la que plaso mi evaluación de cada dimensión de mi vida}
+  \caption{Rueda de la vida en la que plasmo mi evaluación de cada dimensión de mi vida}
   \label{gráfica:RV}
 \end{gráfica}
 

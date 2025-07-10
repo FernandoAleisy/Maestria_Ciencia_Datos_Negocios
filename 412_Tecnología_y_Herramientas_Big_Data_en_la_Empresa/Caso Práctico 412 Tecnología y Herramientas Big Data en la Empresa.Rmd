@@ -91,6 +91,12 @@ Una organización de atención médica, “SaludTotal”, opera una red de clín
   \label{fig:ind_tel}
 \end{figure}
 
+(){[fig/Salud_Total.jpeg}
+
+
+
+
+
 Problema: “SaludTotal” se enfrenta a varios desafíos relacionados con la gestión de datos de salud:
 
 - Privacidad y Cumplimiento: La organización debe cumplir con regulaciones de privacidad de datos, como el GDPR y el HIPAA, y garantizar que los datos de salud del paciente estén protegidos contra amenazas de seguridad.

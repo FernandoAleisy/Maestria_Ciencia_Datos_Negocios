@@ -1,0 +1,634 @@
+---
+output: pdf_document
+linestretch: 1.0
+geometry: "a4paper, left=2.5cm, right=2.5cm, top=2.0cm, bottom=2.5cm"
+csl: apa.csl
+bibliography: bibliografia.bib
+nocite: |
+  @*
+header-includes:
+  - \usepackage{fancyhdr}
+  - \usepackage[spanish, es-tabla]{babel}
+  - \usepackage{float}
+  - \usepackage{newfloat}
+  - \DeclareFloatingEnvironment[fileext=loq]{gráfica}
+  - \addto\captionsspanish{\renewcommand{\refname}{Referencias}}
+  - \usepackage{xcolor}
+---
+
+\definecolor{naranja}{RGB}{245,145,55}
+\definecolor{azul}{RGB}{40,100,160}
+
+\fancypagestyle{fancy}{
+ \lhead{\includegraphics[width=200pt]{fig/Logo_Cesuma.png}}
+ \rhead{\textcolor{naranja}{
+  \textbf{Maestría en Ciencia de Datos para Negocios}\\
+  \textcolor{azul}{\rule[1mm]{80mm}{0.2mm}} \\
+  Liderazgo integral y creativo}}
+ \renewcommand{\headrulewidth}{0.0pt}
+}
+
+\thispagestyle{fancy}
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+```
+
+\setlength{\headheight}{1.0cm}
+
+\null\vfill
+
+\begin{center}
+
+\bfseries{\LARGE{CASO PRÁCTICO 103  LIDERAZGO INTEGRAL Y CREATIVO\\[1.0cm]}}
+
+\includegraphics[]{fig/Rueda_vida.png}\\[1.0cm]
+
+
+\bfseries{\large{LIDERAZGO INTEGRAL Y CREATIVO\\ CIENCIA DE DATOS PARA NEGOCIOS}}
+
+\null\vfill
+
+\bfseries{ Fernando Aleisy González\\ \today}
+
+\end{center}
+
+\newpage
+\pagestyle{fancy}
+
+\tableofcontents
+
+\newpage
+
+<!--Librerías a usar en el documento-->
+
+```{r}
+library(ggplot2)
+ library(dplyr)
+library(kableExtra)
+```
+
+```{r}
+# Función para rellenar las filas con gris y blanco de forma alternada
+
+rellenos <- function(dataframe){
+  return(rep(c("#f8f8f8", "white"), nrow(dataframe)/2+1)[1:nrow(dataframe)])
+}
+```
+
+# 1. Rueda de la vida
+
+En la gráfica \ref{gráfica:RV} se encuentra plasmada la primera actividad del curso Liderazgo integral y creativo: mi rueda de la vida, una herramienta visual que refleja mi autoevaluación en distintas dimensiones personales. Al analizar los resultados, destaco que, en mi caso, no suelo dejarme llevar por la comodidad ni conformarme con el statu quo. Por el contrario, siempre estoy en búsqueda activa de nuevas formas de hacer las cosas, innovando o explorando oportunidades de crecimiento, incluso en áreas donde ya tengo cierto dominio. Esta mentalidad proactiva me llevó a asignar valoraciones altas a varias dimensiones de la rueda —como el aprendizaje continuo o las relaciones personales—, pero sin interpretar esas puntuaciones como señal de estancamiento. Al contrario, las altas calificaciones reflejan mi compromiso con mantener un equilibrio dinámico, donde el progreso en una área no implica descuidar otras. Por ejemplo, aunque valoro positivamente mi desarrollo profesional, también reconozco la necesidad de seguir fortaleciendo mi salud física o el manejo del tiempo. Esta perspectiva integral es clave para mi concepto de liderazgo: no se trata solo de avanzar, sino de evolucionar de manera consciente y equilibrada.
+
+```{r}
+dimensiones <- c("Trabajo", "Mente", "Amigos", "Físico", "Económico", "Ético", "Familia", "Ocio")
+
+x <- factor(dimensiones, levels = dimensiones)
+y <- c(8,9,9,7,5,9,10,9)
+
+df <- data.frame(x = x, y = y)
+```
+
+
+```{r}
+colores <- c("#FF5400","#00F717","#00D873","#00B9D0","#1E8BFF","#9A0FFF","#C116B9","#E0355C")
+colores <- factor(colores, levels = colores)
+```
+
+```{r}
+p <- ggplot(df, aes(x = x, y = y, fill = colores)) +
+  geom_bar(stat = "identity", width = 1, linewidth = 0.5) +
+  scale_fill_manual(values = alpha(colores, 0.6), labels = x) +
+  coord_polar() +
+  theme_minimal()+
+  scale_y_continuous(breaks = seq(0, 10, by = 1)) +
+  labs(x = NULL, y = NULL, fill = "Dimensiones")+ 
+  theme(axis.text.y = element_blank() )
+p
+```
+\begin{gráfica}[H]
+  \caption{Rueda de la vida en la que plasmo mi evaluación de cada dimensión de mi vida}
+  \label{gráfica:RV}
+\end{gráfica}
+
+La gráfica \ref{gráfica:RV} (Rueda de la Vida) destacó como prioritarios el ámbito físico (7/10) y económico (5/10). En la dimensión física, experimento agotamiento laboral vinculado a la falta de ejercicio regular, así como dificultades en mi vida sentimental debido a mi estatura y poca coordinación para bailar. Sobre el aspecto económico, la puntuación inicial reflejaba ingresos insuficientes y deudas pendientes, situación que ha mejorado significativamente con el aumento de mis ingresos y el pago de la mayoría de obligaciones, lo que hoy justificaría una calificación más alta.
+
+Estos resultados evidencian una notable mejoría económica que ahora me permite concentrarme en el desarrollo físico, particularmente en establecer una rutina de ejercicio para combatir el cansancio laboral, así como en explorar alternativas para superar mis limitaciones en actividades sociales donde la coordinación motriz es relevante.
+
+
+
+\newpage
+
+## Primer paso
+
+La evaluación de mi Rueda de la Vida sigue señalando los ámbitos económico y físico como prioritarios, aunque con un escenario financiero significativamente mejorado. Actualmente, mis ingresos no solo cubren las obligaciones básicas, sino que permiten un plan de pagos acelerado de deudas y la posibilidad de ahorro constante. Esto ha transformado mis metas económicas: ya no se trata de sobrevivir financieramente, sino de consolidar objetivos concretos como la liquidación total de deudas (pendiente un 20%) y la posterior adquisición de vivienda y vehículo. El desafío actual radica en mantener la disciplina financiera para lograr estas metas sin recaer en gastos innecesarios.
+
+\begin{figure}[H]
+  \caption{Una persona feliz al haber desarrollado plenamente su ámbito económico.}
+  \includegraphics[]{fig/ambito_economico.png}
+  \label{fig:a_economico}
+\end{figure}
+
+En contraste, el ámbito físico mantiene sus desafíos particulares. Sigo experimentando fatiga laboral relacionada con la falta de ejercicio sistemático, agravada por la ausencia de un espacio adecuado para entrenar. Paralelamente, mi estatura -por debajo del promedio- continúa afectando mi confianza en entornos sociales, especialmente en situaciones donde la coordinación física es relevante, como el baile. A diferencia del progreso económico, estos aspectos físicos requieren un enfoque diferente, centrado en la adaptación y el autoaceptación, más que en soluciones puramente materiales.
+
+\begin{figure}[H]
+  \caption{Una persona trotando para desarrollar el ámbito físico.}
+  \includegraphics[]{fig/ambito_fisico.png}
+  \label{fig:a_fisico}
+\end{figure}
+
+La evolución desigual entre ambas dimensiones es reveladora: mientras el ámbito económico demuestra que con disciplina los cambios son medibles y alcanzables, el físico presenta retos más complejos donde los resultados no dependen exclusivamente de mi esfuerzo. Esta diferencia fundamental subraya la necesidad de abordar cada ámbito con estrategias distintas -prácticas y cuantificables para lo económico, adaptativas y psicológicas para lo físico-, sin perder de vista que ambas son igualmente importantes para mi desarrollo integral.
+
+\newpage
+
+## Segundo paso
+
+En este segundo paso del proceso de autoconocimiento, se busca profundizar en la visión personal que inspira y da sentido a los esfuerzos en distintas áreas clave de la vida. A través de preguntas orientadoras, se exploran aspiraciones concretas, metas unificadoras y valores esenciales que permiten alinear los proyectos personales con una intención auténtica. En este caso, se abordan dos dimensiones fundamentales: la estabilidad financiera y el bienestar físico, visualizando cómo podrían evolucionar positivamente y qué principios deben guiar ese camino.
+
+```{r}
+
+Pregunta <- c(
+  '¿Cómo te visualizas para que valga la pena dar lo mejor de ti en estas dimensiones seleccionadas?',
+  '¿Qué meta unificadora puede ayudar a realizar ese sueo que visualizaste?',
+  rep('¿Qué valores son fundamentales manteneer para que bañen y se encarnen en tus proyectos?', 4)
+)
+
+dimension_1 <- c(
+  'Me visualizo con ingresos sólidos y diversificados, sin deudas, manejando un presupuesto inteligente que me permita ahorrar, invertir y cumplir metas como tener casa y carro propios. Quiero sentir tranquilidad económica y libertad para tomar decisiones sin estrés financiero.',
+  'Alcanzar libertad financiera para vivir con seguridad, autonomía y capacidad de brindar bienestar a mí y a mi familia, mientras construyo un patrimonio sostenible.',
+  'Disciplina: Mantener hábitos de gasto consciente y planificación.',
+  'Responsabilidad: Cumplir con compromisos financieros y evitar endeudamiento innecesario.',
+  'Creatividad: Buscar fuentes de ingreso innovadoras o oportunidades de crecimiento.',
+  'Gratitud: Valorar lo que tengo mientras trabajo por más.'
+)
+
+dimension_2 <- c(
+  'Me veo con una rutina de ejercicio constante, mejorando mi postura, fuerza y salud general. Aunque mi estatura no cambie, quiero sentirme seguro, ágil y lleno de vitalidad, con un espacio dedicado a mi bienestar físico.',
+  'Cultivar un cuerpo sano, fuerte y energético que me permita disfrutar plenamente de la vida, superando limitaciones y construyendo confianza en mí mismo.',
+  'Constancia: Priorizar el movimiento y el cuidado diario.',
+  'Autoaceptación: Amar mi cuerpo mientras lo fortalezco, sin comparaciones tóxicas.',
+  'Resiliencia: Ver los desafíos (como la estatura) como motivación para destacar en otras áreas.',
+  'Equilibrio: Buscar salud, no perfección.'
+)
+
+df_Segundo_paso <- data.frame(Pregunta, dimension_1, dimension_2)
+colnames(df_Segundo_paso) <- c('Pregunta', 'dimensión 1 (Económica)', 'dimensión 2 (Física)')
+```
+
+
+```{r}
+alternado <- rellenos(df_Segundo_paso)
+
+tabla_Segundo_paso <- kbl(df_Segundo_paso,
+             caption = "Respuestas a las preguntas del segundo paso",
+             label = 'Segundo_paso',
+             booktabs = T,
+             escape = F
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "4cm") %>%
+  column_spec(2:3, width = "5.5cm", background = alternado) %>%
+  collapse_rows(columns = 1, valign = "top", latex_hline = "major") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_Segundo_paso
+```
+
+Al clarificar estas metas y valores, se fortalece el compromiso con un propósito de vida que integra tanto el desarrollo material como el auto cuidado. Visualizar escenarios deseables y coherentes permite establecer una motivación sólida para actuar con disciplina, gratitud y equilibrio. Así, estas reflexiones no solo orientan decisiones diarias, sino que también construyen una narrativa personal basada en crecimiento consciente y realización integral.
+
+\begin{figure}[H]
+  \caption{Una persona visualizando su futuro.}
+  \includegraphics[]{fig/visualizar.png}
+  \label{fig:visualizar}
+\end{figure}
+
+\newpage
+
+## Tercer paso
+
+En la tabla \ref{tab:plan_economico} plasmo el plan para mejorar mis ingresos. Aunque, cabe aclarar que desde la actividad anterior he mejorado mis ingresos ya que en la universidad donde he estado trabajando me han asignado más horas semanales. Esto me ha permitido reducir mis deudas drásticamente. La maestría también me brindará la oportunidad de ingresar como docente ocasional de tiempo completo, lo que implica un sueldo fijo continuo, algo que no sucede con los docentes catedráticos.
+
+```{r}
+
+Aspecto <- c(
+  'Nombre del plan estratégico',
+  'Dimensión de la rueda de la vida del proyecto',
+  'Responsable último del proyecto',
+  '¿Por qué y para qué voy a hacerlo?',
+  '¿Qué valores quiero plasmar en los cómos?',
+  '¿Qué voy a hacer (acción, tiempo y lugar)?',
+  '¿Cuándo lo voy a hacer (inicio y fín)?',
+  '¿Quiénes lo vamos a hacer?',
+  '¿Qué recusros son necesarios?',
+  '¿Con qué adversidades y limitaciones me puedo encontrar?'
+  )
+
+Descripción <- c(
+  'Libertad Financiera: Deudas Cero y Patrimonio Sólido',
+  'Económica',
+  'Fernando Aleisy Gonzalez',
+  'Porque me permite tener autonomía, cumplir metas (casa/carro) y crear oportunidades futuras y para eliminar el estrés de las deudas, aumentar ingresos y construir seguridad',
+  'Disciplina, responsabilidad, gratitud y creatividad',
+  'Entre junio y agosto del año 2025 (meses en los que se contratan docentes), al haber terminado la maestría, buscaré trabajo en universidades cercanas a la universidad en la que trabajo',
+  'Entre junio y agosto del año 2025',
+  'Fernando Aleisy Gonzalez',
+  'Editor de LaTeX',
+  'Me puedo encontrar con la adversidad de que ninguna universidad necesite docentes catedráticos en el área de Matemáticas o Física'
+  )
+
+df_plan_economico <- data.frame(Aspecto, Descripción)
+```
+
+```{r}
+
+tabla_plan_economico <- kbl(df_plan_economico,
+             caption = "Plan estratégico para alcanzar los deseos y superar las molestias de la dimensión económica",
+             label = 'plan_economico',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2, width = "10cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_plan_economico
+```
+
+En la tabla \ref{tab:plan_fisico} plasmo el plan para obtener un espacio para hacer actividad física y una rutina que se ajuste a las horas de clases que se me asignen en el próximo semestre, en la universidad. Las adversidades son que no vivo en la misma ciudad donde se encuentra la universidad y esta se encuentra en una vereda a media hora del casco urbano, por lo que llegar antes de las clases puede representar un gran reto.
+
+```{r}
+
+Aspecto <- c(
+  'Nombre del plan estratégico',
+  'Dimensión de la rueda de la vida del proyecto',
+  'Responsable último del proyecto',
+  '¿Por qué y para qué voy a hacerlo?',
+  '¿Qué valores quiero plasmar en los cómos?',
+  '¿Qué voy a hacer (acción, tiempo y lugar)?',
+  '¿Cuándo lo voy a hacer (inicio y fín)?',
+  '¿Quiénes lo vamos a hacer?',
+  '¿Qué recusros son necesarios?',
+  '¿Con qué adversidades y limitaciones me puedo encontrar?'
+  )
+
+Descripción <- c(
+  'Cuerpo Sano: Fuerza y Confianza',
+  'Física',
+  'Fernando Aleisy Gonzalez',
+  'Porque me aumenta la energía para las actividades diarias y para sentirme saludable y disfrutar actividades físicas.',
+  'Constancia, autoaceptación, resiliencia.',
+  'Utilizar las instalciones deportivas de la universidad para salir a correr, preferiblemente en las mañanas',
+  'El tiempo de inicio depende del siguiente semestre y se espera a seguir indefinidamente',
+  'Fernando Aleisy Gonzalez y posiblente algún compañero de trabajo que le guste la idea',
+  'Vestimenta para deportes (sudedara) y tenis',
+  'La universidad se encuentra en una vereda (caserio alejado de la ciudad), por lo que llegar temprano puede ser difícil'
+  )
+df_plan_fisico <- data.frame(Aspecto, Descripción)
+```
+
+```{r}
+
+tabla_plan_fisico <- kbl(df_plan_fisico,
+             caption = 'Plan estratégico para alcanzar los deseos y superar las molestias de la dimensión física',
+             label = 'plan_fisico',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c('hold_position', 'striped')) %>%
+  column_spec(1, width = "6cm") %>%
+  column_spec(2, width = "9cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_plan_fisico
+```
+
+\newpage
+
+## Cuarto paso
+
+La tabla \ref{tab:miedo_economico} presento mis principales miedos asociadas al plan económico. Es importante señalar que se trata de una estrategia temporal, ya que una vez finalice mi maestría, enfocaré mis esfuerzos en alcanzar un buen nivel de inglés ya que el dominio del inglés es frecuentemente un requisito excluyente en las convocatorias laborales. El aprendizaje de este idioma representará un paso fundamental para acceder a mejores oportunidades profesionales en el campo del análisis de datos.
+
+```{r}
+
+Miedo <- c(
+  'No lograr conseguir trabajo en otra universidad',
+  'Que no pueda cumplir con las clases en alguna de la universidades',
+  'Que las universidades no requieran docentes catedráticos'
+  )
+
+Afrontarlo <- c(
+  'Mejorar la hoja de vida y buscar ser recomendado por docentes que trabajan tanto en la universidad dónde trabajo actualmente como en las universidades dónde voy a solicitar trabajo',
+  'Buscar un medio de transporte propio (carro) para dejar de depender del transporte de la universidad y del transporte público',
+  'Estudiar inglés para poder acceder al mescado laboral corde a la maestría'
+  )
+
+df_miedo_economico <- data.frame(Miedo, Afrontarlo)
+colnames(df_miedo_economico)[2] <- '¿Cómo afrontarlo?'
+
+```
+
+```{r}
+
+tabla_miedo_economico <- kbl(df_miedo_economico,
+             caption = 'Plan estratégico para alcanzar los deseos y superar las molestias de la dimensión física',
+             label = 'miedo_economico',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c('hold_position', 'striped')) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2, width = "10cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_miedo_economico
+```
+
+La tabla \ref{tab:miedo_fisico} presenta mis principales preocupaciones asociadas al plan de desarrollo físico. Mi rutina de ejercicio se ha centrado en correr (trotar), una actividad que elijo conscientemente debido a mi condición de autismo. Esta preferencia surge porque los deportes que requieren coordinación motriz compleja, como el fútbol, generan en mí niveles de estrés significativos, mientras trotar me permite mantener la actividad física en un entorno predecible y de menor demanda neurológica.
+
+```{r}
+
+Miedo <- c(
+  'No tener tiempo para hacer ejercicio (correr)',
+  'No crear rutina de ejercicios cortos'
+  )
+
+Afrontarlo <- c(
+  'Buscar espacios en los que pueda hacer algo de ejercicios en las pausas activas cada vez que tenga que hacer un trabajo.',
+  'Utilizar una aplicación que me indique que es momento de una pausa activa y realizar un ejercicio en específico.'
+  )
+
+df_miedo_fisico <- data.frame(Miedo, Afrontarlo)
+colnames(df_miedo_fisico)[2] <- '¿Cómo afrontarlo?'
+
+```
+
+```{r}
+
+tabla_miedo_fisico <- kbl(df_miedo_fisico,
+             caption = 'Plan estratégico para alcanzar los deseos y superar las molestias de la dimensión física',
+             label = 'miedo_fisico',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c('hold_position', 'striped')) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2, width = "10cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_miedo_fisico
+```
+
+Este análisis deja claro que mi estrategia para gestionar los miedos debe enfocarse en: la prevención activa (económico) y adaptación flexible (físico). Para los temores laborales, implemento soluciones estructurales como mejorar mi CV, conseguir recomendaciones y aprender inglés, acciones que atacan directamente las causas de cada miedo (falta de oportunidades y requisitos del mercado). Para los desafíos físicos, desarrollo micro-soluciones contextuales: aprovechar pausas laborales para ejercitarme y usar recordatorios, reconociendo que aquí el enemigo no son condiciones externas sino mi propia capacidad de crear hábitos. Ambos enfoques comparten un núcleo común: convertir la ansiedad en acciones específicas, pero difieren en su alcance —mientras lo económico exige cambios sistémicos, lo físico requiere ajustes cotidianos que respeten mis límites neurológicos.
+
+\begin{figure}[H]
+  \caption{Una persona reflexionando sobre como afrontar sus miedos.}
+  \includegraphics[]{fig/Reflexivo.png}
+  \label{fig:Reflexivo}
+\end{figure}
+
+\newpage
+
+## Quinto paso
+
+Los recursos con los que más me identifico y que puedo aplicar al ejecutar la estrategia *Libertad Financiera: Deudas Cero y Patrimonio Sólido* son el recurso del razonamiento argumentativo, del premio,y del ejemplo. En la tabla \ref{tab:recursos} se muestra los recursos, la razones de escogerlos y cómo los aplicaría.
+
+```{r}
+
+Recurso <- c(
+  'Premio (Recompensa Extrínseca)',
+  'Ejemplo (Modelado/Referentes)',
+  'Razonamiento Argumentativo (Lógica)'
+  )
+
+Por_que <- c(
+  'Porque te motiva reconocer logros concretos en un proceso largo como aumentar ingresos.',
+  'Porque necesitas ver casos reales de personas que escalaron sus ingresos desde cero.',
+  'Porque entender el impacto de cada acción me mantendrá enfocado.'
+  )
+
+como_aplicarlo <- c(
+  'Celebrar cada nueva fuente de ingreso (Si consigo un trabajo en una universidad me regalo un almuerzo especial) y al pagar una deuda grande, invertir en algo que genere más ingresos (ej. un curso de habilidades digitales).',
+  'Indagarle a los compañeros del trabajo sobre cómo han conseguido trabajo en otras universidades y cómo llevan sus finanzas.',
+  'Recordad datos como <<si aumento un 20% mis ingresos, podré pagar mi deuda en 1 año en lugar de 3>> y crear un <<mapa de impacto financiero>> por adquirir una nueva habilidad'
+)
+
+df_recursos <- data.frame(Recurso, Por_que, como_aplicarlo)
+colnames(df_recursos)[2:3] <- c('¿Por qué?', 'Cómo aplicarlo')
+
+```
+
+```{r}
+
+tabla_recursos <- kbl(df_recursos,
+             caption = 'Plan estratégico para alcanzar los deseos y superar las molestias de la dimensión física',
+             label = 'recursos',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c('hold_position', 'striped')) %>%
+  column_spec(1, width = "3cm") %>%
+  column_spec(2:3, width = "6cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_recursos
+```
+
+Los recursos con los que más me identifico y que puedo aplicar al ejecutar la estrategia *Libertad Financiera: Deudas Cero y Patrimonio Sólido* son el recurso del entrenamiento como medio para adquirir los hábitos, de los sentimientos y el del eliminar obstáculos. En la tabla \ref{tab:recursos_2} se muestra los recursos, la razones de escogerlos y cómo los aplicaría.
+
+```{r}
+
+Recurso <- c(
+  'Entrenamiento para Hábitos.',
+  'Sentimientos (Vinculación Emocional).',
+  'Eliminar Obstáculos'
+  )
+
+Por_que <- c(
+  'Porque confías en la repetición para internalizar rutinas. Los hábitos pequeños evitan la abrumación.',
+  'Porque asociar el ejercicio a emociones positivas (tener mucha energía para las activiades) puede generar la percepción de valor que no he tenido hasta el momento.',
+  'Tus molestias son falta de espacio para ejercicio'
+  )
+
+como_aplicarlo <- c(
+  'Utilizar una aplicación que pueda programar para que me indique cuando es momento de una pausa activa.',
+  'Comparar el rendimiento en el trabajo antes y después de llavar días haciendo ejercicio.',
+  'Crear un rincón mínimo de ejercicio'
+)
+
+df_recursos_2 <- data.frame(Recurso, Por_que, como_aplicarlo)
+colnames(df_recursos_2)[2:3] <- c('¿Por qué?', 'Cómo aplicarlo')
+
+```
+
+```{r}
+
+tabla_recursos_2 <- kbl(df_recursos_2,
+             caption = 'Plan estratégico para alcanzar los deseos y superar las molestias de la dimensión física',
+             label = 'recursos_2',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c('hold_position', 'striped')) %>%
+  column_spec(1, width = "3cm") %>%
+  column_spec(2:3, width = "6cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_recursos_2
+```
+
+Estos recursos para libertad financiera y bienestar físico comparten un enfoque clave: transformar metas en acciones adaptadas a mis necesidades. En lo económico, combino el razonamiento argumentativo, modelos inspiradores (colegas) y recompensas (premios por logros) para crear motivación sostenida. Para lo físico, uso entrenamiento de hábitos (apps recordatorias), conexión emocional (comparar mi energía pre/post ejercicio) y adaptación del espacio (rincón de ejercicio). Ambos planes, aunque distintos, aplican tres principios: 1) dividir objetivos grandes en pasos pequeños, 2) usar refuerzos positivos, y 3) ajustarse a mi contexto (autismo y docencia), con lo que retos complejos pueden gestionarse con estrategias estructuradas.
+
+\newpage
+
+## Sexto paso
+
+En la tabla \ref{tab:pasos} plasmo los hábitos que debo desarrollar para abordar sistemáticamente los planes estratégicos de mis dos dimensiones apremiantes: económica y física. Cada hábito propuesto sigue el marco de obvio, atractivo, sencillo y satisfactorio [@clear2018atomic], adaptado a mis circunstancias específicas como docente universitario con necesidades particulares de movilidad y gestión del tiempo. Para la dimensión económica, el foco está en generar ingresos adicionales mediante postulaciones disciplinadas, mientras que el hábito físico busca convertir el ejercicio en una rutina matutina sostenible, aprovechando los recursos disponibles en mi entorno laboral.
+
+```{r}
+
+Pasos <- c(
+  'Dimensión',
+  'Nombre del hábito',
+  'Forma obvia',
+  'Forma atractiva',
+  'Forma sencilla',
+  'Forma satisfactoria',
+  rep('Obstáculo', 2)
+  )
+
+Plan_1 <- c(
+  'Económica',
+  'Postular a vacantes diariamente',
+  'Si aplico a 1 vacante en universidades cercanas cada día (durante junio-agosto 2025), maximizaré mis oportunidades de conseguir un segundo empleo que aumente mis ingresos y acelere el pago de deudas.',
+  'Cada postulación me acerca a un salario adicional, lo que significa que pago más rápido de deudas, mayor posibilidad de ahorrar para la casa/carro propio y menos estrés financiero al tener múltiples fuentes de ingreso.',
+  'Dedicar 20 minutos al día (ej. antes de desayunar) a buscar vacantes en portales universitarios y guardar CV y documentos en una carpeta digital de acceso rápido.',
+  'Marcar en un calendario cada día que cumpla la meta y celebrar cada entrevista conseguida (ej. con un café especial).',
+  'Internos: Que surjan pensamientos pesimistas como "No tengo tiempo" o "No me contratarán" o de autoengaño como "Esperaré a que salga la vacante perfecta".',
+  'Externos: Pocas vacantes en mi área geográfica y competencia con otros docentes.'
+  )
+
+Plan_2 <- c(
+  'Física',
+  'Correr 3 veces por semana en las instalaciones deportivas de la universidad (mañanas)',
+  'Correr en la pista de la universidad tres días en los que no tenga clase temprano (antes de las 8 de la mañana)',
+  'Disfrutar del aire libre y el silencio matutino y me sentirte más energético y seguro durante el día.',
+  'Empezar con 10-15 minutos de trote suave (aunque sea poco, priorizar la constancia) y si no puedes correr, hacer 5 minutos de estiramientos en el mismo lugar (para mantener el ritual).',
+  'Disfrutaré de los paisaje que tiene la universidad miesntra troto',
+  'Internos: el deseo de dormir más tiempo cuando las primeras clases son entrada la mañana o en la tarde',
+  'Externos: Puede amanecer lloviendo y no encontrar transporte para llegar a la universidad.'
+)
+
+df_pasos <- data.frame(Pasos, Plan_1, Plan_2)
+colnames(df_pasos)[2:3] <- c('Plan estratégico 1', 'Plan estratégico 2')
+
+```
+
+
+```{r}
+alternado <- rellenos(df_pasos)
+
+tabla_pasos <- kbl(df_pasos,
+             caption = 'Habitos a desarrollar para poder aplicar con éxito los planes estratégicos',
+             label = 'pasos',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "3cm") %>%
+  column_spec(2:3, width = "6cm", background = alternado) %>%
+  collapse_rows(columns = 1, valign = "top", latex_hline = "custom") %>% row_spec(0, bold = TRUE, align = "c")
+
+tabla_pasos
+```
+
+Con el desarrollo de estos hábitos, se garantiza el éxito de los planes estratégicos mediante tres pilares: 1) Acciones mínimas consistentes (postulaciones diarias/trote corto). 2) Recompensas inmediatas (registros visuales, disfrute ambiental). 3) Adaptación a obstáculos (plan B para clima o fatiga). La honestidad ante las barreras (externas e internas) convierte el plan en una hoja de ruta práctica, demostrando que el progreso exige tanto disciplina como autoaceptación flexible.
+
+\newpage
+
+## Séptimo paso
+
+Los planes estratégicos económico y físico no solo buscan resolver necesidades prácticas, sino que responden a tres deseos humanos fundamentales identificados en la matriz: seguridad, amor y valía. El plan económico (ingresos múltiples/pago de deudas) satisface directamente la necesidad de estabilidad material ("tener dónde vivir"), mientras que el plan físico (ejercicio regular) aborda la seguridad operativa ("rendir en labores diarias"). Ambos convergen en un objetivo superior: construir una identidad donde me perciba, y sea percibido, como alguien que aporta valor, ya sea en el hogar (mediante contribuciones económicas) o en el trabajo (a través de mayor productividad y presencia física).
+
+```{r}
+
+Deseos_matriciales <- c(
+  'SENTIRME SEGURO',
+  'SENTIRME AMADO',
+  'SENTIRME VALIOSO'
+  )
+
+Plan_1 <- c(
+  'Me da seguridad de tener donde vivir, comida, servicios básicos...',
+  'Sentirme apreciado por aportar económicamente en el hogar.',
+  'Seré una persona que puede aportar en el hogar.'
+  )
+
+Plan_2 <- c(
+  'Me da seguirdad de poder rendir en mis labores diarias, de cumplir con todas las labores sin necesidad de dejar actividades para los siguiente días.',
+  'Mejor apariencia permite que las personas estén más dispuestos a establecer una relación afectiva con uno',
+  'Seré una persona que puede aportar más de lo esperado en la labores correspondientes al trabajo.'
+)
+
+df_deseos <- data.frame(Deseos_matriciales, Plan_1, Plan_2)
+colnames(df_deseos) <- c('Deseos matriciales', 'Plan estratégico 1', 'Plan estratégico 2')
+
+```
+
+
+```{r}
+alternado <- rellenos(df_deseos)
+
+tabla_deseos <- kbl(df_deseos,
+             caption = 'Forma en que los planes estrategicos responden a los deseos matriciales ',
+             label = 'deseos',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "3cm") %>%
+  column_spec(2:3, width = "6cm", background = alternado) %>%
+  collapse_rows(columns = 1, valign = "top", latex_hline = "custom") %>% row_spec(0, bold = TRUE, align = "c")
+
+tabla_deseos
+```
+
+Estos planes son puentes entre lo concreto y lo emocional: transforman acciones específicas (postulaciones laborales/trote) en realización de deseos profundos. El económico garantiza seguridad material y reconocimiento familiar; el físico fortalece capacidades laborales y atractivo social. Juntos, crean un círculo virtuoso donde lo tangible (ahorros, condición física) alimenta lo intangible (autoestima, pertenencia), demostrando que el crecimiento personal exige atender simultáneamente la boca del banco y la del alma.
+
+\begin{figure}[H]
+  \caption{Un hombre feliz mostrando su hogar.}
+  \includegraphics[]{fig/deso_matricial.png}
+  \label{fig:deso_matricial}
+\end{figure}
+
+\newpage
+
+## Octavo paso
+
+**¿Te ayudó el formato de plan de acción? ¿En qué?**
+
+Si, me ayudó, ya que me permite pensar de forma estructurada sobre un plan para mejorar los aspectos económicos y  físicos de mi  vida. Con este plan puedo
+
+Priorizar lo urgente versus lo importante, por ejemplo, pagar deudas versus ahorrar. Es más urgente pagar las deudas aunque es importante ahorrar.
+
+Visualizar progreso con acciones medibles, ejemplo, 1 postulación diaria.
+
+Mantener la motivación al ver pequeños logros acumulados.
+
+**¿Te gustaría recibir otros apoyos gráficos, tipo formatos para llevar a la vida tu plan de acción (formato de horario semanal, formato para metas semanales, mapa mental, esquema u otros)? ¿se te ocurre alguno que quisieras proponer?**
+
+Si me gustaría, por ejemplo, he estado usando, recientemente, *Notion* y me parece que es muy útil para llevar a cabo planes y organizar las tareas diarias. Por ello propondría herramientas de visualización y análisis como diferentes vistas de datos como calendarios, tableros kanban, galerías y gráficos simples que ayudan a visualizar patrones de gasto, fechas de pago, o el progreso de los objetivos.
+
+**¿Cuáles fueron tus aprendizajes más significativos en esta asignatura? Puedes enumerarlos, describirlos, relacionarlos, o expresarlos como tú quieras.**
+
+* Pequeños hábitos que equivale a grandes cambios: 10 minutos de ejercicio o 1 postulación al día generan impacto.
+
+* Auto-conocimiento: Identifiqué qué recursos motivacionales me funcionan (ej. premios, ejemplos).
+
+* Flexibilidad: Ajustar planes sin culpa (ej. si no corro, hago estiramientos en casa).
+
+**¿Con qué te quedas y qué deja en ti?**
+
+* Me quedo con: La seguridad de que puedo construir disciplina paso a paso.
+
+* Deja en mí: Una mentalidad proactiva y optimista, incluso frente a obstáculos.
+
+**Finalmente. Si tuvieras que resumir en una sola frase los dos puntos anteriores, ¿cómo la redactarías?**
+
+*"Transformar sueños en acciones concretas —con hábitos pequeños y perseverancia— es el camino para crear la vida que quiero."*
+
+\newpage
+
+# Referencias

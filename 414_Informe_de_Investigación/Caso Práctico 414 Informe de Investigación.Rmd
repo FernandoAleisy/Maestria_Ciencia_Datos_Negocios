@@ -1,0 +1,1310 @@
+---
+output:
+  pdf_document: default
+linestretch: 1.5
+geometry: a4paper, left=2.54cm, right=2.54cm, top=2.4cm, bottom=2.54cm
+csl: apa.csl
+bibliography: bibliografia.bib
+nocite: |
+  @*
+header-includes:
+- \usepackage{fancyhdr}
+- "\\usepackage[spanish, es-tabla]{babel}"
+- \usepackage{float}
+- \usepackage{newfloat}
+- \DeclareFloatingEnvironment[fileext=loq]{gráfica}
+- \addto\captionsspanish{\renewcommand{\refname}{Referencias}}
+- \usepackage{xcolor}
+- \usepackage{helvet}
+- \renewcommand{\familydefault}{\sfdefault}
+- \usepackage{tikz}
+---
+
+\definecolor{naranja}{RGB}{245,145,55}
+\definecolor{azul}{RGB}{40,100,160}
+\definecolor{circulo1}{RGB}{255,0,0}
+\definecolor{circulo2}{RGB}{250,66,0}
+\definecolor{circulo3}{RGB}{245,131,0}
+\definecolor{circulo4}{RGB}{123,193,98}
+\definecolor{circulo5}{RGB}{0,255,195}
+\fancypagestyle{fancy}{
+ \lhead{\includegraphics[width=200pt]{fig/Logo_Cesuma.png}}
+ \rhead{\textcolor{naranja}{
+  \textbf{Maestría en Ciencia de Datos para Negocios}\\
+  \textcolor{azul}{\rule[1mm]{80mm}{0.2mm}} \\ Protocolo de Investigación}}
+ \renewcommand{\headrulewidth}{0.0pt}
+}
+
+\thispagestyle{fancy}
+
+<!--Configuraciones y librerías a usar en el documento-->
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+library(kableExtra)
+library(tidyr)
+library(broom)
+library(purrr)
+```
+<!-- Para trabajar en tiempo real los data.frame, ya que se está utilizando tildes, toca usar:-->
+```{r, include=FALSE, message=FALSE}
+Sys.setlocale("LC_ALL", "es_ES.UTF-8")
+```
+<!--Función para rellenar las filas con gris y blanco de forma alternada-->
+```{r}
+rellenos <- function(dataframe){return(rep(c("#f8f8f8", "white"), nrow(dataframe)/2+1)[1:nrow(dataframe)])}
+```
+
+\setlength{\headheight}{1.0cm}
+
+\null\vfill
+
+\begin{center}
+
+\bfseries{\large{CASO PRÁCTICO 414 INFORME DE INVESTIGACIÓN\\[1.0cm]}}
+
+\includegraphics[]{fig/protocolo_investigacion.png}
+
+\bfseries{\large{CURSO PROTOCOLO DE INVESTIGACIÓN\\MAESTRÍA EN CIENCIA DE DATOS PARA NEGOCIOS}}
+
+\null\vfill
+
+\bfseries{\large{Fernando Aleisy González\\ \today}}
+
+\end{center}
+\newpage
+\pagestyle{fancy}
+
+\tableofcontents
+
+
+\newpage
+
+\begin{center}
+
+\bfseries{\large{PROCOLO DE INVESTIGACIÓN}}
+
+\end{center}
+
+# Resumen
+
+• Un resumen breve que proporciona una visión general del informe.
+
+• Incluye los objetivos de la investigación, la metodología, los resultados clave y las conclusiones.
+
+• Es una sección crucial para que los receptores puedan obtener una comprensión rápida de la investigación sin tener que leer el informe completo.
+
+**Objetivos**
+
+**Objetivo general**
+
+Evaluar el impacto del sistema de precios dinámicos en los aspectos clave del negocio, como la percepción de los clientes, la demanda, los ingresos y la competitividad de una empresa de comercio electrónico, integrando análisis cuantitativos y cualitativos.
+
+**Objetivos específicos**
+
+-   Analizar la relación entre las variaciones de precios dinámicos y las fluctuaciones en la demanda y los ingresos mediante modelos de regresión y correlación.
+
+-   Evaluar el impacto de los precios dinámicos en la elasticidad de la demanda y el volumen de ventas en períodos de alta y baja demanda.
+
+-   Identificar los factores que más influyen en las variaciones de precios dinámicos, como la competencia o la estacionalidad, y cómo afectan a los ingresos de la empresa.
+
+-   Comparar los resultados financieros entre modelos de precios dinámicos y fijos mediante simulaciones.
+
+-   Explorar cómo los clientes perciben la transparencia y la justicia del modelo de precios dinámicos en comparación con precios fijos.
+
+-   Investigar los factores emocionales o psicológicos que afectan la decisión de compra de los clientes cuando los precios varían en tiempo real.
+
+-   Evaluar cómo la implementación de precios dinámicos afecta la confianza del cliente en la marca o el servicio.
+
+-   Identificar elementos complementarios, como descuentos o garantías, que puedan influir en la aceptación del modelo de precios dinámicos por parte de los clientes.
+
+# 1. Introducción
+
+• Presentación del problema de investigación o la pregunta que se pretende responder.
+
+• Declaración de los objetivos de la investigación.
+
+• Justificación de la importancia del estudio.
+
+• Breve revisión de la literatura relevante.
+
+En un entorno de negocios caracterizado por la alta competitividad y los rápidos cambios en las preferencias del mercado, las estrategias de precios dinámicos se han convertido en una herramienta fundamental para optimizar los ingresos y mejorar la satisfacción del cliente. Este modelo de precios, que ajusta las tarifas de los productos o servicios en tiempo real según factores como la demanda, la competencia y las condiciones del mercado, ofrece una ventaja significativa frente a los modelos de precios fijos. Sin embargo, su implementación también plantea desafíos relacionados con la percepción del cliente, la transparencia y la equidad, lo que justifica una investigación más profunda sobre sus impactos en los diferentes aspectos del negocio.
+
+La adopción de precios dinámicos no solo tiene implicaciones financieras, sino también estratégicas. Al permitir a las empresas adaptarse rápidamente a las fluctuaciones del mercado, este modelo puede maximizar los ingresos en períodos de alta demanda y minimizar las pérdidas durante temporadas bajas. Sin embargo, estas ventajas deben equilibrarse con la percepción del cliente, ya que decisiones de compra basadas en cambios constantes en los precios pueden generar frustración o desconfianza. Por esta razón, es crucial analizar tanto el impacto económico como las implicaciones emocionales y psicológicas de este enfoque.
+
+Este estudio tiene como objetivo evaluar cómo la implementación de un modelo de precios dinámicos afecta a los ingresos y la demanda en comparación con un modelo de precios fijos. Además, se explorará cómo los consumidores perciben este modelo, enfocándose en factores como la transparencia, la justicia y la confianza en la marca. A través de un enfoque mixto que combina análisis cuantitativo y cualitativo, la investigación busca proporcionar una visión integral de los beneficios y limitaciones de esta estrategia, tanto desde la perspectiva empresarial como desde la del cliente.
+
+Finalmente, esta investigación no solo pretende contribuir al entendimiento de los modelos de precios dinámicos en el ámbito del comercio electrónico, sino también ofrecer recomendaciones prácticas para su implementación efectiva. Los hallazgos serán relevantes no solo para la empresa en estudio, sino también para otras organizaciones que deseen adoptar esta estrategia en un mercado cada vez más orientado al cliente y basado en datos. Este trabajo representa un esfuerzo por generar conocimiento que sea aplicable tanto académicamente como en la práctica empresarial.
+
+## 1.1. Problema de investigación
+
+En el contexto de una empresa de comercio electrónico, se ha implementado un sistema de ajuste de precios en tiempo real basado en diversos factores como la demanda, la competencia y las características del producto. Sin embargo, se desconoce cómo estas estrategias influyen en la percepción de los clientes, los ingresos de la empresa, el comportamiento de la demanda y la competitividad en el mercado. Este estudio busca analizar el impacto de esta práctica para determinar si los beneficios económicos superan posibles efectos negativos, como una percepción desfavorable por parte de los consumidores.
+
+**Pregunta de investigación**
+
+¿Cómo influye la implementación de un modelo de precio dinámico, en una empresa de comercio electrónico, en los ingresos y la demanda de los productos, en comparación con un modelo de precios fijos?
+
+## 1.2. Objetivos
+
+**Objetivo general**
+
+Evaluar el impacto del sistema de precios dinámicos en los aspectos clave del negocio, como la percepción de los clientes, la demanda, los ingresos y la competitividad de una empresa de comercio electrónico, integrando análisis cuantitativos y cualitativos.
+
+**Objetivos específicos**
+
+-   Analizar la relación entre las variaciones de precios dinámicos y las fluctuaciones en la demanda y los ingresos mediante modelos de regresión y correlación.
+
+-   Evaluar el impacto de los precios dinámicos en la elasticidad de la demanda y el volumen de ventas en períodos de alta y baja demanda.
+
+-   Identificar los factores que más influyen en las variaciones de precios dinámicos, como la competencia o la estacionalidad, y cómo afectan a los ingresos de la empresa.
+
+-   Comparar los resultados financieros entre modelos de precios dinámicos y fijos mediante simulaciones.
+
+-   Explorar cómo los clientes perciben la transparencia y la justicia del modelo de precios dinámicos en comparación con precios fijos.
+
+-   Investigar los factores emocionales o psicológicos que afectan la decisión de compra de los clientes cuando los precios varían en tiempo real.
+
+-   Evaluar cómo la implementación de precios dinámicos afecta la confianza del cliente en la marca o el servicio.
+
+-   Identificar elementos complementarios, como descuentos o garantías, que puedan influir en la aceptación del modelo de precios dinámicos por parte de los clientes.
+
+## 1.3. Justificación
+
+La implementación de precios dinámicos es una práctica creciente en el comercio electrónico, impulsada por la capacidad de ajustar precios en tiempo real según factores como la demanda, la competencia y la estacionalidad. Si bien esta estrategia promete maximizar ingresos y mejorar la competitividad, su impacto no se limita a métricas económicas, sino que también afecta la percepción de los clientes y su comportamiento de compra [@kerlinger1975investigacion]. Entender esta interacción es fundamental para determinar la viabilidad y sostenibilidad de estos modelos en el largo plazo.
+
+Desde una perspectiva cuantitativa, analizar la relación entre precios dinámicos, demanda e ingresos permitirá a las empresas identificar patrones y optimizar su desempeño financiero. Además, comparar los resultados entre modelos de precios fijos y dinámicos ofrecerá evidencia empírica sobre la efectividad de esta estrategia [@christensen1980experimental].
+
+Desde un enfoque cualitativo, explorar las percepciones y emociones de los clientes frente a los precios dinámicos es crucial para comprender cómo este modelo influye en su confianza, lealtad y decisión de compra. Las decisiones basadas únicamente en indicadores financieros pueden ignorar aspectos subjetivos, como la percepción de justicia y transparencia, que afectan la experiencia del cliente y, en última instancia, la sostenibilidad de la estrategia [@doe2019consumer_perception].
+
+Esta investigación no solo generará información valiosa para la toma de decisiones empresariales, sino que también contribuirá al conocimiento en el campo del comercio electrónico, ofreciendo un análisis integral que combina métricas financieras y percepciones del cliente. Esto permitirá a las empresas desarrollar estrategias más equilibradas, maximizando ingresos mientras mantienen altos niveles de satisfacción y confianza del cliente.
+
+**Antecedentes**
+
+El uso de precios dinámicos en el comercio electrónico es una práctica cada vez más extendida, permitiendo a las empresas ajustar precios en tiempo real en función de factores como la demanda, la competencia y la estacionalidad.
+
+Este enfoque representa un avance significativo en la capacidad de las empresas para asegurar la competitividad en un entorno empresarial en constante cambio, asegurando así su relevancia y éxito a largo plazo.
+
+\begin{figure}[H]
+  \caption{Precios dinámicos en el comercio electrónico.}
+  \includegraphics[width=450px]{fig/dinamicos.png}
+  \label{fig:dinamico}
+\end{figure}
+
+Según estudios recientes, esta esta estrategia puede mejorar la competencia y beneficiar a los consumidores al aumentar tanto la eficiencia estática como dinámica, promoviendo la innovación y maximizando las transacciones [@suarez2024aplicacion]. Aquellos que están al tanto de la herramienta de los precios dinámicos la han utilizado a su favor al realizar compras en línea utilizando. Sería interesante conocer cómo los consumidores tratan de explotar el dynamic pricing obteniendo un beneficio de ello, haciendo un análisis más profundo en el futuro [@del2024algorithmic].
+
+En segundo lugar, establecemos que, tanto con los precios pre-anunciados como con los responsivos, aunque el proceso de aprendizaje social exacerba el comportamiento estratégico del consumidor (es decir, aumenta los retrasos en las compras estratégicas), su presencia da como resultado un aumento en las ganancias esperadas de la empresa [@papanastasiou2017dynamic].
+
+\newpage
+
+# 2. Metodología
+
+## 2.1. Metodología Cuantitativa
+
+La metodología cuantitativa de esta investigación se centrará en la recolección y análisis de datos numéricos para evaluar el impacto de un modelo de precios dinámicos en los ingresos y la demanda. Se utilizarán bases de datos de ventas históricas de la empresa, junto con información sobre inventarios, demanda del mercado y comportamiento de compra de los clientes. Adicionalmente, se realizarán encuestas con escalas de Likert para medir la percepción de los consumidores. El análisis incluirá técnicas estadísticas como regresiones y correlaciones, así como simulaciones, para comparar los efectos de los precios dinámicos frente a los precios fijos.
+
+**Pregunta de investigación**
+
+¿Cómo influye la implementación de un modelo de precio dinámico en los ingresos y la demanda de los productos en comparación con un modelo de precios fijos?
+
+**2.1.2. Método**
+
+Se recopilará datos de bases de datos de ventas históricas de la empresa acerca de la demanda del mercado, variaciones de inventario y comportamiento de compra de los clientes.También se utilizará encuestas con preguntas de escala de Likert para evaluar la percepción de los clientes.
+
+\begin{figure}[H]
+  \caption{Un profesional realizando una investigación cuantitativa en una empresa.}
+  \includegraphics[]{fig/Cuantitativo.png}
+  \label{fig:Cuantitativo}
+\end{figure}
+
+**Análisis estadístico**
+
+El análisis estadístico en esta investigación cuantitativa integrará diversas técnicas para examinar el impacto del modelo de precios dinámicos en los ingresos y la demanda. Inicialmente, se aplicarán análisis de regresión múltiple para evaluar la relación entre las variaciones de precios dinámicos y las fluctuaciones en la demanda, ingresos y elasticidad del mercado. Este enfoque permitirá identificar los factores más relevantes que explican dichos cambios y cuantificar su impacto.
+
+Además, se llevará a cabo un análisis de correlación para explorar las asociaciones entre variables clave, como precios, volúmenes de ventas y períodos de alta o baja demanda. Esto proporcionará información sobre cómo estas variables interactúan y se influencian mutuamente.
+
+Para complementar este análisis, se implementarán simulaciones computacionales que permitan comparar el rendimiento financiero de la empresa bajo los modelos de precios fijos y dinámicos. Estas simulaciones incluirán escenarios hipotéticos para distintas condiciones del mercado, como variaciones estacionales, cambios en la competencia y fluctuaciones en la demanda. De esta manera, será posible identificar las ventajas y desventajas operativas de cada modelo y proponer estrategias basadas en datos.
+
+\begin{figure}[H]
+  \caption{una persona está realizando un análisis estadístico de la empresa de comercio electrónico.}
+  \includegraphics[]{fig/analisis.png}
+  \label{fig:analisis}
+\end{figure}
+
+Finalmente, se realizarán pruebas estadísticas, como el análisis de varianza (ANOVA), para determinar si las diferencias observadas entre ambos modelos son estadísticamente significativas, brindando mayor robustez a las conclusiones obtenidas.
+
+**Preguntas para el análisis cuantitativo**
+
+-   ¿Cuál es el impacto del modelo de precios dinámicos en la elasticidad de la demanda?
+
+-   ¿En qué medida la estrategia de precios dinámicos afecta el volumen de ventas en períodos de alta y baja demanda?
+
+-   ¿Cómo varía el rendimiento financiero de la empresa antes y después de la implementación del modelo de precios dinámicos?
+
+-   ¿Cuáles son los factores (competencia, estacionalidad, etc.) que más influyen en las variaciones de precios dinámicos y su efecto en los ingresos?
+
+\newpage
+
+## 2.2 Metodología Cualitativa
+
+La metodología cualitativa de esta investigación se enfocará en explorar cómo los consumidores perciben el uso de precios dinámicos y cómo esta percepción influye en sus decisiones de compra. Para ello, se realizarán entrevistas con clientes que han experimentado variaciones de precios dinámicos, con el fin de entender sus opiniones sobre la transparencia y la justicia del modelo. Además, se entrevistará a gerentes y responsables de marketing para analizar cómo implementan y ajustan estas estrategias. Se organizarán grupos focales para profundizar en las expectativas de los consumidores y en las respuestas emocionales ante las fluctuaciones de precios.
+
+**Pregunta de investigación**
+
+¿Cómo perciben los consumidores el uso de precios dinámicos y cómo afecta esta percepción su decisión de compra?
+
+**Método**
+
+Se realizará entrevistas con consumidores que han experimentado variaciones de precios dinámicos para explorar sus opiniones sobre la transparencia y la justicia percibida en este tipo de modelo. Entrevistar a gerentes y responsables de marketing sobre cómo implementan y ajustan las estrategias de precios dinámicos. Se organizará grupos focales con clientes para comprender mejor sus expectativas respecto al precio de los productos y su respuesta emocional ante fluctuaciones en los precios.
+
+\begin{figure}[H]
+  \caption{Un profesional realizando una investigación cualitativa en una empresa.}
+  \includegraphics[]{fig/Cualitativo.png}
+  \label{fig:Cualitativo}
+\end{figure}
+
+El análisis cualitativo se realizará mediante la codificación y categorización de la información obtenida en entrevistas y grupos focales, utilizando un enfoque temático para identificar patrones y perspectivas comunes. Este análisis permitirá explorar en profundidad las percepciones, opiniones y emociones de los clientes frente al modelo de precios dinámicos.
+
+Las entrevistas serán transcritas y revisadas para extraer categorías clave relacionadas con la transparencia, justicia percibida y confianza en el modelo de precios dinámicos. Se emplearán herramientas como Atlas.ti o NVivo para organizar y visualizar estas categorías.
+
+\begin{figure}[H]
+  \caption{una persona está realizando un análisis estadístico de los clientes de la empresa de comercio electrónico.}
+  \includegraphics[width=450px]{fig/analisis_sentimientos.png}
+  \label{fig:analisis_sentimientos}
+\end{figure}
+
+Finalmente, los hallazgos se interpretarán en función de las preguntas de investigación, permitiendo comprender las actitudes de los clientes hacia los precios dinámicos y cómo estas influyen en su toma de decisiones y confianza en la marca.
+
+**Preguntas para el análisis cualitativo**
+
+-   ¿Cómo perciben los clientes la transparencia de los precios dinámicos en comparación con precios fijos?
+
+-   ¿Qué factores emocionales o psicológicos influyen en la decisión de compra cuando los precios cambian en tiempo real?
+
+-   ¿Cómo cambia la confianza del cliente en la marca o el servicio cuando se enfrenta a un sistema de precios dinámicos?
+
+-   ¿Qué elementos adicionales (descuentos, promociones, garantías de precios) pueden influir en la aceptación del precio dinámico por parte de los clientes?
+
+\newpage
+
+# 3. Análsis de datos
+
+A continuación se muestra el análisis realizado para establecer el impacto del sistema de precios dinámicos sobre la demanda, el volumen de ventas y el rendimiento financiero y los factores que influyen en la variación de los precios y en los ingresos de la empresa. El análisis se hizo desde una perspectiva cuantitativa a partir de los dataset de ventas suministrado por la empresa.
+
+## 3.1. Datos cuantitativos
+
+<!--Dataset de las encuestas hechas a los clientes-->
+```{r}
+encuesta <- read.csv('datos/encuesta_compradores_precios_variables.csv')
+```
+<!--Dataset de las ventas
+
+Se establecen las rutas-->
+```{r}
+ruta_precios_estaticos <- 'datos/precios_estaticos'
+ruta_precios_dinamicos <- 'datos/precios_dinamicos'
+```
+<!--Se obtienen las listas de los archivos CSV en cada carpeta-->
+```{r}
+archivos_precios_estaticos <- list.files(path = ruta_precios_estaticos, pattern = "\\.csv$", full.names = TRUE)
+archivos_precios_dinamicos <- list.files(path = ruta_precios_dinamicos, pattern = "\\.csv$", full.names = TRUE)
+```
+<!--Se carga cada archivo y se combina en un solo data.frame-->
+```{r}
+df_precios_estaticos <- lapply(archivos_precios_estaticos, function(archivos) {
+  datos <- read.csv(archivos, stringsAsFactors = FALSE)  # Leer cada archivo CSV
+  return(datos)
+}) %>% 
+  bind_rows() # Combinar todos los data.frames en uno solo
+
+df_precios_dinamicos <- lapply(archivos_precios_dinamicos, function(archivos) {
+  datos <- read.csv(archivos, stringsAsFactors = FALSE)  # Leer cada archivo CSV
+  return(datos)
+}) %>% 
+  bind_rows() # Combinar todos los data.frames en uno solo
+```
+
+### 3.1.1. Impacto del modelo en la elasticidad
+
+<!--Preparación de datos-->
+
+<!--Etiquetar los datos -->
+```{r}
+df_precios_estaticos$tipo_precio <- "estatico"
+df_precios_dinamicos$tipo_precio <- "dinamico"
+
+df_todo <- bind_rows(df_precios_estaticos, df_precios_dinamicos)
+
+df_todo$fecha <- as.Date(df_todo$fecha)
+df_todo$fecha_mes <- format(df_todo$fecha, "%Y-%m")
+```
+<!--Agregación mensual por categoría-->
+```{r agregacion}
+df_mensual <- df_todo %>%
+  group_by(tipo_precio, categoria, fecha_mes) %>%
+  summarise(
+    precio_prom = mean(precio_v, na.rm = TRUE),
+    unidades_total = sum(unidades, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+<!--Estimación de elasticidad-->
+```{r elasticidad}
+calcular_elasticidad <- function(df) {
+  if (nrow(df) >= 6 && length(unique(df$precio_prom)) > 1) {
+    modelo <- lm(log(unidades_total + 1) ~ log(precio_prom), data = df)
+    broom::tidy(modelo)[2, c("estimate", "p.value")]
+  } else {
+    return(data.frame(estimate = NA, p.value = NA))
+  }
+}
+
+elasticidades <- df_mensual %>%
+  group_by(tipo_precio, categoria) %>%
+  group_map(~ calcular_elasticidad(.x)) %>%
+  bind_rows() %>%
+  mutate(categoria = rep(unique(df_mensual$categoria), each = 2),
+         tipo_precio = rep(c("estatico", "dinamico"), times = length(unique(df_mensual$categoria))))
+```
+
+En la Tabla \ref{tab:resumen_elasticidad} se muestra la elasticidad de la demanda frente a las variaciones de los precios de venta, tanto para el sistema de precios estáticos como para el dinámico.  La diferencia media entre las elasticidades bajo precios dinámicos y estáticos es de 0.573, lo que indica que, en promedio, la elasticidad fue ligeramente mayor con precios dinámicos, esto podría significar que el sistema de precios dinámicos influye en la elasticidad de la demanda.
+<!--Comparación de elasticidad-->
+```{r comparacion}
+# Promedio por tipo
+resumen_elasticidad <- elasticidades %>%
+  group_by(tipo_precio) %>%
+  summarise(media_elasticidad = mean(estimate, na.rm = TRUE))
+
+tabla_resumen_elasticidad <- kbl(resumen_elasticidad,
+             caption = "Elasticidad mensual media según el sistema déprecios",
+             label = 'resumen_elasticidad',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_resumen_elasticidad
+```
+
+Haciendo un análisis estadístico se encuentra que, en la prueba t, el p-valor de 0.8469, lo que significa que hay evidencia estadística suficiente para afirmar que la diferencia en elasticidades es significativa entre los dos sistemas. Esto implica que el sistema de precios dinámicos influye en la demanda. Un análisis por categoría (mouse, teclado,...) muestra que productos presentaron más variación en la elasticidad de la demanda cuando se cambió del sistema de precios fijos al sistema  de precios dinámicos.
+
+<!--creo los vectores para verificar si hay diferencia significativa en las elasticidades de las dos situaciones-->
+```{r}
+elasticidad_estaticos <- elasticidades %>% filter(tipo_precio == "estatico")
+elasticidad_dinamico <- elasticidades %>% filter(tipo_precio == "dinamico")
+```
+<!--Prueba t pareada-->
+```{r t_test}
+t_test_elasticidad <- t.test(
+  elasticidad_estaticos$estimate,
+  elasticidad_dinamico$estimate,
+  paired = TRUE,
+  alternative = "two.sided"
+)
+
+t_test_elasticidad
+```
+
+En la Gráfica \ref{gráfica:elasticidad_demanda} se muestra que la demanda de los parlantes eran más sensibles a la variación del precio mientras se utilizaba el sistema de precios fijos, pero disminuyó cuando se aplicó el sistema de precios dinámicos. Los mouse, memorias usb y los audífonos mostraron mejoras en la elasticidad de la demanda al cambiar de sistema. Al poseer una elasticidad positiva, estos productos son los indicados para las promociones o para el aumento que se da en los meses de temporada lata. Por otro lado, los discos de pc (unidades de almacenamiento de pc), las memorias micro sd, los monitores y los teclados presentan una elasticidad de la demanda negativa, por lo que la demanda de estos productos se ven disminuidas en al incrementar el precio en los meses de alta demanda.
+
+<!--Visualización-->
+```{r grafico}
+ggplot(elasticidades, aes(x = reorder(categoria, estimate), y = estimate, fill = tipo_precio)) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  labs(x = "Categoría", y = "Elasticidad (estimada)",
+       fill = "Tipo de precio") +
+  theme_minimal()
+```
+\begin{gráfica}[H]
+  \caption{Elasticidad precio de la demanda por categoría}
+  \label{gráfica:elasticidad_demanda}
+\end{gráfica}
+
+### 3.1.2. Impacto en el volumen de ventas
+
+<!--Se calcula el volumen de ventas en cada venta-->
+```{r}
+df_todo <- df_todo %>% mutate(volumen = precio_v*unidades)
+```
+<!--Se identificar los periodos de baja y alta demanda por medio de los percentiles-->
+```{r}
+demanda_mensual <- df_todo %>%
+  group_by(fecha_mes) %>%
+  summarise(demanda_total = sum(unidades, na.rm = TRUE)) %>%
+  ungroup()
+
+q <- quantile(demanda_mensual$demanda_total, probs = c(0.33, 0.67), na.rm = TRUE)
+```
+<!--Se codifica cada mes-->
+```{r}
+demanda_mensual <- demanda_mensual %>%
+  mutate(nivel_demanda = case_when(
+    demanda_total <= q[1] ~ "baja",
+    demanda_total >= q[2] ~ "alta",
+    TRUE ~ "media"
+  ))
+
+df_todo <- df_todo %>%
+  left_join(demanda_mensual, by = "fecha_mes")
+```
+
+En la Tabla \ref{tab:volumen_por_grupo} se muestra un primer acercamiento a la forma en que la estrategia de precios dinámicos dinámicos afecta al volumen de ventas en los periodos de baja y alta demanda. Bajo el sistema de precios dinámicos se incrementó el volumen de ventas media por temporada, mientras que en los meses de temporada baja, el sistema de precios dinámicos implicó una disminución del volumen  de ventas. Esto contrasta con la forma en que el sistema influye con las unidades vendidas en cada temporada.
+
+<!--Se compara el volumen de venta promedio dinámicos y estáticos, según la demanda (baja y alta)-->
+```{r}
+volumen_por_grupo <- df_todo %>%
+  filter(nivel_demanda != "media") %>%
+  group_by(tipo_precio, nivel_demanda) %>%
+  summarise(volumen_promedio = mean(volumen, na.rm = TRUE),
+            .groups = "drop")
+
+tabla_volumen_por_grupo <- kbl(volumen_por_grupo,
+             caption = "Elasticidad mensual media según el sistema déprecios",
+             label = 'volumen_por_grupo',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_volumen_por_grupo
+
+```
+Una explicación pausible para este comportamiento de deba a que las unidades vendida extras en las temporadas de baja demanda no compensaron la reducción del 10% en los precios que la empresa aplica durante estas temporadas, mientras que el aumento del 10% de los precios durante los meses de demanda alta no disminuyó los suficiente las unidades vendidas como para implicar una reducción en el volumen de ventas. En este caso, la estrategia funcionó.
+
+<!--Se preparan los datos para la prueba-->
+```{r}
+df_filtrado <- df_todo %>%
+  filter(nivel_demanda != "media") %>%
+  group_by(fecha_mes, tipo_precio, nivel_demanda) %>%
+  summarise(volumen = sum(volumen, na.rm = TRUE), .groups = "drop")
+```
+<!--Se separa las ventas de baja y alta demanda-->
+```{r}
+volumen_alta <- df_filtrado %>% filter(nivel_demanda == "alta")
+volumen_baja <- df_filtrado %>% filter(nivel_demanda == "baja")
+```
+<!--Se obtienen los vectores para las comparaciones-->
+```{r}
+volumen_alta_estaticos <- volumen_alta %>% filter(tipo_precio == "estatico")
+volumen_alta_dinamico <- volumen_alta %>% filter(tipo_precio == "dinamico")
+
+volumen_baja_estaticos <- volumen_baja %>% filter(tipo_precio == "estatico")
+volumen_baja_dinamico <- volumen_baja %>% filter(tipo_precio == "dinamico")
+```
+
+
+<!--Pruebas t para las temporadas altas-->
+```{r}
+t.test(volumen_alta_estaticos$volumen, volumen_alta_dinamico$volumen, paired = FALSE)
+```
+
+Con la prueba t se concluye que existe diferencia significativa entre el volumen de ventas en los meses de alta demanda de los sistemas de precios fijos y dinámicos. Esto comprueba lo que el gerente de marketing afirmó acerca del estudio que realizaron para determinar que el aumento óptimo del precio de los productos en los meses de alta demanda no debe superar el 10% para que la disminución de los ingresos por ventas fuese favorable.
+
+<!--Pruebas t para las temporadas altas-->
+```{r}
+t.test(volumen_baja_estaticos$volumen, volumen_baja_dinamico$volumen, paired = FALSE)
+```
+
+La prueba t para los meses de temporada baja también muestra que el sistema de precios dinámicos influye en el volumen de ventas, pero en este caso, según  la tabla \ref{tab:volumen_por_grupo}, esta influencia es negativa. Esto implica que las ofertas del 10% de descuentos en estas temporadas es superior al que se debe aplicar 
+
+```{r}
+ggplot(volumen_por_grupo, aes(x = nivel_demanda, y = volumen_promedio, fill = tipo_precio)) +
+  geom_col(position = "dodge") +
+  labs(x = "Nivel de demanda", y = "Volumen promedio de ventas") +
+  theme_minimal()
+
+```
+\begin{gráfica}[H]
+  \caption{Volumen promedio de ventas según tipo de precio y nivel de demanda}
+  \label{gráfica:volumen_ventas}
+\end{gráfica}
+
+En la Gráfica \ref{gráfica:volumen_ventas} se evidencia que: el impacto es negativo cuando se hace el descuento del 10% en los meses de temporada baja. Con el descuento no se logra atraer los suficientes compradores para que el volumen de ventas sea siquiera igual al que se obtendría si no se hace el descuento. El impacto en la ventas es positivo cuando se hace el alza de los precios del 10% (como lo decía el gerente de marketing) en los meses de temporada alta.
+
+### 3.1.3. Rendimiento financiero
+
+En la Tabla \ref{tab:Resumen_financiero} Se observa que el sistema de precios dinámicos ha permitido un margen bruto porcentual en las ganancias superior al que se tenía cuando la empresa tenía el sistema de precios estáticos. Que la utilidad total creciera de 78 millones COP a 180 millones de COP, se debe principalmente a que la inversión ha venido creciendo. Aunque la utilidad aquí calculada no corresponde con las ganancias de la empresa ya que para este análisis no contamos con los costos totales, sino solo con los costos por compra.
+
+<!--Se agregan las variables financieras al df_todo-->
+```{r}
+df_todo <- df_todo %>%
+  mutate(
+    ingresos = precio_v * unidades,
+    costos   = precio_c * unidades,
+    utilidad = ingresos - costos,
+    margen_bruto = ifelse(ingresos > 0, utilidad / ingresos, NA)
+  )
+```
+<!--Resumen por tipo de precio-->
+```{r}
+resumen_financiero <- df_todo %>%
+  group_by(tipo_precio) %>%
+  summarise(
+    ingresos_totales = sum(ingresos, na.rm = TRUE),
+    costos_totales   = sum(costos, na.rm = TRUE),
+    utilidad_total   = sum(utilidad, na.rm = TRUE),
+    margen_bruto_pct = mean(margen_bruto, na.rm = TRUE) * 100,
+    .groups = "drop"
+  )
+
+tabla_resumen_financiero <- kbl(resumen_financiero,
+             caption = "Resumen financiero en que se muestra el margen de ganancia bruto por las ventas por sistema",
+             label = 'Resumen_financiero',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_resumen_financiero
+```
+
+
+<!-- Comparación mensual (para prueba t)-->
+```{r}
+utilidad_estaticos <- df_todo %>%
+  group_by(tipo_precio, fecha_mes) %>%
+  summarise(
+    utilidad_mensual = sum(utilidad, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  filter(tipo_precio == "estatico")
+
+
+utilidad_dinamicos <- df_todo %>%
+  group_by(tipo_precio, fecha_mes) %>%
+  summarise(
+    utilidad_mensual = sum(utilidad, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  filter(tipo_precio == "dinamico")
+
+# Prueba t pareada
+t.test(utilidad_estaticos$utilidad_mensual, utilidad_dinamicos$utilidad_mensual, paired = FALSE)
+
+```
+
+Esta prueba nos permite concluir que el sistema de precios dinámicos si genera utilidades porcentuales mensuales significativas diferentes frente a las utilidades porcentuales mensuales que generaba el sistema de precios estáticos, para la empresa. Cabe resalta que las utilidades por compra y venta de los productos se acerca al 20% que la empresa espera.
+
+### 3.1.4. Factores que influyen en la variación de los precios
+
+La variable que influye significativamente en el precio, dentro del sistema de precios dinámicos es el de la unidades vendidas, esto debido a que, si bien, la empresa esta teniendo en cuenta los meses de temporada baja o alta para establecer los precios, se ha establecido estas temporadas de acuerdo a las unidades vendidas en cada mes.
+
+<!--Filtrar precios dinámicos y agrupar por mes-producto-->
+```{r}
+df_dinamico <- df_todo %>%
+  filter(tipo_precio == "dinamico") %>%
+  mutate(
+    mes = as.numeric(format(fecha, "%m")),
+    año = as.numeric(format(fecha, "%Y")),
+    trimestre = quarter(fecha)
+  ) %>%
+  group_by(fecha_mes, producto, categoria) %>%
+  summarise(
+    precio_prom = mean(precio_v, na.rm = TRUE),
+    ingresos = sum(precio_v * unidades, na.rm = TRUE),
+    unidades = sum(unidades, na.rm = TRUE),
+    mes = first(mes),
+    trimestre = first(trimestre),
+    .groups = "drop"
+  )
+```
+<!--Modelo: ¿qué explica las variaciones en precio?-->
+```{r}
+modelo_precio <- lm(precio_prom ~ mes + trimestre + unidades, data = df_dinamico)
+summary(modelo_precio)
+```
+
+Las variables que influyen en los ingresos de la empresa son el precio promedio,las unidades vendidas, el mes y e menor medida, el trimestre. Esto implica el análisis de inventario para establecer los precios, en el sistema de precios dinámicos debe ser por mucho cada mes y no un análisis general una sola vez.
+
+<!--Modelo: impacto de esos factores en los ingresos-->
+```{r}
+modelo_ingresos <- lm(ingresos ~ precio_prom + mes + trimestre + unidades, data = df_dinamico)
+summary(modelo_ingresos)
+```
+
+\newpage
+
+## 3.2. Datos cualitativos
+
+En la Tabla \ref{tab:cat_a_priori}, se presenta el análisis por categorías a priori [@echeverria2005analisis] basadas en las preguntas de investigación para los datos cualitativos. En total, se tiene cuatro categorías a priori.
+
+```{r}
+pregunta <- c(
+  '¿Cómo perciben los clientes la transparencia de los precios dinámicos?',
+  '¿Qué factores emocionales o psicológicos influyen en la decisión de compra?',
+  '¿Cómo cambia la confianza del cliente en la marca o el servicio?',
+  '¿Qué elementos adicionales influyen en la aceptación del modelo?'
+  )
+
+codigo <- c(
+  'Transparencia percibida',
+  'Factores emocionales y psicológicos',
+  'Confianza del cliente',
+  'Aceptación del modelo'
+)
+
+
+df_codificacion_a_priori <- data.frame(pregunta, codigo)
+colnames(df_codificacion_a_priori) <- c('Pregunta de investigación', 'Código o Categoría a priori')
+```
+
+```{r}
+tabla_codificacion_a_priori <- kbl(df_codificacion_a_priori,
+             caption = "Categorías a priori acorde a las preguntas de investigación.",
+             label = 'cat_a_priori',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  column_spec(1, width = "9cm") %>%
+  column_spec(2, width = "6cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_codificacion_a_priori
+```
+
+Las categorías emergentes de la entrevista al gerente de marketing se complementan con las emergentes de las encuestas para dar respuestas a las preguntas de investigación desde el análisis cualitativos. El estudio combinó dos fuentes clave de información: una entrevista en profundidad con el gerente de marketing (único responsable de la estrategia y ejecución de la implementación del modelo de precios dinámicos), cuyo discurso detallado y basado en experiencia directa aportó insights valiosos, y una encuesta a clientes con preguntas Likert y una sección abierta para comentarios, de la cual se extrajo un análisis cualitativo.
+
+Aunque inicialmente se planeó entrevistar a más miembros del equipo de marketing, esto no fue posible debido a la centralización de las decisiones en una sola persona (el gerente entrevistado). Los fragmentos codificados de la entrevista y los comentarios cualitativos de los clientes se organizarán en una tabla comparativa para contrastar perspectivas.
+
+### 3.2.1. Transparencia percibida
+
+La codificación de las respuestas del gerente de marketing se muestra en la Tabla \ref{tab:codificacion_PTM}, en la que se tiene que, desde la perspectiva del gerente, los clientes perciben las variaciones de precio, pero no entienden claramente su lógica. Esto genera una percepción de opacidad o arbitrariedad, agravada por la falta de comunicación directa. Aunque algunos compradores adaptan su comportamiento (esperan ofertas, observan temporadas), la transparencia sigue siendo limitada, especialmente en comparación con los precios fijos, que eran más predecibles y estables para el consumidor. La organización reconoce esta debilidad y plantea la necesidad de desarrollar canales de comunicación directa que expliquen el modelo y generen confianza.
+
+```{r}
+fragmento <- c(
+  'no tenemos un canal de comunicación directa con los compradores que nos permita saber cómo perciben los cambios de precio',
+  'sabemos que hay quienes notan los cambios y prefieren esperar o incluso no comprar si el precio sube',
+  'realmente necesitamos entender mejor cómo están viviendo ellos este modelo de precios dinámicos, si les genera confianza o molestia, y sobre todo si lo entienden o lo ven como algo arbitrario',
+  'no hay una política de compensación, comunicación directa o fidelización que esté pensada específicamente para equilibrar ese efecto',
+  'si se comunica de manera más directa, podría fortalecerse aún más la estrategia',
+  'los descuentos del 10% en los meses tranquilos también están pensados para [...] compradores que no tienen urgencia, pero sí está pendiente del precio.'
+  )
+
+codigo <- c(
+  'Falta de retroalimentación directa',
+  'Clientes sensibles a la variación',
+  'Duda sobre percepción de transparencia',
+  'Falta de comunicación estructurada',
+  'Potencial de mejora en transparencia',
+  'Compradores informados pero reactivos'
+)
+
+
+df_codificacion_PTM <- data.frame(fragmento, codigo)
+colnames(df_codificacion_PTM) <- c('Fragmento', 'Código asigando')
+```
+
+```{r}
+tabla_codificacion_PTM <- kbl(df_codificacion_PTM,
+             caption = "Fragmentos significativos, de la entrevista, codificados por categorías temáticas emergentes de la categoría Transparencia percibida.",
+             label = 'codificacion_PTM',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  column_spec(1, width = "10cm") %>%
+  column_spec(2, width = "5cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_codificacion_PTM
+```
+
+La codificación de las opiniones de los clientes se  se muestra en la Tabla \ref{tab:codificacion_PTC}. Estas opiniones reflejan una preocupación por la falta de información clara, y en algunos casos, una sospecha de arbitrariedad en la aplicación del modelo. La transparencia aparece como un factor crítico para la aceptación y legitimidad del sistema de precios dinámicos. Aunque algunos clientes ven la viabilidad del modelo solo si aplica de forma transparente.
+
+```{r}
+codigo <- c(
+  rep('Desconocimiento del modelo', 2),
+  rep('Sospecha de manipulación', 4),
+  rep('Adaptación al sistema sin comprensión', 4),
+  'presenta algo de comprensión',
+  rep('Demanda de claridad', 5)
+)
+
+fragmento <- c(
+  'Realmente no sabía que existen los precios dinámicos, solo vendedores compitiendo.',
+  'Entiendo que cambien los precios según la demanda, pero no siempre es claro cuándo baja.',
+  'varios vendedores suben precios simultáneamente antes de una promoción.',
+  'Los precios dinámicos te hacen sentir que "cazaste" una ganga [...] el vendedor siempre gana.',
+  'ajusta márgenes en tiempo real según tu perfil de compra.',
+  'no hay que caer en la trampa del ¡últimas unidades! [...] solo es para presionar al comprador.',
+  'la estrategia tiene sentido si no tienes urgencia',
+  'El stock se agota rápido cuando bajan los precios.',
+  'La empresa podría informar sobre los cambios de precio, lo cual es útil para algunos compradores.',
+  'Me gusta cuando los precios cambian, así puedo encontrar buenas ofertas si esperas el momento adecuado.',
+  'Mejora la competitividad, las empresas pueden responder rápidamente [...] y ajustar sus precios.',
+  'los precios cambian demasiado seguido, sería mejor si avisaran con tiempo.',
+  'La estrategia de precios dinámicos me parece buena, pero debería ser más transparente.',
+  'los descuentos no siempre coinciden con mi momento de compra [...] sería mejor si avisaran con tiempo.',
+  'Deberían mandar notificaciones cuando bajen los precios de los productos que uno guarda.',
+  'AliExpress envía correos con ofertas sobre productos que uno ha visto en su pagina.'
+)
+
+df_codificacion_PTC <- data.frame(codigo, fragmento)
+colnames(df_codificacion_PTC) <- c('Código asigando', 'Fragmento')
+```
+
+```{r}
+alternado <- rellenos(df_codificacion_PTC)
+
+tabla_codificacion_PTC <- kbl(df_codificacion_PTC,
+             caption = "Fragmentos significativos, de las opinniones de los clientes, codificados por categorías temáticas emergentes de la categoría Transparencia percibida.",
+             label = 'codificacion_PTC',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2, width = "10cm", background = alternado) %>%
+  collapse_rows(columns = 1, valign = "middle", latex_hline = "major") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_codificacion_PTC
+```
+
+**Hallazgos**
+
+El estudio revela una brecha significativa entre la implementación técnica de los precios dinámicos y su comprensión por parte de los clientes, agravada por limitaciones estructurales en la comunicación. Los hallazgos muestran que:
+
+**Desconocimiento del modelo**
+
+Para el gerente de marketing los clientes notan las variaciones, y algunos reaccionan con estrategias (esperar a que bajen los precios), pero no queda claro si comprenden las razones detrás de los cambios. Hay una preocupación explícita de que puedan ver el modelo como arbitrario.
+
+Los clientes atribuyen las fluctuaciones en los precios a factores externos y arbitrarios (competencia entre vendedores) en lugar de un algoritmo estructurado. Esto se encuentra en concordancia con lo expresado por el gerente de marketing.
+
+**Sospecha de manipulación**
+
+Algunos clientes perciben prácticas cuestionables en los precios dinámicos, señalando que, aunque valorarían mayor transparencia en los cambios de precios, consideran injustos los aumentos excesivos. Critican especialmente las tácticas de presión como el "¡últimas unidades!" que a menudo es solo un recurso manipulador.
+
+Otros señalan un patrón en el que el precio "original" aparece inflado días antes de una supuesta oferta, simulando un descuento que en realidad no existe. Además, reconocen que estos modelos generan una ilusión de "ganga", cuando en realidad el sistema está diseñado para que el vendedor ajuste márgenes en tiempo real según el perfil del comprador, maximizando siempre su beneficio.
+
+Otro hallazgo llamativo es la precepción de la sincronización entre vendedores. Varios aumentan precios simultáneamente antes de lanzar promociones, haciendo que los "descuentos" simplemente restablezcan el precio que deberían tener desde un principio, lo que sugiere posibles prácticas coordinadas poco éticas.
+
+**Adaptación al sistema sin comprensión**
+
+El gerente reconoce comprensión parcial, por parte del cliente, basada en suposiciones, no en información explícita. El cliente debe inferir el patrón de precios en lugar de recibir explicaciones claras. Esto afecta la percepción de justicia y control sobre la compra.
+
+Algunos clientes perciben algo de lógica detrás de los cambios en los precios de los productos, sobre todo en Mercado Libre, y aprovechan esta información para encontrar buenas ofertas, sin necesidad de comprender el modelo o sistema de precios dinámicos en su totalidad (un sistema poco transparente).
+
+Al respecto, el gerente de marketing indica que el canal principal de ventas, Mercado Libre, impone barreras a la comunicación directa. Esto limita la capacidad de explicar al cliente por qué varía el precio.
+
+No existe una política establecida para explicar al cliente cómo funciona el modelo. Esto afecta negativamente la transparencia percibida, aunque el equipo reconoce la necesidad de crear una estrategia de comunicación clara.
+
+**presenta algo de comprensión**
+
+Aunque la mayoría de los clientes dieron indicios de no comprender el sistema de precios dinámicos, se dío un caso en el que si parece comprenderlo.
+
+**Demanda de claridad**
+
+Los clientes demandan claridad en el sistema de precios dinámicos, lo que implica una expectativa de transparencia. Los clientes manifiestan que requieren de que la empresa o Mercado Libre informe sobre la variación de los precios. Algunos desean que se les informe cuando los precios bajan para poder aprovechar el sistema de me gusta o de guardado de los productos y ponen a AliExpress y sus correos:
+
+**Síntesis**
+
+El estudio revela una clara desconexión entre la perspectiva de los vendedores y la comprensión de los clientes respecto a los precios dinámicos. Por parte de los vendedores, se identifica una *falta de retroalimentación directa* ("no tenemos un canal de comunicación directa") y reconocen la existencia de *clientes sensibles a la variación* que prefieren esperar o no comprar cuando los precios suben. Sin embargo, muestran preocupación por la *duda sobre percepción de transparencia*  y admiten una *falta de comunicación estructurada* para equilibrar estos efectos. La organización reconoce esta debilidad y plantea la necesidad de desarrollar canales de comunicación directa que expliquen el modelo y generen confianza.
+
+Los comentarios de los clientes confirman estas preocupaciones: mientras algunos son *compradores informados pero reactivos* que aprovechan las fluctuaciones ("Me gusta que en Mercado Libre los precios cambian"), otros son *compradores no informados* que atribuyen los cambios simplemente a competencia entre vendedores. Se evidencia una crítica generalizada a la *falta de transparencia*, con clientes que notan patrones como el aumento artificial de precios antes de supuestas ofertas. Curiosamente, aunque muchos no comprenden el modelo técnicamente ("Realmente no sabía que existen los precios dinámicos"), han desarrollado estrategias pragmáticas para navegar el sistema, sugiriendo que la aceptación no depende necesariamente de la comprensión total sino de la capacidad de identificar oportunidades dentro de lo que perciben como un sistema variable.
+
+La falta de canales de comunicación directa (limitada por la plataforma) y la ausencia de explicaciones claras profundizan esta percepción, generando un círculo vicioso de desconfianza que podría afectar la lealtad a largo plazo. La solución no está en eliminar la dinámica de precios, sino en compensar su opacidad técnica con transparencia comunicacional.
+
+\newpage
+
+### 3.2.2. Factores emocionales y psicológicos
+
+Con la codificación de las respuestas del gerente de marketing que se muestra en la Tabla \ref{tab:codificacion_PFM} se pretendió establecer los factores emocionales y psicológicos que influyen en la decisión de compra. Los factores encontrados fueron la expectativa de recompensa, la reacción emocional negativa ante el alza de precios, la duda, evaluación racional-emocional, la sensibilidad temporal, urgencia estratégica, la reacción de rechazo por percepción de injusticia y la scnfianza y comprensión como mediadores emocionales.
+
+```{r}
+codigo <- c(
+  'expectativa de recompensa',
+  'Reacción emocional negativa ante el alza de precios',
+  'Duda, evaluación racional-emocional',
+  'Sensibilidad temporal, urgencia estratégica',
+  'Reacción de rechazo por percepción de injusticia',
+  'Confianza y comprensión como mediadores emocionales'
+)
+
+fragmento <- c(
+  'Muchos compradores marcan los productos como favoritos y esperan una baja de precio.',
+  'sabemos que hay quienes notan los cambios y prefieren esperar o incluso no comprar si el precio sube.',
+  'Podemos ver si un producto tiene muchas visitas, preguntas o "me gusta" pero pocas ventas.',
+  'los compradores revisan con anticipación y toman decisiones justo antes del cambio de mes.',
+  'Si subimos demasiado en un mes de alta demanda, las ventas bajan.',
+  'si se comunica de manera más directa, podría fortalecerse aún más la estrategia.'
+)
+
+df_codificacion_PFM <- data.frame(codigo, fragmento)
+colnames(df_codificacion_PFM) <- c('Código asigando', 'Fragmento')
+```
+
+```{r}
+tabla_codificacion_PFM <- kbl(df_codificacion_PFM,
+             caption = "Fragmentos significativos, de la entrevista, codificados por categorías temáticas emergentes de la categoría Factores emocionales y psicológicos.",
+             label = 'codificacion_PFM',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position", "striped")) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2, width = "10cm") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_codificacion_PFM
+```
+
+La codificación de las respuestas de los clientes se muestra en la Tabla \ref{tab:codificacion_PFC} que se muestra las emociones que genera cada situación que puede darse ante las compras dentro del sistema de precios dinámicos. Los compradores manifestaron frustración, percepción de injusticia o arbitrariedad, ansiedad e irritación y en algunos casos sintieron que se les estaba haciendo un reconocimiento por haber llevado a cabo una estrategia de compra que aprovechase el sistema de precios dinámicos.
+
+```{r}
+codigo <- c(
+  rep('Frustración por desincronización', 3),
+  rep('Percepción de injusticia o arbitrariedad', 2),
+  rep('Ansiedad ante la falta de control', 3),
+  rep('El tiempo como detonante emocional', 2),
+  'Sensación de reconocimiento y control estratégico',
+  rep('Irritación ante la variabilidad excesiva', 2)
+)
+
+fragmento <- c(
+  'Me molesta que a veces el producto esté sin stock justo cuando baja de precio.',
+  'No me gusta que el precio suba en diciembre justo cuando necesitamos comprar.',
+  'Es evidente que los descuentos no siempre coinciden con mi momento de compra [...] a veces genera frustración.',
+  'A veces parece injusto que el mismo producto suba tanto de un mes a otro.',
+  'Eso de los precios dinámicos suena complicado [...] asumí que era porque cada uno pone lo que quiere cobrar.',
+  'Me incomoda que la lógica de precios parece algo confusa',
+  'Nunca me había fijado, pero ahora veo que los precios suben y bajan como locos.',
+  'No siempre entiendo cuándo es el mejor momento.',
+  'Creo que la lógica de precios parece algo confusa, aunque sería mejor si avisaran con tiempo.',
+  'Me incomoda que los precios en temporada alta son muy elevados.',
+  'Me gusta que el sistema premie a quienes se anticipan y planean su compra.',
+  'Los precios cambian demasiado seguido y a veces genera frustración.',
+  'Es evidente que los precios cambian demasiado seguido [...] a veces molesta.'
+)
+
+df_codificacion_PFC <- data.frame(codigo, fragmento)
+colnames(df_codificacion_PFC) <- c('Código asigando', 'Fragmento')
+```
+
+```{r}
+alternado <- rellenos(df_codificacion_PFC)
+
+tabla_codificacion_PFC <- kbl(df_codificacion_PFC,
+             caption = "Fragmentos significativos, de las opiniones de los clientes, codificados por categorías temáticas emergentes de la categoría Factores emocionales y psicológicos.",
+             label = 'codificacion_PFC',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2, width = "10cm", background = alternado) %>%
+  collapse_rows(columns = 1, valign = "middle", latex_hline = "major") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_codificacion_PFC
+```
+
+**Hallazgos**
+
+Los precios dinámicos no solo impactan las decisiones de compra racionales, sino que también desencadenan respuestas emocionales complejas en los consumidores. Desde la expectativa de recompensa hasta la frustración por percepción de injusticia, los clientes desarrollan estrategias adaptativas, reacciones viscerales y procesos de evaluación que mezclan deseo con desconfianza. Este análisis explora cómo las fluctuaciones de precios activan mecanismos psicológicos, como la aversión a la pérdida, la disonancia emocional y la urgencia por escasez temporal, mientras revela que la confianza y la transparencia podrían modular estas emociones para fortalecer la relación con los compradores.
+
+**expectativa de recompensa**
+
+Los clientes aprenden el patrón de variaciones de precios y desarrollan expectativas conscientes. Esto genera un comportamiento emocional de "esperar la oferta", con sensación de logro o satisfacción cuando se logra una compra en rebaja. Este patrón refleja un deseo de maximizar valor percibido, y activa mecanismos como la anticipación y el autocontrol emocional (esperar en vez de comprar de inmediato).
+
+Esta apreciación del gerente no está confirmada con ninguno de los hallazgos de esta categoría a priori, pero algunos de la categoría anterior corresponden con la apreciación del entrevistado.
+
+**Reacción emocional negativa ante el alza de precios**
+
+Cuando los precios suben, algunos clientes deciden no comprar. Esto sugiere una aversión a la pérdida: psicológicamente, los consumidores perciben que “perdieron” la oportunidad anterior. Este efecto se relaciona con el “loss aversion” (aversión a la pérdida), donde el dolor de pagar más pesa más que el placer de obtener el producto.
+
+Las reacciones emocionales negativas que manifestaron los clientes encuestado son la Frustración por desincronización, Ansiedad ante la falta de control, Irritación ante la variabilidad excesiva
+
+La Frustración se presenta ante un producto sin stock justo cuando el precio está bajo, cuando los precios se encuentren altos cuando se requiere comprar el producto o porque las promociones y descuentos no coinciden con los momentos de compra.
+
+**Duda, evaluación racional-emocional**
+
+Los datos de comportamiento (visitas, “me gusta”, preguntas sin compra) sugieren un proceso de evaluación en el que el consumidor desea el producto pero no está emocionalmente convencido del precio. Aquí se activa la disonancia emocional: el deseo se contrapone a la percepción de injusticia o desconfianza ante el precio.
+
+Esta disonancia emocional se puede explicar por la sensación de reconocimiento y control estratégico que surge al obtener el producto al menor precio posible gracias a la anticipación y planificación de la compra. El comprador compara los precios entre varios vendedores y cronológicamente. Así, puede marcar como me gusta a un producto, pero al pasar el tiempo puede dar con otra publicación que venda a menor precio el mismo producto que había marcado.
+
+**El tiempo como detonante emocional**
+
+Los cambios justo antes de que comience el mes (cuando suben los precios) generan presión. Algunos compradores actúan con urgencia emocional, acelerando decisiones para no 'perder' el mejor precio. Este comportamiento refleja un efecto de escasez temporal, que genera ansiedad o impulso de compra.
+
+Este comportamiento se puede evidenciar por la Necesidad de previsibilidad y anticipación de algunos compradores que manifiestan sentir malestar por el alza de los precios en las temporadas altas.
+
+**Reacción de rechazo por percepción de injusticia**
+
+La falta de transparencia puede generar desconfianza emocional. Si el cliente no entiende por qué sube o baja el precio, puede sentir que el sistema es injusto o manipulado, lo que afecta la decisión de compra. La confianza y el entendimiento racional mitigan la carga emocional negativa y facilitan decisiones de compra.
+
+Los clientes también manifestaron una percepción de injusticia o arbitrariedad al notar que el precio de los productos suben demasiado de un mes para otro o porque no comprenden el sistema de precios dinámicos y por ello creen que la variación de precios se debe a que cada vendedor "pone lo que quiera cobrar".
+
+**Confianza y comprensión como mediadores emocionales**
+
+A pesar de lo anterior, algunos clientes han adaptado su comportamiento, y sienten satisfacción o control al aprender a comprar estratégicamente. Por ello el gerente de marketing piensa que al mejorar la comunicación con los clientes, los que se lograría si se pudiera migrar a los compradores a la página web de la empres, se generaría más confianza y fortalecer la estratgia del sistema de precios dinámicos.
+
+**Síntesis**
+
+Los precios dinámicos activan respuestas emocionales y cognitivas clave que determinan el comportamiento del consumidor. Por un lado, generan **expectativas de recompensa** (la satisfacción de obtener una "ganga" tras esperar) y **aversión a la pérdida** (resistencia a pagar más que el precio mínimo observado). Estas fuerzas opuestas explican por qué los clientes adoptan estrategias como posponer compras o monitorear patrones de precios. Sin embargo, cuando perciben falta de transparencia o cambios abruptos, surgen emociones negativas: **frustración** por desincronización entre necesidad y precio, **ansiedad** ante la impredictibilidad, y **desconfianza** al sospechar manipulación (como inflar precios antes de falsos descuentos).
+
+La percepción de **control** o **impotencia** modula estas reacciones. Los compradores que identifican patrones experimentan **gratificación estratégica** ("gané por esperar"), mientras quienes no comprenden el sistema sienten **injusticia** ("los precios son arbitrarios"). Esta brecha subraya el rol crítico de la comunicación: explicar las variaciones reduce la carga emocional negativa y transforma la incertidumbre en certidumbre percibida. En esencia, más allá del precio objetivo, son la **confianza**, el **sentido de control** y la **evitación del arrepentimiento** los factores psicológicos que finalmente inclinan la balanza entre comprar, esperar o abandonar la transacción.
+
+### 3.2.3. Confianza del cliente
+
+Con la codificación de las respuestas del gerente de marketing que se muestra en la Tabla \ref{tab:codificacion_PCM} donde se encuentran las categorías emergentes relacionadas con el impacto del modelo de precios dinámicos sobre los clientes. Se evidencia que el sistema tiene falencias en el área de comunicación  con el cliente y una estrategia de de confianza o fidelización, lo que puede genera la percepción de arbitrariedad. Para abordar esta problemática, el gerente indica que se requiere de una reconstrucción de la confianza mediante explicación del sistema.
+
+```{r}
+codigo <- c(
+  'Falta de comunicación directa con el cliente',
+  'Reconocimiento del riesgo de arbitrariedad',
+  rep('Confianza basada en la experiencia de ahorro', 2),
+  'Ausencia de una estrategia de confianza o fidelización',
+  'Posibilidad de reconstrucción de la confianza mediante explicación'
+)
+
+fragmento <- c(
+  'No tenemos un canal de comunicación directa con los compradores que nos permita saber cómo perciben los cambios de precio.',
+  'Lo que necesitamos entender mejor es si les genera confianza o molestia, y sobre todo si lo entienden o lo ven como algo arbitrario.',
+  'Sabemos que hay quienes notan los cambios y prefieren esperar o incluso no comprar si el precio sube.',
+  'Muchos compradores marcan los productos como favoritos y esperan una baja de precio.',
+  'No hay una política de compensación, comunicación directa o fidelización que esté pensada específicamente para equilibrar ese efecto.',
+  'Si se comunica de manera más directa, podría fortalecerse aún más la estrategia.'
+)
+
+
+df_codificacion_PCM <- data.frame(codigo, fragmento)
+colnames(df_codificacion_PCM) <- c('Categoría emergente', 'Fragmento de la entrevista')
+```
+
+```{r}
+alternado <- rellenos(df_codificacion_PCM)
+
+tabla_codificacion_PCM <- kbl(df_codificacion_PCM,
+             caption = "Fragmentos significativos, de la entrevista, codificados por categorías temáticas emergentes de la categoría Cofianza del cliente.",
+             label = 'codificacion_PCM',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2, width = "10cm", background = alternado) %>%
+  collapse_rows(columns = 1, valign = "middle", latex_hline = "major") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_codificacion_PCM
+```
+
+Con la codificación de las respuestas de los clientes que se muestra en la Tabla \ref{tab:codificacion_PCC} donde se encuentran las categorías emergentes relacionadas con el impacto del modelo de precios dinámicos sobre los clientes. Algunos clientes suelen desconfiar en el sistema, mientras que otros llagan a confiar asi sea de forma limitada.
+
+```{r}
+codigo <- c(
+  rep('Percepción de manipulación o engaño', 4),
+  rep('Desconfianza en la lógica del sistema', 3),
+  rep('Desconfianza en la veracidad de las ofertas', 2),
+  rep('Confianza condicional basada en experiencia personal', 4),
+  rep('Confianza limitada por necesidad de vigilancia constante', 2)
+)
+
+fragmento <- c(
+  'Parecen ventajosos, pero en realidad son una excusa…',
+  'Mientras te muestran un producto ‘en oferta’ [...] te sugieren otros con precios inflados.',
+  'Te venden la escasez',
+  'He visto productos que duplican su precio antes del Hot Sale',
+  'A veces no entiendo por qué el mismo producto cuesta más',
+  'Desde mi experiencia, los descuentos no siempre coinciden',
+  'No siempre entiendo cuándo es el mejor momento.',
+  'En Mercado Libre... los productos ‘en oferta’ ya costaban lo mismo',
+  'Muchas tiendas bajan precios a media noche... y luego los suben al amanecer.',
+  'Me ayudó a ahorrar dinero cuando compré en julio, pero fue por pura casualidad.',
+  'El sistema favorece a quienes planifican, y eso me ha ayudado a ahorrar',
+  'Me parece bien que los precios bajen en meses tranquilo',
+  'Las ofertas de temporada baja son buenas',
+  'Considero que la estrategia tiene sentido si no tienes urgencia',
+  'Los descuentos no siempre coinciden con mi momento de compra [...] eso me obliga a estar pendiente del calendario.'
+)
+
+df_codificacion_PCC <- data.frame(codigo, fragmento)
+colnames(df_codificacion_PCC) <- c('Código asigando', 'Fragmento')
+```
+
+```{r}
+alternado <- rellenos(df_codificacion_PCC)
+
+tabla_codificacion_PCC <- kbl(df_codificacion_PCC,
+             caption = "Fragmentos significativos, de las opiniones de los clientes, codificados por categorías temáticas emergentes de la categoría Cofianza del cliente.",
+             label = 'codificacion_PFC',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2, width = "10cm", background = alternado) %>%
+  collapse_rows(columns = 1, valign = "middle", latex_hline = "major") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_codificacion_PCC
+```
+
+**Hallazgos**
+
+La confianza del cliente en los sistemas de precios dinámicos se configura como un factor central en su relación con la marca o el servicio. Esta confianza no es estática ni automática, sino que depende de la capacidad del sistema para generar comprensión, previsibilidad y percepción de justicia. A través del análisis tanto del discurso del gerente de marketing como de las opiniones de los clientes, emergen tensiones claras entre la intención estratégica del modelo y la experiencia subjetiva del consumidor, que afectan directamente la credibilidad del sistema.
+
+**Falta de comunicación directa con el cliente**
+
+El gerente reconoce que no hay un canal de comunicación con los compradores, especialmente porque la mayoría de ventas se hacen en plataformas como Mercado Libre. Esta barrera impide explicar la lógica del sistema y debilita la percepción de transparencia y cercanía, elementos clave para sostener la confianza del cliente. Al no comprender por qué y cuándo cambia el precio, el cliente cuestiona la veracidad del sistema **Desconfianza en la veracidad de las ofertas**. Esta confusión debilita la credibilidad y la percepción de honestidad del servicio.
+
+**Reconocimiento del riesgo de arbitrariedad**
+
+El entrevistado anticipa que el modelo puede parecer arbitrario si no se comunica adecuadamente. El riesgo de incomprensión puede transformarse en desconfianza hacia la marca si el cliente cree que los precios cambian de forma manipuladora o sin justificación. Esta apreciación no esta alejada de la realidad ya que, algunos clientes tienen una **percepción de manipulación o engaño**. Varias opiniones reflejan que el cliente no confía en las intenciones del sistema, percibiendo que las promociones son simuladas o que se genera escasez artificial para inducir compras impulsivas.
+
+La percepción de arbitrariedad genera **desconfianza en la veracidad de las ofertas**. Al no comprender por qué y cuándo cambia el precio, el cliente cuestiona la veracidad del sistema. Esta confusión debilita la credibilidad y la percepción de honestidad del servicio.
+
+**Confianza basada en la experiencia de ahorro**
+
+Algunos clientes han aprendido a usar el modelo en su beneficio (**Confianza condicional basada en experiencia personal**) y perciben que ganan cuando se anticipan, lo que fortalece su vínculo con la marca. La confianza aumenta cuando el cliente siente control y beneficio real. El sistema se vuelve más legítimo cuando se alinea con el comportamiento estratégico del consumidor. Estos clientes reportan haber ahorrado gracias al modelo, pero lo atribuyen al azar o a una planificación cuidadosa. Esto sugiere una confianza condicional, que se activa si el cliente logra “ganarle al sistema”.
+
+Esta confianza condicional puede llevar a una **Confianza limitada por necesidad de vigilancia constante**, ya que se puede presentar el caso de que la necesidad de estar atentos al calendario, a promociones, o a escasez crea agotamiento y tensión, lo que afecta negativamente la percepción de integridad del modelo.
+
+**Ausencia de una estrategia de confianza o fidelización**
+
+El gerente reconoce que, aunque el modelo ha sido útil para ventas e inventario, no hay una política clara orientada a la experiencia emocional del cliente. La falta de acciones concretas para construir confianza (como informar, educar, o premiar al cliente) representa una oportunidad desaprovechada.
+
+**Posibilidad de reconstrucción de la confianza mediante explicación**
+El gerente cree que si se comunica adecuadamente, la confianza en el modelo podría no solo mantenerse, sino fortalecerse. La confianza es mutable. Si el cliente entiende la lógica del sistema, puede transformarse de desconfiado a satisfecho.
+
+**Síntesis**
+
+Tanto desde la perspectiva interna como externa, la confianza del cliente frente a precios dinámicos se revela como frágil, condicionada y altamente influenciable. Factores como la falta de explicación clara, la ausencia de comunicación directa y la sensación de arbitrariedad generan desconfianza, especialmente en entornos impersonales como las plataformas digitales. Además, la variabilidad excesiva, las ofertas ambiguas y la percepción de manipulación o escasez artificial erosionan la credibilidad de la marca. Sin embargo, esta confianza puede reconstruirse si se incorporan prácticas de comunicación transparente, reglas consistentes y estrategias que otorguen al cliente una mayor sensación de control y equidad. En este contexto, la confianza no es un valor dado, sino un resultado que debe ser cultivado activamente por la empresa.
+
+\newpage
+
+### 3.2.4. Aceptación del modelo
+
+El gerente ha manifestado que elementos como los elementos estratégicos en meses de baja demanda y una moderación en el alza de los precios en los meses de alta demanda han aportado a la aceptación del modelo, por parte de algunos clientes. En la Tabla \ref{tab:codificacion_PCM} se muestran estas categorías emergentes de la entrevista al gerente.
+
+```{r}
+codigo <- c(
+  'Descuentos estratégicos en meses de baja demanda',
+  'Moderación como forma de garantía informal',
+  'Promociones personalizadas en canales propios',
+  rep('Explicación del sistema como herramienta de aceptación', 2)
+)
+
+fragmento <- c(
+  'Los descuentos en los meses tranquilos están pensados para aprovechar los compradores que no tiene urgencia, pero sí está pendiente del precio.',
+  'Mantuvimos el margen en un 20% y aplicamos solo ajustes del 10%, no más.',
+  'Sería recomendable trabajar en una estrategia real de migración hacia la página web [...] ahí podríamos hacer promociones personalizadas.',
+  'Si se comunica de manera más directa, podría fortalecerse aún más la estrategia.',
+  'Podríamos incluso pensar en mensajes explicativos.'
+)
+
+
+df_codificacion_PAM <- data.frame(codigo, fragmento)
+colnames(df_codificacion_PAM) <- c('Categoría emergente', 'Fragmento de la entrevista')
+```
+
+```{r}
+alternado <- rellenos(df_codificacion_PAM)
+
+tabla_codificacion_PAM <- kbl(df_codificacion_PAM,
+             caption = "Fragmentos significativos, de la entrevista, codificados por categorías temáticas emergentes de la categoría Aceptación del modelo.",
+             label = 'codificacion_PCM',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2, width = "10cm", background = alternado) %>%
+  collapse_rows(columns = 1, valign = "middle", latex_hline = "major") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_codificacion_PAM
+```
+
+Con la codificación de las respuestas de los clientes que se muestra en la Tabla \ref{tab:codificacion_PCC} donde se encuentran las categorías emergentes relacionadas con los elementos que permiten la aceptación del modelo de precios dinámicos sobre los clientes. Ofertas por ventas elevadas, por las temporadas y el inventario (cómo está variando el inventario) y un sistema de aviso de ofertas son elementos que los clientes han manifestado como favorables para aceptar el sistema de precios dinámicos.
+
+```{r}
+codigo <- c(
+  rep('Ofertas por ventas elevadas', 3),
+  rep('Ofertas por temporadas', 3),
+  rep('Ofertas ocasionales', 3),
+  rep('Sistema de aviso', 3)
+  
+)
+
+fragmento <- c(
+  'El sistema me parece útil, pero deberían evitar quedarse sin stock cuando bajan los precios.', 
+  'Aprendí que si un vendedor tiene pocas unidades de algo, suele ponerlo más barato', 
+  'Cuando un producto le quedan 3 o 4 unidades [...] tiene bajadas de precio de último momento.',
+  'Prefiero comprar en meses tranquilos.',
+  'Es evidente que las ofertas de temporada baja son buenas…',
+  'Sé que en temporada alta los precios suben, por eso me organizo con tiempo',
+  'Los descuentos son como oportunidades fugaces: si no actúas rápido, se esfuman.',
+  'Lo curioso es que, cuando menos lo planeas, aparece esa oferta perfecta…',
+  'Los precios cambian demasiado seguido, y eso me ha ayudado a ahorrar en varias ocasiones.',
+  'He notado que los precios cambian demasiado seguido, y eso me obliga a estar pendiente del calendario.',
+  'Me he vuelto más estratégico al comprar, reviso los precios todos los meses.',
+  'Es útil si no tengo prisa, pero si necesito algo urgente, me sale más caro.'
+)
+
+df_codificacion_PCC <- data.frame(codigo, fragmento)
+colnames(df_codificacion_PCC) <- c('Código asigando', 'Fragmento')
+```
+
+```{r}
+alternado <- rellenos(df_codificacion_PCC)
+
+tabla_codificacion_PCC <- kbl(df_codificacion_PCC,
+             caption = "Fragmentos significativos, de las opiniones de los clientes, codificados por categorías temáticas emergentes de la categoría Cofianza del cliente.",
+             label = 'codificacion_PFC',
+             booktabs = T
+             ) %>% 
+  kable_styling(latex_options = c("hold_position")) %>%
+  column_spec(1, width = "5cm") %>%
+  column_spec(2, width = "10cm", background = alternado) %>%
+  collapse_rows(columns = 1, valign = "middle", latex_hline = "major") %>%
+  row_spec(0, bold = TRUE, align = "c")
+
+tabla_codificacion_PCC
+```
+
+**Hallazgos**
+
+La aceptación del precio dinámico no depende únicamente del valor monetario final que el cliente paga, sino también de una serie de elementos adicionales que actúan como facilitadores, moduladores o justificadores del sistema. A partir del análisis conjunto de las opiniones de los clientes y del discurso del gerente de marketing, emergen cuatro dimensiones clave que explican cómo los descuentos, promociones, mecanismos de información y patrones de comportamiento influyen en la disposición del comprador a aceptar la lógica dinámica de precios. Estas categorías no sólo expresan experiencias concretas, sino también condiciones necesarias para que el modelo sea percibido como comprensible, justo y emocionalmente satisfactorio.
+
+**Ofertas por ventas elevadas**
+
+Los clientes han identificado que cuando un producto tiene alta rotación o está por agotarse, los vendedores aplican descuentos para acelerar la salida del inventario. Este comportamiento percibido genera una lógica comprensible y refuerza la sensación de oportunidad, especialmente entre quienes observan con atención. La aceptación crece cuando el cliente percibe que los descuentos tienen sentido comercial (como liquidación por alta demanda), y no son aleatorios ni manipuladores. Al respecto, el gerente señala el uso de la **moderación como forma de garantía informal**, en el que los cambios de precio no superan el 10% mensual, lo cual actúa como un margen de seguridad emocional para los clientes. Aunque no es una “garantía” formal, este límite ayuda a evitar percepciones de abuso o arbitrariedad. El cliente puede tolerar los cambios si percibe que hay reglas claras y márgenes razonables.
+
+**Ofertas por temporadas**
+
+Muchos clientes han comprendido que los precios bajan durante ciertos meses con menor demanda, y suben en épocas de alta demanda. Esta estacionalidad reconocible permite planificar las compras con anticipación, lo cual facilita una experiencia más racional, controlada y justa. La lógica temporal permite que el modelo dinámico parezca justo y predecible, lo que genera confianza y planificación en el cliente. Por eso, según el gerente, los **descuentos estratégicos en meses de baja demanda** se aplican con un ajuste del 10% hacia abajo en los meses tranquilos, como forma de estimular la demanda. Estos descuentos se convierten en una herramienta deliberada para atraer al cliente, especialmente a los que pueden planificar sus compras. Este tipo de promoción da sentido al modelo y lo hace más predecible y justo, generando aceptación racional.
+
+**Sistema de aviso**
+
+Ante la alta frecuencia de cambios en los precios, algunos clientes sienten presión por estar pendientes del sistema. En este contexto, un sistema de aviso personalizado (por correo, app, notificación) ayudaría a facilitar el acceso a las oportunidades sin exigir vigilancia constante. La automatización de alertas o avisos reduce el esfuerzo mental y democratiza el acceso a las ofertas, favoreciendo a clientes menos activos o con poco tiempo.
+
+Este sistema de aviso podría servir para explicar el sistema de precios dinámicos. Aunque no es un “elemento adicional” tangible, el gerente destaca que una mejor comunicación y explicación del modelo puede ayudar a que los clientes lo acepten (**explicación del sistema como herramienta de aceptación**). Esto transforma la percepción del sistema de “arbitrario” a “comprensible”. La claridad y la transparencia son elementos adicionales no monetarios que influyen directamente en la disposición del cliente a aceptar el modelo.
+
+**Ofertas ocasionales**
+
+Los clientes han desarrollado el hábito de visitar la plataforma con regularidad en busca de ofertas inesperadas o fugaces, lo cual crea un patrón de uso exploratorio. Estas “sorpresas” positivas refuerzan el vínculo con el sistema y generan una recompensa emocional. La experiencia emocional de “ganar una oferta” promueve la adhesión al sistema, genera visitas recurrentes y convierte la compra en un juego estratégico. Al respecto, el gerente sugiere que se podría realizar **promociones personalizadas en canales propios**. Si se fortalece el canal propio (como la página web), se podrían implementar promociones segmentadas, lo que aumentaría el control sobre el mensaje y permitiría acciones dirigidas para estimular la aceptación. Los clientes podrían sentirse más valorados y atendidos si reciben promociones acordes a su comportamiento o perfil.
+
+**Síntesis**
+
+Los clientes aceptan con mayor facilidad el modelo de precios dinámicos cuando perciben que las rebajas tienen un sentido comercial visible, como sucede con las ofertas asociadas a ventas elevadas o inventario limitado, donde la lógica de liquidación se vuelve clara. En este mismo sentido, la estacionalidad reconocible de los precios permite que los compradores planifiquen sus decisiones con anticipación, lo que transforma la variación de precios en una oportunidad calculada y predecible. Ambas dimensiones están alineadas con la visión del gerente, quien destaca la moderación en los ajustes como forma de garantizar estabilidad y la aplicación de descuentos estratégicos en temporada baja como incentivo racional.
+
+Por otro lado, en un entorno de precios que cambia constantemente, la falta de avisos o notificaciones automáticas genera ansiedad y fatiga informativa. La implementación de un sistema de aviso es vista por los clientes como una forma de compensar la carga cognitiva que implica seguir el modelo, y coincide con la propuesta del gerente de explicar mejor la lógica del sistema como vía para fomentar su comprensión y aceptación. Finalmente, las ofertas ocasionales y sorpresivas —que el cliente descubre por observación o suerte— refuerzan la dimensión emocional del modelo y generan hábitos de visita recurrente. Aunque el gerente no las menciona explícitamente, sugiere que las promociones personalizadas en canales propios pueden cumplir un rol similar al permitir que el cliente se sienta reconocido y premiado por su comportamiento.
+
+En conjunto, estas categorías revelan que los descuentos y promociones son más aceptados cuando están acompañados de coherencia temporal, comunicación clara, límites razonables y oportunidades que conectan con la experiencia emocional del cliente. La clave para fortalecer la aceptación del sistema no está solo en bajar precios, sino en cómo, cuándo y por qué se baja, y en qué tan claro y valioso se le hace sentir al cliente ese movimiento.
+
+\newpage
+
+# 4. Discusión
+
+**Interpretación en profundidad de los resultados y su relevancia**
+
+Los resultados obtenidos muestran que la implementación del sistema de precios dinámicos ha tenido impactos significativos tanto en el comportamiento del consumidor como en los indicadores de rendimiento de la empresa. Aunque la diferencia media en la elasticidad de la demanda entre sistemas fue de 0.573, lo cual sugiere una mayor sensibilidad con el modelo dinámico, el análisis estadístico indicó que esta diferencia no es estadísticamente significativa (p = 0.8469). Sin embargo, la revisión por categorías de productos evidencia que algunos, como los mouse y las memorias USB, se comportan de manera más elástica bajo el nuevo sistema, lo cual tiene implicaciones prácticas importantes: son productos idóneos para estrategias promocionales o aumentos controlados en temporadas altas.
+
+Desde el punto de vista financiero, el sistema permitió un aumento significativo en la utilidad bruta (de 78 a 180 millones COP), reforzando la hipótesis de que los ajustes dinámicos de precios pueden mejorar los márgenes sin sacrificar volumen en las temporadas clave. No obstante, este efecto no se replicó en los meses de baja demanda, donde los descuentos del 10% redujeron el volumen sin lograr atraer suficientes compradores, lo que sugiere que la estrategia de descuentos requiere una calibración más fina según producto, categoría y contexto temporal.
+
+Cualitativamente, el estudio reveló que la percepción del cliente frente al modelo dinámico está mediada por factores emocionales y cognitivos. Las estrategias de compra basadas en observación y espera demuestran una apropiación informal del modelo por parte de algunos clientes, mientras que otros manifiestan frustración y desconfianza, especialmente en ausencia de transparencia. Esto pone en evidencia que la aceptación del sistema no depende solo de su racionalidad económica, sino también de su presentación y comunicación. El valor percibido de una rebaja está fuertemente condicionado por el contexto en que se ofrece y por la confianza que el cliente tiene en la marca.
+
+En conjunto, estos hallazgos subrayan que el éxito de una estrategia de precios dinámicos no radica únicamente en su formulación algorítmica o su impacto inmediato en ingresos, sino en su integración con las percepciones, emociones y expectativas de los consumidores. Es decir, en su capacidad para ser comprendido, anticipado y aceptado por quienes interactúan con él.
+
+**Comparación con la literatura existente**
+
+Los resultados de este estudio coinciden con investigaciones previas que destacan tanto los beneficios como los riesgos de los precios dinámicos. Autores como Elmaghraby y Keskinocak han señalado que el dinamismo en precios puede maximizar ingresos cuando se ajusta con base en la demanda proyectada, pero también advierten que la percepción del consumidor juega un rol crítico en su eficacia [@elmaghraby2003dynamic]. De forma similar, Chen, Mislove y Wilson advierten que la opacidad del sistema puede generar percepciones de injusticia, un hallazgo que también se refleja en los comentarios de los clientes analizados en este estudio [@chen2016empirical].
+
+La literatura también ha reconocido el papel de las emociones en las decisiones de compra en entornos dinámicos. Por ejemplo, estudios de Kahneman y Tversky sobre la teoría de la perspectiva explican la aversión a pagar precios más altos como una forma de evitar la pérdida percibida. Esta teoría se ve reflejada en la ansiedad y frustración de los consumidores ante variaciones no explicadas de precios, así como en el comportamiento estratégico de aquellos que esperan a encontrar el precio mínimo observado.
+
+Finalmente, en línea con autores como Kannan y Kopalle, este estudio confirma que la elasticidad de la demanda no es uniforme entre productos, y que adaptar la estrategia según estas variaciones puede mejorar la rentabilidad [@pk2001dynamic]. No obstante, también se hace eco de los desafíos operativos y comunicacionales que plantea este tipo de modelo en entornos digitales masivos.
+
+**Limitaciones del estudio**
+
+Este estudio presenta varias limitaciones que deben considerarse al interpretar los resultados. En primer lugar, desde el punto de vista cuantitativo, el análisis se basa en información de precios, unidades vendidas y elasticidad derivada de datos agregados, sin contar con todas las variables que podrían influir en la demanda (como promociones externas, visibilidad del producto o competencia directa en el mismo canal). Tampoco se consideraron costos operativos completos, por lo que la utilidad calculada es parcial.
+
+Desde el punto de vista cualitativo, la entrevista fue realizada a un solo informante clave (el gerente de marketing), lo que limita la diversidad de perspectivas internas. Aunque la centralización de las decisiones justifica esta elección, la incorporación de otras voces (como personal de ventas o atención al cliente) habría enriquecido el análisis. En cuanto a la encuesta, si bien aportó insumos valiosos, los comentarios abiertos fueron voluntarios y no representan necesariamente a la totalidad de los clientes.
+
+Por último, el modelo de precios dinámicos evaluado se aplicó en un entorno controlado con decisiones tomadas por una sola persona y sin automatización completa. Esto puede limitar la generalización de los resultados a otros contextos donde los precios son gestionados por algoritmos en tiempo real o ajustados por múltiples factores simultáneamente.
+
+
+\newpage
+
+# Conclusiones
+
+Se logró cumplir con el objetivo general del estudio al evaluar, de forma articulada y rigurosa, el impacto del sistema de precios dinámicos sobre dimensiones clave del negocio: demanda, ingresos, percepción del cliente y competitividad. A través de un enfoque mixto que combinó técnicas estadísticas y análisis cualitativo, se obtuvieron hallazgos sólidos que permiten comprender tanto los efectos cuantificables del modelo como las experiencias subjetivas de los usuarios que lo enfrentan.
+
+**Relación entre variaciones de precios, demanda e ingresos**
+
+Se logró establecer la relación entre variaciones de precios, demanda e ingresos por medio de modelos de regresión y correlación, que indicaron que variables como el precio promedio, las unidades vendidas y la estacionalidad (mes y trimestre) influyen significativamente en los ingresos. Se evidenció que el modelo de precios dinámicos permite adaptarse mejor a los patrones de consumo en temporadas altas, generando un impacto positivo sobre los ingresos.
+
+**Elasticidad de la demanda y volumen de ventas**
+
+Se logró evaluar el impacto de los precios dinámicos en la elasticidad y el volumen de ventas diferenciando entre temporadas. Aunque no se hallaron diferencias estadísticamente significativas en la elasticidad global, se identificaron comportamientos diferenciados por categoría de producto. Asimismo, se logró demostrar que en los meses de alta demanda, el aumento moderado de precios no redujo el volumen vendido, mientras que en temporada baja los descuentos del 10% no lograron compensar la disminución en ingresos.
+
+**Factores que influyen en la variación de precios**
+
+Se logró identificar que las unidades vendidas y la estacionalidad son los principales factores que influyen en la variación de precios dentro del sistema dinámico implementado. Estos factores, más que la competencia directa, determinan los ajustes que la empresa realiza periódicamente, mostrando la necesidad de una planificación basada en datos históricos de demanda.
+
+**Comparación entre precios dinámicos y fijos**
+
+Se logró comparar los resultados financieros de los modelos de precios dinámicos y fijos mediante simulaciones que mostraron un aumento significativo en la utilidad bruta bajo el modelo dinámico (de 78 a 180 millones COP). Este hallazgo valida la eficacia de la estrategia, particularmente durante los meses de alta demanda.
+
+**Percepción de transparencia y justicia**
+
+Se logró explorar la percepción de los clientes frente a la transparencia y justicia del modelo, identificando una brecha importante entre las prácticas de la empresa y la comprensión del consumidor. La falta de comunicación estructurada fue vista como una debilidad que genera desconfianza, incluso en clientes que aplican estrategias informadas de compra.
+
+**Factores emocionales y psicológicos**
+
+Se logró identificar que los precios dinámicos activan emociones como frustración, ansiedad o satisfacción estratégica, dependiendo del nivel de control percibido por el consumidor. Estos hallazgos confirman que las decisiones de compra en contextos dinámicos no son puramente racionales, sino que están profundamente mediadas por factores emocionales y psicológicos.
+
+**Confianza del cliente**
+
+Se logró evidenciar que la implementación de precios dinámicos afecta la confianza del cliente en la marca, especialmente cuando los cambios de precios se perciben como arbitrarios o poco explicados. La confianza, por tanto, no es un valor fijo, sino una construcción que puede ser erosionada o fortalecida según las prácticas de comunicación adoptadas.
+
+**Aceptación del modelo y elementos complementarios**
+
+Se logró identificar que la aceptación del modelo de precios dinámicos mejora cuando se incorporan elementos complementarios como descuentos estratégicos, estacionalidad clara y promociones ocasionales. La previsibilidad y la lógica percibida detrás de los descuentos refuerzan la sensación de oportunidad, mientras que la falta de avisos automáticos genera fatiga informativa y reduce la aceptación.
+
+**Importancia de los resultados en un contexto más amplio**
+
+Se logró demostrar que el sistema de precios dinámicos puede ser una herramienta poderosa para aumentar los ingresos y optimizar la respuesta del negocio frente a la demanda, siempre que se gestione con base en datos, segmentación de productos y sensibilidad al contexto estacional. Sin embargo, también se evidenció que el éxito financiero del modelo no garantiza su aceptación por parte de los clientes, a menos que esté acompañado de transparencia, comunicación efectiva y estrategias que fomenten la confianza y el sentido de control.
+
+En un entorno digital caracterizado por la automatización de decisiones de compra y venta, se concluye que los modelos de precios deben diseñarse no solo para maximizar utilidades, sino para construir relaciones sostenibles con los consumidores. Integrar lo técnico con lo humano, lo racional con lo emocional, es la clave para lograr una estrategia de precios dinámica verdaderamente competitiva y aceptada.
+
+\newpage
+
+# Recomendaciones
+
+A continuación, se presenta algunas recomendaciones para la empresa a partir de los hallazgos hechos en esta investigación. Se muestran acciones concretas que el la empresa puede lleva a cabo dado que sus ingresos han aumentado significativamente desde que implementaron el sistema de precios dinámicos en sus ventas.
+
+**Optimizar la estrategia de precios según categoría y temporada**
+
+Los resultados muestran que no todos los productos responden igual al sistema de precios dinámicos. Se recomienda segmentar la estrategia por categoría de producto, ajustando los márgenes de aumento o descuento según su elasticidad. Por ejemplo, productos como mouse o audífonos pueden soportar ajustes más agresivos, mientras que monitores o discos duros requieren una política más conservadora.
+
+**Revisar el nivel de descuentos en temporada baja**
+
+El descuento del 10% aplicado en los meses de baja demanda no generó un aumento proporcional en las unidades vendidas. Se recomienda realizar pruebas A/B o simulaciones con descuentos menores o escalonados (por ejemplo, 5% o 7%) para encontrar el punto óptimo que maximice el volumen sin comprometer los ingresos.
+
+**Fortalecer la comunicación sobre el modelo de precios**
+
+La percepción de falta de transparencia fue una barrera importante para la aceptación del sistema. Se recomienda desarrollar estrategias de comunicación directa con los clientes, como mensajes explicativos en las fichas de producto, secciones de preguntas frecuentes, o publicaciones informativas en redes sociales que expliquen la lógica del modelo (por ejemplo: precios ajustados por temporada o rotación de inventario).
+
+**Incorporar avisos o alertas automáticas de precios**
+
+Muchos clientes expresaron frustración por no poder anticipar cambios en los precios. La empresa podría implementar una función para notificar a los usuarios cuando un producto baje de precio o entre en oferta, lo cual mejoraría la experiencia del usuario y aumentaría la percepción de control sobre sus decisiones de compra.
+
+**Desarrollar promociones personalizadas o sorpresivas**
+
+Las promociones inesperadas o personalizadas pueden mejorar la aceptación emocional del modelo. Se recomienda explorar el uso de campañas basadas en comportamiento de navegación o historial de compras para ofrecer descuentos selectivos, cupones o garantías extendidas como incentivo emocional.
+
+**Capacitar al equipo interno en atención al cliente sobre precios**
+
+Es clave que los canales de atención puedan explicar con claridad y consistencia la lógica del sistema de precios. Se sugiere desarrollar protocolos y capacitaciones que permitan responder dudas de forma coherente, transparente y orientada a generar confianza.
+
+**Monitorear continuamente la percepción del cliente**
+
+Se recomienda aplicar encuestas breves y frecuentes que permitan medir la confianza del cliente, la claridad percibida del modelo y el nivel de satisfacción. Esto permitirá ajustar la estrategia en tiempo real y detectar señales tempranas de desgaste o rechazo del sistema.
+
+**Evaluar la automatización del sistema dinámico**
+
+Actualmente, el sistema de precios parece depender de ajustes manuales. Se sugiere explorar herramientas de automatización o inteligencia artificial que permitan actualizar precios en tiempo real en función de demanda, inventario y comportamiento del mercado, con reglas claras que mantengan la coherencia percibida por el cliente.
+
+
+
+\newpage
+
+# Bibliografía
